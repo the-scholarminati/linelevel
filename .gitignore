@@ -1,0 +1,12 @@
+# Floobits
+.floo
+.floobit
+.floo
+.flooignore
+
+# Node
+npm-debug.log
+node_modules
+
+# Bower
+bower_components
