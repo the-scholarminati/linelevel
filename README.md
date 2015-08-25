@@ -1,3 +1,5 @@
+google doc: https://docs.google.com/document/d/15GRGsJ9_VsUKPIzcfdf-skhttTQm-rXJ9ItUB6OVqio/edit#
+
 # LineLevel
 An app where musicians can host online album release parties to share new music with their fans
 
