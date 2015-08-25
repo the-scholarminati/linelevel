@@ -4,6 +4,9 @@ google doc: https://docs.google.com/document/d/15GRGsJ9_VsUKPIzcfdf-skhttTQm-rXJ
 An app where musicians can host online album release parties to share new music with their fans
 
 
+![Line Level front page mockup](https://raw.github.com/the-scholarminati/linelevel/blob/master/designs:mockups/linelevel_frontpage_demo.png)
+
+
 # The Team
 
 Alex - product owner and backend engineer
