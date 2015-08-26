@@ -9,10 +9,10 @@ An app where musicians can host online album release parties to share new music 
 
 # The Team
 
-Alex - product owner and backend engineer
-Logan - scrum master and frontend engineer
-Charles - backend engineer
-Diedra - frontend engineer
+- Alex - product owner and backend engineer
+- Logan - scrum master and frontend engineer
+- Charles - backend engineer
+- Diedra - frontend engineer
 
 
 # Tech Stack
