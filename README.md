@@ -18,13 +18,12 @@ Diedra - frontend engineer
 # Tech Stack
 
 - Mobile-first design, browser based app.
-- React
-- Relay + GraphQL
+- Angular + React
 - Youtube API ---> Webcam/audio interaction
 - Node.js + Express
 - Look into Compose/RethinkDB or other interesting database systems
 - Look into Redis
-- OAuth for Authentication
+- Auth0 for Authentication
 - Tape for testing
 - Deploy on Heroku
 
