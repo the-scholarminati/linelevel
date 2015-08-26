@@ -1,0 +1,27 @@
+{
+  "name": "LineLevel",
+  "version": "0.0.1",
+  "description": "an app where musicians can host album release parties to share new music with their fans",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/the-scholarminati/linelevel.git"
+  },
+  "keywords": [
+    "music",
+    "album",
+    "artist",
+    "party",
+    "online",
+    "virtual"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/the-scholarminati/linelevel/issues"
+  },
+  "homepage": "https://github.com/the-scholarminati/linelevel"
+}
