@@ -21,11 +21,10 @@ Diedra - frontend engineer
 - Angular + React
 - Youtube API ---> Webcam/audio interaction
 - Node.js + Express
-- Look into Compose/RethinkDB or other interesting database systems
+- Firebase for database and hosting
 - Look into Redis
 - Auth0 for Authentication
 - Tape for testing
-- Deploy on Heroku
 
 
 # MVP feature list
