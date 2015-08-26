@@ -32,7 +32,6 @@ Diedra - frontend engineer
 - video/music streaming (youtube API)
 - user accounts
 - chat
-- music file upload
 - mobile-first design
 - unit tests for client and server
 - integration test for api calls
@@ -40,6 +39,7 @@ Diedra - frontend engineer
 
 # Stretch goals
 
+- music file upload
 - develop our own streaming feature (from scratch?)
 - rewards/incentives
 - add other genres, film screenings and game demos
