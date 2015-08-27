@@ -1,6 +1,6 @@
 var app = angular.module('main', ['firebase', 'ui.router'])
 
-.config(function($stateProvider, $urlRouterProvider){
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise('/home');
 
   $stateProvider
@@ -13,8 +13,11 @@ var app = angular.module('main', ['firebase', 'ui.router'])
       templateUrl: './app/signup/signup.html'
     })
     .state('userProfile', {
-      url: '/userProfile',
-      templateUrl: './app/userProfile/userProfile.html'
+      url: '/userProfile/:userId',
+      templateUrl: './app/userProfile/userProfile.html',
+      controller: function($scope, $stateParams){
+        $scope.userId = $stateParams.userId;
+      }
     })
     .state('createEvent', {
       url: '/createEvent',
@@ -27,7 +30,11 @@ var app = angular.module('main', ['firebase', 'ui.router'])
         $scope.eventId = $stateParams.eventId;
       }
     })
-})
+}])
+
+.run(['$state', function($state){
+  $state.transitionTo('home');
+}])
 
 .controller('mainCtrl', function($scope, $firebaseObject) {
   // define a reference to the firebase database
