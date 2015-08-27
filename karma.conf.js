@@ -16,7 +16,10 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'node_modules/angular/angular.js',
+      'node_modules/angular-ui-router/build/angular-ui-router.js',
       'node_modules/angular-mocks/angular-mocks.js',
+      'node_modules/firebase/lib/firebase-web.js',
+      'node_modules/angularfire/dist/angularfire.js',
       'client/**/*.js',
       'client/**/*.html',
       // not sure if we need to specify the folders inside of client
@@ -31,7 +34,9 @@ module.exports = function(config) {
       'client/app/signup/**/*.js',
       'client/app/signup/**/*.html',
       'client/app/userProfile/**/*.js',
-      'client/app/userProfile/**/*.html'
+      'client/app/userProfile/**/*.html',
+      // test files
+      'specs/client/**/*.js'
     ],
 
 

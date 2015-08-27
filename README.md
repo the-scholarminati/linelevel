@@ -70,12 +70,14 @@ To run the test suite, you may need to globally install a few dependencies:
 
 ```
 npm install -g karma
+npm install -g karma-jasmine
 npm install -g karma-coverage
-karma-ng-html2js-preprocessor
+npm install -g karma-chrome-launcher
+npm install -g karma-ng-html2js-preprocessor
 ```
 To run the actual tests, navigate to the project directory in your terminal and run the command
 ```
 karma start
 ```
-A new browser window should open with the test results.
+A new browser window should open stating that Karma connected successfully.
 
