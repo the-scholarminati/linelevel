@@ -63,3 +63,19 @@ An app where musicians can host online album release parties to share new music 
 - create pull request: base team-repo:dev compare your-forked-repo:branch-name
 - repeat until feature is complete
 
+# Getting Started
+(please add any instructions other team members need to know to run your code here)
+
+To run the test suite, you may need to globally install a few dependencies:
+
+```
+npm install -g karma
+npm install -g karma-coverage
+karma-ng-html2js-preprocessor
+```
+To run the actual tests, navigate to the project directory in your terminal and run the command
+```
+karma start
+```
+A new browser window should open with the test results.
+
