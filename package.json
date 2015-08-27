@@ -25,15 +25,10 @@
   },
   "homepage": "https://github.com/the-scholarminati/linelevel",
   "dependencies": {
-    "angular": "~1.4.3",
-    "angularfire": "^1.1.2",
     "auth0": "^0.8.2",
     "bower": "~1.4.1",
-    "express": "~4.13.3",
     "firebase": "^2.2.9",
-    "grunt-cli": "^0.1.13",
     "gulp": "~3.9.0",
-    "ngreact": "^0.1.7",
     "react": "^0.13.3",
     "youtube": "^0.1.0"
   },
