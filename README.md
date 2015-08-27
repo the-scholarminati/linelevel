@@ -49,13 +49,12 @@ An app where musicians can host online album release parties to share new music 
 - display list of upcoming promotions for different genres
 
 # Git Flow
+
 - create fork via github
 - clone to local repo
-
 - // if feature branch does not exist
 - make branch on local repo: git checkout -b branch-name
 - push branch to upstream: git push upstream branch-name
-
 - // repeat from here if making changes to existing feature
 - make changes to branch until ready to push       
 - rebase from dev:  git rebase (--continue | --skip | --abort)
