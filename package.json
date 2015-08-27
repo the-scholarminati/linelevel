@@ -26,6 +26,7 @@
   "homepage": "https://github.com/the-scholarminati/linelevel",
   "dependencies": {
     "angular": "~1.4.3",
+    "angularfire": "^1.1.2",
     "auth0": "^0.8.2",
     "bower": "~1.4.1",
     "express": "~4.13.3",
@@ -33,8 +34,9 @@
     "gulp": "~3.9.0",
     "ngreact": "^0.1.7",
     "react": "^0.13.3",
-    "tape": "^4.2.0",
     "youtube": "^0.1.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "tape": "^4.2.0"
+  }
 }
