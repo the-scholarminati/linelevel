@@ -12,6 +12,10 @@ var app = angular.module('main', ['firebase', 'ui.router'])
       url: '/signup',
       templateUrl: './app/signup/signup.html'
     })
+    .state('signin', {
+      url: '/signin',
+      templateUrl: './app/signin/signin.html'
+    })
     .state('userProfile', {
       url: '/userProfile/:userId',
       templateUrl: './app/userProfile/userProfile.html',
