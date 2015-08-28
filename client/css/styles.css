@@ -1,5 +1,9 @@
 body {
+<<<<<<< HEAD
    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+=======
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+>>>>>>> f06f8e0ade08f0b1d8e933de111ed941f5715f60
    font-weight: 300;
    padding: 0px;
    margin: 0px;
@@ -153,7 +157,6 @@ nav {
   display:inline-block;
 }
 
-
 .selected {
   color: green;
 }
@@ -192,7 +195,6 @@ ul {
   overflow: auto;
 }*/
 
-
 #homeSection1{
   background-image: url(http://blogs-images.forbes.com/ryanmac/files/2014/12/calvinharris2-e1418487863601.jpeg);
   background-size: 115%;
@@ -220,6 +222,3 @@ ul {
   width: 100%;
   height: 100%;
 }
-
-
-

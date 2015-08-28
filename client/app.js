@@ -33,16 +33,12 @@ var app = angular.module('main', ['firebase', 'ui.router'])
       controller: function($scope, $stateParams){
         $scope.eventId = $stateParams.eventId;
       }
-
     })
 }])
 
 .run(['$state', function($state){
   $state.transitionTo('home');
 }])
-
-
-
 .controller('mainCtrl', function($scope, $firebaseObject,$state) {
   // define a reference to the firebase database
   var ref = new Firebase('https://linelevel.firebaseio.com/data');
