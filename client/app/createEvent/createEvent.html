@@ -3,7 +3,7 @@
   <form name="createEventForm" ng-submit="submitCreateEventForm()" novalidate>
     <input type="text" placeholder="event title" ng-model="eventTitle" required>
     <input type="text" placeholder="description" ng-model="eventDescription" required>
-    <input type="text" placeholder="url to cover image" ng-model="eventImage">
+    <input type="url" placeholder="url to cover image" ng-model="eventImage">
     <input type="text" placeholder="record label" ng-model="eventLabel">
     <!-- search box for easily finding the right genre from the list?
     <input type="text" placeholder="genre" ng-model="eventGenre">

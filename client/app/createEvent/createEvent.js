@@ -2,15 +2,10 @@
 
 angular.module('main')
 
-.controller('createEventController', ['$scope', 
-  function($scope){
+.controller('createEventController', ['$scope', 'appFactory', 
+  function($scope, appFactory){
 
-    // move to a factory/service so it can be used by users when they're creating their profile as well
-    var genres = ['Classical', 'Jazz', 'Pop', 'Rock', 'Blues', 'Folk', 'Country', 'Electronic', 'Experimental'];
-    $scope.genres = genres.reduce(function(array, genre){
-      array.push( {name: genre, selected: false} );
-      return array;
-    }, []);
+    $scope.genres = appFactory.genres;
 
     $scope.chosenGenres = [];
     $scope.chooseGenre = function(genre){
