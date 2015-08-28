@@ -54,7 +54,17 @@ h2{
   background-color: #5A585B;
 }
 
-#popUp{
+.x_button{
+  background-image: url(http://www.petrafoshotel.com/wp-content/plugins/indeed-smart-popup/files/img/close_2.png);
+  background-repeat: none;
+  background-size: 100%;
+  width: 15px;
+  height: 15px;
+  float:right;
+  right: -20px;
+}
+
+#popUpSignIn{
   display: none;
   text-align: center;
   vertical-align: middle;
@@ -62,6 +72,26 @@ h2{
   width: 100%;
   z-index:1002;
   position: absolute;
+  padding-top: 100px;
+}
+
+#signInHeader{
+  margin-bottom: 50px;
+}
+
+#signUpHeader{
+  margin-bottom: 50px;
+}
+
+#popUpSignUp{
+  display: none;
+  text-align: center;
+  vertical-align: middle;
+  height: 100%;
+  width: 100%;
+  z-index:1002;
+  position: absolute;
+  padding-top: 100px;
 }
 
 .forgot-password{
@@ -92,11 +122,10 @@ fieldset{
   border: 0px;
   line-height: normal;
   width: 300px;
-  height: 315px;
+  height: 400px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 100px;
-  padding: 50px;
   border: 1px solid black;
   border-radius: 5px;
   background:white;
