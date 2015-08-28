@@ -7,17 +7,26 @@ angular.module('main')
 
     // saves the genre lists and method from the factory so we can access them in the DOM
     $scope.genres = appFactory.genres;
+    // this is the list of the user's chosen genres
     $scope.chosenGenres = appFactory.chosenGenres;
     $scope.chooseGenre = appFactory.chooseGenre;
 
     $scope.submitCreateEventForm = function(){
       // saves the data from the form and clears the fields
       var eventTitle = $scope.eventTitle;
+      $scope.eventTitle = '';
       var eventDescription = $scope.eventDescription;
+      $scope.eventDescription = '';
       // the image url is not required on the form
       // maybe have a default image that is used when image is not provided
       var eventImage = $scope.eventImage;
+      $scope.eventImage = '';
       var eventLabel = $scope.eventLabel;
+      $scope.eventLabel = '';
+      appFactory.chosenGenres = [];
+      appFactory.genres.forEach(function(genre){
+        genre.selected = false;
+      });
 
 
       // console log to test the button is functioning
