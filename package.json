@@ -4,7 +4,7 @@
   "description": "an app where musicians can host album release parties to share new music with their fans",
   "main": "server.js",
   "scripts": {
-    "test": "test"
+    "test": "karma start"
   },
   "repository": {
     "type": "git",
@@ -25,9 +25,20 @@
   },
   "homepage": "https://github.com/the-scholarminati/linelevel",
   "dependencies": {
+    "angular": "~1.4.3",
+    "angular-ui-router": "^0.2.15",
+    "angularfire": "^1.1.2",
     "auth0": "^0.8.2",
     "bower": "~1.4.1",
     "firebase": "^2.2.9",
+    "firebase-server": "^0.3.1",
+    "grunt-cli": "^0.1.13",
+    "gulp": "~3.9.0",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-coverage": "^0.5.0",
+    "karma-ng-html2js-preprocessor": "^0.1.2",
+    "mockfirebase": "^0.11.0",
+    "ngreact": "^0.1.7",
     "react": "^0.13.3",
     "youtube": "^0.1.0"
   },
@@ -42,6 +53,14 @@
     "gulp-minify-css": "^1.2.1",
     "gulp-minify-html": "^1.0.4",
     "jshint": "^2.8.0",
+    "angular-mocks": "^1.4.4",
+    "firebase-server": "^0.3.1",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.9",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-coverage": "^0.5.0",
+    "karma-jasmine": "^0.3.6",
+    "karma-ng-html2js-preprocessor": "^0.1.2",
     "tape": "^4.2.0"
   }
 }
