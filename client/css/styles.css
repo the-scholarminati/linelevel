@@ -48,6 +48,8 @@ h2{
   text-align: center;
   vertical-align: middle;
   height: 100%-40px;
+  z-index:1002;
+
 }
 
 .forgot-password{
@@ -84,6 +86,8 @@ fieldset{
   padding: 50px;
   border: 1px solid black;
   border-radius: 5px;
+  background:white;
+  z-index: 1002;
 }
 
 input{
@@ -107,6 +111,7 @@ nav {
   display:inline-block;
 }
 
+
 .selected {
   color: green;
 }
@@ -118,3 +123,30 @@ nav {
 ul {
   list-style-type: none;
 }
+
+.black_overlay{
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index:-1;
+  -moz-opacity: 0.8;
+  opacity:.80;
+  filter: alpha(opacity=80);
+}
+
+/*.white_content {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  padding: 16px;
+  border: 16px solid orange;
+  background-color: white;
+  z-index:1002;
+  overflow: auto;
+}*/
+
