@@ -5,3 +5,15 @@ header {
 nav {
   margin: 30px;
 }
+
+.selected {
+  color: green;
+}
+
+.notSelected {
+  color: black;
+}
+
+ul {
+  list-style-type: none;
+}
