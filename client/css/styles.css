@@ -4,6 +4,7 @@ body {
    padding: 0px;
    margin: 0px;
    color: black;
+   height: 100%;
 }
 
 
@@ -26,6 +27,10 @@ header a:hover{
 
 }
 
+h2{
+  color: #9FA3A3;
+}
+
 .signIn{
   width: 70px;
   height: 30px;
@@ -41,11 +46,53 @@ header a:hover{
 
 #signInPage{
   text-align: center;
-  line-height: 100%;
+  vertical-align: middle;
+  height: 100%-40px;
 }
+
+.forgot-password{
+  text-align: normal;
+  font-size: 12px;
+}
+#signInButton{
+  background-color: #7CDFCE;
+  width: 175px;
+  height: 35px;
+  border-radius: 3px;
+  text-align: center;
+  line-height: 35px;
+  margin: auto;
+  margin-top: 10px;
+  color: white;
+  text-decoration: bold;
+}
+
+#signup{
+  margin-top: 10px;
+  text-align: normal;
+  font-size: 12px;
+}
+
 
 fieldset{
   border: 0px;
+  line-height: normal;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  padding: 50px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+input{
+  width: 175px;
+  height: 35px;
+  border-radius: 3px;
+  border: 1px solid #C1C1C1;
+  color: #C1C1C1;
+  margin: 5px;
 }
 
 h1{
