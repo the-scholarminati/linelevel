@@ -5,6 +5,7 @@ angular.module('main')
 .controller('createEventController', ['$scope', 'appFactory', 
   function($scope, appFactory){
 
+    // gets the current date so we can stop users from choosing dates in the past
     $scope.today = new Date();
     // gets the date from the factory and makes it accessible to the DOM
     $scope.date = appFactory.date;
