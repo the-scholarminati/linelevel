@@ -3,7 +3,7 @@ body {
    font-weight: 300;
    padding: 0px;
    margin: 0px;
-   color: white;
+   color: black;
 }
 
 
@@ -13,6 +13,7 @@ header{
   height: 40px;
   background-color: #000000;
   padding-left: 10px;
+  color:white;
 }
 
 header a:visited, header a:link, header a:active{
@@ -35,7 +36,16 @@ header a:hover{
 }
 .signIn:hover{
   text-decoration: underline;
-  background-color: #9A979D;
+  background-color: #5A585B;
+}
+
+#signInPage{
+  text-align: center;
+  line-height: 100%;
+}
+
+fieldset{
+  border: 0px;
 }
 
 h1{
