@@ -10,11 +10,11 @@ var app = angular.module('main', ['firebase', 'ui.router'])
     })
     .state('signup', {
       url: '/signup',
-      templateUrl: './app/signup/signup.html'
+      templateUrl: './app/authentication/signup.html'
     })
     .state('signin', {
       url: '/signin',
-      templateUrl: './app/signin/signin.html'
+      templateUrl: './app/authentication/signin.html'
     })
     .state('userProfile', {
       url: '/userProfile',
@@ -30,10 +30,10 @@ var app = angular.module('main', ['firebase', 'ui.router'])
       controller: function($scope, $stateParams){
         $scope.eventId = $stateParams.eventId;
       }
-    })
+    });
 })
 
-.controller('mainCtrl', function($scope, $firebaseObject) {
+.controller('mainCtrl', function($scope, $firebaseObject,$state) {
   // define a reference to the firebase database
   var ref = new Firebase('https://linelevel.firebaseio.com/data');
 
@@ -42,4 +42,5 @@ var app = angular.module('main', ['firebase', 'ui.router'])
 
   // synchronize the object with a three-way data binding
   syncObject.$bindTo($scope, 'data');
+  $state.go('home');
 });
