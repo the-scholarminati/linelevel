@@ -20,18 +20,21 @@ angular.module('main')
     $scope.submitCreateEventForm = function(){
       // saves the data from the form and clears the fields
       var eventTitle = $scope.eventTitle;
-      $scope.eventTitle = '';
       var eventDescription = $scope.eventDescription;
-      $scope.eventDescription = '';
       // the image url is not required on the form
       // maybe have a default image that is used when image is not provided
       var eventImage = $scope.eventImage;
-      $scope.eventImage = '';
       var eventLabel = $scope.eventLabel;
-      $scope.eventLabel = '';
-      appFactory.resetGenres();
       var eventDate = $scope.date.eventDate;
+      var chosenGenres = $scope.chosenGenres;
+      
+      // resets the form
+      $scope.eventTitle = '';
+      $scope.eventDescription = '';
+      $scope.eventImage = '';
+      $scope.eventLabel = '';
       appFactory.resetDate();
+      appFactory.resetGenres();
 
       // console log to test the button is functioning
       console.log("event creation form submitted!");
@@ -45,6 +48,3 @@ angular.module('main')
 
   }
 ]);
-
-
-//app.module('main').requires.push('createEvent');
