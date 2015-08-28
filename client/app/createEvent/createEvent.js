@@ -18,7 +18,7 @@ angular.module('main')
     $scope.chooseGenre = appFactory.chooseGenre;
 
     $scope.submitCreateEventForm = function(){
-      // saves the data from the form and clears the fields
+      // saves the data from the form
       var eventTitle = $scope.eventTitle;
       var eventDescription = $scope.eventDescription;
       // the image url is not required on the form
@@ -27,7 +27,7 @@ angular.module('main')
       var eventLabel = $scope.eventLabel;
       var eventDate = $scope.date.eventDate;
       var chosenGenres = $scope.chosenGenres;
-      
+
       // resets the form
       $scope.eventTitle = '';
       $scope.eventDescription = '';

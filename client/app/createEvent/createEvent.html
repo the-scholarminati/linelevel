@@ -3,7 +3,7 @@
   <form name="createEventForm" ng-submit="submitCreateEventForm()" novalidate>
     <input type="text" placeholder="event title" ng-model="eventTitle" required>
     <input type="text" placeholder="description" ng-model="eventDescription" required>
-    <input type="date" placeholder="today" ng-model="date.eventDate" required>
+    <input type="date" placeholder="today" ng-model="date.eventDate" min="{{today | date:'yyyy-MM-dd'}}" required>
     <input type="time" placeholder="HH:mm" ng-model="date.eventDate" required>
     <input type="url" placeholder="url to cover image" ng-model="eventImage">
     <input type="text" placeholder="record label" ng-model="eventLabel">
