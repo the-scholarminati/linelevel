@@ -25,5 +25,16 @@ angular.module('main')
   };
 
 
+  obj.date = {};
+
+  obj.resetDate = function(){
+    obj.date.eventDate = new Date();
+    obj.date.eventDate.setHours(19);
+    obj.date.eventDate.setMinutes(0);
+    obj.date.eventDate.setSeconds(0);
+    obj.date.eventDate.setMilliseconds(0);
+  };
+
+
   return obj;
 });
