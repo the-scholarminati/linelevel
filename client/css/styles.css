@@ -1,9 +1,160 @@
-header {
-  display: flex;
+body {
+<<<<<<< HEAD
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+=======
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+>>>>>>> f06f8e0ade08f0b1d8e933de111ed941f5715f60
+   font-weight: 300;
+   padding: 0px;
+   margin: 0px;
+   color: black;
+   height: 100%;
+}
+
+
+/*.headerbar{
+    width: 100%;
+  height: 40px;
+  background-color: #000000;
+  padding-left: 10px;
+  color:white;
+  position: absolute;
+}*/
+header{
+  width: 100%;
+  height: 40px;
+  background-color: #000000;
+  padding-left: 10px;
+  color:white;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
+
+header a:visited, header a:link, header a:active{
+  color: white;
+  text-decoration: none;
+}
+
+header a:hover{
+  color: white;
+
+}
+
+h2{
+  color: #9FA3A3;
+}
+
+.signIn{
+  width: 70px;
+  height: 30px;
+  text-align: center;
+  padding: 5px;
+  margin-right: 10px;
+  line-height: 30px;
+}
+.signIn:hover{
+  text-decoration: underline;
+  background-color: #5A585B;
+}
+
+.x_button{
+  background-image: url(http://www.petrafoshotel.com/wp-content/plugins/indeed-smart-popup/files/img/close_2.png);
+  background-repeat: none;
+  background-size: 100%;
+  width: 15px;
+  height: 15px;
+  float:right;
+  right: -20px;
+}
+
+#popUpSignIn{
+  display: none;
+  text-align: center;
+  vertical-align: middle;
+  height: 100%;
+  width: 100%;
+  z-index:1002;
+  position: absolute;
+  padding-top: 100px;
+}
+
+#signInHeader{
+  margin-bottom: 50px;
+}
+
+#signUpHeader{
+  margin-bottom: 50px;
+}
+
+#popUpSignUp{
+  display: none;
+  text-align: center;
+  vertical-align: middle;
+  height: 100%;
+  width: 100%;
+  z-index:1002;
+  position: absolute;
+  padding-top: 100px;
+}
+
+.forgot-password{
+  text-align: normal;
+  font-size: 12px;
+}
+#divButton{
+  background-color: #7CDFCE;
+  width: 175px;
+  height: 35px;
+  border-radius: 3px;
+  text-align: center;
+  line-height: 35px;
+  margin: auto;
+  margin-top: 10px;
+  color: white;
+  text-decoration: bold;
+}
+
+#signup{
+  margin-top: 10px;
+  text-align: normal;
+  font-size: 12px;
+}
+
+
+fieldset{
+  border: 0px;
+  line-height: normal;
+  width: 300px;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background:white;
+  z-index: 1002;
+}
+
+input{
+  width: 175px;
+  height: 35px;
+  border-radius: 3px;
+  border: 1px solid #C1C1C1;
+  color: #C1C1C1;
+  margin: 5px;
+}
+
+h1{
+  display:inline-block;
+  font-size: 36px;
+  margin-top: 5px;
 }
 
 nav {
-  margin: 30px;
+  margin: 0px;
+  float: right;
+  display:inline-block;
 }
 
 .selected {
@@ -16,4 +167,58 @@ nav {
 
 ul {
   list-style-type: none;
+}
+
+.black_overlay{
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index:-1;
+  -moz-opacity: 0.8;
+  opacity:.80;
+  filter: alpha(opacity=80);
+}
+
+/*.white_content {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  padding: 16px;
+  border: 16px solid orange;
+  background-color: white;
+  z-index:1002;
+  overflow: auto;
+}*/
+
+#homeSection1{
+  background-image: url(http://blogs-images.forbes.com/ryanmac/files/2014/12/calvinharris2-e1418487863601.jpeg);
+  background-size: 115%;
+  width: 100%;
+  height: 100%;
+}
+
+#homeSection2{
+  background-color: #BEE8E6;
+  background-size: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+#homeSection3{
+  background-image: url(https://farm6.staticflickr.com/5049/5227330093_05db4906b6_o_d.jpg);
+  background-size: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+#homeSection4{
+  background-color: #E8D9C2;
+  background-size: 100%;
+  width: 100%;
+  height: 100%;
 }

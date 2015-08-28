@@ -5,7 +5,12 @@
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
     <script src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
     <script src="./lib/moment-min.js"></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
 
     <script src="app.js"></script>
     <script src="factory.js"></script>
@@ -18,13 +23,105 @@
   </head>
 
   <body ng-app="main" ng-controller="mainCtrl">
+
+<!-- Header Bar start -->
     <div class="headerbar" width="100%">
       <header>
-        <h1>Linelevel</h1>
-        <nav><div style="float:right"><a ui-sref="signup">signup</a></div></nav>
+        <a ui-sref="home"><h1>Linelevel</a></h1>
+        <nav>
+          <div class="signIn"><a href="javascript:void(0)" onclick="document.getElementById('popUpSignIn').style.display='block'">SIGN IN</a>
+          </div>
+        </nav>
       </header>
     </div>
+
+<!-- Header Bar End -->
+
+<!-- Popup box for Signin Window -->
+
+    <section id="popUpSignIn">
+      <div id="fade" class="black_overlay">
+      </div>
+
+      <fieldset>
+      <div class="x_button" onclick="document.getElementById('popUpSignIn').style.display='none';document.getElementById('popUpSignUp').style.display='none'"></div>
+        <div class="sign-up-title"><h2 id='signInHeader'>Sign into LineLevel</h2></div>
+        <div class="form-group">
+          
+          <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
+        </div>
+        <div class="form-group">
+          
+          <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
+        </div>
+        <div class="text-center form-group">
+        <div class="forgot-password">
+          <a href="/#!/password/forgot">Forgot your password?</a>
+        </div>
+          <div id="divButton" ng-click="signIn()">
+          Sign In
+          </div>
+          <div id="signUp">Don't have an account? 
+            <a href="javascript:void(0)" onclick="document.getElementById('popUpSignIn').style.display='none';document.getElementById('popUpSignUp').style.display='block'">Sign up</a>
+
+            </div>
+        </div>
+        
+        <div data-ng-show="error" class="text-center text-danger">
+          <strong data-ng-bind="error"></strong>
+        </div>
+        
+      </fieldset>
+    </section>
+<!--     End Popup box for signin -->
+
+<!-- Popup box for Signup Window -->
+
+<section id="popUpSignUp" >
+  <fieldset>
+  <div class="x_button" onclick="document.getElementById('popUpSignIn').style.display='none';document.getElementById('popUpSignUp').style.display='none'"></div>
+    <div class="sign-up-title"><h2 id='signUpHeader'>Sign up with LineLevel</h2></div>
+    <div class="form-group">
+      
+      <input type="text" id="firstName" name="firstName" class="form-control" data-ng-model="credentials.firstname" placeholder="First Name">
+    </div>
+    <div class="form-group">
+      
+      <input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="credentials.lastName" placeholder="Last Name">
+    </div>
+
+    <div class="form-group">
+      
+      <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
+    </div>
+    <div class="form-group">
+      
+      <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
+    </div>
+        <div class="form-group">
+      
+      <input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email">
+    </div>
+      <div id="divButton" ng-click="signUp()">
+      Sign Up
+      </div>
+    </div>
+    
+    
+    <div data-ng-show="error" class="text-center text-danger">
+      <strong data-ng-bind="error"></strong>
+    </div>
+    <div id="fade" class="black_overlay">
+  </fieldset>
+</section>
+
+<!--     End Popup box for signup -->
+
     <div ui-view></div>
+    
+    </div>
+
+    
   </body>
 
 </html>
