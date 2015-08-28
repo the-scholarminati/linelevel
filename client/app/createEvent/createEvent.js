@@ -29,10 +29,7 @@ angular.module('main')
       $scope.eventImage = '';
       var eventLabel = $scope.eventLabel;
       $scope.eventLabel = '';
-      appFactory.chosenGenres = [];
-      appFactory.genres.forEach(function(genre){
-        genre.selected = false;
-      });
+      appFactory.resetGenres();
       var eventDate = $scope.date.eventDate;
       appFactory.resetDate();
 
