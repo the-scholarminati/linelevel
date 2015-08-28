@@ -1,9 +1,53 @@
-header {
-  display: flex;
+body {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+   font-weight: 300;
+   padding: 0px;
+   margin: 0px;
+   color: white;
+}
+
+
+
+header{
+  width: 100%;
+  height: 40px;
+  background-color: #000000;
+  padding-left: 10px;
+}
+
+header a:visited, header a:link, header a:active{
+  color: white;
+  text-decoration: none;
+}
+
+header a:hover{
+  color: white;
+
+}
+
+.signIn{
+  width: 70px;
+  height: 30px;
+  text-align: center;
+  padding: 5px;
+  margin-right: 10px;
+  line-height: 30px;
+}
+.signIn:hover{
+  text-decoration: underline;
+  background-color: #9A979D;
+}
+
+h1{
+  display:inline-block;
+  font-size: 36px;
+  margin-top: 5px;
 }
 
 nav {
-  margin: 30px;
+  margin: 0px;
+  float: right;
+  display:inline-block;
 }
 
 .selected {
