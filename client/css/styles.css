@@ -8,13 +8,23 @@ body {
 }
 
 
-
+/*.headerbar{
+    width: 100%;
+  height: 40px;
+  background-color: #000000;
+  padding-left: 10px;
+  color:white;
+  position: absolute;
+}*/
 header{
   width: 100%;
   height: 40px;
   background-color: #000000;
   padding-left: 10px;
   color:white;
+  position: fixed;
+  top: 0px;
+  left: 0px;
 }
 
 header a:visited, header a:link, header a:active{
@@ -44,19 +54,21 @@ h2{
   background-color: #5A585B;
 }
 
-#signInPage{
+#popUp{
+  display: none;
   text-align: center;
   vertical-align: middle;
-  height: 100%-40px;
+  height: 100%;
+  width: 100%;
   z-index:1002;
-
+  position: absolute;
 }
 
 .forgot-password{
   text-align: normal;
   font-size: 12px;
 }
-#signInButton{
+#divButton{
   background-color: #7CDFCE;
   width: 175px;
   height: 35px;
@@ -80,6 +92,7 @@ fieldset{
   border: 0px;
   line-height: normal;
   width: 300px;
+  height: 315px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 100px;
@@ -149,4 +162,35 @@ ul {
   z-index:1002;
   overflow: auto;
 }*/
+
+
+#homeSection1{
+  background-image: url(http://blogs-images.forbes.com/ryanmac/files/2014/12/calvinharris2-e1418487863601.jpeg);
+  background-size: 115%;
+  width: 100%;
+  height: 100%;
+}
+
+#homeSection2{
+  background-color: #BEE8E6;
+  background-size: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+#homeSection3{
+  background-image: url(https://farm6.staticflickr.com/5049/5227330093_05db4906b6_o_d.jpg);
+  background-size: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+#homeSection4{
+  background-color: #E8D9C2;
+  background-size: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+
 
