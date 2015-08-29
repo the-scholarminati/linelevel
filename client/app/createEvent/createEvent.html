@@ -1,18 +1,48 @@
 <section ng-controller="createEventController">
-  <h1>Create an Event</h1>
-  <form name="createEventForm" ng-submit="submitCreateEventForm()" novalidate>
-    <input type="text" placeholder="event title" ng-model="eventTitle" required>
-    <input type="text" placeholder="description" ng-model="eventDescription" required>
-    <input type="date" placeholder="today" ng-model="date.eventDate" min="{{today | date:'yyyy-MM-dd'}}" required>
-    <input type="time" placeholder="HH:mm" ng-model="date.eventDate" required>
-    <input type="url" placeholder="url to cover image" ng-model="eventImage">
-    <input type="text" placeholder="record label" ng-model="eventLabel">
+  <div id="eventContainer">
+    <h1>Create an Event</h1>
+    <div class="line"></div>
+    
+    <form name="createEventForm" ng-submit="submitCreateEventForm()" novalidate>
+      <div id="createEventForm">
+        <div class='formInputs'>
+          <div class="formItem">
+            Event:<br> 
+            <input type="text" placeholder="Name of your Event" ng-model="eventTitle" required>
+          </div>
+          <div class="formItem">
+            Description: <br> 
+            <textarea placeholder="Quick blurb about your event..." ng-model="eventDescription" required></textarea>
+          </div>
+          <div class="formItem">
+            Event Date: <br> 
+            <input type="date" placeholder="today" ng-model="date.eventDate" min="{{today | date:'yyyy-MM-dd'}}" required>
+          </div>
+          <div class="formItem">
+            Start Time: <br> 
+            <input type="time" placeholder="HH:mm" ng-model="date.eventDate" required>
+          </div>
+          <div class="formItem">
+            Cover Image: <br> 
+            <input type="url" placeholder="http://" ng-model="eventImage">
+          </div>
+          <div class="formItem">
+            Record Label: <br> 
+            <input type="text" placeholder="Name of Label" ng-model="eventLabel">
+          </div>
+        </div>
 
-    <div>Please choose one or more genres</div>
-    <ul>
-      <li ng-repeat="genre in genres" ng-click="chooseGenre(genre)" ng-class="{'selected': genre.selected, 'notSelected': !genre.selected}">{{genre.name}}</li>
-    </ul>
-
-    <button type="submit" ng-disabled="createEventForm.$invalid">Create event</button>
-  </form>
+        <div class="genreList">
+          <div>Please choose one or more genres</div>
+          <ul>
+            <li ng-repeat="genre in genres" ng-click="chooseGenre(genre)" ng-class="{'selected': genre.selected, 'notSelected': !genre.selected}">{{genre.name}}</li>
+          </ul>
+        </div>
+      <div class="submitbutton">
+        <button type="submit" ng-disabled="createEventForm.$invalid" class="clear" id="createEventButton">Create Event</button>
+      </div>
+    </div>
+    </form>
+    
+  </div>
 </section>
