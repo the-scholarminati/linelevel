@@ -96,7 +96,7 @@ h2{
   height: 100%;
   width: 100%;
   z-index:1002;
-  position: absolute;
+  position: fixed;
   padding-top: 100px;
 }
 
@@ -115,7 +115,7 @@ h2{
   height: 100%;
   width: 100%;
   z-index:1002;
-  position: absolute;
+  position: fixed;
   padding-top: 100px;
 }
 
