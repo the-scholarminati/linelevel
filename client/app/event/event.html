@@ -1,3 +1,26 @@
 <section ng-controller="eventController">
-  <h1>Event</h1>
+  <div class="container">
+    <div class="pageTitle">
+      <h1>{{event.name}}</h1>
+      <div id="chatToggle">
+        <div id="showChat"><a href="javascript:void(0)" onclick="document.getElementById('hideChat').style.display='block';document.getElementById('showChat').style.display='none'">Show Chat</a></div>
+        <div id="hideChat"><a href="javascript:void(0)" onclick="document.getElementById('showChat').style.display='block';document.getElementById('hideChat').style.display='none'">Hide Chat</a></div>
+      </div>
+    </div>
+      <div class="line"></div>
+    
+
+    <div id="eventcontent">
+    <div id="videoWrapper">
+      <div id="videostream">
+      </div>
+    </div>
+      <div id="chatcontent">
+        <div id="chatMessages">
+        </div>
+        <textarea id="chatTextbox"></textarea>
+        <button>Send</button>
+      </div>
+    </div>
+  </div>
 </section>

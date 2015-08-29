@@ -246,9 +246,10 @@ ul {
 }
 
 .container{
-  padding-top: 10%;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-top: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+
 }
 
 .line{
@@ -272,7 +273,7 @@ ul {
 
 #createEventForm{
   display: inline-flex;
-  flex-flow: row nowrap;
+  flex-flow: row;
   justify-content: space-between;
 }
 
@@ -314,5 +315,66 @@ textarea{
 #createEventButton{
   width: 150px;
   height: 30px;
+}
+
+#eventcontent{
+  width: 100%;
+  display: inline-flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+}
+
+#videoWrapper{
+  width: 60%;
+  border: 1px solid black;
+  position: relative;
+}
+
+#videostream{
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding-bottom: 56.25%;
+  background: #D2CCD3;
+  border: 1px solid black;
+  margin: 0px;
+  position:relative;
+}
+
+#chatcontent{
+  min-width: 300px;
+  height: 45vw;
+  max-height: 600px;
+  border: 1px solid black;
+  margin: 20px;
+}
+
+#chatToggle{
+  padding-top: 25px;
+  display: inline-flex;
+}
+
+.pageTitle{
+  display: flex;
+  justify-content: space-between;
+}
+
+#hideChat{
+
+}
+#showChat{
+  display:none;
+}
+
+a{
+  color:black;
+}
+
+#chatMessages{
+
 }
 
