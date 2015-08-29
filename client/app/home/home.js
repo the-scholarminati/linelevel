@@ -2,9 +2,9 @@
 
 angular.module('main')
 
-.controller('homeController',[
-  function(){
-    
+.controller('homeController', ['$scope', 
+  function($scope){
+
   }
 ]);
 

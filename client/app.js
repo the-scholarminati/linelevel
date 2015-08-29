@@ -39,6 +39,7 @@ var app = angular.module('main', ['firebase', 'ui.router'])
 .run(['$state', function($state){
   $state.transitionTo('home');
 }])
+
 .controller('mainCtrl', function($scope, $firebaseObject,$state) {
   // define a reference to the firebase database
   var ref = new Firebase('https://linelevel.firebaseio.com/data');

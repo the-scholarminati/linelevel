@@ -273,9 +273,9 @@ ul {
   margin: auto;
 }
 
-#createEventForm{
+#createEventForm, #signUpForm, #signInForm{
   display: inline-flex;
-  flex-flow: row;
+  flex-flow: row wrap;
   justify-content: space-between;
 }
 
@@ -420,4 +420,3 @@ a{
   font-size: 24px;
   font-family: Helvetica-bold;
 }
-

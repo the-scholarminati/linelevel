@@ -14,9 +14,10 @@
 
     <script src="app.js"></script>
     <script src="factory.js"></script>
+    <script src="./app/home/home.js"></script>
     <script src="./app/createEvent/createEvent.js"></script>
     <script src="./app/event/event.js"></script>
-    <script src="./app/signup/signup.js"></script>
+    <script src="./app/authentication/authentication.js"></script>
     <script src="./app/userProfile/userProfile.js"></script>
 
     <link rel="stylesheet" href="css/styles.css">
@@ -29,8 +30,10 @@
       <header>
         <a ui-sref="home"><h1>Linelevel</a></h1>
         <nav>
-          <div class="signIn"><a href="javascript:void(0)" onclick="document.getElementById('popUpSignIn').style.display='block'">SIGN IN</a>
-          </div>
+          <div class="signIn"><a ui-sref="signin">SIGN IN</a></div>
+          <!-- the following code is the old link for the sign-in pop up -->
+          <!-- <div class="signIn"><a href="javascript:void(0)" onclick="document.getElementById('popUpSignIn').style.display='block'">SIGN IN</a>
+          </div> -->
         </nav>
       </header>
     </div>
@@ -38,8 +41,7 @@
 <!-- Header Bar End -->
 
 <!-- Popup box for Signin Window -->
-
-    <section id="popUpSignIn">
+    <!-- <section ng-controller="authController" id="popUpSignIn">
       <div id="fade" class="black_overlay">
       </div>
 
@@ -72,12 +74,12 @@
         </div>
         
       </fieldset>
-    </section>
+    </section> -->
 <!--     End Popup box for signin -->
 
 <!-- Popup box for Signup Window -->
 
-<section id="popUpSignUp" >
+<!-- <section ng-controller="authController" id="popUpSignUp" >
   <fieldset>
   <div class="x_button" onclick="document.getElementById('popUpSignIn').style.display='none';document.getElementById('popUpSignUp').style.display='none'"></div>
     <div class="sign-up-title"><h2 id='signUpHeader'>Sign up with LineLevel</h2></div>
@@ -113,7 +115,7 @@
     </div>
     <div id="fade" class="black_overlay">
   </fieldset>
-</section>
+</section> -->
 
 <!--     End Popup box for signup -->
 
