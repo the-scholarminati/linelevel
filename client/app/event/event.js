@@ -3,7 +3,7 @@
 angular.module('main').controller('eventController',['$scope','$http',
   function($scope,$http){
     console.log("Loading event page...");
-
+    $scope.chatVisible = true;
     $scope.event = {};
     $scope.event.name = 'Sample Event';
     $scope.event.messages = [{user:"Anonymous",message:"Testing 123"},
@@ -41,7 +41,10 @@ angular.module('main').controller('eventController',['$scope','$http',
       $scope.userText='';
     };
 
-
+    $scope.toggleChat = function(){
+      console.log($scope.chatVisible);
+      $scope.chatVisible = !$scope.chatVisible;
+    };
   }
 
 ]);
