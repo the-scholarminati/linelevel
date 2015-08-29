@@ -7,6 +7,30 @@ body {
    height: 100%;
 }
 
+button {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  display: inline-block;
+  margin: auto;
+  padding: auto;
+  font-size: 14px;
+  line-height: 1.8;
+  appearance: none;
+  box-shadow: none;
+  border-radius: 10px;
+  border: none;
+  background-color: #7CDFCE;
+  color: #fff;
+  box-shadow: inset 0 0 0 0px;
+}
+
+button:disabled{
+  background-color: #5BA597;
+  color: #DAD7D9;
+}
+
+button:enabled:hover{
+  background-color: #80EBD8;
+}
 
 /*.headerbar{
     width: 100%;
@@ -25,6 +49,7 @@ header{
   position: fixed;
   top: 0px;
   left: 0px;
+  z-index: 9999;
 }
 
 header a:visited, header a:link, header a:active{
@@ -132,7 +157,7 @@ fieldset{
   z-index: 1002;
 }
 
-input{
+fieldset input{
   width: 175px;
   height: 35px;
   border-radius: 3px;
@@ -154,11 +179,11 @@ nav {
 }
 
 .selected {
-  color: green;
+  color: #000000;
 }
 
 .notSelected {
-  color: black;
+  color: #B5B5B5;
 }
 
 ul {
@@ -218,3 +243,75 @@ ul {
   width: 100%;
   height: 100%;
 }
+
+#eventContainer{
+  padding-top: 10%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.line{
+  position: relative;
+  top: -30px;
+  width: 100%;
+  height: 1px;
+  background-color: black;
+}
+
+#eventContainer input{
+  width: 175px;
+  height: 35px;
+  border-radius: 3px;
+  border: 1px solid #C1C1C1;
+  color: #C1C1C1;
+  margin: 5px;
+  padding-left: 10px;
+  margin: auto;
+}
+
+#createEventForm{
+  display: inline-flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.formInputs{
+  flex-basis: auto;
+  margin: 25px;
+}
+
+.genreList{
+  padding: 10px;
+  flex-basis: auto;
+  margin: 25px;
+}
+.submitbutton{
+  flex-basis: auto;
+  padding: 10px;
+  margin: 25px;
+}
+
+.formItem{
+  flex-basis: auto;
+  padding: 10px;
+  margin: auto;
+}
+
+.clear{
+  clear:both;
+}
+
+textarea{
+  width: 175px;
+  height: 175px;
+  border-radius: 3px;
+  border: 1px solid #C1C1C1;
+  color: #C1C1C1;
+  margin: auto;
+}
+
+#createEventButton{
+  width: 150px;
+  height: 30px;
+}
+
