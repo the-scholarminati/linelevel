@@ -124,7 +124,7 @@ h2{
   text-align: normal;
   font-size: 12px;
 }
-#divButton{
+button{
   background-color: #7CDFCE;
   width: 175px;
   height: 35px;
@@ -144,7 +144,7 @@ h2{
 }
 
 
-fieldset{
+form {
   border: 0px;
   line-height: normal;
   width: 300px;
@@ -156,6 +156,8 @@ fieldset{
   border-radius: 5px;
   background:white;
   z-index: 1002;
+  padding: 10px;
+  text-align: center;
 }
 
 input{
