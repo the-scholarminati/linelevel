@@ -1,25 +1,47 @@
 <section ng-controller="authController" class="popUp">
+  <div class="container" class="userForm">
+    <div class="sign-up-title"><h1>Sign up with LineLevel</h1></div>
+    <div class="line"></div>
 
-  <form name="signupForm" ng-submit="signUp()" novalidate>
-    <div class="sign-up-title"><h2>Sign up with LineLevel</h1></div>
-      
-    <input type="text" id="firstName" name="firstName" class="form-control" data-ng-model="credentials.firstname" placeholder="First Name">
-      
-    <input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="credentials.lastName" placeholder="Last Name">
-
-      
-    <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
-      
-    <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
-      
-    <input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email">
-
-    <button ng-click="signUp()">Sign Up</button>
-    
     <div data-ng-show="error" class="text-center text-danger">
       <strong data-ng-bind="error"></strong>
     </div>
-  </form>
 
-  <div id="fade" class="black_overlay">
+    <form name="signUpForm" ng-submit="signUp()" novalidate>
+      <div id="signUpForm">
+        <div class='formInputs'>
+          <div class="formItem">
+            <input type="text" id="firstName" name="firstName" class="form-control" data-ng-model="credentials.firstname" placeholder="First Name" required>
+          </div>
+          <div class="formItem">
+            <input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="credentials.lastName" placeholder="Last Name" required>
+          </div>
+          <div class="formItem">
+            <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username" required>
+          </div>
+          <div class="formItem">
+            <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password" required>
+          </div>
+          <div class="formItem">
+            <input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email" required>
+          </div>
+        </div>
+
+        <div class="genreList">
+          <div>Which genres are you interested in?</div>
+          <ul>
+            <li ng-repeat="genre in genres" ng-click="chooseGenre(genre)" ng-class="{'selected': genre.selected, 'notSelected': !genre.selected}">{{genre.name}}</li>
+          </ul>
+        </div>
+
+        <div class="submitbutton">
+          <button type="submit" ng-disabled="signUpForm.$invalid" class="clear" id="createEventButton">Sign up</button>
+        </div>
+
+      </div>
+    </form>
+
+  </div>
+
+  <!-- <div id="fade" class="black_overlay"></div> -->
 </section>
