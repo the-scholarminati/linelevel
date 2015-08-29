@@ -14,9 +14,10 @@
 
     <script src="app.js"></script>
     <script src="factory.js"></script>
+    <script src="./app/home/home.js"></script>
     <script src="./app/createEvent/createEvent.js"></script>
     <script src="./app/event/event.js"></script>
-    <script src="./app/signup/signup.js"></script>
+    <script src="./app/authentication/authentication.js"></script>
     <script src="./app/userProfile/userProfile.js"></script>
 
     <link rel="stylesheet" href="css/styles.css">
@@ -39,7 +40,7 @@
 
 <!-- Popup box for Signin Window -->
 
-    <section id="popUpSignIn">
+    <section ng-controller="authController" id="popUpSignIn">
       <div id="fade" class="black_overlay">
       </div>
 
@@ -77,7 +78,7 @@
 
 <!-- Popup box for Signup Window -->
 
-<section id="popUpSignUp" >
+<section ng-controller="authController" id="popUpSignUp" >
   <fieldset>
   <div class="x_button" onclick="document.getElementById('popUpSignIn').style.display='none';document.getElementById('popUpSignUp').style.display='none'"></div>
     <div class="sign-up-title"><h2 id='signUpHeader'>Sign up with LineLevel</h2></div>
