@@ -1,14 +1,21 @@
 <section ng-controller="eventController">
   <div class="container">
     <div class="pageTitle">
+      <div style="display:flex; flex-flow: row nowrap">
       <h1>{{event.name}}</h1>
+        <div id="eventHost">
+          hosted by <span id="eventHostName">{{event.host}}</span>
+        </div>
+      </div>
       <div id="chatToggle">
         <div id="showChat"><a href="javascript:void(0)" onclick="document.getElementById('hideChat').style.display='block';document.getElementById('showChat').style.display='none'" ng-click="toggleChat()">Show Chat</a></div>
         <div id="hideChat"><a href="javascript:void(0)" onclick="document.getElementById('showChat').style.display='block';document.getElementById('hideChat').style.display='none'" ng-click="toggleChat()">Hide Chat</a></div>
       </div>
     </div>
       <div class="line"></div>
-    
+    <div id="genreNames">
+          <div ng-repeat="genre in event.genres"> {{genre.name}}<span ng-if="$index !== event.genres.length-1">, &nbsp;</span> </div>
+        </div>
 
     <div id="eventcontent">
     <div id="videoWrapper">

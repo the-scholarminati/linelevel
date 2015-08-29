@@ -172,6 +172,7 @@ h1{
   display:inline-block;
   font-size: 36px;
   margin-top: 5px;
+  padding-left: 15px;
 }
 
 nav {
@@ -394,4 +395,25 @@ a{
   float:right;
 }
 
+#genreNames{
+  font-style: italic;
+  display: flex;
+  flex-flow: row nowrap;
+  top: -25px;
+  padding-left: 15px;
+  position: relative;
+  font-size: 14px;
+}
+
+#eventHost{
+  position: relative;
+  top: 17px;
+  padding-left: 8px;
+}
+
+#eventHostName{
+  text-decoration: bold;
+  font-size: 24px;
+  font-family: Helvetica-bold;
+}
 
