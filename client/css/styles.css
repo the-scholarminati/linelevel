@@ -21,6 +21,7 @@ button {
   background-color: #7CDFCE;
   color: #fff;
   box-shadow: inset 0 0 0 0px;
+  outline: none;
 }
 
 button:disabled{
@@ -96,7 +97,7 @@ h2{
   height: 100%;
   width: 100%;
   z-index:1002;
-  position: absolute;
+  position: fixed;
   padding-top: 100px;
 }
 
@@ -115,7 +116,7 @@ h2{
   height: 100%;
   width: 100%;
   z-index:1002;
-  position: absolute;
+  position: fixed;
   padding-top: 100px;
 }
 
@@ -171,6 +172,7 @@ h1{
   display:inline-block;
   font-size: 36px;
   margin-top: 5px;
+  padding-left: 15px;
 }
 
 nav {
@@ -245,10 +247,11 @@ ul {
   height: 100%;
 }
 
-#eventContainer{
-  padding-top: 10%;
-  padding-left: 10%;
-  padding-right: 10%;
+.container{
+  padding-top: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+
 }
 
 .line{
@@ -272,7 +275,7 @@ ul {
 
 #createEventForm{
   display: inline-flex;
-  flex-flow: row nowrap;
+  flex-flow: row;
   justify-content: space-between;
 }
 
@@ -314,5 +317,103 @@ textarea{
 #createEventButton{
   width: 150px;
   height: 30px;
+}
+
+#eventcontent{
+  width: 100%;
+  display: inline-flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+}
+
+#videoWrapper{
+  width: 60%;
+  border: 1px solid black;
+  position: relative;
+}
+
+#videostream{
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding-bottom: 56.25%;
+  background: #D2CCD3;
+  border: 1px solid black;
+  margin: 0px;
+  position:relative;
+}
+
+#chatcontent{
+  min-width: 300px;
+  height: 30vw;
+  max-height: 600px;
+
+  margin: 20px;
+}
+
+#chatToggle{
+  padding-top: 25px;
+  display: inline-flex;
+}
+
+.pageTitle{
+  display: flex;
+  justify-content: space-between;
+}
+
+#hideChat{
+
+}
+#showChat{
+  display:none;
+}
+
+a{
+  color:black;
+}
+
+#chatMessages{
+  border: 1px solid black;
+  width: 100%;
+  margin: auto;
+  height: 80%;
+  font-size: 12px;
+  padding: 5px;
+  overflow-y: auto;
+}
+#chatTextBox{
+  width: 100%;
+  height: 17%;
+  margin: 3% 0 10px 0;
+}
+
+#sendButton{
+  float:right;
+}
+
+#genreNames{
+  font-style: italic;
+  display: flex;
+  flex-flow: row nowrap;
+  top: -25px;
+  padding-left: 15px;
+  position: relative;
+  font-size: 14px;
+}
+
+#eventHost{
+  position: relative;
+  top: 17px;
+  padding-left: 8px;
+}
+
+#eventHostName{
+  text-decoration: bold;
+  font-size: 24px;
+  font-family: Helvetica-bold;
 }
 
