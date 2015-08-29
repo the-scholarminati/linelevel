@@ -1,32 +1,27 @@
-<section ng-controller="authController" class="popUp">
-<div id="fade" class="black_overlay">
-</div>
-  <fieldset>
+<section ng-controller="authController">
+
+  <form name="signupForm" ng-submit="signIn()" novalidate>
     <div class="sign-up-title"><h2>Sign into LineLevel</h1></div>
-    <div class="form-group">
-      
-      <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
-    </div>
-    <div class="form-group">
-      
-      <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
-    </div>
-    <div class="text-center form-group">
+
+    <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
+
+    <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
+
     <div class="forgot-password">
       <a href="/#!/password/forgot">Forgot your password?</a>
     </div>
-      <div id="divButton" onclick="signIn()">
-      Sign In
-      </div>
-      <div id="signUp">Don't have an account? 
-        <a ui-sref="signup">Sign up</a>
-        </div>
+
+    <button ng-type="submit">Sign In</button>
+
+    <div id="signUp">Don't have an account? 
+      <a ui-sref="signup">Sign up</a>
     </div>
     
     
     <div data-ng-show="error" class="text-center text-danger">
       <strong data-ng-bind="error"></strong>
     </div>
-    
-  </fieldset>
+  </form>
+
+  <div id="fade" class="black_overlay"></div>
 </section>
