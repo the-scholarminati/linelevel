@@ -1,10 +1,21 @@
 angular.module('main')
-  .controller('AuthController', ['$http','$scope', function($scope,$http){
+
+.controller('authController', ['$http','$scope', 
+  function($scope, $http){
+
+    console.log("inside authController");
+
     $scope.signIn = function(){
-      $http.post('/auth/signin',$scope.credentials);
+      console.log("signIn form submitted!");
+
+      // $http.post('/auth/signin',$scope.credentials);
     };
     $scope.signUp = function(){
-      $http.post('/auth/signup',$scope.credentials);
+      console.log("$scope.credentials.firstname = ", $scope.credentials.firstname);
+
+      console.log("signUp form submitted!");
+
+      //$http.post('/auth/signup',$scope.credentials);
     };
   }
-  ]);
+]);

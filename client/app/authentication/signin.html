@@ -1,4 +1,4 @@
-<section class="popUp">
+<section ng-controller="authController" class="popUp">
 <div id="fade" class="black_overlay">
 </div>
   <fieldset>
@@ -15,7 +15,7 @@
     <div class="forgot-password">
       <a href="/#!/password/forgot">Forgot your password?</a>
     </div>
-      <div id="divButton" ng-click="signIn()">
+      <div id="divButton" onclick="signIn()">
       Sign In
       </div>
       <div id="signUp">Don't have an account? 
