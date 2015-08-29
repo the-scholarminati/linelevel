@@ -33,15 +33,16 @@
         </div>
 
         <div class="genreList">
-          <div>Please choose one or more genres</div>
+          <div>Which genres describe your event?</div>
           <ul>
             <li ng-repeat="genre in genres" ng-click="chooseGenre(genre)" ng-class="{'selected': genre.selected, 'notSelected': !genre.selected}">{{genre.name}}</li>
           </ul>
         </div>
-      <div class="submitbutton">
-        <button type="submit" ng-disabled="createEventForm.$invalid" class="clear" id="createEventButton">Create Event</button>
+
+        <div class="submitbutton">
+          <button type="submit" ng-disabled="createEventForm.$invalid" class="clear" id="createEventButton">Create Event</button>
+        </div>
       </div>
-    </div>
     </form>
     
   </div>
