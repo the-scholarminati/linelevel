@@ -23,18 +23,20 @@ angular.module('main')
 
     // adds or removes the genre from the user's chosen genre list as needed
     if (genre.selected){
-      obj.chosenGenres.push(genre);
+      obj.chosenGenres.push(genre.name);
     } else {
-      var indexOfGenre = obj.chosenGenres.indexOf(genre);
+      var indexOfGenre = obj.chosenGenres.indexOf(genre.name);
       obj.chosenGenres.splice(indexOfGenre, 1);
     }
     console.log("obj.chosenGenres = ", JSON.stringify(obj.chosenGenres));
   };
-
+  
 
   obj.resetGenres = function(){
+    // clears the user's selected genres from factory
     obj.chosenGenres = [];
 
+    // clears selected class from all genres
     obj.genres.forEach(function(genre){
       genre.selected = false;
     });
@@ -54,7 +56,6 @@ angular.module('main')
     obj.date.eventDate.setSeconds(0);
     obj.date.eventDate.setMilliseconds(0);
   };
-
 
 
   return obj;
