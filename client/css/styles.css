@@ -24,7 +24,7 @@ button {
 }
 
 button:disabled{
-  background-color: #5BA597;
+  background-color: #6BC4B4;
   color: #DAD7D9;
 }
 
@@ -157,13 +157,14 @@ fieldset{
   z-index: 1002;
 }
 
-fieldset input{
+input{
   width: 175px;
   height: 35px;
   border-radius: 3px;
   border: 1px solid #C1C1C1;
   color: #C1C1C1;
   margin: 5px;
+  padding-left: 10px;
 }
 
 h1{
