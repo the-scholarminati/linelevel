@@ -433,14 +433,17 @@ a{
 
 #userInfo{
   border: 1px solid black;
-  height: 25%;
   width: 300px;
   margin-left: 50px;
   margin-right: 50px;
+  display: flex;
+  flex-flow: column nowrap;
 }
 
 #userFeed{
   border: 1px solid black;
-  display: inline-block;
+  display: flex;
+  flex-flow: column nowrap;
   width: 60%;
+  text-align: center;
 }
