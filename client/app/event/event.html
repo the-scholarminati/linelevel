@@ -15,11 +15,15 @@
       <div id="videostream">
       </div>
     </div>
-      <div id="chatcontent">
+      <div id="chatcontent" ng-show="chatVisible">
         <div id="chatMessages">
+          <div ng-repeat="message in event.messages">{{message.user}}: {{message.message}}</div>
         </div>
-        <textarea id="chatTextbox"></textarea>
+        <textarea id="chatTextbox" ng-model="userText"></textarea>
+        <br>
+        <div id="sendButton" ng-click="sendMessage()">
         <button>Send</button>
+        </div>
       </div>
     </div>
   </div>
