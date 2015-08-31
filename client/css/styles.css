@@ -420,3 +420,7 @@ a{
   font-size: 24px;
   font-family: Helvetica-bold;
 }
+
+.eventThumb{
+  background-image: url("http://freemusicarchive.org/img/generic/album-default-lp-transparent.png?method=crop&width=155&height=155");
+}

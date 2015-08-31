@@ -8,6 +8,10 @@ var app = angular.module('main', ['firebase', 'ui.router'])
       url: '/',
       templateUrl: './app/home/home.html'
     })
+    .state('about', {
+      url: '/about',
+      templateUrl: './app/about/about.html'
+    })
     .state('signup', {
       url: '/signup',
       templateUrl: './app/authentication/signup.html'
