@@ -1,6 +1,11 @@
 <section ng-controller="homeController">
-  <div id='homeSection1'></div>
-  <div id='homeSection2'></div>
+  <div id='homeSection1'>
+  </div>
+  <div id='homeSection2'>
+    <div ng-repeat="event in events" class="event">
+    {{event.title}} {{event.description}} {{event.label}} {{event.genre}} {{event.date}}
+    </div>
+  </div>
   <div id='homeSection3'></div>
   <div id='homeSection4'></div>
 </section>
