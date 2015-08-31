@@ -29,9 +29,8 @@ angular.module('main')
       var eventImage = $scope.eventImage;
       var eventLabel = $scope.eventLabel;
       var eventDate = $scope.date.eventDate;
-      var chosenGenres = $scope.chosenGenres.map(function(genreObj){
-        return genreObj.name;
-      });
+      var chosenGenres = $scope.chosenGenres;
+      
       //saves event data to firebase
       console.log("Saved to Firebase");
       console.log(chosenGenres);
