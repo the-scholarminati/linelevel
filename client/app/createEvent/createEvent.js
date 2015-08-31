@@ -2,9 +2,9 @@
 
 angular.module('main')
 
-.controller('createEventController', ['$scope', 'appFactory', 
-  function($scope, appFactory){
-
+.controller('createEventController', ['$scope', 'appFactory', '$firebase',
+  function($scope, appFactory, $firebase){
+    $scope.count = 0;
     // gets the current date so we can stop users from choosing dates in the past
     $scope.today = new Date();
     // gets the date from the factory and makes it accessible to the DOM
@@ -19,6 +19,8 @@ angular.module('main')
     $scope.chooseGenre = appFactory.chooseGenre;
 
     $scope.submitCreateEventForm = function(){
+      //creates firebase reference for events
+      var ref = new Firebase("https://linelevel.firebaseio.com/events");
       // saves the data from the form
       var eventTitle = $scope.eventTitle;
       var eventDescription = $scope.eventDescription;
@@ -27,7 +29,21 @@ angular.module('main')
       var eventImage = $scope.eventImage;
       var eventLabel = $scope.eventLabel;
       var eventDate = $scope.date.eventDate;
-      var chosenGenres = $scope.chosenGenres;
+      var chosenGenres = $scope.chosenGenres.map(function(genreObj){
+        return genreObj.name;
+      });
+      //saves event data to firebase
+      console.log("Saved to Firebase");
+      console.log(chosenGenres);
+      var eventsRef = ref.child('event' + $scope.count);
+      eventsRef.set({
+        title: eventTitle,
+        description: eventDescription,
+        label: eventLabel,
+        date: eventDate + "",
+        genre: chosenGenres
+      });
+      $scope.count++;
 
       // resets the form
       $scope.eventTitle = '';
