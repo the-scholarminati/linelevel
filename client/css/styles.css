@@ -421,8 +421,30 @@ a{
   font-family: Helvetica-bold;
 }
 
+.filterOptions{
+  display: flex;
+}
+
+.filterTextBoxes{
+  margin-top: 22px;
+}
+
+.eventInfo{
+  height: 150px;
+  width: 150px;
+  overflow: hidden;
+}
+
 .eventThumb{
-  background-image: url("http://freemusicarchive.org/img/generic/album-default-lp-transparent.png?method=crop&width=155&height=155");
+  background-image: url("../assets/albumcover.png");
+  height: 100px;
+  width: 100px;
+  background-size: 100%;
+}
+
+.eventList{
+  display: flex;
+  justify-content: space-between;
 }
 
 #userContent{

@@ -1,8 +1,33 @@
 <section ng-controller="homeController">
   <div class="container">
-    <div ng-repeat="event in events" class="event">
-      <div class="eventThumb">
-        {{event.title}} {{event.description}} {{event.label}} {{event.genre}} {{event.date}}
+
+    <div class="filterOptions">
+      <div class="genreList">
+        <div ng-click="showGenresNow()">Filter by genre</div>
+        <ul class="dropDownMenu" ng-if="showGenres">
+          <li ng-repeat="genre in genres" ng-click="chooseGenre(genre)" ng-class="{'selected': genre.selected, 'notSelected': !genre.selected}">{{genre.name}}</li>
+        </ul>
+      </div>
+
+      <div class="filterTextBoxes">
+        <input type="text" placeholder="Filter by title" ng-model="filterByTitle">
+        
+        <input type="text" placeholder="Filter by user" ng-model="filterByUser">
+      </div>
+    </div>
+
+    <div class="eventList">
+      <div ng-repeat="event in filteredEvents(events)" class="event">
+        <div class="eventInfo">
+          <p>{{event.title}}</p>
+          <p><span ng-repeat="genre in event.genre">
+            {{genre}}
+          </p>
+          <p>{{event.date | date:'short'}}</p>
+        </div>
+        <div class="eventThumb">
+          {{event.url}}
+        </div>
       </div>
     </div>
   </div>

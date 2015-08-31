@@ -28,7 +28,6 @@ angular.module('main')
       var indexOfGenre = obj.chosenGenres.indexOf(genre.name);
       obj.chosenGenres.splice(indexOfGenre, 1);
     }
-    console.log("obj.chosenGenres = ", JSON.stringify(obj.chosenGenres));
   };
   
 
