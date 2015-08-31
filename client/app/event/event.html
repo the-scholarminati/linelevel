@@ -24,7 +24,7 @@
     </div>
       <div id="chatcontent" ng-show="chatVisible">
         <div id="chatMessages">
-          <div ng-repeat="message in event.messages" class="message"><b>{{message.user}}:</b> {{message.message}}</div>
+          <div ng-repeat="message in event.messages" class="message"><b>{{message.username}}:</b> {{message.message}}</div>
         </div>
         <textarea id="chatTextbox" ng-model="userText"></textarea>
         <br>
