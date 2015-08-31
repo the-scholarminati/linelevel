@@ -421,6 +421,14 @@ a{
   font-family: Helvetica-bold;
 }
 
+.filterOptions{
+  display: flex;
+}
+
+.filterTextBoxes{
+  margin-top: 22px;
+}
+
 .eventInfo{
   height: 150px;
   width: 150px;
