@@ -10,9 +10,9 @@
       </div>
 
       <div class="filterTextBoxes">
-        <input type="text" placeholder="Filter by title" ng-model="filterByTitle">
+        <input type="text" placeholder="Filter by title" ng-model="filterByTitle" ng-model-options="{debounce: {'default': debounce}}">
         
-        <input type="text" placeholder="Filter by user" ng-model="filterByUser">
+        <input type="text" placeholder="Filter by user" ng-model="filterByUser" ng-model-options="{debounce: {'default': debounce}}">
       </div>
     </div>
 

@@ -4,6 +4,9 @@ angular.module('main')
 
 .controller('homeController', ['$scope', 'appFactory', 
   function($scope, appFactory){
+    ///////////////
+    ///// Firebase
+    ///////////////
     $scope.events = [];
     var ref = new Firebase("https://linelevel.firebaseio.com/");
 
@@ -17,29 +20,60 @@ angular.module('main')
       console.log(data);
     });
 
+
+    ///////////////
+    ///// Genres
+    ///////////////
     // saves the genre lists and method from the factory so we can access them in the DOM
     $scope.genres = appFactory.genres;
     // this is the list of the user's chosen genres
     $scope.chosenGenres = appFactory.chosenGenres;
     $scope.chooseGenre = appFactory.chooseGenre;
 
+    // hides genre filter dropdown by default
     $scope.showGenres = false;
-
+    // toggles genre filter dropdown view
     $scope.showGenresNow = function(){
       $scope.showGenres = !$scope.showGenres;
     };
 
+
+    ///////////////
+    ///// Filter
+    ///////////////
+    // this is the number of milliseconds that the text input filters will wait after a user stops typing to filter
+    $scope.debounce = 200;
+
     $scope.filteredEvents = function(events){
-      // only filter by genres if the user has chosen at least one genre
-      if ($scope.chosenGenres.length){
-        // show event if all of the genres associated with it are in the chosenGenres list
+      // only filter if the user has selected at least one filter
+      if ($scope.chosenGenres.length || $scope.filterByTitle || $scope.filterByUser){
+
+        // filter out which evens will be shown
         return events.filter(function(event){
           var show = true;
-          for (var i=0; i<$scope.chosenGenres.length; i++){
-            if (event.genre.indexOf($scope.chosenGenres[i]) === -1){
+
+          // remove event if any of the genres chosen by the user are not in the event's genre list
+          $scope.chosenGenres.forEach(function(genre){
+            if (event.genre.indexOf(genre) === -1){show = false;}
+          });
+
+          // remove event if the title filter is not in the event's title
+          if ($scope.filterByTitle){
+            if ( event.title.toLowerCase().indexOf( $scope.filterByTitle.toLowerCase() ) === -1 ){
+              console.log("$scope.filterByTitle = ", $scope.filterByTitle);
               show = false;
             }
           }
+
+          // PLEASE NOTE: the following code has been commented out because the event objects do not currently have a user property
+
+          // remove event if the user filter is not in the event's user
+          // if ($scope.filterByUser){
+          //   if ( event.user.indexOf($scope.filterByUser) === -1 ){
+          //     show = false;
+          //   }
+          // }
+
           return show;
         });
       } else {
@@ -48,5 +82,3 @@ angular.module('main')
     };
   }
 ]);
-
-//app.module('main').requires.push('home');
