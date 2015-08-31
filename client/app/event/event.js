@@ -2,45 +2,36 @@
 
 angular.module('main').controller('eventController',['$scope','$http',
   function($scope,$http){
+
     console.log("Loading event page...");
     $scope.chatVisible = true;
     $scope.event = {};
     $scope.event.host = "Anonymous";
     $scope.event.name = 'Sample Event';
-    $scope.event.messages = [{user:"Anonymous",message:"Testing 123"},
-                            {user:"Anonymous",message:"Testing 456"},
-                            {user:"Anonymous",message:"Testing 789"},
-                            {user:"Anonymous",message:"Testing 101112"},
-                            {user:"Anonymous",message:"Testing 131415"},
-                            {user:"Anonymous",message:"Testing 151617"},
-                            {user:"Anonymous",message:"Testing 171819"},
-                            {user:"Anonymous",message:"Testing 123"},
-                            {user:"Anonymous",message:"Testing 456"},
-                            {user:"Anonymous",message:"Testing 789"},
-                            {user:"Anonymous",message:"Testing 101112"},
-                            {user:"Anonymous",message:"Testing 131415"},
-                            {user:"Anonymous",message:"Testing 151617"},
-                            {user:"Anonymous",message:"Testing 171819"},
-                            {user:"Anonymous",message:"Testing 123"},
-                            {user:"Anonymous",message:"Testing 456"},
-                            {user:"Anonymous",message:"Testing 789"},
-                            {user:"Anonymous",message:"Testing 101112"},
-                            {user:"Anonymous",message:"Testing 131415"},
-                            {user:"Anonymous",message:"Testing 151617"},
-                            {user:"Anonymous",message:"Testing 171819"},
-                            {user:"Anonymous",message:"Testing 123"},
-                            {user:"Anonymous",message:"Testing 456"},
-                            {user:"Anonymous",message:"Testing 789"},
-                            {user:"Anonymous",message:"Testing 101112"},
-                            {user:"Anonymous",message:"Testing 131415"},
-                            {user:"Anonymous",message:"Testing 151617"},
-                            {user:"Anonymous",message:"Testing 171819"}];
-      $scope.event.genres = [{"name":"Rock","selected":true,"$$hashKey":"object:67"},{"name":"Electronic","selected":true,"$$hashKey":"object:71"},{"name":"Experimental","selected":true,"$$hashKey":"object:72"}];
+    $scope.event.messages = [];
+
+    //instantiate firbase ref with url
+    var ref = new Firebase("https://linelevel.firebaseio.com/");
+
+    //through auth have user name on hand
+    $scope.username = "Anonymous";
+    var username = $scope.username;
+
+    //ref.on() -- get chatId from event session
+    var chatRef = ref.child('chats'); //insert chat id info here
+
+    //fetch chat data as you add to it, returns last 20
+    chatRef.limitToLast(20).on('child_added', function(snapshot){
+        var data = snapshot.val();
+        $scope.event.messages.push(data);
+        console.log(data);
+    });
                           
-    $scope.sendMessage = function($http){
-      console.log($scope.userText);
-      //$http.post('/event/sendMessage', $scope.userText);
-      $scope.userText='';
+    $scope.sendMessage = function(){
+        var text = $scope.userText;
+        console.log(text);
+        chatRef.push({username: username, message: text});
+        $scope.userText = '';
     };
 
     $scope.toggleChat = function(){
