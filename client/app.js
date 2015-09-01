@@ -1,8 +1,8 @@
 var app = angular.module('main', ['firebase', 'ui.router'])
 
-.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function( $stateProvider, $urlRouterProvider, $locationProvider){
   $urlRouterProvider.otherwise('/home');
-
+  
   $stateProvider
     .state('home', {
       url: '/',
@@ -27,6 +27,10 @@ var app = angular.module('main', ['firebase', 'ui.router'])
         $scope.userId = $stateParams.userId;
       }
     })
+    .state('oauth2callback', {
+      url: '/oauth2callback',
+      templateUrl: './app/oauthcallback/oauthcallback.html',
+    })
     .state('createEvent', {
       url: '/createEvent',
       templateUrl: './app/createEvent/createEvent.html'
@@ -37,7 +41,11 @@ var app = angular.module('main', ['firebase', 'ui.router'])
       controller: function($scope, $stateParams){
         $scope.eventId = $stateParams.eventId;
       }
-    })
+    });
+    $locationProvider.html5Mode({
+                 enabled: true,
+                 requireBase: true
+          });
 }])
 
 .run(['$state', function($state){
