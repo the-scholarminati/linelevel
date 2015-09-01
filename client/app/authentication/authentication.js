@@ -6,7 +6,7 @@ angular.module('main')
   function($scope, $http, appFactory){
     // this scope variable will create an error message for you at the top of the form
     // example use: $scope.error = "That username does not exist"
-    $scope.error;
+    $scope.error = '';
 
     // saves the genre lists and method from the factory so we can access them in the DOM
     $scope.genres = appFactory.genres;
