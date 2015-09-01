@@ -219,32 +219,39 @@ ul {
   overflow: auto;
 }*/
 
-#homeSection1{
-  background-image: url(http://blogs-images.forbes.com/ryanmac/files/2014/12/calvinharris2-e1418487863601.jpeg);
-  background-size: auto 100%;
+.about{
   width: 100%;
   height: 100%;
+  font-size: 50px;
+  text-align: center;
+  padding-top: 200px;
+  color: white;
+  font-weight: 900;
+}
+
+#homeSection1{
+  background-image: url("../assets/djshow.jpeg");
+  background-size: auto 100%;
+}
+
+#homeSection1 .aboutText{
+  padding: 0 10px;
+  background-color: rgba(0,0,0,0.75);
 }
 
 #homeSection2{
   background-color: #BEE8E6;
   background-size: 100%;
-  width: 100%;
-  height: 100%;
 }
 
 #homeSection3{
-  background-image: url(https://farm6.staticflickr.com/5049/5227330093_05db4906b6_o_d.jpg);
+  background-image: url("../assets/crowdhands.jpg");
   background-size: auto 100%;
-  width: 100%;
-  height: 100%;
 }
 
 #homeSection4{
   background-color: #E8D9C2;
   background-size: 100%;
-  width: 100%;
-  height: 100%;
 }
 
 .container{
