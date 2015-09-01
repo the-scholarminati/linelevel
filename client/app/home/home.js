@@ -8,7 +8,7 @@ angular.module('main')
     ///// Firebase
     ///////////////
     $scope.events = [];
-    var ref = new Firebase("https://linelevel.firebaseio.com/");
+    var ref = appFactory.firebase;
 
     //reference events endpoint
     var eventsRef = ref.child("events");

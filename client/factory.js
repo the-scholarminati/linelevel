@@ -13,6 +13,7 @@ angular.module('main')
     return array;
   }, []);
 
+  obj.firebase = new Firebase('https://linelevel.firebaseio.com');
 
   obj.chosenGenres = [];
 

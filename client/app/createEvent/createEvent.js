@@ -20,7 +20,7 @@ angular.module('main')
 
     $scope.submitCreateEventForm = function(){
       //creates firebase reference for events
-      var ref = new Firebase("https://linelevel.firebaseio.com/events");
+      var ref = appFactory.firebase;
       // saves the data from the form
       var eventTitle = $scope.eventTitle;
       var eventDescription = $scope.eventDescription;
