@@ -13,7 +13,8 @@ var paths = {
   styles: ['client/css/styles.css'],
   index: ['client/index.html'],
   partials: ['client/app/**/*.html'],
-  dest: ['public']
+  dest: ['public'],
+  assets: ['client/assets/*','client/assets/**/*']
 };
 
 gulp.task('lint',function(){
@@ -69,6 +70,11 @@ gulp.task('others', function(){
     .pipe(gulp.dest('public/lib'));
 });
 
-gulp.task('build',['lint','HTML','CSS','scripts','others']);
+gulp.task('assets', function(){
+  gulp.src(paths.assets)
+    .pipe(gulp.dest('public/assets'))
+});
+
+gulp.task('build',['lint','HTML','CSS','scripts','others','assets']);
 gulp.task('default',['build','watch']);
 
