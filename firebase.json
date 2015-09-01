@@ -1,6 +1,6 @@
 {
   "firebase": "linelevel",
-  "public": "client/",
+  "public": "public/",
   "ignore": [
     "firebase.json",
     "**/.*",

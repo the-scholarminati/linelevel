@@ -4,7 +4,8 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     uglify = require('gulp-uglify'),
     HTML = require('gulp-minify-html'),
-    CSS = require('gulp-minify-css');
+    CSS = require('gulp-minify-css'),
+    web = require('gulp-webserver');
 
 var paths = {
   scripts: ['./client/*.js'],
@@ -13,7 +14,8 @@ var paths = {
   styles: ['client/css/styles.css'],
   index: ['client/index.html'],
   partials: ['client/app/**/*.html'],
-  dest: ['public']
+  dest: ['public'],
+  assets: ['client/assets/*','client/assets/**/*']
 };
 
 gulp.task('lint',function(){
@@ -61,7 +63,7 @@ gulp.task('scripts', function(){
     .pipe(uglify({
       mangle:false
     }))
-    .pipe(gulp.dest('public/app'))
+    .pipe(gulp.dest('public/app'));
 });
 
 gulp.task('others', function(){
@@ -69,6 +71,20 @@ gulp.task('others', function(){
     .pipe(gulp.dest('public/lib'));
 });
 
-gulp.task('build',['lint','HTML','CSS','scripts','others']);
+gulp.task('assets', function(){
+  gulp.src(paths.assets)
+    .pipe(gulp.dest('public/assets'))
+});
+
+gulp.task('server',function(){
+  gulp.src('public')
+    .pipe(web({
+      livereload: true,
+      directoryListing: false,
+      open: true
+    }));
+});
+
+gulp.task('build',['lint','HTML','CSS','scripts','others','assets']);
 gulp.task('default',['build','watch']);
 
