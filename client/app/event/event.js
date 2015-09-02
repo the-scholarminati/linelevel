@@ -19,20 +19,24 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     var username = $scope.username;
 
     //ref.on() -- get chatId from event session
-    var chatRef = ref.child('chats'); //insert chat id info here
+    var chatRef = ref.child('chats').child(appFactory.sessionId); //insert chat id info here
 
     //fetch chat data as you add to it, returns last 20
-    chatRef.limitToLast(20).on('child_added', function(snapshot){
-        var data = snapshot.val();
-        $scope.event.messages.push(data);
-        console.log(data);
+    chatRef.limitToLast(30).on('child_added', function(snapshot){
+      var data = snapshot.val();
+      $scope.event.messages.push(data);
+      console.log(data);
     });
                           
     $scope.sendMessage = function(){
+      if(appFactory.auth()){
         var text = $scope.userText;
         console.log(text);
         chatRef.push({username: username, message: text});
         $scope.userText = '';
+      } else {
+        console.log('user is not logged in');
+      }
     };
 
     $scope.toggleChat = function(){

@@ -2,7 +2,18 @@ angular.module('main')
 
 .factory('appFactory', function($http){
   var obj = {};
+  obj.firebase = new Firebase('https://linelevel.firebaseio.com');
 
+  // Authentication
+  obj.auth = function(ref){
+    return ref.getAuth() !== null;
+  };
+
+  // Session
+  obj.sessionId = null;
+  obj.setSession = function(id){
+    obj.sessionId = id;
+  };
 
   obj.firebase = new Firebase('https://linelevel.firebaseio.com');
 
