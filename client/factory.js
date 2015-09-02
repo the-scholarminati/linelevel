@@ -4,6 +4,9 @@ angular.module('main')
   var obj = {};
 
 
+  obj.firebase = new Firebase('https://linelevel.firebaseio.com');
+
+
   ///////////////
   ///// Genres
   ///////////////
@@ -13,7 +16,6 @@ angular.module('main')
     return array;
   }, []);
 
-  obj.firebase = new Firebase('https://linelevel.firebaseio.com');
 
   obj.chosenGenres = [];
 
