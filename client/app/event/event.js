@@ -1,7 +1,8 @@
 //attaching controllers to main until we find reason to create specific modules
 
-angular.module('main').controller('eventController',['$scope','$http','appFactory',
-  function($scope,$http, appFactory){
+angular.module('main').controller('eventController',['$scope','$http', 'appFactory',
+  function($scope,$http,appFactory){
+    $scope.videoId = 'dQw4w9WgXcQ';
 
     console.log("Loading event page...");
     $scope.chatVisible = true;
@@ -128,8 +129,8 @@ angular.module('main').controller('eventController',['$scope','$http','appFactor
         var player;
         function loadPlayer() {
           player = new YT.Player('ytplayer', {
-            height: '390',
-            width: '640',
+            height: '100%',
+            width: '100%',
             videoId: $scope.videoId,
             events: {
             'onReady': $scope.onPlayerReady
@@ -139,6 +140,7 @@ angular.module('main').controller('eventController',['$scope','$http','appFactor
 
         setTimeout(loadPlayer,500);
         };
+
 
 }
 

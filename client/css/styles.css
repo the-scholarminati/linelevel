@@ -341,7 +341,6 @@ textarea{
 }
 
 #videoWrapper{
-  width: 60%;
   border: 1px solid black;
   position: relative;
 }
@@ -361,9 +360,10 @@ textarea{
 
 #chatcontent{
   min-width: 300px;
+  max-width: 600px;
   height: 30vw;
   max-height: 600px;
-
+  flex-grow: 1;
   margin: 20px;
 }
 
