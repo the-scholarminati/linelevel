@@ -1,6 +1,6 @@
 var app = angular.module('main', ['firebase', 'ui.router'])
 
-.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function( $stateProvider, $urlRouterProvider, $locationProvider){
+.config(['$stateProvider', '$urlRouterProvider', function( $stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise('/home');
   
   $stateProvider
@@ -28,8 +28,14 @@ var app = angular.module('main', ['firebase', 'ui.router'])
       }
     })
     .state('oauth2callback', {
-      url: '/oauth2callback',
-      templateUrl: './app/oauthcallback/oauthcallback.html',
+      url: '/oauth2callback/:accessToken',
+      templateUrl: './app/event/event.html',
+      controller: function($scope, $stateParams){
+        alert('is this working!??!');
+        $scope.accessToken = $stateParams.accessToken;
+        console.log("params access token" + $stateParams.accessToken);
+        console.log("Scope access token" + $scope.accessToken);
+      }
     })
     .state('createEvent', {
       url: '/createEvent',

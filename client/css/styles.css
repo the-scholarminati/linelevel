@@ -492,3 +492,8 @@ a{
   width: 60%;
   text-align: center;
 }
+
+#ytplayer{
+  width: 640px;
+  height: 390px;
+}
