@@ -51,6 +51,7 @@ angular.module('main').controller('eventController',['$scope','$http','appFactor
         gapi.auth.authorize(config, function() {
           console.log('login complete');
           console.log(gapi.auth.getToken());
+          $scope.getUserChannel();
         });
       };
 
@@ -67,11 +68,10 @@ angular.module('main').controller('eventController',['$scope','$http','appFactor
       request.then(function(response) {
         $scope.channelName = response.result.items[0].id;
         console.log($scope.channelName);
+        $scope.getVideo();
       }, function(reason) {
         console.log('Error: ' + reason.result.error.message);
       });
-  
-      $scope.getVideo();
 
       });
   };
@@ -105,38 +105,40 @@ angular.module('main').controller('eventController',['$scope','$http','appFactor
             // DO SOMETHING
         } else {
         $scope.videoId = json.items[0].id.videoId;
-        $scope.createIframe();    
+        $scope.placeVideo();    
         console.log($scope.videoId);
         }
         
       };
 
-  $scope.createIframe = function(){
-      // This code loads the IFrame Player API code asynchronously.
-      console.log('loading iframe');
-      var tag = document.createElement('script');
-
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementById('player');
-
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-      
-  };
-
-      $scope.onYouTubeIframeAPIReady = function() {
-        $scope.player = new YT.Player('player', {
-          height: '390',
-          width: '640',
-          videoId: $scope.videoId,
-          events: {
-            'onReady': $scope.onPlayerReady,
-          }
-        });
-      };
 
       $scope.onPlayerReady = function(event) {
         event.target.playVideo();
       };
+
+      $scope.placeVideo = function(){
+        console.log('placing video')
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/player_api";
+        var firstScriptTag = document.getElementsByClassName('video')[0];
+        $('.video').append(tag);
+
+        // Replace the 'ytplayer' element with an <iframe> and
+        // YouTube player after the API code downloads.
+        var player;
+        function loadPlayer() {
+          player = new YT.Player('ytplayer', {
+            height: '390',
+            width: '640',
+            videoId: $scope.videoId,
+            events: {
+            'onReady': $scope.onPlayerReady
+          }
+          });
+        }
+
+        setTimeout(loadPlayer,500);
+        };
 
 }
 

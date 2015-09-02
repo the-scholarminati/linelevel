@@ -1,5 +1,5 @@
 <section ng-controller="eventController">
-
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <div class="container">
     <div class="pageTitle">
       <div style="display:flex; flex-flow: row nowrap">
@@ -23,6 +23,7 @@
       <button ng-click="auth();">Authorize</button>
       <button ng-click="getUserChannel();">GetChannelName</button>
       <button ng-click="getVideo();">GetStreamingVideoId</button>
+      <button ng-click="placeVideo();">placeVideo</button>
 <div id="ytplayer"></div>
 <span class="video"></span>
 <script>
@@ -30,7 +31,7 @@
   var tag = document.createElement('script');
   tag.src = "https://www.youtube.com/player_api";
   var firstScriptTag = document.getElementsByClassName('video')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  $('.video').append(tag);
 
   // Replace the 'ytplayer' element with an <iframe> and
   // YouTube player after the API code downloads.
