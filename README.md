@@ -81,3 +81,11 @@ karma start
 ```
 A new browser window should open stating that Karma connected successfully.
 
+# Deploying on firebase
+
+Install Firebase Tools
+
+```
+npm install -g firebase-tools
+
+firebase deploy
