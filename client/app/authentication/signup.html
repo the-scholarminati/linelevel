@@ -14,7 +14,7 @@
             <input type="text" id="firstName" name="firstName" class="form-control" data-ng-model="credentials.firstname" placeholder="First Name" required>
           </div>
           <div class="formItem">
-            <input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="credentials.lastName" placeholder="Last Name" required>
+            <input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="credentials.lastname" placeholder="Last Name" required>
           </div>
           <div class="formItem">
             <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username" required>
@@ -35,7 +35,7 @@
         </div>
 
         <div class="submitbutton">
-          <button type="submit" ng-disabled="signUpForm.$invalid" class="clear" id="createEventButton">Sign up</button>
+          <button type="submit" ng-disabled="signUpForm.$invalid" class="clear" id="createEventButton" ng-click="signUp()">Sign up</button>
         </div>
 
       </div>
