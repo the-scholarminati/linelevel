@@ -19,25 +19,26 @@ angular.module('main')
     $scope.chooseGenre = appFactory.chooseGenre;
 
     $scope.submitCreateEventForm = function(){
-      //creates firebase reference for events
-      var ref = new Firebase("https://linelevel.firebaseio.com/events");
       // saves the data from the form
       var eventTitle = $scope.eventTitle;
       var eventDescription = $scope.eventDescription;
       // the image url is not required on the form
       // maybe have a default image that is used when image is not provided
-      var eventImage = $scope.eventImage;
-      var eventLabel = $scope.eventLabel;
+      var eventImage = $scope.eventImage || '../assets/albumcover.png';
+      var eventLabel = $scope.eventLabel || '';
       var eventDate = $scope.date.eventDate;
       var chosenGenres = $scope.chosenGenres;
       
+      //creates firebase reference for events
+      var ref = appFactory.firebase;
       //saves event data to firebase
       console.log("Saved to Firebase");
       console.log(chosenGenres);
-      var eventsRef = ref.child('event' + $scope.count);
+      var eventsRef = ref.child('events').child('event' + $scope.count);
       eventsRef.set({
         title: eventTitle,
         description: eventDescription,
+        image: eventImage,
         label: eventLabel,
         date: eventDate + "",
         genre: chosenGenres

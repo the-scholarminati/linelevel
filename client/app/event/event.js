@@ -1,7 +1,7 @@
 //attaching controllers to main until we find reason to create specific modules
 
-angular.module('main').controller('eventController',['$scope','$http',
-  function($scope,$http){
+angular.module('main').controller('eventController',['$scope','$http','appFactory',
+  function($scope,$http, appFactory){
 
     console.log("Loading event page...");
     $scope.chatVisible = true;
@@ -11,7 +11,7 @@ angular.module('main').controller('eventController',['$scope','$http',
     $scope.event.messages = [];
 
     //instantiate firbase ref with url
-    var ref = new Firebase("https://linelevel.firebaseio.com/");
+    var ref = appFactory.firebase;
 
     //through auth have user name on hand
     $scope.username = "Anonymous";

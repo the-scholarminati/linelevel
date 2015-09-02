@@ -4,6 +4,9 @@ angular.module('main')
   var obj = {};
 
 
+  obj.firebase = new Firebase('https://linelevel.firebaseio.com');
+
+
   ///////////////
   ///// Genres
   ///////////////

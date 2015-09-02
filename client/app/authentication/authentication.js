@@ -6,13 +6,16 @@ angular.module('main')
   function($scope, $http, appFactory){
     // this scope variable will create an error message for you at the top of the form
     // example use: $scope.error = "That username does not exist"
-    $scope.error;
+    $scope.error = '';
 
     // saves the genre lists and method from the factory so we can access them in the DOM
     $scope.genres = appFactory.genres;
     // this is the list of the user's chosen genres
-    $scope.chosenGenres = appFactory.chosenGenres;
     $scope.chooseGenre = appFactory.chooseGenre;
+
+    // variables that connects to firebase
+    var ref = appFactory.firebase;
+    var users = ref.child("users");
 
     $scope.signIn = function(){
       // saves data from form
@@ -39,7 +42,29 @@ angular.module('main')
       var username = $scope.credentials.username;
       var password = $scope.credentials.password;
       var email = $scope.credentials.email;
-      var chosenGenres = $scope.chosenGenres;
+      var chosenGenres = appFactory.chosenGenres;
+      var uid = "";
+
+      // create new user in firebase authentication
+      ref.createUser({
+        email: email,
+        password: password
+      },function(error,userData){
+        if (error){
+          console.log('Error: ', error);
+        } else {
+          console.log('userData is ', userData);
+          users.child(userData.uid).set({
+            firstname: firstname,
+            lastname: lastname,
+            username: username,
+            email: email,
+            chosenGenres: chosenGenres
+          });
+        }
+      });
+
+      // create new user in firebase users table
 
       // clears form
       $scope.credentials = {};

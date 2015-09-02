@@ -42,10 +42,6 @@ var app = angular.module('main', ['firebase', 'ui.router'])
         $scope.eventId = $stateParams.eventId;
       }
     });
-    $locationProvider.html5Mode({
-                 enabled: true,
-                 requireBase: true
-          });
 }])
 
 .run(['$state', function($state){
