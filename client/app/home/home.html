@@ -19,15 +19,15 @@
     <div class="eventList">
       <div ng-repeat="event in filteredEvents(events)" class="event">
         <div class="eventInfo">
-          <p>{{event.title}}</p>
+          <p><a href="#/event/{{event.$$hashKey}}">{{event.title}}</a></p>
           <p><span ng-repeat="genre in event.genre">
             {{genre}}
           </p>
           <p>{{event.date | date:'short'}}</p>
         </div>
-        <div class="eventThumb">
-          {{event.url}}
-        </div>
+        <a href="#/event/{{event.$$hashKey}}"><div class="eventThumb">
+          <img src="{{event.image}}">
+        </div></a>
       </div>
     </div>
   </div>

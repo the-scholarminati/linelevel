@@ -436,6 +436,10 @@ a{
   margin-top: 22px;
 }
 
+.event{
+  margin: 20px;
+}
+
 .eventInfo{
   height: 150px;
   width: 150px;
@@ -447,9 +451,16 @@ a{
   height: 100px;
   width: 100px;
   background-size: 100%;
+  margin: 15px;
+}
+
+.eventThumb img{
+  height: 100px;
+  width: 100px;
 }
 
 .eventList{
   display: flex;
-  justify-content: space-between;
+  flex-flow: row wrap;
+  justify-content: space-around;
 }
