@@ -30,9 +30,7 @@ angular.module('main')
     return array;
   }, []);
 
-
   obj.chosenGenres = [];
-
 
   obj.chooseGenre = function(genre){
     // toggles whether the genre is selected or not
