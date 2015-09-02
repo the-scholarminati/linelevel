@@ -1,7 +1,7 @@
 //attaching controllers to main until we find reason to create specific modules
 
 angular.module('main').controller('eventController',['$scope','$http','appFactory',
-  function($scope,$http){
+  function($scope,$http, appFactory){
 
     console.log("Loading event page...");
     $scope.chatVisible = true;
