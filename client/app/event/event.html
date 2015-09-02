@@ -1,10 +1,11 @@
 <section ng-controller="eventController">
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <div class="container">
     <div class="pageTitle">
       <div style="display:flex; flex-flow: row nowrap">
       <h1>{{event.name}}</h1>
         <div id="eventHost">
-          hosted by <span id="eventHostName">{{event.host}}</span>
+          hosted by <span id="eventHostName">{{event.host}}</span> Access Token: {{accessToken}}
         </div>
       </div>
       <div id="chatToggle">
@@ -16,15 +17,23 @@
     <div id="genreNames">
           <div ng-repeat="genre in event.genres"> {{genre.name}}<span ng-if="$index !== event.genres.length-1">, &nbsp;</span> </div>
         </div>
-
+    <button ng-click="auth();">Authorize</button>
+    <button ng-click="placeVideo();">placeVideo</button>
     <div id="eventcontent">
     <div id="videoWrapper">
+      
+<!--       <button ng-click="getUserChannel();">GetChannelName</button>
+      <button ng-click="getVideo();">GetStreamingVideoId</button> -->
+      
+<div id="ytplayer"></div>
+<span class="video"></span>
 
-    <a href="https://accounts.google.com/o/oauth2/auth?
+<!--     <a ng-hide="{{accessToken != null}}" href="https://accounts.google.com/o/oauth2/auth?
 client_id=43388747005-isrtg2iv8558roqeakpu536dta5i8p71.apps.googleusercontent.com&
-redirect_uri=http%3A%2F%2Flocalhost:8000%2Foauth2callback&
+redirect_uri=http%3A%2F%2Flocalhost:8000%2Fapp%2Foauthcallback%2Foauthcallback.html&
 scope=https://www.googleapis.com/auth/youtube&
 response_type=token">Auth to start stream</a>
+<a ng-show="{{accessToken != null}}}" ng-click="startStream()">Start Stream</a> -->
 <!--       <div id="videostream">
       <iframe width="560" height="315" src="https://www.youtube.com/embed/qa2QMn7T6gk" frameborder="0" allowfullscreen></iframe>
       </div> -->
