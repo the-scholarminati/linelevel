@@ -23,9 +23,10 @@ angular.module('main')
       var eventDescription = $scope.eventDescription;
       // the image url is not required on the form
       // maybe have a default image that is used when image is not provided
-      var eventImage = $scope.eventImage || '../assets/albumcover.png';
+      var eventImage = $scope.eventImage || './assets/albumcover.png';
       var eventLabel = $scope.eventLabel || '';
-      var eventDate = $scope.date.eventDate;
+      var eventDate = $scope.date.eventDate.getTime();
+      console.log("eventDate = ", eventDate);
       var chosenGenres = $scope.chosenGenres;
       
       // save eventId to variable
@@ -36,7 +37,7 @@ angular.module('main')
         description: eventDescription,
         image: eventImage,
         label: eventLabel,
-        date: eventDate + '',
+        date: eventDate,
         genre: chosenGenres
       });
 

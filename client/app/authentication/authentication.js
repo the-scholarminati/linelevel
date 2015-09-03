@@ -19,21 +19,17 @@ angular.module('main')
 
     $scope.signIn = function(){
       // saves data from form
-      var username = $scope.credentials.username;
+      var email = $scope.credentials.email;
       var password = $scope.credentials.password;
 
-      // authenticate user
 
       // clears form
       $scope.credentials = {};
 
-      // console log to test the button is working
-      console.log("signIn form submitted!");
 
-
-      // TODO: send user data to database for authentication
+      // authenticate user
       ref.authWithPassword({
-        email: username,
+        email: email,
         password: password
       },function(error, authData){
         if(error){
@@ -44,7 +40,6 @@ angular.module('main')
           $state.go('home');
         }
       });
-      // $http.post('/auth/signin',$scope.credentials);
     };
 
     $scope.signUp = function(){
@@ -76,20 +71,9 @@ angular.module('main')
         }
       });
 
-      // create new user in firebase users table
-
       // clears form
       $scope.credentials = {};
       appFactory.resetGenres();
-
-      // console log to test the button is working
-      console.log("signUp form submitted!");
-
-
-      // TODO: send user data to database for authentication
-
-
-      //$http.post('/auth/signup',$scope.credentials);
     };
 
   }
