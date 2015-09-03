@@ -40,7 +40,10 @@ angular.module('main')
           console.log('error: ', error);
         } else {
           console.log('success!');
-          appFactory.getUser();
+          appFactory.getUser()
+            .then(function(user){
+              appFactory.user.username = user;
+            });
           $state.go('home');
         }
       });
