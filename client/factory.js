@@ -19,12 +19,12 @@ angular.module('main')
     this.firebase.unauth();
   };
 
-  obj.getUser = function(){
-    var uid = this.firebase.getAuth().uid;
-    this.firebase.child("users").child(uid).on("value",function(userData){
-      obj.user.username = userData.val().username;
+  obj.getUser = new Promise(function(resolve,reject){
+    var uid = obj.firebase.getAuth().uid;
+    obj.firebase.child("users").child(uid).on("value",function(userData){
+      resolve(userData.val());
     });
-  };
+  });
 
 
   ///////////////

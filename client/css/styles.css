@@ -67,7 +67,7 @@ h2{
   color: #9FA3A3;
 }
 
-.signIn{
+.signIn, .signout{
   width: 70px;
   height: 30px;
   text-align: center;
@@ -75,6 +75,11 @@ h2{
   margin-right: 10px;
   line-height: 30px;
 }
+
+.signout{
+  width: 100px;
+}
+
 .signIn:hover{
   text-decoration: underline;
   background-color: #5A585B;
