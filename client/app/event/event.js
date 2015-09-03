@@ -16,7 +16,6 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
 
     //through auth have user name on hand
     $scope.username = "Anonymous";
-    var username = appFactory.user.username;
 
     //ref.on() -- get chatId from event session
     var chatRef = ref.child('chats').child(appFactory.user.sessionId); //insert chat id info here
@@ -30,9 +29,11 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
                           
     $scope.sendMessage = function(){
       if(appFactory.auth()){
+        if(!appFactory.user.username){
+          appFactory.getUser();
+        }
         var text = $scope.userText;
-        console.log(text);
-        chatRef.push({username: username, message: text});
+        chatRef.push({username: appFactory.user.username, message: text});
         $scope.userText = '';
       } else {
         console.log('user is not logged in');

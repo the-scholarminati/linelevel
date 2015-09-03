@@ -4,7 +4,6 @@ angular.module('main')
 
 .controller('createEventController', ['$scope', 'appFactory', '$firebase',
   function($scope, appFactory, $firebase){
-    $scope.count = 0;
     // gets the current date so we can stop users from choosing dates in the past
     $scope.today = new Date();
     // gets the date from the factory and makes it accessible to the DOM
@@ -29,13 +28,9 @@ angular.module('main')
       var eventDate = $scope.date.eventDate;
       var chosenGenres = $scope.chosenGenres;
       
-      //creates firebase reference for events
-      var ref = appFactory.firebase;
-      //saves event data to firebase
-      console.log("Saved to Firebase");
-      console.log(chosenGenres);
-      var eventsRef = ref.child('events').child('event' + $scope.count);
-      eventsRef.set({
+      // save eventId to variable
+      var eventId = appFactory.firebase.child('events').push();
+      eventId.set({
         title: eventTitle,
         description: eventDescription,
         image: eventImage,
@@ -43,7 +38,11 @@ angular.module('main')
         date: eventDate + "",
         genre: chosenGenres
       });
-      $scope.count++;
+
+      appFactory.firebase.child("chats").child(eventId).set({
+        username:"bot", 
+        message:"chat created for event " + eventTitle
+      });
 
       // resets the form
       $scope.eventTitle = '';
