@@ -17,17 +17,20 @@
     </div>
 
     <div class="eventList">
-      <div ng-repeat="event in filteredEvents(events)" class="event">
+      <div ng-repeat="event in filteredEvents(events)" class="event" style="background-image: url({{event.image}})" mouse-over>
+
         <div class="eventInfo">
+
           <p><a href="#/event/{{event.$$hashKey}}">{{event.title}}</a></p>
           <p><span ng-repeat="genre in event.genre">
             {{genre}}
           </p>
-          <p>{{event.date | date:'short'}}</p>
+          <p ng-init="{{event.date}} = $filter('date')({{event.date}}, "dd/MM/yyyy");">{{event.date}}.</p>
         </div>
         <a href="#/event/{{event.$$hashKey}}" ng-click="setSessionId(event)"><div class="eventThumb">
           <img src="{{event.image}}">
         </div></a>
+        <div class="eventBackdrop"></div>
       </div>
     </div>
   </div>
