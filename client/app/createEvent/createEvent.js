@@ -35,7 +35,7 @@ angular.module('main')
         description: eventDescription,
         image: eventImage,
         label: eventLabel,
-        date: eventDate + "",
+        date: eventDate,
         genre: chosenGenres
       });
 

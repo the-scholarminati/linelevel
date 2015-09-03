@@ -36,7 +36,9 @@ angular.module('main')
     $scope.showGenresNow = function(){
       $scope.showGenres = !$scope.showGenres;
     };
-
+    $scope.dateType = function(date){
+      console.log(date);
+    };
 
     ///////////////
     ///// Filter
@@ -87,4 +89,24 @@ angular.module('main')
       window.console.log("sessionId is ", appFactory.user.sessionId);
     };
   }
-]);
+])
+.directive('mouseOver', function(){
+  return {
+    link: function(scope, element, attr){
+      element.on('mouseover', function(event){
+        element[0].children[0].style.top = '0px';
+        element[0].children[1].style.top = '0px';
+        element[0].children[1].style.opacity= .80;
+        element[0].children[1].style.filter= 'alpha(opacity=80)';
+      });
+      element.on('mouseleave', function(event){
+        element[0].children[0].style.top = '125px';
+        element[0].children[1].style.top = '125px';
+        element[0].children[1].style.opacity= .50;
+        element[0].children[1].style.filter= 'alpha(opacity=50)';
+      });
+    }
+  };
+
+
+});

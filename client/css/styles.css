@@ -234,6 +234,12 @@ ul {
   font-weight: 900;
 }
 
+.dropDownMenu{
+  position: absolute;
+  background-color: #D6D6D6;
+  padding: 10px;
+}
+
 #homeSection1{
   background-image: url("../assets/djshow.jpeg");
   background-size: auto 100%;
@@ -443,12 +449,43 @@ a{
 
 .event{
   margin: 20px;
+  width: 175px;
+  height: 175px;
+  background-size: 100%;
+  overflow: hidden;
+  position:relative;
+}
+
+.eventBackdrop{
+  background-color: black;
+  height: 175px;
+  width: 175px;
+  position: absolute;
+  top: 125px;
+  opacity: .50;
+  filter: alpha(opacity=50);
+  transition: 1s;
+  z-index: 1;
 }
 
 .eventInfo{
-  height: 150px;
-  width: 150px;
+  height: 175px;
+  width: 175px;
   overflow: hidden;
+  color: white;
+  position: absolute;
+  top: 125px;
+  transition: 1s;
+  z-index: 2;
+}
+
+.eventInfo a{
+  color: white;
+}
+
+.eventInfo p{
+  opacity: 1;
+  filter: alpha(opacity=100);
 }
 
 .eventThumb{
@@ -474,6 +511,10 @@ a{
 
   display: flex;
   flex-flow: row wrap;
+}
+
+.showInfo{
+  top: 0px;
 }
 
 #userInfo{
