@@ -20,13 +20,17 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     // get chatId from event session
     var chatRef = '';
     var sessionId = appFactory.user.sessionId;
+
     if(sessionId === null){
-      appFactory.getUser.then(function(userInfo){
-        chatRef = ref.child('chats').child(userInfo.lastSessionId);
+      var uid = ref.getAuth().uid;
+      ref.child("users").child(uid).on("value",function(userData){
+        chatRef = ref.child('chats').child(userData.val().lastSessionId);
       });
     } else {
       chatRef = ref.child('chats').child(sessionId); //insert chat id info here
     }
+
+    window.console.log('chatRef = ', chatRef);
 
 
 
@@ -41,22 +45,14 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     };
     init();
                           
-    var send = function(user){
-      var text = $scope.userText;
-      chatRef.push({username: user, message: text});
-      $scope.userText = '';
-    };
-
     $scope.sendMessage = function(){
       if(appFactory.auth()){
         if(!appFactory.user.username){
-          appFactory.getUser
-            .then(function(user){
-              send.call(send,user.username);
-            });
-        } else {
-          send.call(send,appFactory.user.username);
-        }
+          appFactory.updateUser();
+        } 
+        var text = $scope.userText;
+        chatRef.push({username: appFactory.user.username, message: text});
+        $scope.userText = '';
       } else {
         console.log('user is not logged in');
       }
