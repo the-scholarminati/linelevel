@@ -40,6 +40,7 @@ angular.module('main')
           console.log('error: ', error);
         } else {
           console.log('success!');
+          appFactory.getUser();
         }
       },{
         remember: "sessionOnly"
