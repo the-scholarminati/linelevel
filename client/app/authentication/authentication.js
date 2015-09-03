@@ -42,8 +42,6 @@ angular.module('main')
           console.log('success!');
           appFactory.getUser();
         }
-      },{
-        remember: "sessionOnly"
       });
 
       // $http.post('/auth/signin',$scope.credentials);

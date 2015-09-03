@@ -4,6 +4,12 @@ angular.module('main')
   var obj = {};
   obj.firebase = new Firebase('https://linelevel.firebaseio.com');
 
+  // userinfo
+  obj.user = {
+    username: null, 
+    sessionId: null
+  };
+
   // Authentication
   obj.auth = function(){
     return this.firebase.getAuth() !== null;
@@ -16,15 +22,10 @@ angular.module('main')
   obj.getUser = function(){
     var uid = this.firebase.getAuth().uid;
     this.firebase.child("users").child(uid).on("value",function(userData){
-      this.user.username = userData.username;
+      obj.user.username = userData.val().username;
     });
   };
 
-  // userinfo
-  obj.user = {
-    username: null, 
-    sessionId: null
-  };
 
   ///////////////
   ///// HTTP
