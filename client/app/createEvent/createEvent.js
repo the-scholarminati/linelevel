@@ -30,16 +30,17 @@ angular.module('main')
       
       // save eventId to variable
       var eventId = appFactory.firebase.child('events').push();
+      console.log(eventId);
       eventId.set({
         title: eventTitle,
         description: eventDescription,
         image: eventImage,
         label: eventLabel,
-        date: eventDate,
+        date: eventDate + '',
         genre: chosenGenres
       });
 
-      appFactory.firebase.child("chats").child(eventId).set({
+      appFactory.firebase.child("chats").child(eventId.key()).set({
         username:"bot", 
         message:"chat created for event " + eventTitle
       });
