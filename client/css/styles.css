@@ -238,6 +238,7 @@ ul {
   position: absolute;
   background-color: #D6D6D6;
   padding: 10px;
+  z-index: 3;
 }
 
 #homeSection1{
