@@ -68,6 +68,7 @@ angular.module('main')
             email: email,
             chosenGenres: chosenGenres
           });
+          $state.go('home');
         }
       });
 
