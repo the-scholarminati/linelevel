@@ -27,14 +27,22 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       //console.log(data);
     });
                           
+    var send = function(user){
+      var text = $scope.userText;
+      chatRef.push({username: user, message: text});
+      $scope.userText = '';
+    };
+
     $scope.sendMessage = function(){
       if(appFactory.auth()){
         if(!appFactory.user.username){
-          appFactory.getUser();
+          appFactory.getUser()
+            .then(function(user){
+              send(user);
+            });
+        } else {
+          send(appFactory.user.username);
         }
-        var text = $scope.userText;
-        chatRef.push({username: appFactory.user.username, message: text});
-        $scope.userText = '';
       } else {
         console.log('user is not logged in');
       }
