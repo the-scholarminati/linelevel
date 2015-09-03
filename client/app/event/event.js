@@ -16,23 +16,27 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
 
     //through auth have user name on hand
     $scope.username = "Anonymous";
-    var username = $scope.username;
+    var username = appFactory.user.username;
 
     //ref.on() -- get chatId from event session
-    var chatRef = ref.child('chats'); //insert chat id info here
+    var chatRef = ref.child('chats').child(appFactory.user.sessionId); //insert chat id info here
 
     //fetch chat data as you add to it, returns last 20
-    chatRef.limitToLast(20).on('child_added', function(snapshot){
-        var data = snapshot.val();
-        $scope.event.messages.push(data);
-        console.log(data);
+    chatRef.limitToLast(30).on('child_added', function(snapshot){
+      var data = snapshot.val();
+      $scope.event.messages.push(data);
+      //console.log(data);
     });
                           
     $scope.sendMessage = function(){
+      if(appFactory.auth()){
         var text = $scope.userText;
         console.log(text);
         chatRef.push({username: username, message: text});
         $scope.userText = '';
+      } else {
+        console.log('user is not logged in');
+      }
     };
 
     $scope.toggleChat = function(){
@@ -118,7 +122,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       };
 
       $scope.placeVideo = function(){
-        console.log('placing video')
+        console.log('placing video');
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/player_api";
         var firstScriptTag = document.getElementsByClassName('video')[0];

@@ -2,9 +2,29 @@ angular.module('main')
 
 .factory('appFactory', function($http){
   var obj = {};
-
-
   obj.firebase = new Firebase('https://linelevel.firebaseio.com');
+
+  // userinfo
+  obj.user = {
+    username: null, 
+    sessionId: null
+  };
+
+  // Authentication
+  obj.auth = function(){
+    return this.firebase.getAuth() !== null;
+  };
+
+  obj.unauth = function(){
+    this.firebase.unauth();
+  };
+
+  obj.getUser = function(){
+    var uid = this.firebase.getAuth().uid;
+    this.firebase.child("users").child(uid).on("value",function(userData){
+      obj.user.username = userData.val().username;
+    });
+  };
 
 
   ///////////////
@@ -30,9 +50,7 @@ angular.module('main')
     return array;
   }, []);
 
-
   obj.chosenGenres = [];
-
 
   obj.chooseGenre = function(genre){
     // toggles whether the genre is selected or not

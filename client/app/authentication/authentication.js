@@ -22,6 +22,8 @@ angular.module('main')
       var username = $scope.credentials.username;
       var password = $scope.credentials.password;
 
+      // authenticate user
+
       // clears form
       $scope.credentials = {};
 
@@ -30,7 +32,17 @@ angular.module('main')
 
 
       // TODO: send user data to database for authentication
-
+      ref.authWithPassword({
+        email: username,
+        password: password
+      },function(error, authData){
+        if(error){
+          console.log('error: ', error);
+        } else {
+          console.log('success!');
+          appFactory.getUser();
+        }
+      });
 
       // $http.post('/auth/signin',$scope.credentials);
     };

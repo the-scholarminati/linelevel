@@ -25,7 +25,7 @@
           </p>
           <p>{{event.date | date:'short'}}</p>
         </div>
-        <a href="#/event/{{event.$$hashKey}}"><div class="eventThumb">
+        <a href="#/event/{{event.$$hashKey}}" ng-click="setSessionId(event)"><div class="eventThumb">
           <img src="{{event.image}}">
         </div></a>
       </div>
