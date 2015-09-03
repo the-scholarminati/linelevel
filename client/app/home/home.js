@@ -87,7 +87,7 @@ angular.module('main')
     $scope.setSessionId = function(input){
       appFactory.user.sessionId = input.key;
       var uid = ref.getAuth().uid;
-      ref.child("users").child(uid).update({lastSessionId: input});
+      ref.child("users").child(uid).update({lastSessionId: input.key});
     };
   }
 ])
