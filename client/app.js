@@ -57,6 +57,14 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
 .controller('mainCtrl', function($scope, $firebaseObject,$state) {
   // define a reference to the firebase database
   var ref = new Firebase('https://linelevel.firebaseio.com/data');
+  
+  $scope.auth = function(){
+    return ref.getAuth() !== null;
+  };
+
+  $scope.unauth = function(){
+    ref.unauth();
+  };
 
   // download the data into a local object
   var syncObject = $firebaseObject(ref);

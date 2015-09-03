@@ -32,7 +32,8 @@
       <header>
         <a ui-sref="home"><h1>Linelevel</a></h1>
         <nav>
-          <div class="signIn"><a ui-sref="signin">SIGN IN</a></div>
+          <div ng-if="!auth()" class="signIn"><a ui-sref="signin">SIGN IN</a></div>
+          <div ng-if="auth()" class="signOut" ng-click="unauth()"><a ui-sref="home">SIGN OUT</a></div>
           <!-- the following code is the old link for the sign-in pop up -->
           <!-- <div class="signIn"><a href="javascript:void(0)" onclick="document.getElementById('popUpSignIn').style.display='block'">SIGN IN</a>
           </div> -->
