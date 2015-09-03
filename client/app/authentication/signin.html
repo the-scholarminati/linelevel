@@ -1,0 +1,42 @@
+<section ng-controller="authController" class="popUp">
+  <div class="container">
+    <div class="sign-up-title"><h1>Sign in</h1></div>
+    <div class="line"></div>
+
+    <div data-ng-show="error" class="text-center text-danger">
+      <strong data-ng-bind="error">error</strong>
+    </div>
+    
+    <form name="signInForm" ng-submit="signIn()" novalidate>
+      <div id="signInForm">
+
+        <div class='formInputs'>
+          <div class="formItem">
+            <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username" required>
+          </div>
+
+          <div class="formItem">
+            <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password" required>
+          </div>
+
+          <div class="formItem">
+            <div class="forgot-password">
+              <a href="/#!/password/forgot">Forgot your password?</a>
+            </div>
+          </div>
+
+          <div class="submitbutton">
+            <button type="submit" ng-disabled="signInForm.$invalid" class="clear" id="createEventButton" ng-click="signIn()">Sign up</button>
+          </div>
+
+          <div id="signUp">Don't have an account? 
+            <a ui-sref="signup">Sign up</a>
+          </div>
+
+        </div>
+      </div>
+    </form>
+
+  <!-- <div id="fade" class="black_overlay"></div> -->
+  </div>
+</section>

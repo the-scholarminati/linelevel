@@ -49,13 +49,12 @@ An app where musicians can host online album release parties to share new music 
 - display list of upcoming promotions for different genres
 
 # Git Flow
+
 - create fork via github
 - clone to local repo
-
 - // if feature branch does not exist
 - make branch on local repo: git checkout -b branch-name
 - push branch to upstream: git push upstream branch-name
-
 - // repeat from here if making changes to existing feature
 - make changes to branch until ready to push       
 - rebase from dev:  git rebase (--continue | --skip | --abort)
@@ -64,3 +63,29 @@ An app where musicians can host online album release parties to share new music 
 - create pull request: base team-repo:dev compare your-forked-repo:branch-name
 - repeat until feature is complete
 
+# Getting Started
+(please add any instructions other team members need to know to run your code here)
+
+To run the test suite, you may need to globally install a few dependencies:
+
+```
+npm install -g karma
+npm install -g karma-jasmine
+npm install -g karma-coverage
+npm install -g karma-chrome-launcher
+npm install -g karma-ng-html2js-preprocessor
+```
+To run the actual tests, navigate to the project directory in your terminal and run the command
+```
+karma start
+```
+A new browser window should open stating that Karma connected successfully.
+
+# Deploying on firebase
+
+Install Firebase Tools
+
+```
+npm install -g firebase-tools
+
+firebase deploy

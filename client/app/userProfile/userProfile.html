@@ -1,3 +1,55 @@
 <section ng-controller="userProfileController">
-  
+   <div class="container">
+    <div class="pageTitle">
+      <div style="display:flex; flex-flow: row nowrap">
+      <h1>{{userId}}</h1>
+      </div>
+      </div>
+      <div class="line"></div>
+    <div id="genreNames">
+      <div ng-repeat="genre in event.genres"> {{genre.name}}<span ng-if="$index !== event.genres.length-1">, &nbsp;</span> </div>
+    </div>
+
+    <div id="userContent">
+      <div id="userInfo">
+
+        <img src="http://enevogroup.com/wp-content/uploads/2014/06/profile-placeholder1.jpg" width="200" height="230">
+        <div>
+        Some user information:
+        </div>
+        <div>
+        Some user information:
+        </div>
+        <div>
+        Some user information:
+        </div>
+        <div>
+        Some user information:
+        </div>
+      </div>
+      <div id="userFeed">
+      <div>
+        User Feed
+      </div>
+
+      <div>
+        Events attended:
+      </div>
+        <div>Something</div>
+        <div>Something</div>
+        <div>Something</div>
+        <div>Something</div>
+
+        <div>Wall:</div>
+
+        <div>Anonymous: asdfasdf</div>
+        <div>Anonymous: asdfasdf</div>
+        <div>Anonymous: asdfasdf</div>
+        <div>Anonymous: asdfasdf</div>
+
+        <textarea></textarea>
+        <button>Submit</button>
+
+      </div>
+  </div>
 </section>
