@@ -25,7 +25,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     chatRef.limitToLast(30).on('child_added', function(snapshot){
       var data = snapshot.val();
       $scope.event.messages.push(data);
-      console.log(data);
+      //console.log(data);
     });
                           
     $scope.sendMessage = function(){
@@ -122,7 +122,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       };
 
       $scope.placeVideo = function(){
-        console.log('placing video')
+        console.log('placing video');
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/player_api";
         var firstScriptTag = document.getElementsByClassName('video')[0];

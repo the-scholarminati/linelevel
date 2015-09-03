@@ -16,8 +16,8 @@ angular.module('main')
     //fetch last 20 events
     eventsRef.limitToLast(20).on('child_added', function(snapshot){
       var data = snapshot.val();
+      data.key = snapshot.key();
       $scope.events.push(data);  //store data in events array
-      console.log(data);
     });
 
 
@@ -79,6 +79,11 @@ angular.module('main')
       } else {
         return $scope.events;
       }
+    };
+
+    // set sessionId in appFactory
+    $scope.setSessionId = function(input){
+      appFactory.user.sessionId = input.key;
     };
   }
 ]);
