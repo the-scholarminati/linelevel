@@ -20,11 +20,11 @@ angular.module('main')
   };
 
   obj.getUser = new Promise(function(resolve,reject){
-    var uid = this.firebase.getAuth().uid;
+    var uid = obj.firebase.getAuth().uid;
     obj.firebase.child("users").child(uid).on("value",function(userData){
-      resolve(userData.val().username);
+      resolve(userData.val());
     });
-  };
+  });
 
 
   ///////////////
