@@ -1,7 +1,7 @@
 var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
 
 .config(['$stateProvider', '$urlRouterProvider', function( $stateProvider, $urlRouterProvider){
-  $urlRouterProvider.otherwise('/signin');
+  $urlRouterProvider.otherwise('/home');
   
   $stateProvider
     .state('home', {
