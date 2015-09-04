@@ -495,7 +495,7 @@ a{
 }
 
 .eventThumb{
-  background-image: url("../assets/albumcover.png");
+  background-image: url("./assets/albumcover.png");
   height: 100px;
   width: 100px;
   background-size: 100%;
