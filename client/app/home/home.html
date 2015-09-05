@@ -2,10 +2,10 @@
 
   <div class="container">
     <div class="eventTabs">
-      <span ng-click="viewFutureEvents()" ng-class="futureView">
+      <span ng-click="viewFutureEvents()" ng-class="{selectedView: futureView, notSelectedView: !futureView}" class="eventTab">
         Upcoming events
       </span>
-      <span ng-click="viewPastEvents()" ng-class="!futureView">
+      <span ng-click="viewPastEvents()" ng-class="{selectedView: !futureView, notSelectedView: futureView}" class="eventTab">
         Past events
       </span>
     </div>

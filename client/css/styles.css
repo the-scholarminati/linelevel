@@ -445,6 +445,29 @@ a{
   font-family: Helvetica-bold;
 }
 
+/******************************
+  Home page styling 
+******************************/
+
+.eventTabs{
+  padding: 10px;
+  margin: 25px;
+}
+
+.eventTab{
+  padding: 10px;
+}
+
+.selectedView{
+  border: 1px solid #C1C1C1;
+  border-bottom: none;
+}
+
+.notSelectedView{
+  color: #C1C1C1;
+  border-bottom: 1px solid #C1C1C1;
+}
+
 .filterOptions{
   display: flex;
 }
