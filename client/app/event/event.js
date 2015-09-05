@@ -1,18 +1,16 @@
 //attaching controllers to main until we find reason to create specific modules
 
-angular.module('main').controller('eventController',['$scope','$http', 'appFactory',
+angular.module('main').controller('eventController',['$scope','$http', 'appFactory', '$rootScope',
   function($scope,$http,appFactory){
     $scope.videoId = 'dQw4w9WgXcQ';
 
-    console.log("Loading event page...");
+    // console.log("Loading event page...");
     $scope.chatVisible = true;
     $scope.event = {};
-    $scope.event.host = "Anonymous";
-    $scope.event.name = 'Sample Event';
-    $scope.event.messages = [];
     $scope.chat = $('#chatmessages');
+    $scope.event.messages = [];
     $scope.chat.scrollTop = $scope.chat.scrollHeight;
-    window.console.log('eventId', $scope.eventId);
+    // window.console.log('eventId', $scope.eventId);
 
     //instantiate firbase ref with url
     var initialized = false;
@@ -30,14 +28,14 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
         ref.child("events").child($scope.eventId)
           .on("value",function(info){
             var eventData = info.val();
-            $scope.event = {
-              host: eventData.host,
-              name: eventData.title
-            };
+            $scope.event.host = eventData.host;
+            $scope.event.name = eventData.title;
         });
-
-        window.console.log("initializing with init!");
       }// end of if
+    };
+
+    $scope.isInitialized = function(){
+      return initialized2;
     };
 
 
@@ -51,30 +49,33 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
         });
 
         chatRef = ref.child("chats").child($scope.eventId);
-        console.log('chatref in init2', chatRef);
-        ref.child("chats").child($scope.eventId)
-          .limitToLast(100).on('child_added', function(message){
+        chatRef.on('child_added', function(message){
+          if(!$scope.$$phase){
+            $scope.$apply(function(){
+              $scope.event.messages.push(message.val());
+            });
+          } else {
             $scope.event.messages.push(message.val());
+          }
         });
       }
     };
 
     init();
-    setTimeout(init2,1000);
+    init2();
 
     $scope.sendMessage = function(){
-      if(appFactory.auth() ){//&& initialized){
+      if(appFactory.auth() && initialized2){
         var text = $scope.userText;
-        window.console.log('chatref is ', chatRef);
         chatRef.push({username: userData.username, message: text});
         $scope.userText = '';
       } else {
-        console.log('user is not logged in');
+        // console.log('user is not logged in');
       }
     };
 
     $scope.toggleChat = function(){
-      console.log($scope.chatVisible);
+      // console.log($scope.chatVisible);
       $scope.chatVisible = !$scope.chatVisible;
     };
 
@@ -89,8 +90,8 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
         'scope': 'https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.upload'
       };
       gapi.auth.authorize(config, function() {
-        console.log('login complete');
-        console.log(gapi.auth.getToken());
+        // console.log('login complete');
+        // console.log(gapi.auth.getToken());
         $scope.getUserChannel();
       });
     };
@@ -106,10 +107,10 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       
       request.then(function(response) {
         $scope.channelName = response.result.items[0].id;
-        console.log($scope.channelName);
+        // console.log($scope.channelName);
         $scope.getVideo();
       }, function(reason) {
-        console.log('Error: ' + reason.result.error.message);
+        // console.log('Error: ' + reason.result.error.message);
       });
 
     });
@@ -128,7 +129,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     request.then(function(response) {
       $scope.processResult(response);
     }, function(reason) {
-      console.log('Error: ' + reason.result.error.message);
+      // console.log('Error: ' + reason.result.error.message);
     });
 
 
@@ -136,7 +137,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
 
   $scope.processResult = function(result){
 
-    console.log(result);
+    // console.log(result);
 
     var json = JSON.parse(result.body);
     if(json.pageInfo.totalResults === 0){
@@ -144,7 +145,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
         } else {
           $scope.videoId = json.items[0].id.videoId;
           $scope.placeVideo();    
-          console.log($scope.videoId);
+          // console.log($scope.videoId);
         }
 
       };
@@ -155,7 +156,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       };
 
       $scope.placeVideo = function(){
-        console.log('placing video');
+        // console.log('placing video');
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/player_api";
         var firstScriptTag = document.getElementsByClassName('video')[0];
