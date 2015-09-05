@@ -1,5 +1,5 @@
 <section ng-controller="eventController">
- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <div class="container">
     <div class="pageTitle">
       <div style="display:flex; flex-flow: row nowrap">
@@ -17,11 +17,18 @@
     <div id="genreNames">
       <div ng-repeat="genre in event.genres"> {{genre.name}}<span ng-if="$index !== event.genres.length-1">, &nbsp;</span> </div>
     </div>
-    <button ng-click="auth();">Authorize</button>
-    <button ng-click="placeVideo();">placeVideo</button>
+
+    <!-- host admin panel for setting up the stream -->
+    <!-- can we call the method on the factory? might need to set that method in the scope to call it here -->
+    <div ng-if="appFactory.isSameUser(event.host)">
+      <button ng-click="auth();">Authorize</button>
+      <button ng-click="placeVideo();">placeVideo</button>
+    </div>
+
     <div id="eventcontent">
       <div id="videoWrapper">
         <div id="ytplayer"></div>
+        <span class="video"></span>
       </div>
       <div id="chatcontent" ng-show="chatVisible">
         <div id="chatMessages">
@@ -29,7 +36,9 @@
         </div>
         <textarea id="chatTextbox" ng-model="userText"></textarea>
         <br>
-        <div id="sendButton" ng-click="sendMessage()"><button>Send</button></div>
+        <div id="sendButton" ng-click="sendMessage()">
+        <button>Send</button>
+        </div>
       </div>
     </div>
   </div>
