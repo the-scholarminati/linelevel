@@ -22,7 +22,6 @@ angular.module('main')
       var email = $scope.credentials.email;
       var password = $scope.credentials.password;
 
-
       // clears form
       $scope.credentials = {};
 
@@ -36,7 +35,6 @@ angular.module('main')
           console.log('error: ', error);
         } else {
           console.log('success!');
-          appFactory.updateUser();
           $state.go('home');
         }
       });
@@ -66,8 +64,10 @@ angular.module('main')
             lastname: lastname,
             username: username,
             email: email,
-            chosenGenres: chosenGenres
+            chosenGenres: chosenGenres,
+            uid: userData.uid
           });
+          $state.go('home');
         }
       });
 

@@ -5,7 +5,7 @@
       <div style="display:flex; flex-flow: row nowrap">
         <h1>{{event.name}}</h1>
         <div id="eventHost">
-          hosted by <span id="eventHostName">{{event.host}}</span> Access Token: {{accessToken}}
+          hosted by <span id="eventHostName">{{event.host}}</span>
         </div>
       </div>
       <div id="chatToggle">
@@ -32,7 +32,7 @@
       </div>
       <div id="chatcontent" ng-show="chatVisible">
         <div id="chatMessages">
-          <div ng-repeat="message in event.messages" class="message"><b>{{message.username}}:</b> {{message.message}}</div>
+          <div ng-if="isInitialized()" ng-repeat="message in event.messages" class="message"><b>{{message.username}}:</b> {{message.message}}</div>
         </div>
         <textarea id="chatTextbox" ng-model="userText"></textarea>
         <br>

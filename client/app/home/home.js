@@ -17,7 +17,13 @@ angular.module('main')
     eventsRef.limitToLast(20).on('child_added', function(snapshot){
       var data = snapshot.val();
       data.key = snapshot.key();
-      $scope.events.push(data);  //store data in events array
+      if(!$scope.$$phase){
+        $scope.$apply(function(){
+          $scope.events.push(data);  
+        });
+      } else {
+        $scope.events.push(data);  
+      }
     });
 
 
@@ -85,8 +91,7 @@ angular.module('main')
 
     // set sessionId in appFactory
     $scope.setSessionId = function(input){
-      appFactory.user.sessionId = input.key;
-      var uid = ref.getAuth().uid;
+      var uid = appFactory.firebase.getAuth().uid;
       ref.child("users").child(uid).update({lastSessionId: input.key});
     };
   }
