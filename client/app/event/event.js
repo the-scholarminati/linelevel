@@ -63,6 +63,37 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     };
     init();
 
+    $scope.chatTime = function(time){
+      var gap = new Date() - new Date(time);
+      var prefix = '';
+      var days = Math.floor(gap / 86400000);
+      
+      if(days > 0){
+        switch(days){
+          case 1: prefix += "1 day ago";
+                  break;
+          default: prefix += days + " days ago";
+        }
+        return prefix;
+      } else {
+        var hours = Math.floor(gap / 3600000);
+        var minutes = Math.floor(gap / 60000);
+        if(hours){
+          if (hours === 1){
+            return 'an hour ago';
+          }
+          return '' + hours + ' hours ago';
+        } else {
+          if(minutes === 1){
+            return 'a minute ago';
+          } else if (minutes > 1){
+            return minutes + ' minutes ago';
+          } else {
+            return 'less than a minute ago';
+          }
+        }
+      }
+    };
 
     $scope.sendMessage = function(){
       if(userData && initialized){
