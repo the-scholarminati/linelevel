@@ -1,6 +1,16 @@
 <section ng-controller="homeController">
 
   <div class="container">
+    <div class="eventTabs">
+      <span ng-click="viewFutureEvents()" ng-class="futureView">
+        Upcoming events
+      </span>
+      <span ng-click="viewPastEvents()" ng-class="!futureView">
+        Past events
+      </span>
+    </div>
+
+
     <div class="filterOptions">
       <div class="genreList">
         <div ng-click="showGenresNow()">Filter by genre</div>

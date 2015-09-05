@@ -24,6 +24,26 @@ angular.module('main')
 
 
     ///////////////
+    ///// Tab views
+    ///////////////
+    // this variable tracks if we're looking at upcoming or past events
+    // it is set to upcoming events by default
+    $scope.futureView = true;
+
+    $scope.viewFutureEvents = function(){
+      if (!$scope.futureView){
+        $scope.futureView = true;
+      }
+    };
+
+    $scope.viewPastEvents = function(){
+      if ($scope.futureView){
+        $scope.futureView = false;
+      }
+    };
+
+
+    ///////////////
     ///// Genres
     ///////////////
     // saves the genre lists and method from the factory so we can access them in the DOM
@@ -42,6 +62,7 @@ angular.module('main')
       console.log(date);
     };
 
+
     ///////////////
     ///// Filter
     ///////////////
@@ -49,41 +70,50 @@ angular.module('main')
     $scope.debounce = 200;
 
     $scope.filteredEvents = function(events){
-      // only filter if the user has selected at least one filter
-      if ($scope.chosenGenres.length || $scope.filterByTitle || $scope.filterByUser){
-        // filter out which evens will be shown
-        return events.filter(function(event){
-          var show = true;
+      // filter out which evens will be shown
+      return events.filter(function(event){
+        // show determines whether the event will be present after it has been run through the filter
+        var show = true;
 
-          // remove event if any of the genres chosen by the user are not in the event's genre list
-          $scope.chosenGenres.forEach(function(genre){
-            if (!event.genre || event.genre.indexOf(genre) === -1){
-              show = false;
-            }
-          });
+        // compare now + 1 hour to event date to see if the event has already passed
+        var now = new Date();
+        var isInFuture = now.getTime() + (60*60*1000) < event.date;
+        // if the user wants to see future events
+        if ($scope.futureView){
+          // show the event if it's in the future
+          show = isInFuture;
+        // if the user wants to see past events
+        } else {
+          // show the event if it's not in the future
+          show = !isInFuture;
+        }
 
-          // remove event if the title filter is not in the event's title
-          if ($scope.filterByTitle){
-            if ( event.title.toLowerCase().indexOf( $scope.filterByTitle.toLowerCase() ) === -1 ){
-              console.log("$scope.filterByTitle = ", $scope.filterByTitle);
-              show = false;
-            }
+        // remove event if any of the genres chosen by the user are not in the event's genre list
+        $scope.chosenGenres.forEach(function(genre){
+          if (!event.genre || event.genre.indexOf(genre) === -1){
+            show = false;
           }
-
-          // PLEASE NOTE: the following code has been commented out because the event objects do not currently have a user property
-
-          // remove event if the user filter is not in the event's user
-          // if ($scope.filterByUser){
-          //   if ( event.user.indexOf($scope.filterByUser) === -1 ){
-          //     show = false;
-          //   }
-          // }
-
-          return show;
         });
-      } else {
-        return $scope.events;
-      }
+
+        // remove event if the title filter is not in the event's title
+        if ($scope.filterByTitle){
+          if ( event.title.toLowerCase().indexOf( $scope.filterByTitle.toLowerCase() ) === -1 ){
+            console.log("$scope.filterByTitle = ", $scope.filterByTitle);
+            show = false;
+          }
+        }
+
+        // PLEASE NOTE: the following code has been commented out because the event objects do not currently have a user property
+
+        // remove event if the user filter is not in the event's user
+        // if ($scope.filterByUser){
+        //   if ( event.user.indexOf($scope.filterByUser) === -1 ){
+        //     show = false;
+        //   }
+        // }
+
+        return show;
+      });
     };
 
   }
