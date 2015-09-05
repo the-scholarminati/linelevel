@@ -54,7 +54,7 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   $state.transitionTo('home');
 }])
 
-.controller('mainCtrl', function($scope, $firebaseObject,$state) {
+.controller('mainCtrl', ['$scope', '$firebaseObject', '$state', 'appFactory', function($scope, $firebaseObject, $state, appFactory) {
   // define a reference to the firebase database
   var ref = new Firebase('https://linelevel.firebaseio.com/data');
   
@@ -62,8 +62,9 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
     return ref.getAuth() !== null;
   };
 
-  $scope.unauth = function(){
+  $scope.signOut = function(){
     ref.unauth();
+    $state.go('about');
   };
 
   // download the data into a local object
@@ -72,4 +73,4 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   // synchronize the object with a three-way data binding
   syncObject.$bindTo($scope, 'data');
   $state.go('home');
-});
+}]);

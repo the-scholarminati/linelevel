@@ -26,6 +26,13 @@ angular.module('main')
     });
   };
 
+  obj.isSameUser = function(user){
+    // check if the current user is the same as the user passed into the function
+    // will fill this out later when we know how
+    // for now, it will always return true
+    return true;
+  };
+
 
   ///////////////
   ///// HTTP
