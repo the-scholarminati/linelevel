@@ -461,7 +461,9 @@ a{
 }
 
 .borderExtension{
+  color: white;
   width: 100%;
+  padding-right: 500px;
   border-bottom: 1px solid #C1C1C1;
 }
 
