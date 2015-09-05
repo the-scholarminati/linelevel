@@ -17,13 +17,9 @@ angular.module('main')
     eventsRef.limitToLast(20).on('child_added', function(snapshot){
       var data = snapshot.val();
       data.key = snapshot.key();
-      if(!$scope.$$phase){
-        $scope.$apply(function(){
-          $scope.events.push(data);  
-        });
-      } else {
+      appFactory.update($scope,function(){
         $scope.events.push(data);  
-      }
+      });
     });
 
 
