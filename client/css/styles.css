@@ -452,15 +452,22 @@ a{
 .eventTabs{
   padding: 10px;
   margin: 25px;
+/*  width: 90%;
+  border-bottom: 1px solid #C1C1C1;*/
 }
 
 .eventTab{
   padding: 10px;
 }
 
+.borderExtension{
+  width: 100%;
+  border-bottom: 1px solid #C1C1C1;
+}
+
 .selectedView{
   border: 1px solid #C1C1C1;
-  border-bottom: none;
+  border-bottom: white;
 }
 
 .notSelectedView{
