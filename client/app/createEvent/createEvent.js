@@ -38,7 +38,8 @@ angular.module('main')
         image: eventImage,
         label: eventLabel,
         date: eventDate,
-        genre: chosenGenres
+        genre: chosenGenres,
+        host: appFactory.user
       });
 
       appFactory.firebase.child("chats").child(eventId.key()).push().set({
