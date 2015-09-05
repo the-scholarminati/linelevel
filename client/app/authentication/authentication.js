@@ -60,25 +60,6 @@ angular.module('main')
       var emailFirebase = email.replace(/\./g,"!");
 
       // create new user in firebase authentication
-<<<<<<< HEAD
-      ref.createUser({
-        email: email,
-        password: password
-      },function(error,userData){
-        if (error){
-          console.log('Error: ', error);
-        } else {
-          console.log('userData is ', userData);
-          users.child(userData.uid).set({
-            firstname: firstname,
-            lastname: lastname,
-            username: username,
-            email: email,
-            chosenGenres: chosenGenres,
-            uid: userData.uid
-          });
-          $state.go('home');
-=======
       emails.child(emailFirebase).on("value", function(em){
         if(em.val() === null){
           // check if username already exists in db
@@ -118,7 +99,6 @@ angular.module('main')
           appFactory.update($scope,function(scope){
             scope.error = "email already in use!";
           });
->>>>>>> signup now checks if email is already in database
         }
       });
 
