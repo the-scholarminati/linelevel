@@ -14,11 +14,21 @@ angular.module('main')
   };
 
 
-  obj.isSameUser = function(user){
+  obj.isSameUser = function(host){
     // check if the current user is the same as the user passed into the function
     // will fill this out later when we know how
     // for now, it will always return true
-    return true;
+    return false;
+  };
+
+  obj.update = function(scope,cb){
+    if(!scope.$$phase){
+      scope.$apply(function(){
+        cb.call(this,scope);
+      });
+    } else {
+      cb.call(this,scope);
+    }
   };
 
   ///////////////

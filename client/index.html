@@ -35,7 +35,7 @@
           <div ng-if="!auth()" class="signIn"><a ui-sref="signin">SIGN IN</a></div>
         </nav>
         <nav>
-          <div ng-if="auth()" class="signOut" ng-click="signOut()">SIGN OUT</div>
+          <div ng-if="auth()" class="signOut" ng-click="signOut()"><a href="#">SIGN OUT</a></div>
           <!-- the following code is the old link for the sign-in pop up -->
           <!-- <div class="signIn"><a href="javascript:void(0)" onclick="document.getElementById('popUpSignIn').style.display='block'">SIGN IN</a>
           </div> -->
