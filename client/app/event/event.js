@@ -15,7 +15,6 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
 
     //instantiate firbase ref with url
     var initialized = false;
-    var initialized2 = false;
     var ref = appFactory.firebase;
     var userData = '';
     var chatRef = '';
@@ -27,6 +26,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
         initialized = !initialized;
         ref.off();
 
+        // load event data
         ref.child("events").child($scope.eventId)
           .on("value",function(info){ 
             var eventData = info.val();
@@ -37,14 +37,8 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
             $scope.isSameUser = appFactory.user === $scope.event.host ? true : false;
           console.log(appFactory.user +  $scope.event.host + $scope.isSameUser);
         });
-      }// end of if
-    };
 
-
-    var init2 = function(){
-      if(!initialized2){
-        initialized2 = !initialized2;
-
+        // load user data
         var userAuth = ref.getAuth();
         if(userAuth){
           window.console.log('userAuth is ', userAuth);
@@ -53,20 +47,22 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
           });
         }
 
+        // load chat data and set chat listener
         chatRef = ref.child("chats").child($scope.eventId);
         chatRef.on('child_added', function(message){
           appFactory.update($scope,function(){
             $scope.event.messages.push(message.val());
           });
         });
-      }
+        
+      }// end of if
     };
-
     init();
-    init2();
+
+
 
     $scope.sendMessage = function(){
-      if(userData && initialized2){
+      if(userData && initialized){
         var text = $scope.userText;
         chatRef.push({username: userData.username, message: text});
       } else {
