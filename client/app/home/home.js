@@ -51,14 +51,15 @@ angular.module('main')
     $scope.filteredEvents = function(events){
       // only filter if the user has selected at least one filter
       if ($scope.chosenGenres.length || $scope.filterByTitle || $scope.filterByUser){
-
         // filter out which evens will be shown
         return events.filter(function(event){
           var show = true;
 
           // remove event if any of the genres chosen by the user are not in the event's genre list
           $scope.chosenGenres.forEach(function(genre){
-            if (event.genre.indexOf(genre) === -1){show = false;}
+            if (!event.genre || event.genre.indexOf(genre) === -1){
+              show = false;
+            }
           });
 
           // remove event if the title filter is not in the event's title
