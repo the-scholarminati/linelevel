@@ -16,6 +16,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     var initialized2 = false;
     var ref = appFactory.firebase;
     var userData = '';
+
     var chatRef = '';
 
     // initialize controller
@@ -109,7 +110,20 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
         mine: true
 
       });
-      
+    });
+  };
+
+    $scope.getVideo = function(){
+
+      var request = gapi.client.youtube.search.list({
+        part: 'snippet',
+        channelId: $scope.channelName,
+        maxResults: 1,
+        type: 'video',
+        eventType: 'live'
+            
+      });
+
       request.then(function(response) {
         $scope.channelName = response.result.items[0].id;
         // console.log($scope.channelName);
@@ -117,8 +131,6 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       }, function(reason) {
         // console.log('Error: ' + reason.result.error.message);
       });
-
-    });
   };
 
   $scope.getVideo = function(){
