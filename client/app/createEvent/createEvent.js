@@ -41,7 +41,7 @@ angular.module('main')
         genre: chosenGenres
       });
 
-      appFactory.firebase.child("chats").child(eventId.key()).set({
+      appFactory.firebase.child("chats").child(eventId.key()).push().set({
         username:"bot", 
         message:"chat created for event " + eventTitle
       });

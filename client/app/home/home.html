@@ -21,7 +21,7 @@
 
         <div class="eventInfo" ng-click="setSessionId(event)">
 
-          <p><a href="#/event/{{event.$$hashKey}}">{{event.title}}</a></p>
+          <p><a href="#/event/{{event.key}}">{{event.title}}</a></p>
           <p><span ng-repeat="genre in event.genre">
             {{genre}}
           </p>
