@@ -2,8 +2,8 @@
 
 angular.module('main')
 
-.controller('authController', ['$scope', '$http', 'appFactory', 
-  function($scope, $http, appFactory){
+.controller('authController', ['$scope', '$http', 'appFactory', '$state',
+  function($scope, $http, appFactory, $state){
     // this scope variable will create an error message for you at the top of the form
     // example use: $scope.error = "That username does not exist"
     $scope.error = '';
@@ -16,35 +16,29 @@ angular.module('main')
     // variables that connects to firebase
     var ref = appFactory.firebase;
     var users = ref.child("users");
+    var usernames = ref.child("usernames");
 
-    $scope.signIn = function(){
+    $scope.signIn = function(inputEmail,inputPassword){
       // saves data from form
-      var username = $scope.credentials.username;
-      var password = $scope.credentials.password;
-
-      // authenticate user
+      var email = inputEmail || $scope.credentials.email;
+      var password = inputPassword|| $scope.credentials.password;
 
       // clears form
       $scope.credentials = {};
 
-      // console log to test the button is working
-      console.log("signIn form submitted!");
 
-
-      // TODO: send user data to database for authentication
+      // authenticate user
       ref.authWithPassword({
-        email: username,
+        email: email,
         password: password
       },function(error, authData){
         if(error){
           console.log('error: ', error);
         } else {
           console.log('success!');
-          appFactory.getUser();
+          $state.go('home');
         }
       });
-
-      // $http.post('/auth/signin',$scope.credentials);
     };
 
     $scope.signUp = function(){
@@ -58,38 +52,43 @@ angular.module('main')
       var uid = "";
 
       // create new user in firebase authentication
-      ref.createUser({
-        email: email,
-        password: password
-      },function(error,userData){
-        if (error){
-          console.log('Error: ', error);
-        } else {
-          console.log('userData is ', userData);
-          users.child(userData.uid).set({
-            firstname: firstname,
-            lastname: lastname,
-            username: username,
+      usernames.child(username).on("value",function(name){
+        if(name.val() === null){
+          ref.createUser({
             email: email,
-            chosenGenres: chosenGenres
+            password: password
+          },function(error,userData){
+            if (error){
+              console.log('Error: ', error);
+            } else {
+              console.log('userData is ', userData);
+              users.child(userData.uid).set({
+                firstname: firstname,
+                lastname: lastname,
+                username: username,
+                email: email,
+                chosenGenres: chosenGenres,
+                uid: userData.uid
+              });
+              usernames.child(username).update({a:true});
+              $scope.error = "";
+              $scope.signIn(email,password);
+            }
           });
+        } else {
+          if(!$scope.$$phase){
+            $scope.$apply(function(){
+              $scope.error = "username already exists!";
+            });
+          } else {
+            $scope.error = "username already exists!";
+          }
         }
       });
-
-      // create new user in firebase users table
 
       // clears form
       $scope.credentials = {};
       appFactory.resetGenres();
-
-      // console log to test the button is working
-      console.log("signUp form submitted!");
-
-
-      // TODO: send user data to database for authentication
-
-
-      //$http.post('/auth/signup',$scope.credentials);
     };
 
   }

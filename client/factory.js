@@ -4,12 +4,6 @@ angular.module('main')
   var obj = {};
   obj.firebase = new Firebase('https://linelevel.firebaseio.com');
 
-  // userinfo
-  obj.user = {
-    username: null, 
-    sessionId: null
-  };
-
   // Authentication
   obj.auth = function(){
     return this.firebase.getAuth() !== null;
@@ -19,13 +13,23 @@ angular.module('main')
     this.firebase.unauth();
   };
 
-  obj.getUser = function(){
-    var uid = this.firebase.getAuth().uid;
-    this.firebase.child("users").child(uid).on("value",function(userData){
-      obj.user.username = userData.val().username;
-    });
+
+  obj.isSameUser = function(host){
+    // check if the current user is the same as the user passed into the function
+    // will fill this out later when we know how
+    // for now, it will always return true
+    return false;
   };
 
+  obj.update = function(scope,cb){
+    if(!scope.$$phase){
+      scope.$apply(function(){
+        cb.call(this,scope);
+      });
+    } else {
+      cb.call(this,scope);
+    }
+  };
 
   ///////////////
   ///// HTTP

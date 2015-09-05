@@ -23,13 +23,15 @@ angular.module('main')
       var eventDescription = $scope.eventDescription;
       // the image url is not required on the form
       // maybe have a default image that is used when image is not provided
-      var eventImage = $scope.eventImage || '../assets/albumcover.png';
+      var eventImage = $scope.eventImage || './assets/albumcover.png';
       var eventLabel = $scope.eventLabel || '';
-      var eventDate = $scope.date.eventDate;
+      var eventDate = $scope.date.eventDate.getTime();
+      console.log("eventDate = ", eventDate);
       var chosenGenres = $scope.chosenGenres;
       
       // save eventId to variable
       var eventId = appFactory.firebase.child('events').push();
+      console.log(eventId);
       eventId.set({
         title: eventTitle,
         description: eventDescription,
@@ -39,7 +41,7 @@ angular.module('main')
         genre: chosenGenres
       });
 
-      appFactory.firebase.child("chats").child(eventId).set({
+      appFactory.firebase.child("chats").child(eventId.key()).push().set({
         username:"bot", 
         message:"chat created for event " + eventTitle
       });

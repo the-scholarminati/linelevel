@@ -12,7 +12,7 @@
 
         <div class='formInputs'>
           <div class="formItem">
-            <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username" required>
+            <input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="E-mail" required>
           </div>
 
           <div class="formItem">
@@ -26,7 +26,7 @@
           </div>
 
           <div class="submitbutton">
-            <button type="submit" ng-disabled="signInForm.$invalid" class="clear" id="createEventButton" ng-click="signIn()">Sign up</button>
+            <button type="submit" ng-disabled="signInForm.$invalid" class="clear" id="createEventButton" ng-click="signIn()">Sign In</button>
           </div>
 
           <div id="signUp">Don't have an account? 

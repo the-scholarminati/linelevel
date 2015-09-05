@@ -17,7 +17,9 @@ angular.module('main')
     eventsRef.limitToLast(20).on('child_added', function(snapshot){
       var data = snapshot.val();
       data.key = snapshot.key();
-      $scope.events.push(data);  //store data in events array
+      appFactory.update($scope,function(){
+        $scope.events.push(data);  
+      });
     });
 
 
@@ -83,11 +85,6 @@ angular.module('main')
       }
     };
 
-    // set sessionId in appFactory
-    $scope.setSessionId = function(input){
-      appFactory.user.sessionId = input.key;
-      window.console.log("sessionId is ", appFactory.user.sessionId);
-    };
   }
 ])
 .directive('mouseOver', function(){
@@ -96,13 +93,13 @@ angular.module('main')
       element.on('mouseover', function(event){
         element[0].children[0].style.top = '0px';
         element[0].children[1].style.top = '0px';
-        element[0].children[1].style.opacity= .80;
+        element[0].children[1].style.opacity= 0.80;
         element[0].children[1].style.filter= 'alpha(opacity=80)';
       });
       element.on('mouseleave', function(event){
         element[0].children[0].style.top = '125px';
         element[0].children[1].style.top = '125px';
-        element[0].children[1].style.opacity= .50;
+        element[0].children[1].style.opacity= 0.50;
         element[0].children[1].style.filter= 'alpha(opacity=50)';
       });
     }

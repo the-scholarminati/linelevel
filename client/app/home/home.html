@@ -21,15 +21,12 @@
 
         <div class="eventInfo">
 
-          <p><a href="#/event/{{event.$$hashKey}}">{{event.title}}</a></p>
+          <p><a href="#/event/{{event.key}}">{{event.title}}</a></p>
           <p><span ng-repeat="genre in event.genre">
             {{genre}}
           </p>
-          <p ng-init="{{event.date}} = $filter('date')({{event.date}}, "dd/MM/yyyy");">{{event.date}}.</p>
+          <p>{{event.date | date:'short'}}</p>
         </div>
-        <a href="#/event/{{event.$$hashKey}}" ng-click="setSessionId(event)"><div class="eventThumb">
-          <img src="{{event.image}}">
-        </div></a>
         <div class="eventBackdrop"></div>
       </div>
     </div>

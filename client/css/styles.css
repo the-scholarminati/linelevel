@@ -67,7 +67,7 @@ h2{
   color: #9FA3A3;
 }
 
-.signIn{
+.signIn, .signout{
   width: 70px;
   height: 30px;
   text-align: center;
@@ -75,8 +75,13 @@ h2{
   margin-right: 10px;
   line-height: 30px;
 }
-.signIn:hover{
-  text-decoration: underline;
+
+.signout{
+  width: 100px;
+}
+
+.signIn:hover, .signout:hover{
+  text-decoration: none;
   background-color: #5A585B;
 }
 
@@ -490,7 +495,7 @@ a{
 }
 
 .eventThumb{
-  background-image: url("../assets/albumcover.png");
+  background-image: url("./assets/albumcover.png");
   height: 100px;
   width: 100px;
   background-size: 100%;
