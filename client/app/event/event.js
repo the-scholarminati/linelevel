@@ -50,21 +50,24 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
         // load chat data and set chat listener
         chatRef = ref.child("chats").child($scope.eventId);
         chatRef.on('child_added', function(message){
-          appFactory.update($scope,function(){
-            $scope.event.messages.push(message.val());
+          message = message.val();
+          appFactory.update($scope,function(scope){
+            scope.event.messages.push(message);
+            if(message.username === scope.event.host){
+              scope.event.hostMessage = message;
+            }
           });
         });
-        
+
       }// end of if
     };
     init();
 
 
-
     $scope.sendMessage = function(){
       if(userData && initialized){
         var text = $scope.userText;
-        chatRef.push({username: userData.username, message: text});
+        chatRef.push({username: userData.username, message: text, timestamp: (new Date()).getTime()});
       } else {
         $scope.event.messages.push({username:"Linelevel Bot", message: "Please log in to participate in chat!"});
       }
