@@ -19,7 +19,7 @@
     <div class="eventList">
       <div ng-repeat="event in filteredEvents(events)" class="event" style="background-image: url({{event.image}})" mouse-over>
 
-        <div class="eventInfo" ng-click="setSessionId(event)">
+        <div class="eventInfo">
 
           <p><a href="#/event/{{event.key}}">{{event.title}}</a></p>
           <p><span ng-repeat="genre in event.genre">

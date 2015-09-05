@@ -7,9 +7,8 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     // console.log("Loading event page...");
     $scope.chatVisible = true;
     $scope.event = {};
-    $scope.chat = $('#chatmessages');
     $scope.event.messages = [];
-    $scope.chat.scrollTop = $scope.chat.scrollHeight;
+    var chatEl = document.getElementById('chatMessages');
     // window.console.log('eventId', $scope.eventId);
 
     //instantiate firbase ref with url
@@ -27,36 +26,33 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
 
         ref.child("events").child($scope.eventId)
           .on("value",function(info){
+            window.console.log('checking event info ', info.val());
             var eventData = info.val();
-            $scope.event.host = eventData.host;
-            $scope.event.name = eventData.title;
+            appFactory.update($scope,function(scope){
+              scope.event.host = eventData.host;
+              scope.event.name = eventData.title;
+            });
         });
       }// end of if
     };
-
-    $scope.isInitialized = function(){
-      return initialized2;
-    };
-
 
     var init2 = function(){
       if(!initialized2){
         initialized2 = !initialized2;
 
         var userAuth = ref.getAuth();
-        ref.child("users").child(userAuth.uid).on("value",function(user){
-          userData = user.val();
-        });
+        if(userAuth){
+          window.console.log('userAuth is ', userAuth);
+          ref.child("users").child(userAuth.uid).on("value",function(user){
+            userData = user.val();
+          });
+        }
 
         chatRef = ref.child("chats").child($scope.eventId);
         chatRef.on('child_added', function(message){
-          if(!$scope.$$phase){
-            $scope.$apply(function(){
-              $scope.event.messages.push(message.val());
-            });
-          } else {
+          appFactory.update($scope,function(){
             $scope.event.messages.push(message.val());
-          }
+          });
         });
       }
     };
@@ -65,14 +61,23 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     init2();
 
     $scope.sendMessage = function(){
-      if(appFactory.auth() && initialized2){
+      if(userData && initialized2){
         var text = $scope.userText;
         chatRef.push({username: userData.username, message: text});
-        $scope.userText = '';
       } else {
-        // console.log('user is not logged in');
+        $scope.event.messages.push({username:"Linelevel Bot", message: "Please log in to participate in chat!"});
       }
+      $scope.userText = '';
     };
+
+    // auto scroll down in chat
+    $scope.$watch(function(scope){
+      return scope.event.messages.length;
+    },function(a,b){
+      setTimeout(function(){
+        chatEl.scrollTop = chatEl.scrollHeight;
+      },30);
+    });
 
     $scope.toggleChat = function(){
       // console.log($scope.chatVisible);

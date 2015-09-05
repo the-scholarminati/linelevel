@@ -17,13 +17,9 @@ angular.module('main')
     eventsRef.limitToLast(20).on('child_added', function(snapshot){
       var data = snapshot.val();
       data.key = snapshot.key();
-      if(!$scope.$$phase){
-        $scope.$apply(function(){
-          $scope.events.push(data);  
-        });
-      } else {
+      appFactory.update($scope,function(){
         $scope.events.push(data);  
-      }
+      });
     });
 
 
@@ -89,11 +85,6 @@ angular.module('main')
       }
     };
 
-    // set sessionId in appFactory
-    $scope.setSessionId = function(input){
-      var uid = appFactory.firebase.getAuth().uid;
-      ref.child("users").child(uid).update({lastSessionId: input.key});
-    };
   }
 ])
 .directive('mouseOver', function(){
