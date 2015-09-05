@@ -44,7 +44,8 @@ angular.module('main')
 
       appFactory.firebase.child("chats").child(eventId.key()).push().set({
         username:"bot", 
-        message:"chat created for event " + eventTitle
+        message:"chat created for event " + eventTitle,
+        timestamp: (new Date()).getTime()
       });
 
       // resets the form
