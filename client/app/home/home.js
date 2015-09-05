@@ -85,11 +85,6 @@ angular.module('main')
       }
     };
 
-    // set sessionId in appFactory
-    $scope.setSessionId = function(input){
-      var uid = appFactory.firebase.getAuth().uid;
-      ref.child("users").child(uid).update({lastSessionId: input.key});
-    };
   }
 ])
 .directive('mouseOver', function(){

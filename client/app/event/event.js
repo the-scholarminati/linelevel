@@ -7,9 +7,8 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     // console.log("Loading event page...");
     $scope.chatVisible = true;
     $scope.event = {};
-    $scope.chat = $('#chatmessages');
     $scope.event.messages = [];
-    $scope.chat.scrollTop = $scope.chat.scrollHeight;
+    var chatEl = document.getElementById('chatMessages');
     // window.console.log('eventId', $scope.eventId);
 
     //instantiate firbase ref with url
@@ -43,6 +42,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
 
         var userAuth = ref.getAuth();
         if(userAuth){
+          window.console.log('userAuth is ', userAuth);
           ref.child("users").child(userAuth.uid).on("value",function(user){
             userData = user.val();
           });
@@ -64,12 +64,20 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       if(userData && initialized2){
         var text = $scope.userText;
         chatRef.push({username: userData.username, message: text});
-        $scope.userText = '';
       } else {
-        // console.log('user is not logged in');
         $scope.event.messages.push({username:"Linelevel Bot", message: "Please log in to participate in chat!"});
       }
+      $scope.userText = '';
     };
+
+    // auto scroll down in chat
+    $scope.$watch(function(scope){
+      return scope.event.messages.length;
+    },function(a,b){
+      setTimeout(function(){
+        chatEl.scrollTop = chatEl.scrollHeight;
+      },30);
+    });
 
     $scope.toggleChat = function(){
       // console.log($scope.chatVisible);
