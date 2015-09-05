@@ -7,10 +7,9 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     // console.log("Loading event page...");
     $scope.chatVisible = true;
     $scope.event = {};
-    $scope.chat = $('#chatmessages');
     $scope.event.messages = [];
-    $scope.chat.scrollTop = $scope.chat.scrollHeight;
     $scope.isSameUser = false;
+    var chatEl = document.getElementById('chatMessages');
 
     // window.console.log('eventId', $scope.eventId);
 
@@ -20,7 +19,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     var ref = appFactory.firebase;
     var userData = '';
     var chatRef = '';
-    var chatEl = $('#chatmessages');
+    
 
     // initialize controller
     var init = function(){
@@ -46,20 +45,19 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       if(!initialized2){
         initialized2 = !initialized2;
 
-        // var userAuth = ref.getAuth();
-        // ref.child("users").child(userAuth.uid).on("value",function(user){
-        //   userData = user.val();
-        // });
+        var userAuth = ref.getAuth();
+        if(userAuth){
+          window.console.log('userAuth is ', userAuth);
+          ref.child("users").child(userAuth.uid).on("value",function(user){
+            userData = user.val();
+          });
+        }
 
         chatRef = ref.child("chats").child($scope.eventId);
         chatRef.on('child_added', function(message){
-          if(!$scope.$$phase){
-            $scope.$apply(function(){
-              $scope.event.messages.push(message.val());
-            });
-          } else {
+          appFactory.update($scope,function(){
             $scope.event.messages.push(message.val());
-          }
+          });
         });
       }
     };
@@ -129,7 +127,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       var peer = new Peer({key: '66p1hdx8j2lnmi'});
       console.log('video id ' + $scope.event.videoId);
 
-      var conn = peer.connect('r12905iwdjbp4x6r');
+      var conn = peer.connect($scope.event.videoId);
 
       peer.on('call', function (incomingCall) {
         incomingCall.answer(null);
