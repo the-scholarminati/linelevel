@@ -89,28 +89,28 @@ angular.module('main')
         }
 
         // remove event if any of the genres chosen by the user are not in the event's genre list
-        $scope.chosenGenres.forEach(function(genre){
-          if (!event.genre || event.genre.indexOf(genre) === -1){
-            show = false;
-          }
-        });
+        if (show && $scope.chosenGenres){
+          $scope.chosenGenres.forEach(function(genre){
+            if (!event.genre || event.genre.indexOf(genre) === -1){
+              show = false;
+            }
+          });
+        }
 
         // remove event if the title filter is not in the event's title
-        if ($scope.filterByTitle){
+        if (show && $scope.filterByTitle){
           if ( event.title.toLowerCase().indexOf( $scope.filterByTitle.toLowerCase() ) === -1 ){
             console.log("$scope.filterByTitle = ", $scope.filterByTitle);
             show = false;
           }
         }
 
-        // PLEASE NOTE: the following code has been commented out because the event objects do not currently have a user property
-
         // remove event if the user filter is not in the event's user
-        // if ($scope.filterByUser){
-        //   if ( event.user.indexOf($scope.filterByUser) === -1 ){
-        //     show = false;
-        //   }
-        // }
+        if (show && $scope.filterByUser){
+          if ( !event.host || event.host.indexOf($scope.filterByUser) === -1 ){
+            show = false;
+          }
+        }
 
         return show;
       });
