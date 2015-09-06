@@ -30,7 +30,7 @@
     </div>
 
     <div class="eventList">
-      <div ng-repeat="event in filteredEvents(events) | orderBy: 'date'" class="event" style="background-image: url({{event.image}})" mouse-over>
+      <div ng-repeat="event in filteredEvents(events) | orderBy: 'date': true" class="event" style="background-image: url({{event.image}})" mouse-over>
 
         <div class="eventInfo">
 
