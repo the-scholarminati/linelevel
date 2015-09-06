@@ -45,6 +45,19 @@ angular.module('main')
 
 
     ///////////////
+    ///// Num limit
+    ///////////////
+    // max number of events shown via ng-repeat
+    // 20 is the default
+    $scope.numLimit = 20;
+
+    // user can increase number of events shown
+    $scope.increaseNumLimit = function(){
+      $scope.numLimit += 20;
+    };
+
+
+    ///////////////
     ///// Genres
     ///////////////
     // saves the genre lists and method from the factory so we can access them in the DOM

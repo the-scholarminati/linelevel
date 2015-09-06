@@ -573,6 +573,12 @@ a{
   justify-content: space-around;
 }
 
+.showMoreEvents{
+  text-align: center;
+  padding: 60px;
+  cursor: pointer;
+}
+
 #userContent{
 
   display: flex;

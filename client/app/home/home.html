@@ -30,7 +30,7 @@
     </div>
 
     <div class="eventList">
-      <div ng-repeat="event in filteredEvents(events) | orderBy: 'date': true" class="event" style="background-image: url({{event.image}})" mouse-over>
+      <div ng-repeat="event in filteredEvents(events) | orderBy: 'date': true | limitTo: numLimit" class="event" style="background-image: url({{event.image}})" mouse-over>
 
         <div class="eventInfo">
 
@@ -42,6 +42,10 @@
         </div>
         <div class="eventBackdrop"></div>
       </div>
+    </div>
+
+    <div class="showMoreEvents" ng-click="increaseNumLimit()">
+      Show More Events
     </div>
   </div>
 </section>
