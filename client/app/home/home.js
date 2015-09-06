@@ -14,8 +14,9 @@ angular.module('main')
     var eventsRef = ref.child("events");
 
     //fetch last 20 events
-    eventsRef.limitToLast(20).on('child_added', function(snapshot){
+    eventsRef.orderByChild('date').limitToLast(200).on('child_added', function(snapshot){
       var data = snapshot.val();
+      console.log("data = ", data);
       data.key = snapshot.key();
       appFactory.update($scope,function(){
         $scope.events.push(data);  
