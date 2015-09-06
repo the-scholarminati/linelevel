@@ -32,19 +32,19 @@
       <header>
         <a ui-sref="home"><h1>Linelevel</a></h1>
         <nav>
-          <div ng-if="!auth()" class="signIn"><a ui-sref="signin">SIGN IN</a></div>
+          <div ng-if="!auth()" class="navLink"><a ui-sref="signin">SIGN IN</a></div>
         </nav>
         <nav>
-          <div ng-if="auth()" class="signOut" ng-click="signOut()"><a href="#">SIGN OUT</a></div>
+          <div ng-if="auth()" class="navLink" ng-click="signOut()"><a href="#">SIGN OUT</a></div>
           <!-- the following code is the old link for the sign-in pop up -->
           <!-- <div class="signIn"><a href="javascript:void(0)" onclick="document.getElementById('popUpSignIn').style.display='block'">SIGN IN</a>
           </div> -->
         </nav>
         <nav>
-          <div class="signIn"><a ui-sref="createEvent">CREATE EVENT</a></div>
+          <div class="navLink"><a ui-sref="createEvent">CREATE EVENT</a></div>
         </nav>
         <nav>
-          <div class="signIn"><a ui-sref="about">ABOUT</a></div>
+          <div class="navLink"><a ui-sref="about">ABOUT</a></div>
         </nav>
       </header>
     </div>
