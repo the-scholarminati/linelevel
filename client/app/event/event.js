@@ -8,9 +8,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     $scope.chatVisible = true;
     $scope.event = {};
     $scope.event.messages = [];
-    $scope.isSameUser = false;
     var chatEl = document.getElementById('chatMessages');
-
     // window.console.log('eventId', $scope.eventId);
 
     //instantiate firbase ref with url
@@ -19,7 +17,6 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     var ref = appFactory.firebase;
     var userData = '';
     var chatRef = '';
-    
 
     // initialize controller
     var init = function(){
@@ -28,18 +25,16 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
         ref.off();
 
         ref.child("events").child($scope.eventId)
-          .on("value",function(info){ 
+          .on("value",function(info){
+            window.console.log('checking event info ', info.val());
             var eventData = info.val();
-            console.log(eventData);
-            $scope.event.host = eventData.host;
-            $scope.event.name = eventData.title;
-            $scope.event.videoId = eventData.videoId;
-            $scope.isSameUser = appFactory.user === $scope.event.host ? true : false;
-          console.log(appFactory.user +  $scope.event.host + $scope.isSameUser);
+            appFactory.update($scope,function(scope){
+              scope.event.host = eventData.host;
+              scope.event.name = eventData.title;
+            });
         });
       }// end of if
     };
-
 
     var init2 = function(){
       if(!initialized2){
@@ -84,76 +79,15 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       },30);
     });
 
-     $scope.startStream = function(){
-      var peer = new Peer({key: '66p1hdx8j2lnmi',
-                          debug: 3,
-                          config: {'iceServers': [
-                          {url: 'stun:stun.l.google.com:19302'},
-                          {url: 'stun:stun1.l.google.com:19302'}
-                          ]}
-                        });
-
-      peer.on('open', function(){
-        ref.child("events").child($scope.eventId).update({'videoId' : peer.id});
-        console.log(peer.id);
-
-      });
-
-      peer.on( 'connection', function(conn) {
-        conn.on( 'open', function() {
-          var call = peer.call(conn.peer, window.localStream);
-        });
-      });
-      
-      navigator.getUserMedia = ( navigator.getUserMedia ||
-                              navigator.webkitGetUserMedia  ||
-                              navigator.mozGetUserMedia ||
-                              navigator.msGetUserMedia );
-
-      // get audio/video
-      navigator.getUserMedia({audio:true, video: true}, function (stream) {
-          //display video
-          var video = document.getElementById("myVideo");
-          console.log(URL.createObjectURL(stream));
-          video.src = URL.createObjectURL(stream);
-          window.localStream = stream;
-        },
-        function (error) { console.log(error); }
-      );
-
-    };
-
-    $scope.loadStream = function(){
-      var peer = new Peer({key: '66p1hdx8j2lnmi'});
-      console.log('video id ' + $scope.event.videoId);
-
-      var conn = peer.connect($scope.event.videoId);
-
-      peer.on('call', function (incomingCall) {
-        incomingCall.answer(null);
-        incomingCall.on('stream', function(stream){
-          var video = document.getElementById("theirVideo");
-          console.log('create object url' + URL.createObjectURL(stream));
-          video.src = URL.createObjectURL(stream);
-        });
-      });
-    };
-    $scope.$watch('$scope.event.videoId', function loadVideo(a,b){
-      if($scope.isSameUser !== true){
-        $scope.loadStream();
-      }
-    });
-
-
     $scope.toggleChat = function(){
       // console.log($scope.chatVisible);
       $scope.chatVisible = !$scope.chatVisible;
     };
 
   //  ------------------------YOUTUBE STUFF ----------------------
-    // $scope.startStream = function(){
-    //   appFactory.startStream($scope.accessToken);
-    // };
+    $scope.startStream = function(){
+      appFactory.startStream($scope.accessToken);
+    };
 
     $scope.auth = function(){
       var config = {
@@ -175,20 +109,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
         mine: true
 
       });
-    });
-  };
-
-    $scope.getVideo = function(){
-
-      var request = gapi.client.youtube.search.list({
-        part: 'snippet',
-        channelId: $scope.channelName,
-        maxResults: 1,
-        type: 'video',
-        eventType: 'live'
-            
-      });
-
+      
       request.then(function(response) {
         $scope.channelName = response.result.items[0].id;
         // console.log($scope.channelName);
@@ -196,6 +117,8 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       }, function(reason) {
         // console.log('Error: ' + reason.result.error.message);
       });
+
+    });
   };
 
   $scope.getVideo = function(){
