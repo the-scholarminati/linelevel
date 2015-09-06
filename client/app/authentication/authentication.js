@@ -16,6 +16,8 @@ angular.module('main')
     // variables that connects to firebase
     var ref = appFactory.firebase;
     var users = ref.child("users");
+    var usernames = ref.child("usernames");
+    var emails = ref.child("emails");
 
     $scope.signIn = function(){
       // saves data from form
@@ -54,24 +56,49 @@ angular.module('main')
       var chosenGenres = appFactory.chosenGenres;
       var uid = "";
 
+      // modify email so it can be accepted by firebase
+      var emailFirebase = email.replace(/\./g,"!");
+
       // create new user in firebase authentication
-      ref.createUser({
-        email: email,
-        password: password
-      },function(error,userData){
-        if (error){
-          console.log('Error: ', error);
+      emails.child(emailFirebase).on("value", function(em){
+        if(em.val() === null){
+          // check if username already exists in db
+          usernames.child(username).on("value",function(name){
+            if(name.val() === null){
+              ref.createUser({
+                email: email,
+                password: password
+              },function(error,userData){
+                if (error){
+                  console.log('Error: ', error);
+                } else {
+                  // code here means email and username are unique
+                  console.log('userData is ', userData);
+                  users.child(userData.uid).set({
+                    firstname: firstname,
+                    lastname: lastname,
+                    username: username,
+                    email: email,
+                    chosenGenres: chosenGenres,
+                    uid: userData.uid
+                  });
+                  usernames.child(username).update({a:true});
+                  $scope.error = "";
+                  $scope.signIn(email,password);
+                }
+              });
+            } else {
+              // code here means username is not unique
+              appFactory.update($scope,function(scope){
+                scope.error = "username already exists!";
+              });
+            }
+          }); // end of username check
         } else {
-          console.log('userData is ', userData);
-          users.child(userData.uid).set({
-            firstname: firstname,
-            lastname: lastname,
-            username: username,
-            email: email,
-            chosenGenres: chosenGenres,
-            uid: userData.uid
+          // code here means email is not unique
+          appFactory.update($scope,function(scope){
+            scope.error = "email already in use!";
           });
-          $state.go('home');
         }
       });
 

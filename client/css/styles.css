@@ -352,7 +352,7 @@ textarea{
 }
 
 #videoWrapper{
-  border: 1px solid black;
+  border: 1px solid rgb(124, 223, 206);
   position: relative;
 }
 
@@ -364,7 +364,7 @@ textarea{
   width: 100%;
   padding-bottom: 56.25%;
   background: #D2CCD3;
-  border: 1px solid black;
+  border: 1px solid black; 
   margin: 0px;
   position:relative;
 }
@@ -395,12 +395,29 @@ textarea{
   display:none;
 }
 
+.chat-tabs-selected{
+  background: rgb(124, 223, 206);
+  color: white;
+}
+
+.chat-tabs{
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+  border: 1px solid rgb(124, 223, 206);
+  border-bottom: none;
+  padding: 0px;
+  margin: 0px;
+  font: bold;
+  cursor: pointer;
+}
+
 a{
   color:black;
 }
 
-#chatMessages{
-  border: 1px solid black;
+#chatMessages, #hostMessages{
+  border: 1px solid rgb(124, 223, 206);
   width: 100%;
   margin: auto;
   height: 80%;
@@ -408,9 +425,20 @@ a{
   padding-left: 5px;
   overflow-y: auto;
 }
+
 .message{
   margin-top: 10px;
 }
+
+.message-user{
+  color: blue;
+}
+
+.message-host{
+  background: rgba(124, 223, 206,.5);
+  color: black;
+}
+
 
 #chatTextBox{
   width: 100%;
