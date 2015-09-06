@@ -1,6 +1,19 @@
 <section ng-controller="homeController">
 
   <div class="container">
+    <div class="eventTabs">
+      <span ng-click="viewFutureEvents()" ng-class="{selectedView: futureView, notSelectedView: !futureView}" class="eventTab">
+        Upcoming events
+      </span>
+      <span ng-click="viewPastEvents()" ng-class="{selectedView: !futureView, notSelectedView: futureView}" class="viewPastEvents eventTab">
+        Past events
+      </span>
+      <span class="borderExtension">
+        .
+      </span>
+    </div>
+
+
     <div class="filterOptions">
       <div class="genreList">
         <div ng-click="showGenresNow()">Filter by genre</div>
@@ -17,7 +30,7 @@
     </div>
 
     <div class="eventList">
-      <div ng-repeat="event in filteredEvents(events)" class="event" style="background-image: url({{event.image}})" mouse-over>
+      <div ng-repeat="event in filteredEvents(events) | orderBy: 'date': true" class="event" style="background-image: url({{event.image}})" mouse-over>
 
         <div class="eventInfo">
 
@@ -25,7 +38,7 @@
           <p><span ng-repeat="genre in event.genre">
             {{genre}}
           </p>
-          <p>{{event.date | date:'short'}}</p>
+          <p>{{event.date | date: 'short'}}</p>
         </div>
         <div class="eventBackdrop"></div>
       </div>

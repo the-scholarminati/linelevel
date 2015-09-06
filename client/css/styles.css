@@ -67,8 +67,7 @@ h2{
   color: #9FA3A3;
 }
 
-.signIn, .signout{
-  width: 70px;
+.navLink{
   height: 30px;
   text-align: center;
   padding: 5px;
@@ -443,6 +442,39 @@ a{
   text-decoration: bold;
   font-size: 24px;
   font-family: Helvetica-bold;
+}
+
+/******************************
+  Home page styling 
+******************************/
+
+.eventTabs{
+  padding: 10px;
+  margin: 25px;
+/*  width: 90%;
+  border-bottom: 1px solid #C1C1C1;*/
+}
+
+.eventTab{
+  padding: 10px;
+}
+
+.borderExtension{
+  color: white;
+  width: 100%;
+  padding-right: 2000px;
+  border-bottom: 1px solid #C1C1C1;
+  padding-bottom: 10px;
+}
+
+.selectedView{
+  border: 1px solid #C1C1C1;
+  border-bottom: white;
+}
+
+.notSelectedView{
+  color: #C1C1C1;
+  border-bottom: 1px solid #C1C1C1;
 }
 
 .filterOptions{
