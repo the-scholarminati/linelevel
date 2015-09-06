@@ -8,8 +8,11 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     $scope.chatVisible = true;
     $scope.event = {};
     $scope.event.messages = [];
+    $scope.event.hostMessages = [];
     $scope.isSameUser = false;
-    var chatEl = document.getElementById('chatMessages');
+    $scope.selectedChat = [1,0];
+    var chatEl     = document.getElementById('chatMessages');
+    var hostChatEl = document.getElementById('hostMessages');
 
     // window.console.log('eventId', $scope.eventId);
 
@@ -54,7 +57,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
           appFactory.update($scope,function(scope){
             scope.event.messages.push(message);
             if(message.username === scope.event.host){
-              scope.event.hostMessage = message;
+              scope.event.hostMessages.push(message);
             }
           });
         });
@@ -62,6 +65,36 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       }// end of if
     };
     init();
+
+    if(initialized){
+      // auto scroll down in chat
+      $scope.$watch(function(scope){
+        return scope.event.messages.length;
+      },function(a,b){
+        $scope.scrollToBottom();
+      });
+    }
+
+    $scope.scrollToBottom = function(){
+      setTimeout(function(){
+        chatEl.scrollTop = chatEl.scrollHeight;
+        hostChatEl.scrollTop = hostChatEl.scrollHeight;
+      },30);
+    };
+
+    $scope.isHost = function(input){
+      return $scope.event.host === input.username;
+    };
+
+    $scope.isUser = function(input){
+      return userData.username === input.username;
+    }
+
+    $scope.selectTab = function(num){
+      $scope.selectedChat = [0,0];
+      $scope.selectedChat[num] = 1;
+      $scope.scrollToBottom();
+    };
 
     $scope.chatTime = function(time){
       var gap = new Date() - new Date(time);
@@ -104,17 +137,8 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       }
       $scope.userText = '';
     };
-
-    // auto scroll down in chat
-    $scope.$watch(function(scope){
-      return scope.event.messages.length;
-    },function(a,b){
-      setTimeout(function(){
-        chatEl.scrollTop = chatEl.scrollHeight;
-      },30);
-    });
-
-     $scope.startStream = function(){
+  
+    $scope.startStream = function(){
       var peer = new Peer({key: '66p1hdx8j2lnmi',
                           debug: 3,
                           config: {'iceServers': [
