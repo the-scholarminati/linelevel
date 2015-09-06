@@ -11,11 +11,11 @@
     </div>
 
     <div id="userContent">
-      <div id="userInfo">
+      <div id="userInfo" ng-repeat="user in userData">
 
         <img src="http://enevogroup.com/wp-content/uploads/2014/06/profile-placeholder1.jpg" width="200" height="230">
         <div>
-        Some user information:
+        Some user information: {{user.username}}
         </div>
         <div>
         Some user information:

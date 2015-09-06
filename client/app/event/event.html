@@ -20,15 +20,19 @@
 
     <!-- host admin panel for setting up the stream -->
     <!-- can we call the method on the factory? might need to set that method in the scope to call it here -->
-    <div ng-if="appFactory.isSameUser(event.host)">
-      <button ng-click="auth();">Authorize</button>
-      <button ng-click="placeVideo();">placeVideo</button>
+    <div ng-show="isSameUser">{{isSameUser}}
+      <button ng-click="startStream();">start stream</button>
+    </div>
+    <div ng-show="isSameUser == false">{{isSameUser}}
+      <button ng-click="loadStream();">load stream</button>
     </div>
 
     <div id="eventcontent">
       <div id="videoWrapper">
-        <div id="ytplayer"></div>
-        <span class="video"></span>
+        <video id="myVideo" muted="true" class="myVideo" autoplay ng-show="isSameUser" width="640" height="390"></video>
+        <video id="theirVideo" muted="false" class="theirVideo" autoplay ng-show="isSameUser == false" width="640" height="390"></video>
+        <!-- <div id="ytplayer"></div>
+        <span class="video"></span> -->
       </div>
       <div id="chatcontent" ng-show="chatVisible">
         <div id="chatMessages">

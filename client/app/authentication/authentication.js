@@ -16,12 +16,11 @@ angular.module('main')
     // variables that connects to firebase
     var ref = appFactory.firebase;
     var users = ref.child("users");
-    var usernames = ref.child("usernames");
 
-    $scope.signIn = function(inputEmail,inputPassword){
+    $scope.signIn = function(){
       // saves data from form
-      var email = inputEmail || $scope.credentials.email;
-      var password = inputPassword|| $scope.credentials.password;
+      var email = $scope.credentials.email;
+      var password = $scope.credentials.password;
 
       // clears form
       $scope.credentials = {};
@@ -35,8 +34,12 @@ angular.module('main')
         if(error){
           console.log('error: ', error);
         } else {
-          console.log('success!');
-          $state.go('home');
+          ref.child('users').child(authData.uid).on('value' , function(user){
+            console.log(user.val().username);
+            appFactory.user = user.val().username;
+            console.log('success! Logged in', appFactory.user);         
+            $state.go('home');
+          });
         }
       });
     };
@@ -52,37 +55,23 @@ angular.module('main')
       var uid = "";
 
       // create new user in firebase authentication
-      usernames.child(username).on("value",function(name){
-        if(name.val() === null){
-          ref.createUser({
-            email: email,
-            password: password
-          },function(error,userData){
-            if (error){
-              console.log('Error: ', error);
-            } else {
-              console.log('userData is ', userData);
-              users.child(userData.uid).set({
-                firstname: firstname,
-                lastname: lastname,
-                username: username,
-                email: email,
-                chosenGenres: chosenGenres,
-                uid: userData.uid
-              });
-              usernames.child(username).update({a:true});
-              $scope.error = "";
-              $scope.signIn(email,password);
-            }
-          });
+      ref.createUser({
+        email: email,
+        password: password
+      },function(error,userData){
+        if (error){
+          console.log('Error: ', error);
         } else {
-          if(!$scope.$$phase){
-            $scope.$apply(function(){
-              $scope.error = "username already exists!";
-            });
-          } else {
-            $scope.error = "username already exists!";
-          }
+          console.log('userData is ', userData);
+          users.child(userData.uid).set({
+            firstname: firstname,
+            lastname: lastname,
+            username: username,
+            email: email,
+            chosenGenres: chosenGenres,
+            uid: userData.uid
+          });
+          $state.go('home');
         }
       });
 
