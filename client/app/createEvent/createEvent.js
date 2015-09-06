@@ -30,22 +30,27 @@ angular.module('main')
       var chosenGenres = $scope.chosenGenres;
       
       // save eventId to variable
-      var eventId = appFactory.firebase.child('events').push();
-      console.log(eventId);
-      eventId.set({
-        title: eventTitle,
-        description: eventDescription,
-        image: eventImage,
-        label: eventLabel,
-        date: eventDate,
-        genre: chosenGenres,
-        host: appFactory.user
-      });
+      var ref = appFactory.firebase;
+      var uid = ref.getAuth().uid;
+      ref.child("users").child(uid).on("value",function(userData){
+        var username = userData.val().username;
 
-      appFactory.firebase.child("chats").child(eventId.key()).push().set({
-        username:"bot", 
-        message:"chat created for event " + eventTitle,
-        timestamp: (new Date()).getTime()
+        var eventId = ref.child('events').push();
+        eventId.set({
+          title: eventTitle,
+          description: eventDescription,
+          image: eventImage,
+          label: eventLabel,
+          date: eventDate,
+          genre: chosenGenres,
+          host: username
+        });
+
+        ref.child("chats").child(eventId.key()).push().set({
+          username:"Linelevel Bot", 
+          message:"chat created for event " + eventTitle,
+          timestamp: (new Date()).getTime()
+        });
       });
 
       // resets the form
