@@ -44,8 +44,12 @@
       </div>
     </div>
 
-    <div class="showMoreEvents" ng-click="increaseNumLimit()">
+<!--     <div ng-if="showMoreButton" class="showMoreEvents" ng-click="increaseNumLimit()">
       Show More Events
+    </div> -->
+
+    <div ng-if="!showMoreButton" class="showMoreEvents">
+      End of Results
     </div>
   </div>
 </section>

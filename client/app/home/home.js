@@ -16,7 +16,7 @@ angular.module('main')
     //fetch last 20 events
     eventsRef.orderByChild('date').limitToLast(200).on('child_added', function(snapshot){
       var data = snapshot.val();
-      console.log("data = ", data);
+      // console.log("data = ", data);
       data.key = snapshot.key();
       appFactory.update($scope,function(){
         $scope.events.push(data);  
@@ -55,6 +55,14 @@ angular.module('main')
     $scope.increaseNumLimit = function(){
       $scope.numLimit += 20;
     };
+
+    // show the 'Show More Events' button by default
+    $scope.showMoreButton = false;
+
+    // hide the 'Show More Events' button if there are no more events to show
+    // if ($scope.filtered.length <= $scope.numLimit){
+    //   $scope.showMoreButton = false;
+    // }
 
 
     ///////////////
