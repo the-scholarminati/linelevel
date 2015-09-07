@@ -71,6 +71,9 @@ angular.module('main')
     ///// Num limit
     ///////////////
 
+    // this tracks the number of events that passed the filter
+    $scope.eventsLength;
+
     // max number of events shown via ng-repeat
     // 20 is the default
     $scope.numLimit = 20;
@@ -80,13 +83,8 @@ angular.module('main')
       $scope.numLimit += 20;
     };
 
-    // show the 'Show More Events' button by default
+    // hide the 'Show More Events' button by default
     $scope.showMoreButton = false;
-
-    // hide the 'Show More Events' button if there are no more events to show
-    // if ($scope.filtered.length <= $scope.numLimit){
-    //   $scope.showMoreButton = false;
-    // }
 
 
     ///////////////
@@ -118,6 +116,9 @@ angular.module('main')
     $scope.debounce = 200;
 
     $scope.filteredEvents = function(events){
+      // reset the events length counter
+      $scope.eventsLength = 0;
+
       return events.filter(function(event){
         // show determines whether the event will be present after it has been run through the filter
         var show = true;
@@ -176,6 +177,14 @@ angular.module('main')
             show = false;
           }
         }
+
+
+        // increase event length counter if the event passed the filter
+        if (show){$scope.eventsLength++;}
+
+        // hide the 'Show More Events' button if there are no more events to show
+        $scope.showMoreButton = $scope.eventsLength > $scope.numLimit;
+
 
         return show;
       });
