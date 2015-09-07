@@ -2,7 +2,6 @@
 
 angular.module('main').controller('eventController',['$scope','$http', 'appFactory', '$rootScope',
   function($scope,$http,appFactory){
-    $scope.videoId = 'dQw4w9WgXcQ';
 
     // console.log("Loading event page...");
     $scope.chatVisible = true;
@@ -20,6 +19,11 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     var userData = '';
     var chatRef = '';
     
+    $scope.$watch('$scope.event.videoId', function loadVideo(a,b){
+      if($scope.isSameUser !== true){
+        $scope.loadStream();
+      }
+    });
 
     // initialize controller
     var init = function(){
@@ -138,11 +142,8 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
         });
       });
     };
-    $scope.$watch('$scope.event.videoId', function loadVideo(a,b){
-      if($scope.isSameUser !== true){
-        $scope.loadStream();
-      }
-    });
+
+
 
 
     $scope.toggleChat = function(){

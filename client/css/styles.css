@@ -353,7 +353,6 @@ textarea{
 }
 
 #videoWrapper{
-  border: 1px solid black;
   position: relative;
 }
 
@@ -362,7 +361,6 @@ textarea{
   bottom: 0;
   left: 0;
   right: 0;
-  width: 100%;
   padding-bottom: 56.25%;
   background: #D2CCD3;
   border: 1px solid black;
