@@ -44,11 +44,12 @@
 
 
     <div class="eventList">
-      <div ng-repeat="event in filteredEvents(events) | orderBy: 'date': true | limitTo: numLimit" class="event" style="background-image: url({{event.image}})" mouse-over>
+      <div ng-repeat="event in filteredEvents(events) | orderBy: 'date': isReverse | limitTo: numLimit" class="event" style="background-image: url({{event.image}})" mouse-over>
 
         <div class="eventInfo">
 
           <p><a href="#/event/{{event.key}}">{{event.title}}</a></p>
+          <p>by <a href="#/userProfile/{{event.host}}">{{event.host}}</a></p>
           <p><span ng-repeat="genre in event.genre">
             {{genre}}
           </p>
