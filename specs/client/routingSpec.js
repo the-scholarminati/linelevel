@@ -81,7 +81,7 @@ describe('routing', function(){
     }));
     
     it('matches the userProfile path', function () {
-      expect(state.url).toEqual('/userProfile/:userId');
+      expect(state.url).toEqual('/userProfile/:userName');
     });
 
     it('renders the userProfile page', function () {

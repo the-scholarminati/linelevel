@@ -579,9 +579,12 @@ a{
   justify-content: space-around;
 }
 
-.showMoreEvents{
+.endOfResults, .showMoreEvents{
   text-align: center;
   padding: 60px;
+}
+
+.showMoreEvents{
   cursor: pointer;
 }
 

@@ -21,10 +21,10 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
       templateUrl: './app/authentication/signin.html'
     })
     .state('userProfile', {
-      url: '/userProfile/:userId',
+      url: '/userProfile/:userName',
       templateUrl: './app/userProfile/userProfile.html',
       controller: function($scope, $stateParams){
-        $scope.userId = $stateParams.userId;
+        $scope.userName = $stateParams.userName;
       }
     })
     .state('oauth2callback', {
