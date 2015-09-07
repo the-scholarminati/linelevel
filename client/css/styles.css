@@ -365,7 +365,7 @@ textarea{
 }
 
 #videoWrapper{
-  border: 1px solid rgb(124, 223, 206);
+  border: 1px solid #c1c1c1;
   position: relative;
 }
 
@@ -409,7 +409,7 @@ textarea{
 }
 
 .chat-tabs-selected{
-  background: rgb(124, 223, 206);
+  background: #c1c1c1;
   color: white;
 }
 
@@ -417,7 +417,7 @@ textarea{
   display: inline-block;
   width: 100px;
   text-align: center;
-  border: 1px solid rgb(124, 223, 206);
+  border: 1px solid #c1c1c1;
   border-bottom: none;
   padding: 0px;
   margin: 0px;
@@ -430,7 +430,7 @@ a{
 }
 
 #chatMessages, #hostMessages{
-  border: 1px solid rgb(124, 223, 206);
+  border: 1px solid #c1c1c1;
   width: 100%;
   margin: auto;
   height: 80%;
@@ -454,13 +454,14 @@ a{
 
 
 #chatTextBox{
+  max-height: 2em;
   width: 100%;
   height: 17%;
   margin: 3% 0 10px 0;
 }
 
 #sendButton{
-  float:right;
+  display:none;
 }
 
 #genreNames{
