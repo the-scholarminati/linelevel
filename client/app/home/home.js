@@ -27,19 +27,32 @@ angular.module('main')
     ///////////////
     ///// Tab views
     ///////////////
-    // this variable tracks if we're looking at upcoming or past events
+
+    // these variables track which tab we're viewing
     // it is set to upcoming events by default
     $scope.futureView = true;
+    $scope.pastView = false;
+    $scope.customDateView = false;
 
     $scope.viewFutureEvents = function(){
       if (!$scope.futureView){
         $scope.futureView = true;
+        $scope.pastView = false;
+        $scope.customDateView = false;
       }
     };
-
     $scope.viewPastEvents = function(){
-      if ($scope.futureView){
+      if (!$scope.pastView){
+        $scope.pastView = true;
         $scope.futureView = false;
+        $scope.customDateView = false;
+      }
+    };
+    $scope.viewDateFilter = function(){
+      if (!$scope.customDateView){
+        $scope.customDateView = true;
+        $scope.futureView = false;
+        $scope.pastView = false;
       }
     };
 
@@ -80,9 +93,15 @@ angular.module('main')
     $scope.showGenresNow = function(){
       $scope.showGenres = !$scope.showGenres;
     };
-    $scope.dateType = function(date){
-      console.log(date);
-    };
+
+
+    ///////////////
+    ///// Dates
+    ///////////////
+
+    // makes date object for now that we use for filter placeholder
+    $scope.today = new Date();
+
 
 
     ///////////////

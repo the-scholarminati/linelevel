@@ -511,6 +511,15 @@ a{
   margin-top: 22px;
 }
 
+.dateFilter{
+  display: flex;
+  margin: 18px;
+}
+
+.dateSelection{
+  margin-top: 5px;
+}
+
 .event{
   margin: 20px;
   width: 175px;

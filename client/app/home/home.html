@@ -1,12 +1,16 @@
 <section ng-controller="homeController">
 
   <div class="container">
+
     <div class="eventTabs">
       <span ng-click="viewFutureEvents()" ng-class="{selectedView: futureView, notSelectedView: !futureView}" class="eventTab">
         Upcoming events
       </span>
-      <span ng-click="viewPastEvents()" ng-class="{selectedView: !futureView, notSelectedView: futureView}" class="viewPastEvents eventTab">
+      <span ng-click="viewPastEvents()" ng-class="{selectedView: pastView, notSelectedView: !pastView}" class="viewPastEvents eventTab">
         Past events
+      </span>
+      <span ng-click="viewDateFilter()" ng-class="{selectedView: customDateView, notSelectedView: !customDateView}" class="viewPastEvents eventTab">
+        Custom date range
       </span>
       <span class="borderExtension">
         .
@@ -14,6 +18,16 @@
     </div>
 
 
+    <div class="filterOptions">
+      <div ng-if="customDateView" class="dateFilter">
+        <div class="dateFilter" ng-click="dateFilterToggle()">Filter by date range</div>
+        <div class="dateSelection">
+          <input ng-if="customDateView" type="date" placeholder="today" ng-model="date.eventDate" min="{{today | date:'yyyy-MM-dd'}}">
+          to
+          <input ng-if="customDateView" type="date" placeholder="today" ng-model="date.eventDate" min="{{today | date:'yyyy-MM-dd'}}">
+        </div>
+      </div>
+    </div>
     <div class="filterOptions">
       <div class="genreList">
         <div ng-click="showGenresNow()">Filter by genre</div>
@@ -28,6 +42,7 @@
         <input type="text" placeholder="Filter by user" ng-model="filterByUser" ng-model-options="{debounce: {'default': debounce}}">
       </div>
     </div>
+
 
     <div class="eventList">
       <div ng-repeat="event in filteredEvents(events) | orderBy: 'date': true | limitTo: numLimit" class="event" style="background-image: url({{event.image}})" mouse-over>
