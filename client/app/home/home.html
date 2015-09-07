@@ -18,9 +18,10 @@
     </div>
 
 
+    <div class="filterOptions filterLabel">Filter by:</div>
     <div class="filterOptions">
       <div ng-if="customDateView" class="dateFilter">
-        <div class="dateFilter" ng-click="dateFilterToggle()">Filter by date range</div>
+        <div class="dateFilter" ng-click="dateFilterToggle()">DATE:</div>
         <div class="dateSelection">
           <input type="date" ng-model="dateRange.start">
           to
@@ -30,15 +31,17 @@
     </div>
     <div class="filterOptions">
       <div class="genreList">
-        <div ng-click="showGenresNow()">Filter by genre</div>
+        <div class="dropDownLink" ng-click="showGenresNow()">
+          GENRE<img src="./assets/dropdownarrow.png">
+        </div>
         <ul class="dropDownMenu" ng-if="showGenres">
           <li ng-repeat="genre in genres" ng-click="chooseGenre(genre)" ng-class="{'selected': genre.selected, 'notSelected': !genre.selected}">{{genre.name}}</li>
         </ul>
       </div>
       <div class="filterTextBoxes">
-        <input type="text" placeholder="Filter by title" ng-model="filterByTitle" ng-model-options="{debounce: {'default': debounce}}">
+        <input type="text" class="filterInput" placeholder="TITLE" ng-model="filterByTitle" ng-model-options="{debounce: {'default': debounce}}">
         
-        <input type="text" placeholder="Filter by user" ng-model="filterByUser" ng-model-options="{debounce: {'default': debounce}}">
+        <input type="text" placeholder="USER" ng-model="filterByUser" ng-model-options="{debounce: {'default': debounce}}">
       </div>
     </div>
 
