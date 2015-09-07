@@ -7,6 +7,7 @@
         <div id="eventHost">
           hosted by <span id="eventHostName">{{event.host}}</span>
         </div>
+        <div id="countDown" ng-bind="countDown"></div>
       </div>
       <div id="chatToggle">
         <div id="showChat"><a href="javascript:void(0)" onclick="document.getElementById('hideChat').style.display='block';document.getElementById('showChat').style.display='none'" ng-click="toggleChat()">Show Chat</a></div>
@@ -35,8 +36,15 @@
         <span class="video"></span> -->
       </div>
       <div id="chatcontent" ng-show="chatVisible">
-        <div id="chatMessages">
-          <div ng-repeat="message in event.messages" class="message"><b>{{message.username}}:</b> {{message.message}}</div>
+        <div id="chat-tabs">
+          <div class="chat-tabs" ng-class="{'chat-tabs-selected':selectedChat[0]}" ng-click="selectTab(0)">All</div><!--
+       --><div class="chat-tabs" ng-class="{'chat-tabs-selected':selectedChat[1]}" ng-click="selectTab(1)">Host</div>
+        </div>
+        <div ng-hide="!selectedChat[0]" id="chatMessages">
+          <div ng-repeat="message in event.messages" class="message" ng-class="{'message-host': isHost(message), 'message-user': isUser(message)}"><div ng-bind="chatTime(message.timestamp)"></div><b>{{message.username}}: </b> {{message.message}}</div>
+        </div>
+        <div ng-hide="!selectedChat[1]" id="hostMessages">
+          <div ng-repeat="message in event.hostMessages" class="message"><div ng-bind="chatTime(message.timestamp)"></div><b>{{message.username}}: </b> {{message.message}}</div>
         </div>
         <textarea id="chatTextbox" ng-model="userText"></textarea>
         <br>

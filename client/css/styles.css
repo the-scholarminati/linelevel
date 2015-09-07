@@ -67,8 +67,7 @@ h2{
   color: #9FA3A3;
 }
 
-.signIn, .signout{
-  width: 70px;
+.navLink{
   height: 30px;
   text-align: center;
   padding: 5px;
@@ -353,6 +352,7 @@ textarea{
 }
 
 #videoWrapper{
+  border: 1px solid rgb(124, 223, 206);
   position: relative;
 }
 
@@ -363,7 +363,7 @@ textarea{
   right: 0;
   padding-bottom: 56.25%;
   background: #D2CCD3;
-  border: 1px solid black;
+  border: 1px solid black; 
   margin: 0px;
   position:relative;
 }
@@ -394,12 +394,29 @@ textarea{
   display:none;
 }
 
+.chat-tabs-selected{
+  background: rgb(124, 223, 206);
+  color: white;
+}
+
+.chat-tabs{
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+  border: 1px solid rgb(124, 223, 206);
+  border-bottom: none;
+  padding: 0px;
+  margin: 0px;
+  font: bold;
+  cursor: pointer;
+}
+
 a{
   color:black;
 }
 
-#chatMessages{
-  border: 1px solid black;
+#chatMessages, #hostMessages{
+  border: 1px solid rgb(124, 223, 206);
   width: 100%;
   margin: auto;
   height: 80%;
@@ -407,9 +424,20 @@ a{
   padding-left: 5px;
   overflow-y: auto;
 }
+
 .message{
   margin-top: 10px;
 }
+
+.message-user{
+  color: blue;
+}
+
+.message-host{
+  background: rgba(124, 223, 206,.5);
+  color: black;
+}
+
 
 #chatTextBox{
   width: 100%;
@@ -443,12 +471,52 @@ a{
   font-family: Helvetica-bold;
 }
 
+/******************************
+  Home page styling 
+******************************/
+
+.eventTabs{
+  padding: 10px;
+  margin: 25px;
+}
+
+.eventTab{
+  padding: 10px;
+}
+
+.borderExtension{
+  color: white;
+  width: 100%;
+  padding-right: 2000px;
+  border-bottom: 1px solid #C1C1C1;
+  padding-bottom: 10px;
+}
+
+.selectedView{
+  border: 1px solid #C1C1C1;
+  border-bottom: white;
+}
+
+.notSelectedView{
+  color: #C1C1C1;
+  border-bottom: 1px solid #C1C1C1;
+}
+
 .filterOptions{
   display: flex;
 }
 
 .filterTextBoxes{
   margin-top: 22px;
+}
+
+.dateFilter{
+  display: flex;
+  margin: 18px;
+}
+
+.dateSelection{
+  margin-top: 5px;
 }
 
 .event{
@@ -493,7 +561,6 @@ a{
 }
 
 .eventThumb{
-  background-image: url("./assets/albumcover.png");
   height: 100px;
   width: 100px;
   background-size: 100%;
@@ -509,6 +576,12 @@ a{
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
+}
+
+.showMoreEvents{
+  text-align: center;
+  padding: 60px;
+  cursor: pointer;
 }
 
 #userContent{
