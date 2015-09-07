@@ -3,13 +3,13 @@
   <div class="container">
 
     <div class="eventTabs">
-      <span ng-click="viewFutureEvents()" ng-class="{selectedView: futureView, notSelectedView: !futureView}" class="eventTab">
+      <span ng-click="viewFutureEvents()" ng-class="{selectedView: dateView.futureView, notSelectedView: !dateView.futureView}" class="eventTab">
         Upcoming events
       </span>
-      <span ng-click="viewPastEvents()" ng-class="{selectedView: pastView, notSelectedView: !pastView}" class="viewPastEvents eventTab">
+      <span ng-click="viewPastEvents()" ng-class="{selectedView: dateView.pastView, notSelectedView: !dateView.pastView}" class="viewPastEvents eventTab">
         Past events
       </span>
-      <span ng-click="viewDateFilter()" ng-class="{selectedView: customDateView, notSelectedView: !customDateView}" class="viewPastEvents eventTab">
+      <span ng-click="viewDateFilter()" ng-class="{selectedView: dateView.customDateView, notSelectedView: !dateView.customDateView}" class="viewPastEvents eventTab">
         Custom date range
       </span>
       <span class="borderExtension">
@@ -20,12 +20,12 @@
 
     <div class="filterOptions filterLabel">Filter by:</div>
     <div class="filterOptions">
-      <div ng-if="customDateView" class="dateFilter">
+      <div ng-if="dateView.customDateView" class="dateFilter">
         <div class="dateFilter" ng-click="dateFilterToggle()">DATE:</div>
         <div class="dateSelection">
-          <input type="date" ng-model="dateRange.start">
+          <input type="date" ng-model="dateView.start">
           to
-          <input type="date" ng-model="dateRange.end">
+          <input type="date" ng-model="dateView.end">
         </div>
       </div>
     </div>
