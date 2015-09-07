@@ -17,6 +17,13 @@ angular.module('main')
     $scope.chosenGenres = appFactory.chosenGenres;
     $scope.chooseGenre = appFactory.chooseGenre;
 
+    var ref = appFactory.firebase;
+    var user = ref.getAuth();
+
+    $scope.isAuth = function(){
+      return user !== null;
+    };
+
     $scope.submitCreateEventForm = function(){
       // saves the data from the form
       var eventTitle = $scope.eventTitle;
@@ -30,39 +37,41 @@ angular.module('main')
       var chosenGenres = $scope.chosenGenres;
       
       // save eventId to variable
-      var ref = appFactory.firebase;
-      var uid = ref.getAuth().uid;
-      ref.child("users").child(uid).on("value",function(userData){
-        var username = userData.val().username;
+      if(user){
+        ref.child("users").child(user.uid).on("value",function(userData){
+          var username = userData.val().username;
 
-        var eventId = ref.child('events').push();
-        eventId.set({
-          title: eventTitle,
-          description: eventDescription,
-          image: eventImage,
-          label: eventLabel,
-          date: eventDate,
-          genre: chosenGenres,
-          host: username
+          var eventId = ref.child('events').push();
+          eventId.set({
+            title: eventTitle,
+            description: eventDescription,
+            image: eventImage,
+            label: eventLabel,
+            date: eventDate,
+            genre: chosenGenres,
+            host: username
+          });
+
+          ref.child("chats").child(eventId.key()).push().set({
+            username:"Linelevel Bot", 
+            message:"chat created for event " + eventTitle,
+            timestamp: (new Date()).getTime()
+          });
         });
 
-        ref.child("chats").child(eventId.key()).push().set({
-          username:"Linelevel Bot", 
-          message:"chat created for event " + eventTitle,
-          timestamp: (new Date()).getTime()
-        });
-      });
-
-      // resets the form
-      $scope.eventTitle = '';
-      $scope.eventDescription = '';
-      $scope.eventImage = '';
-      $scope.eventLabel = '';
-      appFactory.resetDate();
-      appFactory.resetGenres();
+        // resets the form
+        $scope.eventTitle = '';
+        $scope.eventDescription = '';
+        $scope.eventImage = '';
+        $scope.eventLabel = '';
+        appFactory.resetDate();
+        appFactory.resetGenres();
+        console.log("event creation form submitted!");
+      } else {
+        console.log("please log in to create an event");
+      }
 
       // console log to test the button is functioning
-      console.log("event creation form submitted!");
 
 
       // TODO: push event data to the database

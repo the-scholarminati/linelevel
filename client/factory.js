@@ -31,6 +31,10 @@ angular.module('main')
     }
   };
 
+  obj.timers = {
+    eventCounter: null
+  };
+
   ///////////////
   ///// HTTP
   ///////////////
