@@ -11,6 +11,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     $scope.event.hostMessages = [];
     $scope.isSameUser = false;
     $scope.selectedChat = [1,0];
+    $scope.countDown = 'loading...';
     var chatEl     = document.getElementById('chatMessages');
     var hostChatEl = document.getElementById('hostMessages');
 
@@ -37,6 +38,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
             $scope.event.host = eventData.host;
             $scope.event.name = eventData.title;
             $scope.event.videoId = eventData.videoId;
+            $scope.event.date = eventData.date;
             $scope.isSameUser = appFactory.user === $scope.event.host ? true : false;
           console.log(appFactory.user +  $scope.event.host + $scope.isSameUser);
         });
@@ -66,6 +68,40 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     };
     init();
 
+
+
+    var updateCountDown = function(){
+      console.log("updating countdown");
+      var current = (new Date).getTime();
+      var message = "Updating...";
+
+      // modify message
+      if(current > $scope.event.date && $scope.event.date !== undefined){
+        message = "Event ended on " + new Date($scope.event.date).toDateString();
+      } else if ($scope.event.date !== undefined){
+        var timeLeft = $scope.event.date - current;
+        var days = Math.floor(timeLeft / 86400000);
+        timeLeft = timeLeft % 86400000;
+        var hours = Math.floor(timeLeft / 3600000);
+        timeLeft = timeLeft % 3600000;
+        var minutes = Math.floor(timeLeft / 60000);
+        timeLeft = Math.floor(timeLeft % 60000 / 1000);
+
+        days = days > 0 ? days === 1 ? days + " day " : days + " days " : "";
+        hours = hours > 0 ? hours === 1 ? hours + " hour " : hours + " hours " : "";
+        minutes = minutes > 0 ? minutes === 1 ? minutes + " minute " : minutes + " minutes and " : "";
+        timeLeft = timeLeft === 1 ? timeLeft + " second" : timeLeft + " seconds";
+        message = "Event begins in " + days + hours + minutes + timeLeft;
+      }
+
+      // update counter
+      appFactory.update($scope,function(scope){
+        scope.countDown = message;
+      });
+
+      appFactory.timers.eventCounter = setTimeout(updateCountDown, 1000);
+    };
+
     if(initialized){
       // auto scroll down in chat
       $scope.$watch(function(scope){
@@ -73,6 +109,9 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       },function(a,b){
         $scope.scrollToBottom();
       });
+      //testing
+      clearTimeout(appFactory.timers.eventCounter);
+      updateCountDown();
     }
 
     $scope.scrollToBottom = function(){
@@ -88,7 +127,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
 
     $scope.isUser = function(input){
       return userData.username === input.username;
-    }
+    };
 
     $scope.selectTab = function(num){
       $scope.selectedChat = [0,0];
@@ -96,6 +135,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       $scope.scrollToBottom();
     };
 
+    // functions to calculate time
     $scope.chatTime = function(time){
       var gap = new Date() - new Date(time);
       var prefix = '';
@@ -137,7 +177,11 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       }
       $scope.userText = '';
     };
-  
+    
+
+    /*/////////////////////////////////////////////////////////////////////////////////////////////////////////
+    CODE FOR LIVE STREAMING
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////*/
     $scope.startStream = function(){
       var peer = new Peer({key: '66p1hdx8j2lnmi',
                           debug: 3,
