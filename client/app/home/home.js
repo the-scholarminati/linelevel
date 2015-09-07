@@ -4,9 +4,11 @@ angular.module('main')
 
 .controller('homeController', ['$scope', 'appFactory', 
   function($scope, appFactory){
+
     ///////////////
     ///// Firebase
     ///////////////
+
     $scope.events = [];
     var ref = appFactory.firebase;
 
@@ -14,7 +16,7 @@ angular.module('main')
     var eventsRef = ref.child("events");
 
     //fetch last 20 events
-    eventsRef.limitToLast(20).on('child_added', function(snapshot){
+    eventsRef.orderByChild('date').limitToLast(200).on('child_added', function(snapshot){
       var data = snapshot.val();
       data.key = snapshot.key();
       appFactory.update($scope,function(){
@@ -26,26 +28,63 @@ angular.module('main')
     ///////////////
     ///// Tab views
     ///////////////
-    // this variable tracks if we're looking at upcoming or past events
+
+    // these variables track which tab we're viewing
     // it is set to upcoming events by default
     $scope.futureView = true;
+    $scope.pastView = false;
+    $scope.customDateView = false;
 
+    // these are the click events for the tabs to switch views
     $scope.viewFutureEvents = function(){
       if (!$scope.futureView){
         $scope.futureView = true;
+        $scope.pastView = false;
+        $scope.customDateView = false;
+      }
+    };
+    $scope.viewPastEvents = function(){
+      if (!$scope.pastView){
+        $scope.pastView = true;
+        $scope.futureView = false;
+        $scope.customDateView = false;
+      }
+    };
+    $scope.viewDateFilter = function(){
+      if (!$scope.customDateView){
+        $scope.customDateView = true;
+        $scope.futureView = false;
+        $scope.pastView = false;
       }
     };
 
-    $scope.viewPastEvents = function(){
-      if ($scope.futureView){
-        $scope.futureView = false;
-      }
+
+    ///////////////
+    ///// Num limit
+    ///////////////
+
+    // max number of events shown via ng-repeat
+    // 20 is the default
+    $scope.numLimit = 20;
+
+    // user can increase number of events shown
+    $scope.increaseNumLimit = function(){
+      $scope.numLimit += 20;
     };
+
+    // show the 'Show More Events' button by default
+    $scope.showMoreButton = false;
+
+    // hide the 'Show More Events' button if there are no more events to show
+    // if ($scope.filtered.length <= $scope.numLimit){
+    //   $scope.showMoreButton = false;
+    // }
 
 
     ///////////////
     ///// Genres
     ///////////////
+
     // saves the genre lists and method from the factory so we can access them in the DOM
     $scope.genres = appFactory.genres;
     // this is the list of the user's chosen genres
@@ -58,37 +97,48 @@ angular.module('main')
     $scope.showGenresNow = function(){
       $scope.showGenres = !$scope.showGenres;
     };
-    $scope.dateType = function(date){
-      console.log(date);
-    };
 
 
     ///////////////
     ///// Filter
     ///////////////
+
+    // object to hold the dates on the custom date range tab
+    $scope.dateRange = {};
+
     // this is the number of milliseconds that the text input filters will wait after a user stops typing to filter
     $scope.debounce = 200;
 
     $scope.filteredEvents = function(events){
-      // filter out which evens will be shown
       return events.filter(function(event){
         // show determines whether the event will be present after it has been run through the filter
         var show = true;
+
+        //////////////////////
+        ///// Filter by Dates
+        //////////////////////
 
         // compare now + 1 hour to event date to see if the event has already passed
         var now = new Date();
         var isInFuture = now.getTime() + (60*60*1000) < event.date;
         // if the user wants to see future events
         if ($scope.futureView){
-          // show the event if it's in the future
           show = isInFuture;
         // if the user wants to see past events
-        } else {
-          // show the event if it's not in the future
+        } else if ($scope.pastView){
           show = !isInFuture;
+        // if the user has selected a custom date range
+        } else if ($scope.dateRange.start && $scope.dateRange.end){
+          var start = $scope.dateRange.start.getTime()
+          var end = $scope.dateRange.end.getTime()
+          show = event.date >= start && event.date <= end;
         }
 
-        // remove event if any of the genres chosen by the user are not in the event's genre list
+
+        //////////////////////
+        ///// Filter by Genres
+        //////////////////////
+
         if (show && $scope.chosenGenres){
           $scope.chosenGenres.forEach(function(genre){
             if (!event.genre || event.genre.indexOf(genre) === -1){
@@ -97,15 +147,22 @@ angular.module('main')
           });
         }
 
-        // remove event if the title filter is not in the event's title
+
+        //////////////////////
+        ///// Filter by Titles
+        //////////////////////
+
         if (show && $scope.filterByTitle){
           if ( event.title.toLowerCase().indexOf( $scope.filterByTitle.toLowerCase() ) === -1 ){
-            console.log("$scope.filterByTitle = ", $scope.filterByTitle);
             show = false;
           }
         }
 
-        // remove event if the user filter is not in the event's user
+
+        //////////////////////
+        ///// Filter by Users
+        //////////////////////
+
         if (show && $scope.filterByUser){
           if ( !event.host || event.host.indexOf($scope.filterByUser) === -1 ){
             show = false;

@@ -479,8 +479,6 @@ a{
 .eventTabs{
   padding: 10px;
   margin: 25px;
-/*  width: 90%;
-  border-bottom: 1px solid #C1C1C1;*/
 }
 
 .eventTab{
@@ -511,6 +509,15 @@ a{
 
 .filterTextBoxes{
   margin-top: 22px;
+}
+
+.dateFilter{
+  display: flex;
+  margin: 18px;
+}
+
+.dateSelection{
+  margin-top: 5px;
 }
 
 .event{
@@ -555,7 +562,6 @@ a{
 }
 
 .eventThumb{
-  background-image: url("./assets/albumcover.png");
   height: 100px;
   width: 100px;
   background-size: 100%;
@@ -571,6 +577,12 @@ a{
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
+}
+
+.showMoreEvents{
+  text-align: center;
+  padding: 60px;
+  cursor: pointer;
 }
 
 #userContent{
