@@ -28,6 +28,7 @@ angular.module('main')
     this.firebase.unauth();
   };
 
+  // force angular to display changes made to scope variabes
   obj.update = function(scope,cb){
     if(!scope.$$phase){
       scope.$apply(function(){
@@ -38,6 +39,10 @@ angular.module('main')
     }
   };
 
+  // used in event page
+  obj.timers = {
+    eventCounter: null
+  };
 
   ///////////////
   ///// HTTP

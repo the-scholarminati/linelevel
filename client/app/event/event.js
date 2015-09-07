@@ -71,7 +71,6 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
 
 
     var updateCountDown = function(){
-      console.log("updating countdown");
       var current = (new Date()).getTime();
       var message = "Updating...";
 
@@ -177,7 +176,6 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       }
       $scope.userText = '';
     };
-    
 
     /*/////////////////////////////////////////////////////////////////////////////////////////////////////////
     CODE FOR LIVE STREAMING

@@ -46,10 +46,10 @@
         <div ng-hide="!selectedChat[1]" id="hostMessages">
           <div ng-repeat="message in event.hostMessages" class="message"><div ng-bind="chatTime(message.timestamp)"></div><b>{{message.username}}: </b> {{message.message}}</div>
         </div>
-        <textarea id="chatTextbox" ng-model="userText"></textarea>
-        <br>
-        <div id="sendButton" ng-click="sendMessage()">
-        <button>Send</button>
+        <form>
+          <input type="text" id="chatTextbox" ng-model="userText"></input>
+          <input type="submit" id="sendButton" ng-click="sendMessage()">
+        </form>
         </div>
       </div>
     </div>
