@@ -35,12 +35,18 @@ angular.module('main')
     $scope.pastView = false;
     $scope.customDateView = false;
 
-    // these are the click events for the tabs to switch views
+    // this variable determines whether the events will be shown in descending order by date or not
+    // we're showing the oldest first for future events and custom date range 
+    // and we're showing the newest first for past events
+    $scope.isReverse = false;
+
+    // these are the click events for switching tabs
     $scope.viewFutureEvents = function(){
       if (!$scope.futureView){
         $scope.futureView = true;
         $scope.pastView = false;
         $scope.customDateView = false;
+        $scope.isReverse = false;
       }
     };
     $scope.viewPastEvents = function(){
@@ -48,6 +54,7 @@ angular.module('main')
         $scope.pastView = true;
         $scope.futureView = false;
         $scope.customDateView = false;
+        $scope.isReverse = true;
       }
     };
     $scope.viewDateFilter = function(){
@@ -55,6 +62,7 @@ angular.module('main')
         $scope.customDateView = true;
         $scope.futureView = false;
         $scope.pastView = false;
+        $scope.isReverse = false;
       }
     };
 
