@@ -12,16 +12,20 @@ angular.module('main').controller('editEventController',['$scope','$http', 'appF
   var init = function(){
       // load event data
       ref.child("events").child($scope.eventId)
-        .on("value",function(info){ 
+        .on("value",function(info){
+          $scope.date = {};
           var eventData = info.val();
           console.log(eventData);
           $scope.eventTitle = eventData.title;
           $scope.eventDescription = eventData.description;
           $scope.eventImage = eventData.image;
           $scope.eventLabel = eventData.label;
+          $scope.genre = eventData.genre;
           var time = eventData.date;
           time = new Date(time);
-          console.log(time);
+          $scope.date.eventDate = time;
+          console.log(time.getHours());
+          console.log($scope.genres);
         });
         
     };
