@@ -52,7 +52,9 @@
         <div class="eventInfo">
 
           <p><a href="#/event/{{event.key}}">{{event.title}}</a></p>
-          <p>by <a href="#/userProfile/{{event.host}}">{{event.host}}</a></p>
+          <p>by <a href="#/userProfile/{{event.host}}">{{event.host}}</a>
+          - <button class="rsvp" ng-click="saveDate()">RSVP Now</button>
+          </p>
           <p><span ng-repeat="genre in event.genre">
             {{genre}}
           </p>
