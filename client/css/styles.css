@@ -238,11 +238,24 @@ ul {
   font-weight: 900;
 }
 
+.dropDownLink{
+  cursor: pointer;
+}
+
+.dropDownLink img{
+  width: 20px;
+  margin: 0 0 2px 5px;
+}
+
 .dropDownMenu{
   position: absolute;
   background-color: #D6D6D6;
   padding: 10px;
   z-index: 3;
+}
+
+.dropDownMenu li{
+  cursor: pointer;
 }
 
 #homeSection1{
@@ -483,6 +496,7 @@ a{
 
 .eventTab{
   padding: 10px;
+  cursor: pointer;
 }
 
 .borderExtension{
@@ -503,21 +517,29 @@ a{
   border-bottom: 1px solid #C1C1C1;
 }
 
+.filterLabel{
+  margin: 18px 0 0 36px;
+}
+
 .filterOptions{
   display: flex;
+}
+
+.dateFilter{
+  display: flex;
+  margin: 17px 0 0 17px;
+}
+
+.dateSelection{
+  margin-top: 5px;
 }
 
 .filterTextBoxes{
   margin-top: 22px;
 }
 
-.dateFilter{
-  display: flex;
-  margin: 18px;
-}
-
-.dateSelection{
-  margin-top: 5px;
+.filterInput{
+  margin-right: 30px;
 }
 
 .event{
