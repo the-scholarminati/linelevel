@@ -22,7 +22,7 @@ angular.module('main')
   // important: must use "val" function in order to access userData properties
   obj.accessUserByUid = function(uid,cb){
     return this.auth(function(){
-      ref.child("users").child(uid).on("value", function(userData){
+      obj.firebase.child("users").child(uid).on("value", function(userData){
         cb.call(this,userData);
       });
     });
@@ -30,7 +30,7 @@ angular.module('main')
 
   obj.accessUserByUsername = function(username,cb){
     return this.auth(function(){
-      ref.child("usernames").child(username).on("value", function(user){
+      obj.firebase.child("usernames").child(username).on("value", function(user){
         uid = user.val().uid;
         obj.accessUserByUid(uid,cb);
       });
@@ -43,7 +43,7 @@ angular.module('main')
       // necessary to make sure username given exists
       obj.accessUserByUsername(username,function(friendData){
         if(friendData !== null){
-          ref.child("users").child(user.uid).child("following").child(friendData.val().username)
+          obj.firebase.child("users").child(user.uid).child("following").child(friendData.val().username)
             .set({
               uid: friendData.val().uid
           });
@@ -56,20 +56,21 @@ angular.module('main')
   // remove a user from "following" property (users table)
   obj.unfollowUser = function(username){
     return this.auth(function(user){
-      ref.child("users").child(user.uid).child("following").child(username).remove();
+      obj.firebase.child("users").child(user.uid).child("following").child(username).remove();
     });
   };
 
   // use call back to perform action on user's "following" list
   obj.getUserFollowList = function(cb){
-    return this.auth
-    ref.child("users").child(user.uid).child("following").("value", function(list){
-      var result = [];
-      list = list.val();
-      for(var username in list){
-        result.push(list[username]);
-      }
-      cb.call(this,result);
+    return this.auth(function(user){
+      obj.firebase.child("users").child(user.uid).child("following").on("value", function(list){
+        var result = [];
+        list = list.val();
+        for(var username in list){
+          result.push(list[username]);
+        }
+        cb.call(this,result);
+      });
     });
   };
 
