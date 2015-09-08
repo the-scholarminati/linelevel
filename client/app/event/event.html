@@ -21,11 +21,11 @@
 
     <!-- host admin panel for setting up the stream -->
     <!-- can we call the method on the factory? might need to set that method in the scope to call it here -->
-    <div ng-show="isSameUser">{{isSameUser}}
-      <button ng-click="startStream();">start stream</button>
+    <div ng-show="isSameUser">
+      <button class="stream-button" ng-click="startStream();">start stream</button>
     </div>
-    <div ng-show="isSameUser == false">{{isSameUser}}
-      <button ng-click="loadStream();">load stream</button>
+    <div ng-show="!isSameUser">
+      <button class="stream-button" ng-click="loadStream();">load stream</button>
     </div>
 
     <div id="eventcontent">
@@ -38,7 +38,8 @@
       <div id="chatcontent" ng-show="chatVisible">
         <div id="chat-tabs">
           <div class="chat-tabs" ng-class="{'chat-tabs-selected':selectedChat[0]}" ng-click="selectTab(0)">All</div><!--
-       --><div class="chat-tabs" ng-class="{'chat-tabs-selected':selectedChat[1]}" ng-click="selectTab(1)">Host</div>
+       --><div class="chat-tabs" ng-class="{'chat-tabs-selected':selectedChat[1]}" ng-click="selectTab(1)">Host</div><!--
+       --><div ng-show="isSameUser" class="chat-tabs" ng-class="{'chat-tabs-selected':selectedChat[2]}" ng-click="selectTab(2)">Admin</div>
         </div>
         <div ng-hide="!selectedChat[0]" id="chatMessages">
           <div ng-repeat="message in event.messages" class="message" ng-class="{'message-host': isHost(message), 'message-user': isUser(message)}"><div ng-bind="chatTime(message.timestamp)"></div><b>{{message.username}}: </b> {{message.message}}</div>
@@ -46,7 +47,9 @@
         <div ng-hide="!selectedChat[1]" id="hostMessages">
           <div ng-repeat="message in event.hostMessages" class="message"><div ng-bind="chatTime(message.timestamp)"></div><b>{{message.username}}: </b> {{message.message}}</div>
         </div>
-        <form>
+        <div ng-hide="!selectedChat[2]" id="adminControls">
+        </div>
+        <form ng-hide="selectedChat[2]">
           <input type="text" id="chatTextbox" ng-model="userText"></input>
           <input type="submit" id="sendButton" ng-click="sendMessage()">
         </form>

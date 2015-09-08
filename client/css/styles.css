@@ -382,6 +382,10 @@ textarea{
   position:relative;
 }
 
+.stream-button{
+  cursor: pointer;
+}
+
 #chatcontent{
   min-width: 300px;
   max-width: 600px;
@@ -429,7 +433,7 @@ a{
   color:black;
 }
 
-#chatMessages, #hostMessages{
+#chatMessages, #hostMessages, #adminControls{
   border: 1px solid #c1c1c1;
   width: 100%;
   margin: auto;
@@ -437,6 +441,10 @@ a{
   font-size: 12px;
   padding-left: 5px;
   overflow-y: auto;
+}
+
+#adminControls{
+  height: 90%;
 }
 
 .message{
