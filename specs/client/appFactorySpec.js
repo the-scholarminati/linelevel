@@ -9,6 +9,13 @@ describe('appFactory', function(){
   }));
 
 
+  describe('event timer counter', function(){
+    it('should be null', inject(function(appFactory){
+      expect(appFactory.timers.eventCounter).toEqual(null);
+    }));
+  });
+
+
   describe('genre functionality', function(){
     describe('chosenGenres', function(){
       it('has the correct genres object', inject(function(appFactory) {
@@ -79,6 +86,81 @@ describe('appFactory', function(){
         appFactory.resetDate();
         expect(appFactory.date.eventDate).toEqual(date);
       }));
+    });
+  });
+
+
+  describe('filter methods', function(){
+    describe('date filter', function(){
+      var date;
+
+      beforeEach(function(){
+        // get now in milliseconds
+        date = new Date();
+        date = date.getTime();
+      });
+
+      it('should return true for a future date with future view', inject(function(appFactory){
+        // add one day to now value
+        date += 86400000;
+        var dateView = {futureView: true};
+        var show = appFactory.dateFilter(date, dateView);
+        expect(show).toBe(true);
+      }));
+
+      it('should return false for a past date with future view', inject(function(appFactory){
+        // subtract one day from now value
+        date -= 86400000;
+        var dateView = {futureView: true};
+        var show = appFactory.dateFilter(date, dateView);
+        expect(show).toBe(false);
+      }));
+
+      it('should return true for a past date with past view', inject(function(appFactory){
+        // subtract one day from now value
+        date -= 86400000;
+        var dateView = {pastView: true};
+        var show = appFactory.dateFilter(date, dateView);
+        expect(show).toBe(true);
+      }));
+
+      it('should return false for a future date with past view', inject(function(appFactory){
+        // add one day to now value
+        date += 86400000;
+        var dateView = {pastView: true};
+        var show = appFactory.dateFilter(date, dateView);
+        expect(show).toBe(false);
+      }));
+
+      it('should return true for a past date with custom view with past date range', inject(function(appFactory){
+        // subtract one day from now value
+        date -= 86400000;
+        var start = new Date(date - 86400000);
+        var end = new Date(date + 86400000);
+        var dateView = {start: start, end: end};
+        var show = appFactory.dateFilter(date, dateView);
+        expect(show).toBe(true);
+      }));
+
+      it('should return false for a past date with custom view with future date range', inject(function(appFactory){
+        // subtract one day from now value
+        date -= 86400000;
+        var start = new Date(date + 86400000);
+        var end = new Date(date + (86400000 * 2));
+        var dateView = {start: start, end: end};
+        var show = appFactory.dateFilter(date, dateView);
+        expect(show).toBe(false);
+      }));
+    });
+
+
+    describe('genre filter', function(){
+      it('');
+    });
+
+
+    describe('text filter', function(){
+
     });
   });
 
