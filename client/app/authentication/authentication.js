@@ -19,10 +19,10 @@ angular.module('main')
     var usernames = ref.child("usernames");
     var emails = ref.child("emails");
 
-    $scope.signIn = function(){
+    $scope.signIn = function(inputEmail, inputPassword){
       // saves data from form
-      var email = $scope.credentials.email;
-      var password = $scope.credentials.password;
+      var email = inputEmail || $scope.credentials.email;
+      var password = inputPassword || $scope.credentials.password;
 
       // clears form
       $scope.credentials = {};

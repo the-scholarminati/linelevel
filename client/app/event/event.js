@@ -10,7 +10,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     $scope.event.messages = [];
     $scope.event.hostMessages = [];
     $scope.isSameUser = false;
-    $scope.selectedChat = [1,0];
+    $scope.selectedChat = [1,0,0];
     $scope.countDown = 'loading...';
     var chatEl     = document.getElementById('chatMessages');
     var hostChatEl = document.getElementById('hostMessages');
@@ -30,6 +30,15 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
         initialized = !initialized;
         ref.off();
 
+        // load user data
+        var userAuth = ref.getAuth();
+        if(userAuth){
+          window.console.log('userAuth is ', userAuth);
+          ref.child("users").child(userAuth.uid).on("value",function(user){
+            userData = user.val();
+          });
+        }
+
         // load event data
         ref.child("events").child($scope.eventId)
           .on("value",function(info){ 
@@ -39,18 +48,11 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
             $scope.event.name = eventData.title;
             $scope.event.videoId = eventData.videoId;
             $scope.event.date = eventData.date;
-            $scope.isSameUser = appFactory.user === $scope.event.host ? true : false;
-          console.log(appFactory.user +  $scope.event.host + $scope.isSameUser);
+            appFactory.update($scope,function(scope){
+              $scope.isSameUser = userData.username === $scope.event.host ? true : false;
+            });
+          console.log(userData.username +  $scope.event.host + $scope.isSameUser);
         });
-
-        // load user data
-        var userAuth = ref.getAuth();
-        if(userAuth){
-          window.console.log('userAuth is ', userAuth);
-          ref.child("users").child(userAuth.uid).on("value",function(user){
-            userData = user.val();
-          });
-        }
 
         // load chat data and set chat listener
         chatRef = ref.child("chats").child($scope.eventId);
@@ -71,8 +73,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
 
 
     var updateCountDown = function(){
-      console.log("updating countdown");
-      var current = (new Date).getTime();
+      var current = (new Date()).getTime();
       var message = "Updating...";
 
       // modify message
@@ -177,7 +178,6 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       }
       $scope.userText = '';
     };
-    
 
     /*/////////////////////////////////////////////////////////////////////////////////////////////////////////
     CODE FOR LIVE STREAMING

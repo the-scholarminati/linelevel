@@ -15,11 +15,23 @@ angular.module('main')
     eventCounter: null
   };
 
+  /////////////////////////////////////////////// 
+  ///////////////firebase helpers ///////////////
+  ///////////////////////////////////////////////
+  obj.accessUserByUid = function(uid,cb){
+    ref.child("users").child(uid).on("value", function(userData){
+      cb.call(this,userData);
+    });
+  };
 
-  ///////////////
+  obj.accessUserByUsername = function(username,cb){
+    ref.child("usernames").child(username).on("value", function(user){
+      uid = user.val().uid;
+      obj.accessUserByUid(uid,cb);
+    });
+  };
+
   ///// Authentication
-  ///////////////
-
   obj.auth = function(){
     return this.firebase.getAuth() !== null;
   };
@@ -28,6 +40,7 @@ angular.module('main')
     this.firebase.unauth();
   };
 
+  // force angular to display changes made to scope variabes
   obj.update = function(scope,cb){
     if(!scope.$$phase){
       scope.$apply(function(){
@@ -38,6 +51,10 @@ angular.module('main')
     }
   };
 
+  // used in event page
+  obj.timers = {
+    eventCounter: null
+  };
 
   ///////////////
   ///// HTTP
@@ -127,8 +144,8 @@ angular.module('main')
       show = !isInFuture;
     // if the user has selected a custom date range
     } else if (dateView.start && dateView.end){
-      var start = dateView.start.getTime()
-      var end = dateView.end.getTime()
+      var start = dateView.start.getTime();
+      var end = dateView.end.getTime();
       show = date >= start && date <= end;
     }
     return show;
