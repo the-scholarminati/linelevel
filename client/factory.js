@@ -102,11 +102,7 @@ angular.module('main')
       cb.call(this,scope);
     }
   };
-
-  // used in event page
-  obj.timers = {
-    eventCounter: null
-  };
+  
 
   ///////////////
   ///// HTTP
