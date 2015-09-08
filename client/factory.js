@@ -19,7 +19,7 @@ angular.module('main')
   ///////////////firebase helpers ///////////////
   ///////////////////////////////////////////////
 
-  // important: must use "val" function in order to access userData properties
+  // important: must use "val" function on data return from these methods in order to access userData properties
   obj.accessUserByUid = function(uid,cb){
     return this.auth(function(){
       obj.firebase.child("users").child(uid).on("value", function(userData){
