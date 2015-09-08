@@ -1,0 +1,53 @@
+<section ng-controller="editEventController" ng-init="init()">
+  <div class="container">
+    <h1>Edit Event</h1>
+    <div class="line"></div>
+    
+    <form ng-if="isAuth()" name="createEventForm" ng-submit="submitCreateEventForm()" novalidate>
+      <div id="createEventForm">
+        <div class='formInputs'>
+          <div class="formItem">
+            Event:<br> 
+            <input type="text" placeholder="Name of your Event" ng-model="eventTitle" required>
+          </div>
+          <div class="formItem">
+            Description: <br> 
+            <textarea placeholder="Quick blurb about your event..." ng-model="eventDescription" required></textarea>
+          </div>
+          <div class="formItem">
+            Event Date: <br> 
+            <input type="date" placeholder="today" ng-model="date.eventDate" min="{{today | date:'yyyy-MM-dd'}}" required>
+          </div>
+          <div class="formItem">
+            Start Time: <br> 
+            <input type="time" placeholder="HH:mm" ng-model="date.eventDate" required>
+          </div>
+          <div class="formItem">
+            Cover Image: <br> 
+            <input type="url" placeholder="http://" ng-model="eventImage">
+          </div>
+          <div class="formItem">
+            Record Label: <br> 
+            <input type="text" placeholder="Name of Label" ng-model="eventLabel">
+          </div>
+        </div>
+
+        <div class="genreList">
+          <div>Which genres describe your event?</div>
+          <ul>
+            <li ng-repeat="genre in genres" ng-click="chooseGenre(genre)" ng-class="{'selected': genre.selected, 'notSelected': !genre.selected}">{{genre.name}}</li>
+          </ul>
+        </div>
+
+        <div class="submitbutton">
+          <button type="submit" ng-disabled="createEventForm.$invalid" class="clear" id="createEventButton">Create Event</button>
+        </div>
+      </div>
+    </form>
+
+    <div ng-if="!isAuth()">
+      Please Log in To Create an Event
+    </div>
+    
+  </div>
+</section>
