@@ -83,7 +83,7 @@ angular.module('main')
     ///////////////
 
     // this tracks the number of events that passed the filter
-    $scope.eventsLength = 0;
+    $scope.eventsLength;
     // max number of events shown via ng-repeat
     // 20 is the default
     $scope.numLimit = 20;
@@ -122,8 +122,8 @@ angular.module('main')
 
     // get the filter methods from the factory
     $scope.dateFilter = appFactory.dateFilter;
-    $scope.genreFilter = appFactory.genreFilter;
-    $scope.textFilter = appFactory.textFilter;
+    $scope.genreFilter = appFactory.genreFilter
+    $scope.textFilter = appFactory.textFilter
 
     $scope.filteredEvents = function(events){
       // reset the events length counter
@@ -131,30 +131,9 @@ angular.module('main')
 
       return events.filter(function(event){
         // show determines whether the event will be present after it has been run through the filter
-        var show = true;
-
-        //////////////////////
-        ///// Filter by Dates
-        //////////////////////
-
-        // compare now + 1 hour to event date to see if the event has already passed
-        var now = new Date();
-        var isInFuture = now.getTime() + (60*60*1000) < event.date;
-        // if the user wants to see future events
-        if ($scope.futureView){
-          show = isInFuture;
-        // if the user wants to see past events
-        } else if ($scope.pastView){
-          show = !isInFuture;
-        // if the user has selected a custom date range
-        } else if ($scope.dateRange.start && $scope.dateRange.end){
-          var start = $scope.dateRange.start.getTime();
-          var end = $scope.dateRange.end.getTime();
-          show = event.date >= start && event.date <= end;
-        }
 
         // filter by date
-        show = $scope.dateFilter(event.date, $scope.dateView);
+        var show = $scope.dateFilter(event.date, $scope.dateView);
 
         // filter by genre
         if (show && $scope.chosenGenres){

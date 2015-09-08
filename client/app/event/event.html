@@ -48,6 +48,47 @@
           <div ng-repeat="message in event.hostMessages" class="message"><div ng-bind="chatTime(message.timestamp)"></div><b>{{message.username}}: </b> {{message.message}}</div>
         </div>
         <div ng-hide="!selectedChat[2]" id="adminControls">
+          <form name="createEventForm" ng-submit="submitCreateEventForm()" novalidate>
+            <div id="createEventForm">
+              <div class='formInputs'>
+                <div class="formItem">
+                  Event:<br> 
+                  <input type="text" placeholder="Name of your Event" data-ng-model="eventTitle" required>
+                </div>
+                <div class="formItem">
+                  Description: <br> 
+                  <textarea placeholder="Quick blurb about your event..." data-ng-model="eventDescription" required></textarea>
+                </div>
+                <div class="formItem">
+                  Event Date: <br> 
+                  <input type="date" placeholder="today" data-ng-model="date.eventDate" min="{{today | date:'yyyy-MM-dd'}}" required>
+                </div>
+                <div class="formItem">
+                  Start Time: <br> 
+                  <input type="time" placeholder="HH:mm" data-ng-model="date.eventDate" required>
+                </div>
+                <div class="formItem">
+                  Cover Image: <br> 
+                  <input type="url" placeholder="http://" data-ng-model="eventImage">
+                </div>
+                <div class="formItem">
+                  Record Label: <br> 
+                  <input type="text" placeholder="Name of Label" data-ng-model="eventLabel">
+                </div>
+              </div>
+
+              <div class="genreList">
+                <div>Which genres describe your event?</div>
+                <ul>
+                  <li ng-repeat="genre in genres" ng-click="chooseGenre(genre)" ng-class="{'selected': genre.selected, 'notSelected': !genre.selected}">{{genre.name}}</li>
+                </ul>
+              </div>
+
+              <div class="submitbutton">
+                <button type="submit" ng-disabled="createEventForm.$invalid" class="clear" id="createEventButton">Create Event</button>
+              </div>
+            </div>
+          </form>
         </div>
         <form ng-hide="selectedChat[2]">
           <input type="text" id="chatTextbox" ng-model="userText"></input>
