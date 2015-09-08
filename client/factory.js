@@ -132,8 +132,8 @@ angular.module('main')
       show = !isInFuture;
     // if the user has selected a custom date range
     } else if (dateView.start && dateView.end){
-      var start = dateView.start.getTime()
-      var end = dateView.end.getTime()
+      var start = dateView.start.getTime();
+      var end = dateView.end.getTime();
       show = date >= start && date <= end;
     }
     return show;
