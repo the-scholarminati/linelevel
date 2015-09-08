@@ -47,6 +47,13 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
       controller: function($scope, $stateParams){
         $scope.eventId = $stateParams.eventId;
       }
+    })
+    .state('editevent', {
+      url: '/editevent/:eventId',
+      templateUrl: './app/event/editevent.html',
+      controller: function($scope, $stateParams){
+        $scope.eventId = $stateParams.eventId;
+      }
     });
 }])
 
