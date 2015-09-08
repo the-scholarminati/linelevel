@@ -62,6 +62,13 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
     return ref.getAuth() !== null;
   };
 
+  // gets the user's name and sets it to the scope
+  // so we can route them to their profile from any page
+  $scope.userName;
+  $scope.accessUserByUid = appFactory.accessUserByUid(userId, function(userData){
+    $scope.userName = userData.userName;
+  });
+
   $scope.signOut = function(){
     ref.unauth();
     $state.go('about');
