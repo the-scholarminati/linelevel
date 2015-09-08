@@ -25,7 +25,7 @@ angular.module('main')
   };
 
   obj.accessUserByUsername = function(username,cb){
-    ref.child("usernames").child("username").on("value", function(user){
+    ref.child("usernames").child(username).on("value", function(user){
       uid = user.val().uid;
       obj.accessUserByUid(uid,cb);
     });
