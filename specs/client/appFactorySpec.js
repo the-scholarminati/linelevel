@@ -155,7 +155,18 @@ describe('appFactory', function(){
 
 
     describe('genre filter', function(){
-      it('');
+      it('should return true if the event genres and user chosen genres are the same', inject(function(appFactory){
+        var eventGenres = ['Classical', 'Jazz'];
+        var chosenGenres = ['Classical', 'Jazz'];
+        var show = appFactory.genreFilter(eventGenres, chosenGenres);
+        expect(show).toBe(true);
+      }));
+      it('should return true if the user chosen genres are not in the event genres', inject(function(appFactory){
+        var eventGenres = ['Classical', 'Jazz'];
+        var chosenGenres = ['Classical', 'Electronic'];
+        var show = appFactory.genreFilter(eventGenres, chosenGenres);
+        expect(show).toBe(false);
+      }));
     });
 
 
