@@ -2,29 +2,29 @@
    <div class="container">
     <div class="pageTitle">
       <div style="display:flex; flex-flow: row nowrap">
-      <h1>{{userId}}</h1>
+      <h1>{{userName}}</h1>
       </div>
       </div>
       <div class="line"></div>
     <div id="genreNames">
-      <div ng-repeat="genre in event.genres"> {{genre.name}}<span ng-if="$index !== event.genres.length-1">, &nbsp;</span> </div>
+      <div ng-repeat="genre in uData.genres"> {{genre}}<span ng-if="$index !== uData.genres.length-1">, &nbsp;</span> </div>
     </div>
 
     <div id="userContent">
-      <div id="userInfo" ng-repeat="user in userData">
+      <div id="userInfo" >
 
         <img src="http://enevogroup.com/wp-content/uploads/2014/06/profile-placeholder1.jpg" width="200" height="230">
         <div>
-        Some user information: {{user.username}}
+        Username: {{uData.username}}
         </div>
         <div>
-        Some user information:
+        Firstname: {{uData.firstname}}
         </div>
         <div>
-        Some user information:
+        Lastname: {{uData.lastname}}
         </div>
         <div>
-        Some user information:
+        Email: {{uData.email}}
         </div>
       </div>
       <div id="userFeed">
@@ -32,13 +32,11 @@
         User Feed
       </div>
 
-      <div>
-        Events attended:
-      </div>
-        <div>Something</div>
-        <div>Something</div>
-        <div>Something</div>
-        <div>Something</div>
+      <h2>
+        Events:
+      </h2>
+        <div ng-repeat="event in events">Something</div>
+       
 
         <div>Wall:</div>
 

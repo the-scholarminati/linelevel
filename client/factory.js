@@ -15,19 +15,84 @@ angular.module('main')
     eventCounter: null
   };
 
+  /////////////////////////////////////////////// 
+  ///////////////firebase helpers ///////////////
+  ///////////////////////////////////////////////
 
-  ///////////////
-  ///// Authentication
-  ///////////////
+  // important: must use "val" function in order to access userData properties
+  obj.accessUserByUid = function(uid,cb){
+    return this.auth(function(){
+      obj.firebase.child("users").child(uid).on("value", function(userData){
+        cb.call(this,userData);
+      });
+    });
+  };
 
-  obj.auth = function(){
-    return this.firebase.getAuth() !== null;
+  obj.accessUserByUsername = function(username,cb){
+    return this.auth(function(){
+      obj.firebase.child("usernames").child(username).on("value", function(user){
+        uid = user.val().uid;
+        obj.accessUserByUid(uid,cb);
+      });
+    });
+  };
+
+  // add user to "following" properties (users table)
+  obj.followUser = function(username){
+    return this.auth(function(user){
+      // necessary to make sure username given exists
+      obj.accessUserByUsername(username,function(friendData){
+        if(friendData !== null){
+          obj.firebase.child("users").child(user.uid).child("following").child(friendData.val().username)
+            .set({
+              uid: friendData.val().uid
+          });
+        }
+      });
+
+    });//end of auth
+  };
+
+  // remove a user from "following" property (users table)
+  obj.unfollowUser = function(username){
+    return this.auth(function(user){
+      obj.firebase.child("users").child(user.uid).child("following").child(username).remove();
+    });
+  };
+
+  // use call back to perform action on user's "following" list
+  obj.getUserFollowList = function(cb){
+    return this.auth(function(user){
+      obj.firebase.child("users").child(user.uid).child("following").on("value", function(list){
+        var result = [];
+        list = list.val();
+        for(var username in list){
+          result.push(list[username]);
+        }
+        cb.call(this,result);
+      });
+    });
+  };
+
+  ///// Authentication - checks if user is authenticated - *cb is optional*
+  obj.auth = function(cb){
+    if(cb === undefined){
+      return this.firebase.getAuth() !== null;
+    } else {
+      var user = this.firebase.getAuth();
+      if(user === null){
+        return false;
+      } else {
+        cb.call(this,user);
+      }
+    }
   };
 
   obj.unauth = function(){
     this.firebase.unauth();
   };
 
+  // force angular to display changes made to scope variabes
   obj.update = function(scope,cb){
     if(!scope.$$phase){
       scope.$apply(function(){
@@ -38,6 +103,10 @@ angular.module('main')
     }
   };
 
+  // used in event page
+  obj.timers = {
+    eventCounter: null
+  };
 
   ///////////////
   ///// HTTP
@@ -127,8 +196,8 @@ angular.module('main')
       show = !isInFuture;
     // if the user has selected a custom date range
     } else if (dateView.start && dateView.end){
-      var start = dateView.start.getTime()
-      var end = dateView.end.getTime()
+      var start = dateView.start.getTime();
+      var end = dateView.end.getTime();
       show = date >= start && date <= end;
     }
     return show;

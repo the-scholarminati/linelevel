@@ -11,7 +11,7 @@
     <script src="./lib/moment-min.js"></script>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="peer.js"></script>
+    <script src="./lib/peer.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=OnLoadCallback"></script>
     <script src="app.js"></script>
     <script src="factory.js"></script>
@@ -41,7 +41,10 @@
           </div> -->
         </nav>
         <nav>
-          <div class="navLink"><a ui-sref="createEvent">CREATE EVENT</a></div>
+          <div ng-if="auth()" class="navLink"><a ui-sref="userProfile({userName: userName})">PROFILE</a></div>
+        </nav>
+        <nav>
+          <div ng-if="auth()" class="navLink"><a ui-sref="createEvent">CREATE EVENT</a></div>
         </nav>
         <nav>
           <div class="navLink"><a ui-sref="about">ABOUT</a></div>
