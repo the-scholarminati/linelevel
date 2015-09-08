@@ -5,7 +5,7 @@ angular.module('main').controller('editEventController',['$scope','$http', 'appF
   var user = ref.getAuth();
 
   // this is the list of the user's chosen genres
-  $scope.genres = appFactory.genres;
+  var genres = appFactory.genres;
   $scope.chosenGenres = appFactory.chosenGenres;
   $scope.chooseGenre = appFactory.chooseGenre;
 
@@ -21,11 +21,19 @@ angular.module('main').controller('editEventController',['$scope','$http', 'appF
           $scope.eventImage = eventData.image;
           $scope.eventLabel = eventData.label;
           $scope.genre = eventData.genre;
+
+          $scope.genre.forEach(function(genre){
+            genres.forEach(function(genres){
+              genres.name === genre ? genres.selected = true : genres.selected = false;
+            });
+          });
+
+          $scope.genres = genres;
+
           var time = eventData.date;
           time = new Date(time);
+          
           $scope.date.eventDate = time;
-          console.log(time.getHours());
-          console.log($scope.genres);
         });
         
     };
