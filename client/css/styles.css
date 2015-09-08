@@ -606,6 +606,10 @@ a{
   padding: 60px;
 }
 
+.rsvp {
+  border: 1px solid;
+}
+
 .showMoreEvents{
   cursor: pointer;
 }
