@@ -18,22 +18,73 @@ angular.module('main')
   /////////////////////////////////////////////// 
   ///////////////firebase helpers ///////////////
   ///////////////////////////////////////////////
+
+  // important: must use "val" function in order to access userData properties
   obj.accessUserByUid = function(uid,cb){
-    ref.child("users").child(uid).on("value", function(userData){
-      cb.call(this,userData);
+    return this.auth(function(){
+      ref.child("users").child(uid).on("value", function(userData){
+        cb.call(this,userData);
+      });
     });
   };
 
   obj.accessUserByUsername = function(username,cb){
-    ref.child("usernames").child(username).on("value", function(user){
-      uid = user.val().uid;
-      obj.accessUserByUid(uid,cb);
+    return this.auth(function(){
+      ref.child("usernames").child(username).on("value", function(user){
+        uid = user.val().uid;
+        obj.accessUserByUid(uid,cb);
+      });
     });
   };
 
-  ///// Authentication
-  obj.auth = function(){
-    return this.firebase.getAuth() !== null;
+  // add user to "following" properties (users table)
+  obj.followUser = function(username){
+    return this.auth(function(user){
+      // necessary to make sure username given exists
+      obj.accessUserByUsername(username,function(friendData){
+        if(friendData !== null){
+          ref.child("users").child(user.uid).child("following").child(friendData.val().username)
+            .set({
+              uid: friendData.val().uid
+          });
+        }
+      });
+
+    });//end of auth
+  };
+
+  // remove a user from "following" property (users table)
+  obj.unfollowUser = function(username){
+    return this.auth(function(user){
+      ref.child("users").child(user.uid).child("following").child(username).remove();
+    });
+  };
+
+  // use call back to perform action on user's "following" list
+  obj.getUserFollowList = function(cb){
+    return this.auth
+    ref.child("users").child(user.uid).child("following").("value", function(list){
+      var result = [];
+      list = list.val();
+      for(var username in list){
+        result.push(list[username]);
+      }
+      cb.call(this,result);
+    });
+  };
+
+  ///// Authentication - checks if user is authenticated - *cb is optional*
+  obj.auth = function(cb){
+    if(cb === undefined){
+      return this.firebase.getAuth() !== null;
+    } else {
+      var user = this.firebase.getAuth();
+      if(user === null){
+        return false;
+      } else {
+        cb.call(this,user);
+      }
+    }
   };
 
   obj.unauth = function(){

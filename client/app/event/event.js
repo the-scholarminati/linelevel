@@ -170,8 +170,8 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     };
 
     $scope.sendMessage = function(){
-      if(userData && initialized){
-        var text = $scope.userText;
+      var text = $scope.userText;
+      if(userData && initialized && text.length > 0){
         chatRef.push({username: userData.username, message: text, timestamp: (new Date()).getTime()});
       } else {
         $scope.event.messages.push({username:"Linelevel Bot", message: "Please log in to participate in chat!"});
