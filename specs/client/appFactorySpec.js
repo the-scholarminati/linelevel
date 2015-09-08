@@ -161,12 +161,14 @@ describe('appFactory', function(){
         var show = appFactory.genreFilter(eventGenres, chosenGenres);
         expect(show).toBe(true);
       }));
+
       it("should return false if one of the user's chosen genres are not in the event genres", inject(function(appFactory){
         var eventGenres = ['Classical', 'Jazz'];
         var chosenGenres = ['Classical', 'Electronic'];
         var show = appFactory.genreFilter(eventGenres, chosenGenres);
         expect(show).toBe(false);
       }));
+
       it("should return true if all of the user's chosen genres are in the event genres", inject(function(appFactory){
         var eventGenres = ['Classical', 'Electronic', 'Jazz'];
         var chosenGenres = ['Classical', 'Electronic'];
@@ -183,18 +185,21 @@ describe('appFactory', function(){
         var show = appFactory.textFilter(eventText, filterText);
         expect(show).toBe(true);
       }));
+
       it('should return true when the event text and filter text are the same text with different caps', inject(function(appFactory){
         var eventText = 'My New Music';
         var filterText = 'my new music';
         var show = appFactory.textFilter(eventText, filterText);
         expect(show).toBe(true);
       }));
+
       it('should return true when the filter text is in the event text', inject(function(appFactory){
         var eventText = 'My New Music';
         var filterText = 'new music';
         var show = appFactory.textFilter(eventText, filterText);
         expect(show).toBe(true);
       }));
+      
       it('should return false when the filter text is not in the event text', inject(function(appFactory){
         var eventText = 'My New Music';
         var filterText = 'llama';
