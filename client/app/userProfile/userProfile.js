@@ -21,7 +21,7 @@ angular.module('main')
           $scope.uData.lastname = snap.val().lastname;
           $scope.uData.email = snap.val().email;
           $scope.uData.genres = snap.val().chosenGenres;
-          $scope.uData.events = snap.val().events;
+          $scope.uData.myEvents = snap.val().currentEvents;
         });
       });
     }
