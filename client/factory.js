@@ -102,21 +102,6 @@ angular.module('main')
       cb.call(this,scope);
     }
   };
-  
-
-  ///////////////
-  ///// HTTP
-  ///////////////
-
-  obj.startStream = function(token){
-    return $http({
-      method:'POST',
-      url: 'https://www.googleapis.com/youtube/v3/liveStreams?part=snippet&access_token='+token
-      }).then(function(response){
-        console.log(response);
-        return response;
-    }, function(error){console.log(error);});
-  };
 
 
   ///////////////
