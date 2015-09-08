@@ -24,6 +24,16 @@ angular.module('main')
       });
     });
 
+    $scope.saveDate = function(eventKey){
+      var list = [];
+      var userRef = ref.child('users').child('currentEvents');
+      userRef.on('value', function(snap){
+        list = snap.val();
+      });
+      list.push(eventKey);
+      userRef.set(list);
+    };
+
 
     ///////////////
     ///// Tab views
