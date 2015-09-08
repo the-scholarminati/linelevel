@@ -15,11 +15,23 @@ angular.module('main')
     eventCounter: null
   };
 
+  /////////////////////////////////////////////// 
+  ///////////////firebase helpers ///////////////
+  ///////////////////////////////////////////////
+  obj.accessUserByUid = function(uid,cb){
+    ref.child("users").child(uid).on("value", function(userData){
+      cb.call(this,userData);
+    });
+  };
 
-  ///////////////
+  obj.accessUserByUsername = function(username,cb){
+    ref.child("usernames").child("username").on("value", function(user){
+      uid = user.val().uid;
+      obj.accessUserByUid(uid,cb);
+    });
+  };
+
   ///// Authentication
-  ///////////////
-
   obj.auth = function(){
     return this.firebase.getAuth() !== null;
   };
