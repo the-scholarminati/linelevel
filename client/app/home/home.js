@@ -83,7 +83,6 @@ angular.module('main')
     ///////////////
 
     // this tracks the number of events that passed the filter
-    $scope.eventsLength;
     // max number of events shown via ng-repeat
     // 20 is the default
     $scope.numLimit = 20;
@@ -122,8 +121,8 @@ angular.module('main')
 
     // get the filter methods from the factory
     $scope.dateFilter = appFactory.dateFilter;
-    $scope.genreFilter = appFactory.genreFilter
-    $scope.textFilter = appFactory.textFilter
+    $scope.genreFilter = appFactory.genreFilter;
+    $scope.textFilter = appFactory.textFilter;
 
     $scope.filteredEvents = function(events){
       // reset the events length counter
