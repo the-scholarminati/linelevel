@@ -5,6 +5,7 @@ angular.module('main').controller('editEventController',['$scope','$http', 'appF
   var user = ref.getAuth();
 
   // this is the list of the user's chosen genres
+  $scope.genres = appFactory.genres;
   $scope.chosenGenres = appFactory.chosenGenres;
   $scope.chooseGenre = appFactory.chooseGenre;
 
