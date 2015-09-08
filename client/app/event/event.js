@@ -241,7 +241,9 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       });
     };
 
-
+    $scope.editEvent = function(){
+      $state.go('editevent', {eventId: $scope.eventId});
+    };
 
 
     $scope.toggleChat = function(){
