@@ -71,11 +71,13 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
 
   // gets the user's username and sets it to the scope
   // so we can route them to their profile from any page
-  $scope.userName;
+  $scope.userName = '';
   $scope.userAuth = ref.getAuth();
   if ($scope.userAuth){
     appFactory.accessUserByUid($scope.userAuth.uid, function(userData){
-      $scope.userName = userData.val().username;
+      appFactory.update($scope,function(scope){
+        $scope.userName = userData.val().username;
+      });
     });
   }
 
