@@ -73,6 +73,10 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
             'label': eventLabel,
             'date': eventDate,
             'genre': chosenGenres});
+
+
+     window.location.href="/";
+
     };
 
 
