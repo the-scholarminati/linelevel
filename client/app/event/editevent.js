@@ -22,13 +22,14 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
       // load event data
       ref.child("events").child($scope.eventId)
         .on("value",function(info){
-          
+
           var eventData = info.val();
           $scope.eventTitle = eventData.title;
           $scope.eventDescription = eventData.description;
           $scope.eventImage = eventData.image;
           $scope.eventLabel = eventData.label;
           $scope.genre = eventData.genre;
+
 
           if($scope.genre){
             $scope.genre.forEach(function(genre){
@@ -45,6 +46,7 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
           $scope.date.eventDate = new Date(eventData.date);
           // console.log($scope.genres);
           // console.log($scope.genre);
+
         });
         
     };
