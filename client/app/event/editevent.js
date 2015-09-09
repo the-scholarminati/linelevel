@@ -6,6 +6,7 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
 
   // this is the list of the user's chosen genres
   var genres = appFactory.genres;
+
   $scope.chosenGenres = appFactory.chosenGenres;
   $scope.chooseGenre = appFactory.chooseGenre;
 
