@@ -52,26 +52,27 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
 
     $scope.saveChanges = function(){
       console.log('save changes invoked');
-
-      var eventTitle = $scope.eventTitle;
-      var eventDescription = $scope.eventDescription;
+      $scope.eventTitle =this.eventTitle;
+      var eventTitle = this.eventTitle;
+      var eventDescription = this.eventDescription;
       // the image url is not required on the form
       // maybe have a default image that is used when image is not provided
-      var eventImage = $scope.eventImage || './assets/albumcover.png';
-      var eventLabel = $scope.eventLabel || '';
+      var eventImage = this.eventImage || './assets/albumcover.png';
+      var eventLabel = this.eventLabel || '';
       var eventDate = $scope.date.eventDate.getTime();
-      console.log("eventDate = ", eventDate);
-      var chosenGenres = $scope.chosenGenres;
+      console.log(eventTitle);
+      console.log(eventDescription);
+      var chosenGenres = this.chosenGenres;
 
       console.log('chosen genres' + chosenGenres);
 
       ref.child("events").child($scope.eventId).update({
-            title: eventTitle,
-            description: eventDescription,
-            image: eventImage,
-            label: eventLabel,
-            date: eventDate,
-            genre: chosenGenres});
+            'title': eventTitle,
+            'description': eventDescription,
+            'image': eventImage,
+            'label': eventLabel,
+            'date': eventDate,
+            'genre': chosenGenres});
     };
 
 

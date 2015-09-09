@@ -8,19 +8,19 @@
         <div class='formInputs'>
           <div class="formItem">
             Event:<br> 
-            <input type="text" placeholder="Name of your Event" ng-model="eventTitle" required autofill>
+            <input type="text" placeholder="Name of your Event" ng-model="eventTitle" required>
           </div>
           <div class="formItem">
             Description: <br> 
-            <textarea placeholder="Quick blurb about your event..." ng-model="eventDescription" required autofill></textarea>
+            <textarea placeholder="Quick blurb about your event..." ng-model="eventDescription" required></textarea>
           </div>
           <div class="formItem">
             Event Date: <br> 
-            <input type="date" placeholder="today" ng-model="date.eventDate" min="{{today | date:'yyyy-MM-dd'}}" required autofill>
+            <input type="date" placeholder="today" ng-model="date.eventDate" min="{{today | date:'yyyy-MM-dd'}}" required >
           </div>
           <div class="formItem">
             Start Time: <br> 
-            <input type="time" placeholder="HH:mm" ng-model="date.eventDate" required autofill>
+            <input type="time" placeholder="HH:mm" ng-model="date.eventDate" required >
           </div>
           <div class="formItem">
             Cover Image: <br> 
