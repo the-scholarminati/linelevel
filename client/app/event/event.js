@@ -1,8 +1,7 @@
 //attaching controllers to main until we find reason to create specific modules
 
-angular.module('main').controller('eventController',['$scope','$http', 'appFactory', '$rootScope',
-  function($scope,$http,appFactory){
-    $scope.videoId = 'dQw4w9WgXcQ';
+angular.module('main').controller('eventController',['$scope','$http', 'appFactory', '$state',
+  function($scope, $http, appFactory, $state){
 
     // console.log("Loading event page...");
     $scope.chatVisible = true;
@@ -23,6 +22,11 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     var userData = '';
     var chatRef = '';
     
+    $scope.$watch('$scope.event.videoId', function loadVideo(a,b){
+      if($scope.isSameUser !== true){
+        $scope.loadStream();
+      }
+    });
 
     // initialize controller
     var init = function(){
@@ -236,11 +240,10 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
         });
       });
     };
-    $scope.$watch('$scope.event.videoId', function loadVideo(a,b){
-      if($scope.isSameUser !== true){
-        $scope.loadStream();
-      }
-    });
+
+    $scope.editEvent = function(){
+      $state.go('editevent', {eventId: $scope.eventId});
+    };
 
 
     $scope.toggleChat = function(){
