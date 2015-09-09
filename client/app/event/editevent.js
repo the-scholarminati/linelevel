@@ -66,7 +66,6 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
       console.log(eventTitle);
       console.log(eventDescription);
       var chosenGenres = this.chosenGenres;
-
       console.log('chosen genres' + chosenGenres);
 
 
