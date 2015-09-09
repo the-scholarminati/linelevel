@@ -50,6 +50,10 @@
 
         <div ng-hide="!selectedChat[1]" id="hostMessages">
           <div ng-repeat="message in event.hostMessages" class="message"><div ng-bind="chatTime(message.timestamp)"></div><b>{{message.username}}: </b> {{message.message}}</div>
+
+        </div><form name="submitMessage" ng-submit="sendMessage()" ng-hide="selectedChat[2]">
+        <input type="text" placeholder="Enter your message..." ng-model="userText" id="chatTextBox">
+
         </div>
         <div ng-hide="!selectedChat[2]" id="adminControls">
           <form name="createEventForm" ng-submit="submitCreateEventForm()" novalidate>
@@ -82,18 +86,13 @@
               </div>
 
         </div>
-
         <div ng-hide="!selectedChat[2]" id="adminControls">
           <div ng-show="isSameUser">{{isSameUser}}
             <button class="stream-button" ng-click="startStream();">start stream</button>
             <button class="stream-button" ng-click="editEvent();">Edit Event</button>
           </div>
         </div>
-        
-        <form ng-hide="selectedChat[2]" name="submitMessage" ng-submit="sendMessage()">
-          <input type="text" placeholder="Enter your message..." ng-model="userText" id="chatTextBox">
-        </form>
-
+        </div>
       </div>
     </div>
   </div>
