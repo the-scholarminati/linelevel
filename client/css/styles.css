@@ -669,12 +669,12 @@ input:focus{
 
 .fade-list.ng-enter {
   /* standard transition code */
-  transition: 1s linear all;
+  transition: .25s linear all;
   opacity:0;
 }
 .fade-list.ng-enter-stagger {
   /* this will have a 100ms delay between each successive leave animation */
-  transition-delay: 0.2s;
+  transition-delay: 0.0s;
 
   /* in case the stagger doesn't work then the duration value
    must be set to 0 to avoid an accidental CSS inheritance */
@@ -686,7 +686,7 @@ input:focus{
 }
 
 .fade-list.ng-leave {
-    transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 250ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
     position: relative;
     display: block;
     overflow: hidden;
