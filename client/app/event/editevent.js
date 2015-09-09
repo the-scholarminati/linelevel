@@ -28,14 +28,19 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
           $scope.eventImage = eventData.image;
           $scope.eventLabel = eventData.label;
           $scope.genre = eventData.genre;
+
           if($scope.genre){
             $scope.genre.forEach(function(genre){
+              $scope.chosenGenres.push(genre);
               genres.forEach(function(genres){
-                genres.name === genre ? genres.selected = true : genres.selected = false;
+                if(genres.name === genre){
+                  genres.selected = true;
+                }
               });
             });
           }
-          
+          console.log(genres);
+          console.log($scope.genre);
 
           $scope.genres = genres;
           $scope.date.eventDate = new Date(eventData.date);
@@ -48,9 +53,25 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
     $scope.saveChanges = function(){
       console.log('save changes invoked');
 
+      var eventTitle = $scope.eventTitle;
+      var eventDescription = $scope.eventDescription;
+      // the image url is not required on the form
+      // maybe have a default image that is used when image is not provided
+      var eventImage = $scope.eventImage || './assets/albumcover.png';
+      var eventLabel = $scope.eventLabel || '';
+      var eventDate = $scope.date.eventDate.getTime();
+      console.log("eventDate = ", eventDate);
+      var chosenGenres = $scope.chosenGenres;
 
-      // ref.child("events").child($scope.eventId).update({'videoId' : peer.id});
-      //   console.log(peer.id);
+      console.log('chosen genres' + chosenGenres);
+
+      ref.child("events").child($scope.eventId).update({
+            title: eventTitle,
+            description: eventDescription,
+            image: eventImage,
+            label: eventLabel,
+            date: eventDate,
+            genre: chosenGenres});
     };
 
 

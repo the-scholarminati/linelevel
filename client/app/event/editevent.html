@@ -3,7 +3,7 @@
     <h1>Edit '{{eventTitle}}'</h1>
     <div class="line"></div>
     
-    <form ng-if="isAuth()" name="createEventForm" ng-submit="submitCreateEventForm()" novalidate>
+    <form ng-if="isAuth()" name="createEventForm" ng-submit="saveChanges()" novalidate>
       <div id="createEventForm">
         <div class='formInputs'>
           <div class="formItem">
