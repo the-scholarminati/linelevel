@@ -44,7 +44,7 @@
 
 
     <div class="eventList">
-      <div ng-repeat="event in filteredEvents(events) | orderBy: 'date': isReverse | limitTo: numLimit" class="event" style="background-image: url({{event.image}})" mouse-over>
+      <div ng-repeat="event in filteredEvents(events) | orderBy: 'date': isReverse | limitTo: numLimit" class="event fade-list" style="background-image: url({{event.image}})" mouse-over>
 
         <div class="eventInfo">
 
