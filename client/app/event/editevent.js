@@ -6,10 +6,6 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
 
   // this is the list of the user's chosen genres
   var genres = appFactory.genres;
-<<<<<<< HEAD
-
-=======
->>>>>>> Fixed autoselection of genres
   $scope.chosenGenres = appFactory.chosenGenres;
   $scope.chooseGenre = appFactory.chooseGenre;
 
@@ -66,6 +62,7 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
       console.log(eventTitle);
       console.log(eventDescription);
       var chosenGenres = this.chosenGenres;
+
       console.log('chosen genres' + chosenGenres);
 
 
