@@ -249,9 +249,16 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       });
     };
 
+    $scope.$watch('$scope.event.videoId', function loadVideo(a,b){
+      if($scope.isSameUser !== true){
+        $scope.loadStream();
+      }
+    });
+
     $scope.editEvent = function(){
       $state.go('editevent', {eventId: $scope.eventId});
     };
+
 
 
     $scope.toggleChat = function(){

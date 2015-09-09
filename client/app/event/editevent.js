@@ -11,7 +11,8 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
 
   $scope.today = new Date();
   $scope.date = appFactory.date;
-  // sets the date to today and time to 7pm with no seconds
+
+    // sets the date to today and time to 7pm with no seconds
   appFactory.resetDate();
   
  
@@ -30,9 +31,7 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
 
           if($scope.genre){
             $scope.genre.forEach(function(genre){
-              if ( $scope.chosenGenres.indexOf(genre) === -1 ){
-                $scope.chosenGenres.push(genre);
-              }
+              $scope.chosenGenres.push(genre);
               genres.forEach(function(genres){
                 if(genres.name === genre){
                   genres.selected = true;
@@ -43,6 +42,8 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
 
           $scope.genres = genres;
           $scope.date.eventDate = new Date(eventData.date);
+          // console.log($scope.genres);
+          // console.log($scope.genre);
         });
         
     };
@@ -52,11 +53,18 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
       $scope.eventTitle =this.eventTitle;
       var eventTitle = this.eventTitle;
       var eventDescription = this.eventDescription;
-      var eventImage = this.eventImage || '';
+
+      // the image url is not required on the form
+      // maybe have a default image that is used when image is not provided
+      var eventImage = this.eventImage || './assets/albumcover.png';
       var eventLabel = this.eventLabel || '';
       var eventDate = $scope.date.eventDate.getTime();
+      console.log(eventTitle);
+      console.log(eventDescription);
       var chosenGenres = this.chosenGenres;
-      console.log("chosenGenres = ", chosenGenres);
+
+      console.log('chosen genres' + chosenGenres);
+
 
       ref.child("events").child($scope.eventId).update({
             'title': eventTitle,
