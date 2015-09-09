@@ -19,7 +19,7 @@ angular.module('main')
   ///////////////firebase helpers ///////////////
   ///////////////////////////////////////////////
 
-  // important: must use "val" function in order to access userData properties
+  // important: must use "val" function on data return from these methods in order to access userData properties
   obj.accessUserByUid = function(uid,cb){
     return this.auth(function(){
       obj.firebase.child("users").child(uid).on("value", function(userData){
@@ -101,25 +101,6 @@ angular.module('main')
     } else {
       cb.call(this,scope);
     }
-  };
-
-  // used in event page
-  obj.timers = {
-    eventCounter: null
-  };
-
-  ///////////////
-  ///// HTTP
-  ///////////////
-
-  obj.startStream = function(token){
-    return $http({
-      method:'POST',
-      url: 'https://www.googleapis.com/youtube/v3/liveStreams?part=snippet&access_token='+token
-      }).then(function(response){
-        console.log(response);
-        return response;
-    }, function(error){console.log(error);});
   };
 
 

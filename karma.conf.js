@@ -20,6 +20,7 @@ module.exports = function(config) {
       'node_modules/angular-mocks/angular-mocks.js',
       'node_modules/firebase/lib/firebase-web.js',
       'node_modules/angularfire/dist/angularfire.js',
+      'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-animate.js',
       'client/**/*.js',
       'client/**/*.html',
       // not sure if we need to specify the folders inside of client
@@ -31,8 +32,8 @@ module.exports = function(config) {
       'client/app/event/**/*.html',
       'client/app/home/**/*.js',
       'client/app/home/**/*.html',
-      'client/app/signup/**/*.js',
-      'client/app/signup/**/*.html',
+      'client/app/authentication/**/*.js',
+      'client/app/authentication/**/*.html',
       'client/app/userProfile/**/*.js',
       'client/app/userProfile/**/*.html',
       // test files
