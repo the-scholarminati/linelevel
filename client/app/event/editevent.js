@@ -6,7 +6,10 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
 
   // this is the list of the user's chosen genres
   var genres = appFactory.genres;
+<<<<<<< HEAD
 
+=======
+>>>>>>> Fixed autoselection of genres
   $scope.chosenGenres = appFactory.chosenGenres;
   $scope.chooseGenre = appFactory.chooseGenre;
 
@@ -29,7 +32,6 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
           $scope.eventImage = eventData.image;
           $scope.eventLabel = eventData.label;
           $scope.genre = eventData.genre;
-
 
           if($scope.genre){
             $scope.genre.forEach(function(genre){
