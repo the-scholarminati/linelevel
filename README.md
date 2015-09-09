@@ -6,10 +6,6 @@ An app where musicians can host online album release parties to share new music 
 
 ![Line Level front page mockup](https://github.com/the-scholarminati/linelevel/blob/master/designs:mockups/linelevel_frontpage_demo.png?raw=true)
 
-![Line Level home page screenshot](https://github.com/the-scholarminati/linelevel/dev/designs%3Amockups/screenshots/linelevel_home.png?raw=true)
-
-![Line Level about page screenshot](https://github.com/the-scholarminati/linelevel/dev/designs%3Amockups/screenshots/linelevel_about.png?raw=true)
-
 
 # The Team
 

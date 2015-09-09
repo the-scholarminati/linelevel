@@ -75,6 +75,10 @@ h2{
   line-height: 30px;
 }
 
+.navLink a{
+  color: white;
+}
+
 .signout{
   width: 100px;
 }
@@ -240,11 +244,24 @@ ul {
   font-weight: 900;
 }
 
+.dropDownLink{
+  cursor: pointer;
+}
+
+.dropDownLink img{
+  width: 20px;
+  margin: 0 0 2px 5px;
+}
+
 .dropDownMenu{
   position: absolute;
   background-color: #D6D6D6;
   padding: 10px;
   z-index: 3;
+}
+
+.dropDownMenu li{
+  cursor: pointer;
 }
 
 #homeSection1{
@@ -356,7 +373,7 @@ textarea{
 }
 
 #videoWrapper{
-  border: 1px solid rgb(124, 223, 206);
+  border: 1px solid #c1c1c1;
   position: relative;
 }
 
@@ -370,6 +387,10 @@ textarea{
   border: 1px solid black; 
   margin: 0px;
   position:relative;
+}
+
+.stream-button{
+  cursor: pointer;
 }
 
 #chatcontent{
@@ -399,7 +420,7 @@ textarea{
 }
 
 .chat-tabs-selected{
-  background: rgb(124, 223, 206);
+  background: #c1c1c1;
   color: white;
 }
 
@@ -407,7 +428,7 @@ textarea{
   display: inline-block;
   width: 100px;
   text-align: center;
-  border: 1px solid rgb(124, 223, 206);
+  border: 1px solid #c1c1c1;
   border-bottom: none;
   padding: 0px;
   margin: 0px;
@@ -419,14 +440,18 @@ a{
   color:black;
 }
 
-#chatMessages, #hostMessages{
-  border: 1px solid rgb(124, 223, 206);
+#chatMessages, #hostMessages, #adminControls{
+  border: 1px solid #c1c1c1;
   width: 100%;
   margin: auto;
   height: 80%;
   font-size: 12px;
   padding-left: 5px;
   overflow-y: auto;
+}
+
+#adminControls{
+  height: 90%;
 }
 
 .message{
@@ -444,6 +469,7 @@ a{
 
 
 #chatTextBox{
+  max-height: 2em;
   width: 100%;
   margin: 3% 0 10px 0;
   outline: none;
@@ -455,7 +481,7 @@ input:focus{
 }
 
 #sendButton{
-  float:right;
+  display:none;
 }
 
 #genreNames{
@@ -491,12 +517,13 @@ input:focus{
 
 .eventTab{
   padding: 10px;
+  cursor: pointer;
 }
 
 .borderExtension{
   color: white;
   width: 100%;
-  padding-right: 2000px;
+  padding-right: 50%;
   border-bottom: 1px solid #C1C1C1;
   padding-bottom: 10px;
 }
@@ -511,21 +538,29 @@ input:focus{
   border-bottom: 1px solid #C1C1C1;
 }
 
+.filterLabel{
+  margin: 18px 0 0 36px;
+}
+
 .filterOptions{
   display: flex;
+}
+
+.dateFilter{
+  display: flex;
+  margin: 17px 0 0 17px;
+}
+
+.dateSelection{
+  margin-top: 5px;
 }
 
 .filterTextBoxes{
   margin-top: 22px;
 }
 
-.dateFilter{
-  display: flex;
-  margin: 18px;
-}
-
-.dateSelection{
-  margin-top: 5px;
+.filterInput{
+  margin-right: 30px;
 }
 
 .event{
@@ -587,9 +622,16 @@ input:focus{
   justify-content: space-around;
 }
 
-.showMoreEvents{
+.endOfResults, .showMoreEvents{
   text-align: center;
   padding: 60px;
+}
+
+.rsvp {
+  border: 1px solid;
+}
+
+.showMoreEvents{
   cursor: pointer;
 }
 

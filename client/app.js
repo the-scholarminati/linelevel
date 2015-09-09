@@ -21,10 +21,10 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
       templateUrl: './app/authentication/signin.html'
     })
     .state('userProfile', {
-      url: '/userProfile/:userId',
+      url: '/userProfile/:userName',
       templateUrl: './app/userProfile/userProfile.html',
       controller: function($scope, $stateParams){
-        $scope.userId = $stateParams.userId;
+        $scope.userName = $stateParams.userName;
       }
     })
     .state('oauth2callback', {
@@ -69,8 +69,19 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
     return ref.getAuth() !== null;
   };
 
+  // gets the user's username and sets it to the scope
+  // so we can route them to their profile from any page
+  $scope.userName;
+  $scope.userAuth = ref.getAuth();
+  if ($scope.userAuth){
+    appFactory.accessUserByUid($scope.userAuth.uid, function(userData){
+      $scope.userName = userData.val().username;
+    });
+  }
+
   $scope.signOut = function(){
     ref.unauth();
+    $scope.userAuth = null;
     $state.go('about');
   };
 
