@@ -21,31 +21,40 @@ angular.module('main')
 
   // important: must use "val" function on data return from these methods in order to access userData properties
   obj.accessUserByUid = function(uid,cb){
-    return this.auth(function(){
-      obj.firebase.child("users").child(uid).on("value", function(userData){
+    return this.auth(function(user){
+      var ref = obj.firebase.child("users").child(uid);
+      ref.on("value", function(userData){
         cb.call(this,userData);
+        ref.off();
       });
     });
   };
 
   obj.accessUserByUsername = function(username,cb){
     return this.auth(function(){
-      obj.firebase.child("usernames").child(username).on("value", function(user){
+      var ref = obj.firebase.child("usernames").child(username);
+      ref.on("value", function(user){
         uid = user.val().uid;
         obj.accessUserByUid(uid,cb);
+        ref.off();
       });
     });
   };
 
   // add user to "following" properties (users table)
-  obj.followUser = function(username){
+  obj.followUser = function(username,receiveNotification){
+    receiveNotification = receiveNotification === undefined ? true : receiveNotification;
     return this.auth(function(user){
       // necessary to make sure username given exists
       obj.accessUserByUsername(username,function(friendData){
         if(friendData !== null){
-          obj.firebase.child("users").child(user.uid).child("following").child(friendData.val().username)
+          friendData = friendData.val();
+          obj.firebase.child("users").child(user.uid).child("following").child(friendData.username)
             .set({
-              uid: friendData.val().uid
+              uid: friendData.uid
+          });
+          obj.firebase.child("users").child(friendData.uid).child("followers").child(user.uid).update({
+            notifications: receiveNotification
           });
         }
       });
@@ -57,6 +66,17 @@ angular.module('main')
   obj.unfollowUser = function(username){
     return this.auth(function(user){
       obj.firebase.child("users").child(user.uid).child("following").child(username).remove();
+      obj.removeUserFromFollowers(username,user.uid);
+    });
+  };
+
+  // DO NOT USE!!!! This is a helper function. Use "obj.unfollowUser" instead
+  obj.removeUserFromFollowers = function(username,uid){
+    obj.firebase.child("usernames").child(username).on("value",function(unfollowedUser){
+      if(unfollowedUser!== null){
+        unfollowedUid = unfollowedUser.val().uid;
+        obj.firebase.child("users").child(unfollowedUid).child("followers").child(uid).remove();
+      }
     });
   };
 
