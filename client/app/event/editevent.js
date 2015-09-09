@@ -82,7 +82,7 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
             $timeout(function(){
                 $(elem[0]).trigger('input');
                 // elem.trigger('input'); try this if above don't work
-            }, 200)
+            }, 200);
         }
-    }
+    };
 }]);
