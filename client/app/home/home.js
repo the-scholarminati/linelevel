@@ -20,7 +20,15 @@ angular.module('main')
       var data = snapshot.val();
       data.key = snapshot.key();
       appFactory.update($scope,function(){
-        $scope.events.push(data);  
+        $scope.events.push(data);
+
+        // if an event lacks a background image,
+        // set it to the default album image
+        $scope.events.forEach(function(event){
+          if (!event.image){
+            event.image = './assets/albumcover.png';
+          }
+        });
       });
     });
 
