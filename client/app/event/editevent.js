@@ -1,5 +1,5 @@
-angular.module('main').controller('editEventController',['$scope','$http', 'appFactory', '$rootScope',
-  function($scope,$http,appFactory){
+angular.module('main').controller('editEventController',['$scope','appFactory', '$firebase',
+  function($scope,appFactory,$firebase){
 
   var ref = appFactory.firebase;
   var user = ref.getAuth();
@@ -9,11 +9,18 @@ angular.module('main').controller('editEventController',['$scope','$http', 'appF
   $scope.chosenGenres = appFactory.chosenGenres;
   $scope.chooseGenre = appFactory.chooseGenre;
 
+  $scope.today = new Date();
+  $scope.date = appFactory.date;
+    // sets the date to today and time to 7pm with no seconds
+  appFactory.resetDate();
+  
+ 
+
   var init = function(){
       // load event data
       ref.child("events").child($scope.eventId)
         .on("value",function(info){
-          $scope.date = {};
+          
           var eventData = info.val();
           console.log(eventData);
           $scope.eventTitle = eventData.title;
@@ -21,23 +28,30 @@ angular.module('main').controller('editEventController',['$scope','$http', 'appF
           $scope.eventImage = eventData.image;
           $scope.eventLabel = eventData.label;
           $scope.genre = eventData.genre;
-
-          $scope.genre.forEach(function(genre){
-            genres.forEach(function(genres){
-              genres.name === genre ? genres.selected = true : genres.selected = false;
+          if($scope.genre){
+            $scope.genre.forEach(function(genre){
+              genres.forEach(function(genres){
+                genres.name === genre ? genres.selected = true : genres.selected = false;
+              });
             });
-          });
+          }
+          
 
           $scope.genres = genres;
-
-          var time = eventData.date;
-          time = new Date(time);
-          
-          $scope.date.eventDate = time;
+          $scope.date.eventDate = new Date(eventData.date);
+          // console.log($scope.genres);
+          // console.log($scope.genre);
         });
         
     };
 
+    $scope.saveChanges = function(){
+      console.log('save changes invoked');
+
+
+      // ref.child("events").child($scope.eventId).update({'videoId' : peer.id});
+      //   console.log(peer.id);
+    };
 
 
   $scope.isAuth = function(){
@@ -46,4 +60,15 @@ angular.module('main').controller('editEventController',['$scope','$http', 'appF
 
   init();
 
+}]).directive('autofill', ['$timeout', function ($timeout) {
+    return {
+        scope: true,
+        require: 'ngModel',
+        link: function (scope, elem, attrs, ctrl) {
+            $timeout(function(){
+                $(elem[0]).trigger('input');
+                // elem.trigger('input'); try this if above don't work
+            }, 200)
+        }
+    }
 }]);
