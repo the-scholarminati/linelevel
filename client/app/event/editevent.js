@@ -48,7 +48,6 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
           $scope.date.eventDate = new Date(eventData.date);
           // console.log($scope.genres);
           // console.log($scope.genre);
-
         });
         
     };
