@@ -5,6 +5,7 @@ body {
    margin: 0px;
    color: black;
    height: 100%;
+   background-color: #F2F2F2;
 }
 
 button {
@@ -262,6 +263,15 @@ input{
   padding-left: 10px;
   outline: none;
   transition: .5s;
+}
+
+h1{
+  display:inline-block;
+  font-size: 36px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  position: absolute;
+  top: -19px;
 }
 
 nav {
