@@ -38,7 +38,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       if(!initialized){
         initialized = !initialized;
         ref.off();
-        setTimeout(function(){alertActivated = true},1500);
+        setTimeout(function(){alertActivated = true;},1500);
 
         // load user data
         var userAuth = ref.getAuth();
@@ -70,7 +70,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
           message = message.val();
           appFactory.update($scope,function(scope){
             scope.event.messages.push(message);
-            if(alertActivated){
+            if(alertActivated && userData.username !== message.username){
               chatAlert.play();
             }
             if(message.username === scope.event.host){

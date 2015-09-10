@@ -454,7 +454,7 @@ textarea{
 
 #chatcontent{
   min-width: 300px;
-  max-width: 600px;
+  max-width: 450px;
   height: 30vw;
   max-height: 600px;
   flex-grow: 1;
@@ -517,13 +517,21 @@ a{
   margin-top: 10px;
 }
 
+.timestamp{
+  color: #aaa;
+}
+
 .message-user{
-  color: blue;
+  color: rgba(60,110,210,1);
+}
+
+.message-user>.timestamp{
+  color: rgba(60,110,210,.7);
 }
 
 .message-host{
   background: rgba(124, 223, 206,.5);
-  color: black;
+  color: #777;
 }
 
 
