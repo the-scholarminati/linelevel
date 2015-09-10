@@ -34,8 +34,8 @@
           <a ui-sref="home">
           <img src="./assets/logo_1.png"/ width="50px" height="50px"></a>
           <h1 id="header-title"><a ui-sref="home">Linelevel</a></h1>
-          
         </div>
+
         <div id="navigation-links">
           <nav>
             <img class="hamburgerIcon" src="./assets/hamburgericon.png" ng-click="showHamburgerMenuNow()">
@@ -58,8 +58,9 @@
         </div>
       </header>
     </div>
+<!-- Header Bar End -->
 
-
+<!-- Hamburger Menu Start -->
     <div ng-if="showHamburgerMenu" class="hamburgerMenu">
       <div ng-if="!auth()" class="hamburgerLink">
         <a ui-sref="signin">SIGN IN</a>
@@ -77,14 +78,11 @@
         <a ui-sref="about">ABOUT</a>
       </div>
     </div>
+<!-- Hamburger Menu End -->
 
-<!-- Header Bar End -->
-
-
+<!-- View Insertion Start -->
     <div ui-view></div>
-    
-    </div>
-
+<!-- View Insertion End -->
     
   </body>
 
