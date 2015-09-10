@@ -227,6 +227,8 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
           var video = document.getElementById("myVideo");
           console.log(URL.createObjectURL(stream));
           video.src = URL.createObjectURL(stream);
+          video.muted = false;
+          console.log(stream.getAudioTracks()[0]);
           window.localStream = stream;
         },
         function (error) { console.log(error); }
@@ -246,6 +248,8 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
           var video = document.getElementById("theirVideo");
           console.log('create object url' + URL.createObjectURL(stream));
           video.src = URL.createObjectURL(stream);
+          video.muted = false;
+          console.log(stream.getAudioTracks())
         });
       });
     };
