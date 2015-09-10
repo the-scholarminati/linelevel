@@ -448,6 +448,10 @@ textarea{
   position:relative;
 }
 
+#countDown{
+  line-height: 4em;
+}
+
 .stream-button{
   cursor: pointer;
 }
@@ -500,6 +504,7 @@ a{
 }
 
 #chatMessages, #hostMessages, #adminControls{
+  background: #f9f9f9;
   border: 1px solid #c1c1c1;
   width: 100%;
   margin: auto;

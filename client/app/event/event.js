@@ -12,12 +12,22 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     $scope.isSameUser = false;
     $scope.selectedChat = [1,0,0];
     $scope.countDown = 'loading...';
+    $scope.showCountDown = true;
     var chatEl     = document.getElementById('chatMessages');
     var hostChatEl = document.getElementById('hostMessages');
     var chatAlert = document.createElement('audio');
     chatAlert.setAttribute('src','../../assets/alert.wav');
     var alertActivated = false;
+    var streamActivated = false;
 
+    var hideCountDown = function(){
+      if(!streamActivated){
+        streamActivated = true;
+        appFactory.update($scope,function(scope){
+          scope.showCountDown = false;
+        });
+      }
+    };
 
     // window.console.log('eventId', $scope.eventId);
 
@@ -196,6 +206,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     CODE FOR LIVE STREAMING
     /////////////////////////////////////////////////////////////////////////////////////////////////////////*/
     $scope.startStream = function(){
+      hideCountDown();
       var peer = new Peer({key: '66p1hdx8j2lnmi',
                           debug: 3,
                           config: {'iceServers': [
@@ -243,6 +254,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       var conn = peer.connect($scope.event.videoId);
 
       peer.on('call', function (incomingCall) {
+        hideCountDown();
         incomingCall.answer(null);
         incomingCall.on('stream', function(stream){
           var video = document.getElementById("theirVideo");

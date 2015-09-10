@@ -8,7 +8,6 @@
         <div id="eventHost">
           hosted by <span id="eventHostName">{{event.host}}</span>
         </div>
-        <div id="countDown" ng-bind="countDown"></div>
       </div>
       <div id="chatToggle">
         <div id="showChat"><a href="javascript:void(0)" onclick="document.getElementById('hideChat').style.display='block';document.getElementById('showChat').style.display='none'" ng-click="toggleChat()">Show Chat</a></div>
@@ -31,13 +30,14 @@
 
     <div id="eventcontent">
       <div id="videoWrapper">
+        <div ng-if="showCountDown" id="countDown" ng-bind="countDown"></div>
         <video id="myVideo" muted="false" class="myVideo" autoplay ng-show="isSameUser" width="640" height="390"></video>
         <video id="theirVideo" defaultMuted="false" class="theirVideo" autoplay ng-show="isSameUser == false" width="640" height="390"></video>
         <!-- <div id="ytplayer"></div>
         <span class="video"></span> -->
-      </div><!--
+      </div>
 
-   --><div id="chatcontent" ng-show="chatVisible">
+      <div id="chatcontent" ng-show="chatVisible">
         <div id="chat-tabs">
           <div class="chat-tabs" ng-class="{'chat-tabs-selected':selectedChat[0]}" ng-click="selectTab(0)">All</div><!--
        --><div class="chat-tabs" ng-class="{'chat-tabs-selected':selectedChat[1]}" ng-click="selectTab(1)">Host</div><!--
