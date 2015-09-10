@@ -4,6 +4,11 @@ angular.module('main')
 
 .controller('userProfileController',['$scope', 'appFactory',
   function($scope, appFactory){
+    $scope.myProfile = true;
+    
+    if($scope.userName !== appFactory.user){
+      $scope.myProfile = false;
+    }
     $scope.followers = [];
 
     $scope.followUser = function(){

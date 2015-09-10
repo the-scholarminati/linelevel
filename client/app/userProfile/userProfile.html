@@ -30,7 +30,7 @@
       </div>
 
       <!-- //followers section -->
-      <div id="userInfo">
+      <div id="userInfo" ng-if="myProfile">
       <h2>Following</h2>
         <div ng-repeat="user in followers track by $index">
         {{user.username}}
@@ -47,9 +47,9 @@
       <h2>
         Events:
       </h2>
-        <div ng-repeat="event in uData.myEvents[0] track by $index">
+        <div ng-repeat="(key, event) in uData.myEvents[0] track by $index">
           <button class="rsvp">
-          <a href="#/event/{{event}}">{{event.title}}</a> by 
+          <a href="#/event/{{key}}">{{event.title}}</a> by 
           <a href="#/userProfile/{{event.host}}">{{event.host}}</a>
           </button>
         </div>
