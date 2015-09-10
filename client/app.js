@@ -77,6 +77,8 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
     appFactory.accessUserByUid($scope.userAuth.uid, function(userData){
       appFactory.update($scope,function(scope){
         $scope.userName = userData.val().username;
+        appFactory.user = userData.val().username;
+        console.log("app user assignment" + appFactory.user);
       });
     });
   }
@@ -84,6 +86,7 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   $scope.signOut = function(){
     ref.unauth();
     $scope.userAuth = null;
+    appFactory.user = null;
     $state.go('about');
   };
 
