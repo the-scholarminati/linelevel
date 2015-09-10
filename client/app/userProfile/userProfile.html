@@ -29,32 +29,22 @@
         </div>
       </div>
 
-      <!-- //followers section -->
-      <div id="userInfo" ng-if="myProfile">
-      <h2>Following</h2>
-        <div ng-repeat="user in followers track by $index">
-        {{user.username}}
-        </div>
-      </div>
-
-
       <!-- User feed -->
       <div id="userFeed">
-      <div>
-        User Feed
-      </div>
-
       <h2>
-        Events:
+        Events
       </h2>
         <div ng-repeat="(key, event) in uData.myEvents[0] track by $index">
-          <button class="rsvp">
+          <button class="rsvp eventsBtn" >
           <a href="#/event/{{key}}">{{event.title}}</a> by 
           <a href="#/userProfile/{{event.host}}">{{event.host}}</a>
           </button>
         </div>
+      </div>
 
-        <div>Wall:</div>
+      <!-- Wall Section -->
+      <div id="userWall">
+        <h2>Wall</h2>
 
         <div>Anonymous: asdfasdf</div>
         <div>Anonymous: asdfasdf</div>
@@ -63,7 +53,15 @@
 
         <textarea></textarea>
         <button>Submit</button>
-
       </div>
+
+       <!-- followers section -->
+      <div id="following" ng-if="myProfile">
+      <h2>Following</h2>
+        <div ng-repeat="user in followers track by $index">
+        <a href="#/userProfile/{{user.username}}">{{user.username}}</a>
+        </div>
+      </div>
+
   </div>
 </section>
