@@ -261,7 +261,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
           console.log('create object url' + URL.createObjectURL(stream));
           video.src = URL.createObjectURL(stream);
           video.muted = false;
-          console.log(stream.getAudioTracks())
+          console.log(stream.getAudioTracks());
         });
       });
     };

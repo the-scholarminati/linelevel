@@ -474,11 +474,16 @@ textarea{
   background-color: #E69F9D;
 }
 
+/*///////////////////////////////////////////////*/
+/*///////////////  Chat Styling  ////////////////*/
+/*///////////////////////////////////////////////*/
+
 #chatcontent{
   min-width: 300px;
   max-width: 450px;
   height: 30vw;
-  max-height: 600px;
+  min-height: 456px;
+  max-height: 456px;
   flex-grow: 1;
   margin: 20px;
 }
@@ -526,7 +531,7 @@ a{
   border: 1px solid #c1c1c1;
   width: 100%;
   margin: auto;
-  height: 80%;
+  height: 85%;
   font-size: 12px;
   padding-left: 5px;
   overflow-y: auto;
@@ -544,7 +549,12 @@ a{
   color: #aaa;
 }
 
-.message-user{
+.message-host{
+  background: rgba(124, 223, 206,.5);
+  color: #777;
+}
+
+.message-user, .message-user a{
   color: rgba(60,110,210,1);
 }
 
@@ -552,9 +562,9 @@ a{
   color: rgba(60,110,210,.7);
 }
 
-.message-host{
-  background: rgba(124, 223, 206,.5);
-  color: #777;
+
+.chat-username{
+  text-decoration: none;
 }
 
 
@@ -660,8 +670,6 @@ input:focus{
   background-size: 100%;
   overflow: hidden;
   position:relative;
-  border: 10px solid white;
-  border-radius: 5px;
 }
 
 .eventBackdrop{

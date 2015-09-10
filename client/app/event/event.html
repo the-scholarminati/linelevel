@@ -51,24 +51,26 @@
 
         <div ng-hide="!selectedChat[0]" id="chatMessages">
           <div ng-repeat="message in event.messages" class="message" ng-class="{'message-host': isHost(message), 'message-user': isUser(message)}">
-            <div class="timestamp" ng-bind="chatTime(message.timestamp)"></div><b>{{message.username}}: </b> {{message.message}}
+            <div class="timestamp" ng-bind="chatTime(message.timestamp)"></div><a class="chat-username" href="#/userProfile/{{message.username}}"><b>{{message.username}}: </b></a> {{message.message}}
           </div>
         </div>
 
         <div ng-hide="!selectedChat[1]" id="hostMessages">
           <div ng-repeat="message in event.hostMessages" class="message"><div ng-bind="chatTime(message.timestamp)"></div><b>{{message.username}}: </b> {{message.message}}</div>
-
         </div>
-        <div><form name="submitMessage" ng-submit="sendMessage()" ng-hide="selectedChat[2]">
-        <input type="text" placeholder="Enter your message..." ng-model="userText" id="chatTextBox">
 
-        </div>
-        
         <div ng-hide="!selectedChat[2]" id="adminControls">
-          
- 
         </div>
+
+        <div> 
+          <form name="submitMessage" ng-submit="sendMessage()" ng-hide="selectedChat[2]">
+            <input type="text" placeholder="Enter your message..." ng-model="userText" id="chatTextBox">
+          </form>
+        </div>
+
       </div>
+        
+
     </div>
   </div>
 </section>
