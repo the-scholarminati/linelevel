@@ -730,6 +730,17 @@ input:focus{
   flex-flow: column nowrap;
 }
 
+#userInfo img{
+  height: 230px;
+  max-width: 230px;
+  margin: 10px auto;
+  border-radius: 50%;
+}
+
+.profileInfo{
+  padding: 5px 20px;
+}
+
 #userFeed{
   border: 1px solid black;
   display: flex;

@@ -43,6 +43,7 @@ angular.module('main')
         var userProfile = ref.child('users').child(snap.val().uid);
         userProfile.on('value', function(snap){
           appFactory.update($scope, function(scope){
+            scope.uData.image = snap.val().image;
             scope.uData.username = snap.val().username;
             scope.uData.firstname = snap.val().firstname;
             scope.uData.lastname = snap.val().lastname;
