@@ -116,6 +116,14 @@ h1{
   padding-left: 15px;
 }
 
+#header-title{
+  display:inline-block;
+  font-size: 36px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  position: absolute;
+}
+
 h2{
   color: #9FA3A3;
 }
@@ -265,14 +273,6 @@ input{
   transition: .5s;
 }
 
-h1{
-  display:inline-block;
-  font-size: 36px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  position: absolute;
-  top: -19px;
-}
 
 nav {
   margin: 0px;
