@@ -136,6 +136,7 @@ h2{
 }
 
 .hamburgerMenu{
+  z-index: 10;
   position: absolute;
   top: 40px;
   right: 0px;
@@ -642,6 +643,8 @@ input:focus{
   background-size: 100%;
   overflow: hidden;
   position:relative;
+  border: 10px solid white;
+  border-radius: 5px;
 }
 
 .eventBackdrop{
@@ -701,6 +704,7 @@ input:focus{
 
 .rsvp {
   border: 1px solid;
+  cursor: pointer;
 }
 
 .showMoreEvents{

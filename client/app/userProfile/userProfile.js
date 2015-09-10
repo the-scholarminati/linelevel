@@ -9,11 +9,12 @@ angular.module('main')
     if($scope.userName !== appFactory.user){
       $scope.myProfile = false;
     }
+
     $scope.followers = [];
 
     $scope.followUser = function(){
-        appFactory.followUser($scope.userName, true);
-      };
+      appFactory.followUser($scope.userName, true);
+    };
 
     $scope.following = function(list, cb){
       angular.forEach(list, function(user){

@@ -27,6 +27,10 @@
     <div ng-show="!isSameUser">
       <button class="stream-button" ng-click="loadStream();">load stream</button>
     </div>
+    <div ng-show="isSameUser">
+      <button class="stream-button" ng-click="startStream();">start stream</button>
+      <button class="stream-button" ng-click="editEvent();">Edit Event</button>
+    </div>
 
     <div id="eventcontent">
       <div id="videoWrapper">
@@ -60,10 +64,6 @@
         </div>
         
         <div ng-hide="!selectedChat[2]" id="adminControls">
-          <div ng-show="isSameUser">{{isSameUser}}
-            <button class="stream-button" ng-click="startStream();">start stream</button>
-            <button class="stream-button" ng-click="editEvent();">Edit Event</button>
-          </div>
         </div>
 
 
