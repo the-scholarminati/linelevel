@@ -4,18 +4,36 @@ angular.module('main')
 
 .controller('userProfileController',['$scope', 'appFactory',
   function($scope, appFactory){
+    $scope.followers = [];
+
+    $scope.followUser = function(){
+        appFactory.followUser($scope.userName, true);
+      };
+
+    $scope.following = function(list, cb){
+      angular.forEach(list, function(user){
+        cb(user.uid);
+      });
+    };
 
     if(appFactory.auth() === true){
-      $scope.uData = {};
-      $scope.uData.events = [];
-      $scope.uData.eventIds = [];
-
       var ref = appFactory.firebase;
 
-      var userRef = ref.child('usernames').child($scope.userName); //$scope.userName
-      userRef.on('value', function(snap) {
-        console.log('I fetched a user!', snap.val().uid);
+      //who you follow list
+      appFactory.getUserFollowList(function(list){
+        //retrieve follower info
+        angular.forEach(list, function(item){
+          appFactory.firebase.child('users').child(item.uid).on('value', function(snap){
+            $scope.followers.push(snap.val());
+          });
+        });
+      });
 
+      $scope.uData = {};
+      $scope.uData.eventIds = [];
+      $scope.uData.myEvents = [];
+
+      appFactory.accessUserByUsername($scope.userName, function(snap){
         var userProfile = ref.child('users').child(snap.val().uid);
         userProfile.on('value', function(snap){
           appFactory.update($scope, function(scope){
@@ -24,21 +42,14 @@ angular.module('main')
             scope.uData.lastname = snap.val().lastname;
             scope.uData.email = snap.val().email;
             scope.uData.genres = snap.val().chosenGenres;
-            scope.uData.eventIds = snap.val().currentEvents;
-
-            var eventIds = scope.uData.eventIds;
-            console.log(scope.uData);
-            angular.forEach(eventIds, function(eventId){
-              ref.child('events').child(eventId).on('value', function(snap){
-                scope.uData.events = snap.val();
-                console.log(scope.uData.events);
-                
-              });
-            });
+            scope.uData.myEvents.push(snap.val().currentEvents);
           });
         });
       });
+
+
     }
+
 
 
 
