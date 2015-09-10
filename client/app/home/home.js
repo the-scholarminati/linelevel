@@ -32,14 +32,10 @@ angular.module('main')
       });
     });
 
-    $scope.saveDate = function(eventKey){
-      var list = [];
-      var userRef = ref.child('users').child('currentEvents');
-      userRef.on('value', function(snap){
-        list = snap.val();
-      });
-      list.push(eventKey);
-      userRef.set(list);
+    $scope.saveDate = function(title, host, eventKey){
+      $scope.list = [];
+      userRef = ref.child('users').child(ref.getAuth().uid);
+      userRef.child('currentEvents').child(eventKey).update({title: title, host: host });
     };
 
 

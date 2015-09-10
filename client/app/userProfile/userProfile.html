@@ -3,6 +3,7 @@
     <div class="pageTitle">
       <div style="display:flex; flex-flow: row nowrap">
       <h1>{{userName}}</h1>
+      <button ng-click="followUser()">Follow</button>
       </div>
       </div>
       <div class="line"></div>
@@ -27,6 +28,17 @@
         Email: {{uData.email}}
         </div>
       </div>
+
+      <!-- //followers section -->
+      <div id="userInfo">
+      <h2>Following</h2>
+        <div ng-repeat="user in followers track by $index">
+        {{user.username}}
+        </div>
+      </div>
+
+
+      <!-- User feed -->
       <div id="userFeed">
       <div>
         User Feed
@@ -35,8 +47,12 @@
       <h2>
         Events:
       </h2>
-        <div ng-repeat="event in events">Something</div>
-       
+        <div ng-repeat="event in uData.myEvents[0] track by $index">
+          <button class="rsvp">
+          <a href="#/event/{{event}}">{{event.title}}</a> by 
+          <a href="#/userProfile/{{event.host}}">{{event.host}}</a>
+          </button>
+        </div>
 
         <div>Wall:</div>
 
