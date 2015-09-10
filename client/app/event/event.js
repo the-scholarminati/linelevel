@@ -59,9 +59,9 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
             $scope.event.videoId = eventData.videoId;
             $scope.event.date = eventData.date;
             appFactory.update($scope,function(scope){
-              $scope.isSameUser = userData.username === $scope.event.host ? true : false;
+              $scope.isSameUser = appFactory.user === $scope.event.host ? true : false;
             });
-          console.log(userData.username +  $scope.event.host + $scope.isSameUser);
+          console.log(appFactory.user +  $scope.event.host + $scope.isSameUser);
         });
 
         // load chat data and set chat listener
