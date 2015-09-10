@@ -119,6 +119,44 @@ h2{
   color: #9FA3A3;
 }
 
+.hamburgerIcon{
+  width: 30px;
+  margin-right: 18px;
+  margin-top: 9px;
+  cursor: pointer;
+}
+
+.hamburgerMenu{
+  position: absolute;
+  top: 40px;
+  right: 0px;
+  background-color: rgba(0,0,0,0.8);
+  padding: 20px;
+  text-align: right;
+  font-weight: 900;
+  width: 100%;
+  height: 100%;
+}
+
+.hamburgerLink a{
+  color: fuchsia;
+  text-decoration: none;
+  font-size: 50px;
+  line-height: 2em;
+}
+
+@media (min-width: 700px){
+  .hamburgerIcon, .hamburgerMenu{
+    display: none;
+  }
+}
+
+@media (max-width: 700px){
+  .navLink{
+    display: none;
+  }
+}
+
 .navLink{
   height: 30px;
   text-align: center;
@@ -131,11 +169,7 @@ h2{
   color: white;
 }
 
-.signout{
-  width: 100px;
-}
-
-.signIn:hover, .signout:hover{
+.navLink:hover{
   text-decoration: none;
   background-color: #5A585B;
 }

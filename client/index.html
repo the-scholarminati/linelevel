@@ -33,7 +33,7 @@
       <header>
         <a ui-sref="home"><h1>Linelevel</a></h1>
         <nav>
-          <img class="hamburgerIcon" src="./assets/hamburgericon.png">
+          <img class="hamburgerIcon" src="./assets/hamburgericon.png" ng-click="showHamburgerMenuNow()">
         </nav>
         <nav>
           <div ng-if="!auth()" class="navLink"><a ui-sref="signin">SIGN IN</a></div>
@@ -54,6 +54,24 @@
           <div class="navLink"><a ui-sref="about">ABOUT</a></div>
         </nav>
       </header>
+    </div>
+
+    <div ng-if="showHamburgerMenu" class="hamburgerMenu">
+      <div ng-if="!auth()" class="hamburgerLink">
+        <a ui-sref="signin">SIGN IN</a>
+      </div>
+      <div ng-if="auth()" class="hamburgerLink" ng-click="signOut()">
+        <a href="#">SIGN OUT</a>
+      </div>
+      <div ng-if="auth()" class="hamburgerLink">
+        <a ui-sref="userProfile({userName: userName})">PROFILE</a>
+      </div>
+      <div ng-if="auth()" class="hamburgerLink">
+        <a ui-sref="createEvent">CREATE EVENT</a>
+      </div>
+      <div class="hamburgerLink">
+        <a ui-sref="about">ABOUT</a>
+      </div>
     </div>
 
 <!-- Header Bar End -->

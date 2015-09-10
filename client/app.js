@@ -90,6 +90,12 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
     $state.go('about');
   };
 
+
+  $scope.showHamburgerMenu = false;
+  $scope.showHamburgerMenuNow = function(){
+    $scope.showHamburgerMenu = !$scope.showHamburgerMenu;
+  };
+
   // download the data into a local object
   var syncObject = $firebaseObject(ref);
 
