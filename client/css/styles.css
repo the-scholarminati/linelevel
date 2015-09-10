@@ -33,6 +33,51 @@ button:enabled:hover{
   background-color: #80EBD8;
 }
 
+.container{
+  padding-top: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+
+}
+
+.line{
+  position: relative;
+  top: -30px;
+  width: 100%;
+  height: 1px;
+  background-color: black;
+}
+
+
+/******************************
+  Dropdown styling 
+******************************/
+
+.dropDownLink{
+  cursor: pointer;
+}
+
+.dropDownLink img{
+  width: 20px;
+  margin: 0 0 2px 5px;
+}
+
+.dropDownMenu{
+  position: absolute;
+  background-color: #D6D6D6;
+  padding: 10px;
+  z-index: 3;
+}
+
+.dropDownMenu li{
+  cursor: pointer;
+}
+
+
+/******************************
+  Header styling 
+******************************/
+
 /*.headerbar{
     width: 100%;
   height: 40px;
@@ -63,8 +108,53 @@ header a:hover{
 
 }
 
+h1{
+  display:inline-block;
+  font-size: 36px;
+  margin-top: 5px;
+  padding-left: 15px;
+}
+
 h2{
   color: #9FA3A3;
+}
+
+.hamburgerIcon{
+  width: 30px;
+  margin-right: 18px;
+  margin-top: 9px;
+  cursor: pointer;
+}
+
+.hamburgerMenu{
+  position: absolute;
+  top: 40px;
+  right: 0px;
+  background-color: rgba(0,0,0,0.8);
+  padding: 20px;
+  text-align: right;
+  font-weight: 900;
+  width: 100%;
+  height: 100%;
+}
+
+.hamburgerLink a{
+  color: fuchsia;
+  text-decoration: none;
+  font-size: 50px;
+  line-height: 2em;
+}
+
+@media (min-width: 700px){
+  .hamburgerIcon, .hamburgerMenu{
+    display: none;
+  }
+}
+
+@media (max-width: 700px){
+  .navLink{
+    display: none;
+  }
 }
 
 .navLink{
@@ -79,11 +169,7 @@ h2{
   color: white;
 }
 
-.signout{
-  width: 100px;
-}
-
-.signIn:hover, .signout:hover{
+.navLink:hover{
   text-decoration: none;
   background-color: #5A585B;
 }
@@ -178,13 +264,6 @@ input{
   transition: .5s;
 }
 
-h1{
-  display:inline-block;
-  font-size: 36px;
-  margin-top: 5px;
-  padding-left: 15px;
-}
-
 nav {
   margin: 0px;
   float: right;
@@ -229,11 +308,10 @@ ul {
   overflow: auto;
 }*/
 
+/******************************
+  About page styling 
+******************************/
 
-#homeSection1{
-  background-image: url(http://blogs-images.forbes.com/ryanmac/files/2014/12/calvinharris2-e1418487863601.jpeg);
-  background-size: 100% 100%;
-}
 .about{
   width: 100%;
   height: 100%;
@@ -244,25 +322,6 @@ ul {
   font-weight: 900;
 }
 
-.dropDownLink{
-  cursor: pointer;
-}
-
-.dropDownLink img{
-  width: 20px;
-  margin: 0 0 2px 5px;
-}
-
-.dropDownMenu{
-  position: absolute;
-  background-color: #D6D6D6;
-  padding: 10px;
-  z-index: 3;
-}
-
-.dropDownMenu li{
-  cursor: pointer;
-}
 
 #homeSection1{
   background-image: url("../assets/djshow.jpeg");
@@ -289,20 +348,10 @@ ul {
   background-size: 100%;
 }
 
-.container{
-  padding-top: 5%;
-  padding-left: 5%;
-  padding-right: 5%;
 
-}
-
-.line{
-  position: relative;
-  top: -30px;
-  width: 100%;
-  height: 1px;
-  background-color: black;
-}
+/******************************
+  Form styling 
+******************************/
 
 #eventContainer input{
   width: 175px;
@@ -697,5 +746,3 @@ input:focus{
   opacity:0;
   height: 0px;
 }
-
-
