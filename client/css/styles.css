@@ -136,6 +136,7 @@ h2{
 }
 
 .hamburgerMenu{
+  z-index: 10;
   position: absolute;
   top: 40px;
   right: 0px;
@@ -448,13 +449,17 @@ textarea{
   position:relative;
 }
 
+#countDown{
+  line-height: 4em;
+}
+
 .stream-button{
   cursor: pointer;
 }
 
 #chatcontent{
   min-width: 300px;
-  max-width: 600px;
+  max-width: 450px;
   height: 30vw;
   max-height: 600px;
   flex-grow: 1;
@@ -500,6 +505,7 @@ a{
 }
 
 #chatMessages, #hostMessages, #adminControls{
+  background: #f9f9f9;
   border: 1px solid #c1c1c1;
   width: 100%;
   margin: auto;
@@ -517,13 +523,21 @@ a{
   margin-top: 10px;
 }
 
+.timestamp{
+  color: #aaa;
+}
+
 .message-user{
-  color: blue;
+  color: rgba(60,110,210,1);
+}
+
+.message-user>.timestamp{
+  color: rgba(60,110,210,.7);
 }
 
 .message-host{
   background: rgba(124, 223, 206,.5);
-  color: black;
+  color: #777;
 }
 
 
@@ -629,6 +643,8 @@ input:focus{
   background-size: 100%;
   overflow: hidden;
   position:relative;
+  border: 10px solid white;
+  border-radius: 5px;
 }
 
 .eventBackdrop{
@@ -688,6 +704,7 @@ input:focus{
 
 .rsvp {
   border: 1px solid;
+  cursor: pointer;
 }
 
 .showMoreEvents{
