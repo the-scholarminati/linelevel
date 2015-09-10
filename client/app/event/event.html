@@ -51,7 +51,7 @@
 
         <div ng-hide="!selectedChat[0]" id="chatMessages">
           <div ng-repeat="message in event.messages" class="message" ng-class="{'message-host': isHost(message), 'message-user': isUser(message)}">
-            <div class="timestamp" ng-bind="chatTime(message.timestamp)"></div><b>{{message.username}}: </b> {{message.message}}
+            <div class="timestamp" ng-bind="chatTime(message.timestamp)"></div><a class="chat-username" href="#/userProfile/{{message.username}}"><b>{{message.username}}: </b></a> {{message.message}}
           </div>
         </div>
 
