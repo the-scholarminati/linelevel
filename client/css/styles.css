@@ -714,9 +714,21 @@ input:focus{
   justify-content: space-around;
 }
 
+.eventsBtn {
+  width: 100%;
+}
+
 .endOfResults, .showMoreEvents{
   text-align: center;
   padding: 60px;
+}
+
+#following {
+  border: 1px solid black;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 10%;
+  text-align: center;
 }
 
 .rsvp {
@@ -751,10 +763,17 @@ input:focus{
   border: 1px solid black;
   display: flex;
   flex-flow: column nowrap;
-  width: 60%;
+  width: 25%;
   text-align: center;
 }
 
+#userWall{
+  border: 1px solid black;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 30%;
+  text-align: center;
+}
 #ytplayer{
   width: 640px;
   height: 390px;
