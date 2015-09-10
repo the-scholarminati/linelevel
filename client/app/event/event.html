@@ -25,17 +25,13 @@
 
 
     <div ng-show="!isSameUser">
-      <button class="stream-button" ng-click="loadStream();">Load Dtream</button>
+      <button class="stream-button" ng-click="loadStream();">Load Stream</button>
     </div>
     <div ng-show="isSameUser">
-      <button class="stream-button" ng-click="startStream();">start stream</button>
+      <button class="stream-button" ng-click="startStream();">Start Stream</button>
       <button class="stream-button" ng-click="editEvent();">Edit Event</button>
+      <button class="stream-button" ng-click="stopStream();" id="stop-stream-button">Stop Stream</button>
     </div>
-
-  <div ng-show="isSameUser">{{isSameUser}}
-    <button class="stream-button" ng-click="startStream();">Start Stream</button>
-    <button class="stream-button" ng-click="editEvent();">Edit Event</button>
-  </div>
 
     <div id="eventcontent">
       <div id="videoWrapper">
@@ -69,38 +65,9 @@
         </div>
         
         <div ng-hide="!selectedChat[2]" id="adminControls">
-          <form name="createEventForm" ng-submit="submitCreateEventForm()" novalidate>
-            <div id="createEventForm">
-              <div class='formInputs'>
-                <div class="formItem">
-                  Event:<br> 
-                  <input type="text" placeholder="Name of your Event" data-ng-model="eventTitle" required>
-                </div>
-                <div class="formItem">
-                  Description: <br> 
-                  <textarea placeholder="Quick blurb about your event..." data-ng-model="eventDescription" required></textarea>
-                </div>
-                <div class="formItem">
-                  Event Date: <br> 
-                  <input type="date" placeholder="today" data-ng-model="date.eventDate" min="{{today | date:'yyyy-MM-dd'}}" required>
-                </div>
-                <div class="formItem">
-                  Start Time: <br> 
-                  <input type="time" placeholder="HH:mm" data-ng-model="date.eventDate" required>
-                </div>
-                <div class="formItem">
-                  Cover Image: <br> 
-                  <input type="url" placeholder="http://" data-ng-model="eventImage">
-                </div>
-                <div class="formItem">
-                  Record Label: <br> 
-                  <input type="text" placeholder="Name of Label" data-ng-model="eventLabel">
-                </div>
-              </div>
-
+          
+ 
         </div>
-        </div>
-
       </div>
     </div>
   </div>

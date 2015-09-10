@@ -266,6 +266,15 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       });
     };
 
+    $scope.stopStream = function(){
+      if(window.localStream){
+        window.localStream.stop();
+      }else{
+        console.log("You must be streaming to stop a stream!");
+      }
+      
+    };
+
     $scope.$watch('$scope.event.videoId', function loadVideo(a,b){
       if($scope.isSameUser !== true){
         $scope.loadStream();

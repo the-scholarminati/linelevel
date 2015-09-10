@@ -452,11 +452,19 @@ textarea{
 }
 
 #countDown{
-  line-height: 4em;
+  height: 20%;
+  width: 100%;
+  text-align: center;
+  top: 40%;
+  position: absolute;
 }
 
 .stream-button{
   cursor: pointer;
+}
+
+#stop-stream-button{
+  background-color: #E69F9D;
 }
 
 #chatcontent{
