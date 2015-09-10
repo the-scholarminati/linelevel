@@ -5,7 +5,9 @@ body {
    margin: 0px;
    color: black;
    height: 100%;
-   background-color: #F2F2F2;
+   background: linear-gradient(to bottom, white, white, #E6E6E6);
+   background-attachment: fixed;
+
 }
 
 button {
@@ -637,7 +639,7 @@ input:focus{
 }
 
 .event{
-  margin: 20px;
+  margin: 20px 0px 20px 0px;
   width: 175px;
   height: 175px;
   background-size: 100%;
