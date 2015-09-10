@@ -300,7 +300,5 @@ describe('home controller', function(){
       });
     });
   });
-
-
   
 });
