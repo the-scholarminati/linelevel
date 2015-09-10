@@ -24,10 +24,6 @@
     <!-- host admin panel for setting up the stream -->
     <!-- can we call the method on the factory? might need to set that method in the scope to call it here -->
 
-    <div ng-show="isSameUser">{{isSameUser}}
-      <button class="stream-button" ng-click="startStream();">start stream</button>
-      <button class="stream-button" ng-click="editEvent();">Edit Event</button>
-    </div>
 
     <div ng-show="!isSameUser">
       <button class="stream-button" ng-click="loadStream();">load stream</button>
@@ -58,6 +54,10 @@
         </div>
 
         <div ng-hide="!selectedChat[2]" id="adminControls">
+          <div ng-show="isSameUser">{{isSameUser}}
+            <button class="stream-button" ng-click="startStream();">start stream</button>
+            <button class="stream-button" ng-click="editEvent();">Edit Event</button>
+          </div>
         </div>
         
         <form ng-hide="selectedChat[2]" name="submitMessage" ng-submit="sendMessage()">
