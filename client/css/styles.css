@@ -610,6 +610,12 @@ input:focus{
   Home page styling 
 ******************************/
 
+#event-title{
+  text-align: center;
+  width: 100%;
+  height: 50px;
+  padding-top: 10px;
+}
 .eventTabs{
   padding: 10px;
   margin: 25px;

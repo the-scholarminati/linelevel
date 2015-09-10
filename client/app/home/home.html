@@ -49,8 +49,9 @@
       <div ng-repeat="event in filteredEvents(events) | orderBy: 'date': isReverse | limitTo: numLimit" class="event fade-list" style="background-image: url({{event.image}})" mouse-over>
 
         <div class="eventInfo">
-
-          <p><a href="#/event/{{event.key}}">{{event.title}}</a></p>
+          <div id="event-title">
+            <a href="#/event/{{event.key}}">{{event.title}}</a>
+          </div>
           <p>by <a href="#/userProfile/{{event.host}}">{{event.host}}</a>
           - <button class="rsvp" ng-click="saveDate(event.title, event.host, event.key)">RSVP Now</button>
           </p>
