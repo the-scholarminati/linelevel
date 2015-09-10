@@ -13,6 +13,10 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     $scope.countDown = 'loading...';
     var chatEl     = document.getElementById('chatMessages');
     var hostChatEl = document.getElementById('hostMessages');
+    var chatAlert = document.createElement('audio');
+    chatAlert.setAttribute('src','../../assets/alert.wav');
+    var alertActivated = false;
+
 
     // window.console.log('eventId', $scope.eventId);
 
@@ -33,6 +37,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       if(!initialized){
         initialized = !initialized;
         ref.off();
+        setTimeout(function(){alertActivated = true},1500);
 
         // load user data
         var userAuth = ref.getAuth();
@@ -64,6 +69,9 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
           message = message.val();
           appFactory.update($scope,function(scope){
             scope.event.messages.push(message);
+            if(alertActivated){
+              chatAlert.play();
+            }
             if(message.username === scope.event.host){
               scope.event.hostMessages.push(message);
             }
