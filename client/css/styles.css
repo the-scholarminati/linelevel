@@ -96,9 +96,16 @@ header{
   padding-left: 10px;
   color:white;
   position: fixed;
+  display: flex;
+  flex-flow: row nowrap;
   top: 0px;
   left: 0px;
   z-index: 9999;
+  justify-content: space-between;
+}
+#logo-and-title{
+  display:flex;
+  flex-flow: row;
 }
 
 header a:visited, header a:link, header a:active{

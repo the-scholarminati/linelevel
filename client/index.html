@@ -31,28 +31,35 @@
 <!-- Header Bar start -->
     <div class="headerbar" width="100%">
       <header>
-        <a ui-sref="home"><img src="./assets/logo_1.png"/ width="50px" height="50px"><h1 id="header-title">Linelevel</h1></a>
-        <nav>
-          <img class="hamburgerIcon" src="./assets/hamburgericon.png" ng-click="showHamburgerMenuNow()">
-        </nav>
-        <nav>
-          <div ng-if="!auth()" class="navLink"><a ui-sref="signin">SIGN IN</a></div>
-        </nav>
-        <nav>
-          <div ng-if="auth()" class="navLink" ng-click="signOut()"><a href="#">SIGN OUT</a></div>
-          <!-- the following code is the old link for the sign-in pop up -->
-          <!-- <div class="signIn"><a href="javascript:void(0)" onclick="document.getElementById('popUpSignIn').style.display='block'">SIGN IN</a>
-          </div> -->
-        </nav>
-        <nav>
-          <div ng-if="auth()" class="navLink"><a ui-sref="userProfile({userName: userName})">PROFILE</a></div>
-        </nav>
-        <nav>
-          <div ng-if="auth()" class="navLink"><a ui-sref="createEvent">CREATE EVENT</a></div>
-        </nav>
-        <nav>
-          <div class="navLink"><a ui-sref="about">ABOUT</a></div>
-        </nav>
+        <div id="logo-and-title">
+          <a ui-sref="home">
+          <img src="./assets/logo_1.png"/ width="50px" height="50px"></a>
+          <h1 id="header-title"><a ui-sref="home">Linelevel</a></h1>
+          
+        </div>
+        <div id="navigation-links">
+          <nav>
+            <img class="hamburgerIcon" src="./assets/hamburgericon.png" ng-click="showHamburgerMenuNow()">
+          </nav>
+          <nav>
+            <div ng-if="!auth()" class="navLink"><a ui-sref="signin">SIGN IN</a></div>
+          </nav>
+          <nav>
+            <div ng-if="auth()" class="navLink" ng-click="signOut()"><a href="#">SIGN OUT</a></div>
+            <!-- the following code is the old link for the sign-in pop up -->
+            <!-- <div class="signIn"><a href="javascript:void(0)" onclick="document.getElementById('popUpSignIn').style.display='block'">SIGN IN</a>
+            </div> -->
+          </nav>
+          <nav>
+            <div ng-if="auth()" class="navLink"><a ui-sref="userProfile({userName: userName})">PROFILE</a></div>
+          </nav>
+          <nav>
+            <div ng-if="auth()" class="navLink"><a ui-sref="createEvent">CREATE EVENT</a></div>
+          </nav>
+          <nav>
+            <div class="navLink"><a ui-sref="about">ABOUT</a></div>
+          </nav>
+        </div>
       </header>
     </div>
 
