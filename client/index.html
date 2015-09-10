@@ -46,9 +46,6 @@
           </nav>
           <nav>
             <div ng-if="auth()" class="navLink" ng-click="signOut()"><a href="#">SIGN OUT</a></div>
-            <!-- the following code is the old link for the sign-in pop up -->
-            <!-- <div class="signIn"><a href="javascript:void(0)" onclick="document.getElementById('popUpSignIn').style.display='block'">SIGN IN</a>
-            </div> -->
           </nav>
           <nav>
             <div ng-if="auth()" class="navLink"><a ui-sref="userProfile({userName: userName})">PROFILE</a></div>
@@ -84,84 +81,6 @@
 
 <!-- Header Bar End -->
 
-<!-- Popup box for Signin Window -->
-    <!-- <section ng-controller="authController" id="popUpSignIn">
-      <div id="fade" class="black_overlay">
-      </div>
-
-      <fieldset>
-      <div class="x_button" onclick="document.getElementById('popUpSignIn').style.display='none';document.getElementById('popUpSignUp').style.display='none'"></div>
-        <div class="sign-up-title"><h2 id='signInHeader'>Sign into LineLevel</h2></div>
-        <div class="form-group">
-          
-          <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
-        </div>
-        <div class="form-group">
-          
-          <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
-        </div>
-        <div class="text-center form-group">
-        <div class="forgot-password">
-          <a href="/#!/password/forgot">Forgot your password?</a>
-        </div>
-          <div id="divButton" ng-click="signIn()">
-          Sign In
-          </div>
-          <div id="signUp">Don't have an account? 
-            <a href="javascript:void(0)" onclick="document.getElementById('popUpSignIn').style.display='none';document.getElementById('popUpSignUp').style.display='block'">Sign up</a>
-
-            </div>
-        </div>
-        
-        <div data-ng-show="error" class="text-center text-danger">
-          <strong data-ng-bind="error"></strong>
-        </div>
-        
-      </fieldset>
-    </section> -->
-<!--     End Popup box for signin -->
-
-<!-- Popup box for Signup Window -->
-
-<!-- <section ng-controller="authController" id="popUpSignUp" >
-  <fieldset>
-  <div class="x_button" onclick="document.getElementById('popUpSignIn').style.display='none';document.getElementById('popUpSignUp').style.display='none'"></div>
-    <div class="sign-up-title"><h2 id='signUpHeader'>Sign up with LineLevel</h2></div>
-    <div class="form-group">
-      
-      <input type="text" id="firstName" name="firstName" class="form-control" data-ng-model="credentials.firstname" placeholder="First Name">
-    </div>
-    <div class="form-group">
-      
-      <input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="credentials.lastName" placeholder="Last Name">
-    </div>
-
-    <div class="form-group">
-      
-      <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
-    </div>
-    <div class="form-group">
-      
-      <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
-    </div>
-        <div class="form-group">
-      
-      <input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email">
-    </div>
-      <div id="divButton" ng-click="signUp()">
-      Sign Up
-      </div>
-    </div>
-    
-    
-    <div data-ng-show="error" class="text-center text-danger">
-      <strong data-ng-bind="error"></strong>
-    </div>
-    <div id="fade" class="black_overlay">
-  </fieldset>
-</section> -->
-
-<!--     End Popup box for signup -->
 
     <div ui-view></div>
     
