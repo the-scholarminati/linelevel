@@ -8,7 +8,14 @@ angular.module('main')
   ///// Misc
   ///////////////
 
-  obj.firebase = new Firebase('https://linelevel.firebaseio.com');
+  // this tracks the last location the user was at
+  // used for signin redirect
+  obj.prevRoute = '/';
+
+
+  ///////////////
+  ///// Timers
+  ///////////////
 
   // use this object to reset "setTimeout" loops
   // NOTE: this is ONLY for setTimeout loops!
@@ -28,6 +35,8 @@ angular.module('main')
   /////////////////////////////////////////////// 
   ///////////////firebase helpers ///////////////
   ///////////////////////////////////////////////
+
+  obj.firebase = new Firebase('https://linelevel.firebaseio.com');
 
   // important: must use "val" function on data return from these methods in order to access userData properties
   obj.accessUserByUid = function(uid,cb){

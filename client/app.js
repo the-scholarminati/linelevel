@@ -61,7 +61,7 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   $state.transitionTo('home');
 }])
 
-.controller('mainCtrl', ['$scope', '$firebaseObject', '$state', 'appFactory', function($scope, $firebaseObject, $state, appFactory) {
+.controller('mainCtrl', ['$scope', '$firebaseObject', '$state', '$location', 'appFactory', function($scope, $firebaseObject, $state, $location, appFactory) {
   // define a reference to the firebase database
   var ref = new Firebase('https://linelevel.firebaseio.com/data');
   
@@ -83,11 +83,15 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
     });
   }
 
+  $scope.signIn = function(){
+    appFactory.prevRoute = $location.path();
+    $state.go('signin');
+  };
+
   $scope.signOut = function(){
     ref.unauth();
     $scope.userAuth = null;
     appFactory.user = null;
-    $state.go('about');
   };
 
 
