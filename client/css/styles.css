@@ -9,13 +9,19 @@ body{
    background-attachment: fixed;
 }
 
+@media (min-width: 700px){
+  .container{
+    padding-top: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    width: 80%;
+  }
+}
+
 .container{
-  padding-top: 5%;
-  padding-left: 5%;
-  padding-right: 5%;
+  padding: 15% 2% 0 2%;
   margin-right: auto;
   margin-left: auto;
-  width: 80%;
 }
 
 .line{
@@ -548,9 +554,11 @@ textarea{
   padding-top: 10px;
 }
 
-.eventTabs{
-  padding: 10px;
-  margin: 25px;
+@media (min-width: 700px){
+  .eventTabs{
+    padding: 10px;
+    margin: 25px;
+  }
 }
 
 .eventTab{
