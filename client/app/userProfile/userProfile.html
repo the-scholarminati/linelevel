@@ -56,7 +56,7 @@
       </div>
 
        <!-- followers section -->
-      <div id="following" ng-if="myProfile">
+      <div id="following">
       <h2>Following</h2>
         <div ng-repeat="user in followers track by $index">
         <a href="#/userProfile/{{user.username}}">{{user.username}}</a>
