@@ -8,7 +8,10 @@ angular.module('main')
   ///// Misc
   ///////////////
 
-  
+  // this tracks the last location the user was at
+  // used for signin redirect
+  obj.prevRoute = 'home';
+
 
   ///////////////
   ///// Timers
@@ -32,7 +35,7 @@ angular.module('main')
   /////////////////////////////////////////////// 
   ///////////////firebase helpers ///////////////
   ///////////////////////////////////////////////
-  
+
   obj.firebase = new Firebase('https://linelevel.firebaseio.com');
 
   // important: must use "val" function on data return from these methods in order to access userData properties
