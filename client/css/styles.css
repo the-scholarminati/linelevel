@@ -9,13 +9,17 @@ body{
    background-attachment: fixed;
 }
 
+@media (min-width: 700px){
+  .container{
+    padding: 65px 5% 0 5%;
+    width: 80%;
+  }
+}
+
 .container{
-  padding-top: 5%;
-  padding-left: 5%;
-  padding-right: 5%;
+  padding: 60px 2% 0 2%;
   margin-right: auto;
   margin-left: auto;
-  width: 80%;
 }
 
 .line{
@@ -549,21 +553,38 @@ textarea{
 }
 
 .eventTabs{
-  padding: 10px;
-  margin: 25px;
+  padding-bottom: 10px;
+  margin: 0 auto;
+}
+
+@media (min-width: 700px){
+  .eventTabs{
+    margin: 15px;
+  }
 }
 
 .eventTab{
   padding: 10px;
-  cursor: pointer;
+}
+
+@media (min-width: 700px){
+  .eventTab{
+    padding: 10px;
+  }
 }
 
 .borderExtension{
   color: white;
   width: 100%;
-  padding-right: 50%;
+  padding-right: 195px;
   border-bottom: 1px solid #C1C1C1;
   padding-bottom: 10px;
+}
+
+@media (max-width: 800px){
+  .borderExtension{
+    display: none;
+  }
 }
 
 .selectedView{
@@ -574,6 +595,7 @@ textarea{
 .notSelectedView{
   color: #C1C1C1;
   border-bottom: 1px solid #C1C1C1;
+  cursor: pointer;
 }
 
 .filterLabel{
