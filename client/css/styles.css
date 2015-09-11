@@ -558,12 +558,69 @@ textarea{
   cursor: pointer;
 }
 
+/* the following is a hack to get the border under the date tabs
+fill the page while also being responsive */
+
 .borderExtension{
   color: white;
   width: 100%;
-  padding-right: 50%;
+  padding-right: 60%;
   border-bottom: 1px solid #C1C1C1;
   padding-bottom: 10px;
+}
+
+@media (max-width: 1300px){
+  .borderExtension{
+    padding-right: 50%;
+  }
+}
+
+@media (max-width: 1200px){
+  .borderExtension{
+    padding-right: 45%;
+  }
+}
+
+@media (max-width: 1100px){
+  .borderExtension{
+    padding-right: 40%;
+  }
+}
+
+@media (max-width: 1000px){
+  .borderExtension{
+    padding-right: 35%;
+  }
+}
+
+@media (max-width: 900px){
+  .borderExtension{
+    padding-right: 30%;
+  }
+}
+
+@media (max-width: 800px){
+  .borderExtension{
+    padding-right: 20%;
+  }
+}
+
+@media (max-width: 750px){
+  .borderExtension{
+    padding-right: 10%;
+  }
+}
+
+@media (max-width: 700px){
+  .borderExtension{
+    padding-right: 5%;
+  }
+}
+
+@media (max-width: 650px){
+  .borderExtension{
+    display: none;
+  }
 }
 
 .selectedView{
