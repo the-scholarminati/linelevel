@@ -45,7 +45,6 @@ angular.module('main')
             appFactory.prevRoute = appFactory.prevRoute || '/';
 
             // redirect user back to previous page
-            $scope.$apply();
             $location.path(appFactory.prevRoute);
             $scope.$apply();
           });
