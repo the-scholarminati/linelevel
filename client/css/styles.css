@@ -13,6 +13,9 @@ body{
   padding-top: 5%;
   padding-left: 5%;
   padding-right: 5%;
+  margin-right: auto;
+  margin-left: auto;
+  width: 80%;
 }
 
 .line{
@@ -266,7 +269,7 @@ nav{
 ******************************/
 
 input{
-  width: 175px;
+  width: 200px;
   height: 35px;
   border-radius: 3px;
   border: 1px solid #C1C1C1;
@@ -285,6 +288,16 @@ input:focus{
   display: inline-flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  margin: auto;
+}
+
+#signInForm{
+  text-align: center;
+}
+
+form{
+  width: 400px;
+  margin: auto;
 }
 
 .formItem{
@@ -645,6 +658,8 @@ textarea{
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
+  width: 80%;
+  margin: auto;
 }
 
 .eventsBtn{

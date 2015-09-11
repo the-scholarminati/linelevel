@@ -1,6 +1,12 @@
 <section ng-controller="homeController">
 
   <div class="container">
+    <div class="pageTitle">
+      <div style="display:flex; flex-flow: row nowrap">
+      <h1>Events</h1>
+      </div>
+    </div>
+    <div class="line"></div>
 
     <div class="eventTabs">
       <span ng-click="viewFutureEvents()" ng-class="{selectedView: dateView.futureView, notSelectedView: !dateView.futureView}" class="eventTab">
