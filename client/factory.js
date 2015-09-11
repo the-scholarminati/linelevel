@@ -10,9 +10,18 @@ angular.module('main')
 
   obj.firebase = new Firebase('https://linelevel.firebaseio.com');
 
-  // resets timer on the event page count down when loading an event
+  // use this object to reset "setTimeout" loops
+  // NOTE: this is ONLY for setTimeout loops!
   obj.timers = {
     eventCounter: null
+  };
+
+  // reset all timers in obj.timers
+  obj.resetTimers = function(){
+    var timers = Object.keys(obj.timers);
+    for(var i = 0; i < timers.length; ++i){
+      clearTimeout(obj.timers[i]);
+    }
   };
 
   /////////////////////////////////////////////// 
@@ -91,6 +100,47 @@ angular.module('main')
         }
         cb.call(this,result);
       });
+    });
+  };
+
+  // user properties that can be edited
+  var userProperties = {
+    email: true,
+    firstname: true,
+    lastname: true,
+    lastSessionId: true
+  };
+
+  // update user's property. NOTE: check userProperties to see which can be edited
+  obj.updateUserProperty = function(uid,property,value){
+    if(userProperties[property]){
+      obj.firebase.child("users").child(uid).child(property).set(value);
+    } else {
+      return false;
+    }
+  };
+
+  // update firebase to show if user is still in an event
+  obj.updateEventParticipation = function(scope){
+    this.auth(function(user){
+      obj.accessUserByUid(user.uid,function(userData){
+        userData = userData.val();
+        var userEvent = obj.firebase.child("events").child(userData.lastSessionId).child("participants").child(userData.username);
+        if(scope.eventId === undefined){
+          userEvent.remove();
+        } else {
+          userEvent.set({
+            lastKnownTime: (new Date()).getTime()
+          });
+        }
+      });
+    });
+  };
+
+  // init function for all pages
+  obj.init = function(scope){
+    this.auth(function(userData){
+      this.updateEventParticipation(userData.uid, scope);
     });
   };
 
