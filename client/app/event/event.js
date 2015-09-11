@@ -32,7 +32,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
 
     var updateParticipant = function(){
       appFactory.updateEventParticipation($scope);
-      appFactory.timers.participantCounter = setTimeout(updateParticipant, 28000);
+      appFactory.timers.participantCounter = setTimeout(updateParticipant, 20000);
     };
 
     // window.console.log('eventId', $scope.eventId);

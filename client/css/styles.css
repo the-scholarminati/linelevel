@@ -13,6 +13,9 @@ body{
   padding-top: 5%;
   padding-left: 5%;
   padding-right: 5%;
+  margin-right: auto;
+  margin-left: auto;
+  width: 80%;
 }
 
 .line{
@@ -266,7 +269,7 @@ nav{
 ******************************/
 
 input{
-  width: 175px;
+  width: 200px;
   height: 35px;
   border-radius: 3px;
   border: 1px solid #C1C1C1;
@@ -285,6 +288,16 @@ input:focus{
   display: inline-flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  margin: auto;
+}
+
+#signInForm{
+  text-align: center;
+}
+
+form{
+  width: 400px;
+  margin: auto;
 }
 
 .formItem{
@@ -345,6 +358,11 @@ textarea{
   justify-content: space-between;
 }
 
+#video-content{
+  display: inline-flex;
+  flex-flow: row nowrap;
+}
+
 #genreNames{
   font-style: italic;
   display: flex;
@@ -367,6 +385,22 @@ textarea{
   font-family: Helvetica-bold;
 }
 
+#videoSettings{
+  border: 1px solid black;
+  width: 25px;
+  height: 390px;
+  border-radius: 5px;
+  margin: 10px;
+  display: flex;
+  flex-flow: column;
+  background-color: black;
+}
+
+.video-setting{
+  border-bottom: 1px solid white;
+  height: 25px;
+}
+
 #eventcontent{
   width: 100%;
   display: inline-flex;
@@ -380,6 +414,8 @@ textarea{
   border: 1px solid #c1c1c1;
   position: relative;
 }
+
+
 
 #videostream{
   top: 0;
@@ -622,6 +658,8 @@ textarea{
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
+  width: 80%;
+  margin: auto;
 }
 
 .eventsBtn{

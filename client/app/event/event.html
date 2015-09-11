@@ -32,16 +32,28 @@
       <button class="stream-button" ng-click="editEvent();">Edit Event</button>
       <button class="stream-button" ng-click="stopStream();" id="stop-stream-button">Stop Stream</button>
     </div>
-
+    
     <div id="eventcontent">
-      <div id="videoWrapper">
-        <div ng-if="showCountDown" id="countDown" ng-bind="countDown"></div>
-        <video id="myVideo" muted="false" class="myVideo" autoplay ng-show="isSameUser" width="640" height="390"></video>
-        <video id="theirVideo" defaultMuted="false" class="theirVideo" autoplay ng-show="isSameUser == false" width="640" height="390"></video>
-        <!-- <div id="ytplayer"></div>
-        <span class="video"></span> -->
-      </div>
+      <div id="video-content">
+        <div id="videoSettings">
+          <div class="video-setting">
+          </div>
+          <div class="video-setting">
+          </div>
+          <div class="video-setting">
+          </div>
+          <div class="video-setting">
+          </div>
+        </div>
 
+        <div id="videoWrapper">
+          <div ng-if="showCountDown" id="countDown" ng-bind="countDown"></div>
+          <video id="myVideo" muted="false" class="myVideo" autoplay ng-show="isSameUser" width="640" height="390"></video>
+          <video id="theirVideo" defaultMuted="false" class="theirVideo" autoplay ng-show="isSameUser == false" width="640" height="390"></video>
+          <!-- <div id="ytplayer"></div>
+          <span class="video"></span> -->
+        </div>
+      </div>
       <div id="chatcontent" ng-show="chatVisible">
         <div id="chat-tabs">
           <div class="chat-tabs" ng-class="{'chat-tabs-selected':selectedChat[0]}" ng-click="selectTab(0)">All</div><!--
