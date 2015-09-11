@@ -47,30 +47,42 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     var init = function(){
       if(!initialized){
         initialized = !initialized;
+
+        //reset any previous firebase listeners
         ref.off();
+
+        var eventRef = ref.child("events").child($scope.eventId);
+
+        // delay the activation of chat alerts
         setTimeout(function(){alertActivated = true;},1500);
 
         // load user data
         var userAuth = ref.getAuth();
         if(userAuth){
-          window.console.log('userAuth is ', userAuth);
-          ref.child("users").child(userAuth.uid).on("value",function(user){
+          var userRef = ref.child("users").child(userAuth.uid);
+
+          // save user data to local variable
+          userRef.on("value",function(user){
             userData = user.val();
+          });
+
+          // store last entered session
+          userRef.update({
+            lastSessionId: $scope.eventId
           });
         }
 
         // load event data
-        ref.child("events").child($scope.eventId)
-          .on("value",function(info){ 
-            var eventData = info.val();
-            console.log(eventData);
-            $scope.event.host = eventData.host;
-            $scope.event.name = eventData.title;
-            $scope.event.videoId = eventData.videoId;
-            $scope.event.date = eventData.date;
-            appFactory.update($scope,function(scope){
-              $scope.isSameUser = appFactory.user === $scope.event.host ? true : false;
-            });
+        eventRef.on("value",function(info){ 
+          var eventData = info.val();
+          console.log(eventData);
+          $scope.event.host = eventData.host;
+          $scope.event.name = eventData.title;
+          $scope.event.videoId = eventData.videoId;
+          $scope.event.date = eventData.date;
+          appFactory.update($scope,function(scope){
+            $scope.isSameUser = appFactory.user === $scope.event.host ? true : false;
+          });
           console.log(appFactory.user +  $scope.event.host + $scope.isSameUser);
         });
 
