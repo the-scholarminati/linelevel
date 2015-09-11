@@ -9,6 +9,11 @@ angular.module('main')
   ///////////////
 
   obj.firebase = new Firebase('https://linelevel.firebaseio.com');
+  
+
+  ///////////////
+  ///// Timers
+  ///////////////
 
   // use this object to reset "setTimeout" loops
   // NOTE: this is ONLY for setTimeout loops!
