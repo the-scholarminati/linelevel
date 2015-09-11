@@ -89,7 +89,7 @@ angular.module('main')
                     uid: userData.uid
                   });
                   usernames.child(username).update({
-                    uid: userData.uid;
+                    uid: userData.uid
                   });
                   $scope.error = "";
                   $scope.signIn(email,password);
