@@ -2,8 +2,8 @@
 
 angular.module('main')
 
-.controller('authController', ['$scope', '$http', 'appFactory', '$state',
-  function($scope, $http, appFactory, $state){
+.controller('authController', ['$scope', '$http', 'appFactory', '$state', '$location',
+  function($scope, $http, appFactory, $state, $location){
     // this scope variable will create an error message for you at the top of the form
     // example use: $scope.error = "That username does not exist"
     $scope.error = '';
@@ -39,8 +39,15 @@ angular.module('main')
           ref.child('users').child(authData.uid).on('value' , function(user){
             console.log(user.val().username);
             appFactory.user = user.val().username;
-            console.log('success! Logged in', appFactory.user);         
-            $state.go('home');
+            console.log('success! Logged in', appFactory.user);
+
+            // if prevRoute has somehow gone missing, set it back to home page
+            appFactory.prevRoute = appFactory.prevRoute || '/';
+
+            // redirect user back to previous page
+            $scope.$apply();
+            $location.path(appFactory.prevRoute);
+            $scope.$apply();
           });
         }
       });
