@@ -554,6 +554,7 @@ textarea{
 
 .eventTabs{
   padding-bottom: 10px;
+  margin: 0 auto;
 }
 
 @media (min-width: 700px){
@@ -564,11 +565,13 @@ textarea{
 
 .eventTab{
   padding: 10px;
-  cursor: pointer;
 }
 
-/* the following is a hack to get the border under the date tabs
-fill the page while also being responsive */
+@media (min-width: 700px){
+  .eventTab{
+    padding: 10px;
+  }
+}
 
 .borderExtension{
   color: white;
@@ -592,6 +595,7 @@ fill the page while also being responsive */
 .notSelectedView{
   color: #C1C1C1;
   border-bottom: 1px solid #C1C1C1;
+  cursor: pointer;
 }
 
 .filterLabel{
