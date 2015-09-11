@@ -8,6 +8,7 @@ angular.module('main')
     ///////////////
     ///// Firebase
     ///////////////
+    appFactory.init();
 
     $scope.events = [];
     var ref = appFactory.firebase;

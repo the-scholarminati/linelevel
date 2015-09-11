@@ -69,6 +69,10 @@
         </div>
 
       </div>
+
+      <div id="presentUsers">
+        <div ng-repeat="(key,user) in participants" ng-bind="key" ng-if="showParticipant(user)"></div>
+      </div>
         
 
     </div>

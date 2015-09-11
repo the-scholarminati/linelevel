@@ -13,14 +13,15 @@ angular.module('main')
   // use this object to reset "setTimeout" loops
   // NOTE: this is ONLY for setTimeout loops!
   obj.timers = {
-    eventCounter: null
+    eventCounter: null,
+    participantCounter: null
   };
 
   // reset all timers in obj.timers
   obj.resetTimers = function(){
     var timers = Object.keys(obj.timers);
     for(var i = 0; i < timers.length; ++i){
-      clearTimeout(obj.timers[i]);
+      clearTimeout(obj.timers[timers[i]]);
     }
   };
 
@@ -140,7 +141,8 @@ angular.module('main')
   // init function for all pages
   obj.init = function(scope){
     this.auth(function(userData){
-      this.updateEventParticipation(userData.uid, scope);
+      obj.resetTimers();
+      obj.updateEventParticipation(userData.uid, scope);
     });
   };
 
