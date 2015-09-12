@@ -46,13 +46,15 @@
       <div id="userWall">
         <h2>Wall</h2>
 
-        <div>Anonymous: asdfasdf</div>
-        <div>Anonymous: asdfasdf</div>
-        <div>Anonymous: asdfasdf</div>
-        <div>Anonymous: asdfasdf</div>
+        <div ng-repeat="message in uData.myWall" class="message">
+          <b><a href="#/userProfile/{{message.username}}">{{message.username}}</a></b> 
+          {{message.message}}
+        </div>
 
-        <textarea></textarea>
-        <button>Submit</button>
+        <div>
+        <form name="submitMessage" ng-submit="submitWallMsg()">
+        <input type="text" placeholder="Enter your message..." ng-model="wallText" id="chatTextBox">
+        </div>
       </div>
 
        <!-- followers section -->
