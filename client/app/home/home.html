@@ -16,7 +16,7 @@
         Past events
       </span>
       <span ng-click="viewDateFilter()" ng-class="{selectedView: dateView.customDateView, notSelectedView: !dateView.customDateView}" class="viewPastEvents eventTab">
-        Custom date range
+        Custom range
       </span>
       <span class="borderExtension">
       </span>
@@ -26,10 +26,10 @@
     <div class="filterOptions filterLabel">Filter by:</div>
     <div class="filterOptions">
       <div ng-if="dateView.customDateView" class="dateFilter">
-        <div class="dateFilter" ng-click="dateFilterToggle()">DATE:</div>
+        <div class="dateFilter">DATE:</div>
         <div class="dateSelection">
           <input type="date" ng-model="dateView.start">
-          to
+          <br class="onlyOnMobile">to
           <input type="date" ng-model="dateView.end">
         </div>
       </div>
@@ -58,8 +58,8 @@
           <div id="event-title">
             <a href="#/event/{{event.key}}">{{event.title}}</a>
           </div>
-          <p>by <a href="#/userProfile/{{event.host}}">{{event.host}}</a>
-          - <button class="rsvp" ng-click="saveDate(event.title, event.host, event.key)">RSVP Now</button>
+          <p class="hostAndRSVP"><a href="#/userProfile/{{event.host}}">{{event.host}}</a>
+          <button class="rsvp" ng-click="saveDate(event.title, event.host, event.key)">RSVP</button>
           </p>
           <p><span ng-repeat="genre in event.genre">
             {{genre}}

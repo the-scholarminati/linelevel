@@ -69,6 +69,7 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
     return ref.getAuth() !== null;
   };
 
+
   // gets the user's username and sets it to the scope
   // so we can route them to their profile from any page
   $scope.userName = '';
@@ -83,22 +84,37 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
     });
   }
 
+
+  $scope.showHamburgerMenu = false;
+  $scope.showHamburgerMenuNow = function(){
+    $scope.showHamburgerMenu = !$scope.showHamburgerMenu;
+  };
+
+
   $scope.signIn = function(){
+    // hide hamburger menu if it's open
+    $scope.showHamburgerMenu = false;
+
     appFactory.prevRoute = $location.path();
     $state.go('signin');
   };
 
+
   $scope.signOut = function(){
+    // hide hamburger menu if it's open
+    $scope.showHamburgerMenu = false;
+
     ref.unauth();
     $scope.userAuth = null;
     appFactory.user = null;
   };
 
 
-  $scope.showHamburgerMenu = false;
-  $scope.showHamburgerMenuNow = function(){
-    $scope.showHamburgerMenu = !$scope.showHamburgerMenu;
+  $scope.hideHamburgerMenu = function(){
+    // hide hamburger menu if it's open
+    $scope.showHamburgerMenu = false;
   };
+
 
   // download the data into a local object
   var syncObject = $firebaseObject(ref);

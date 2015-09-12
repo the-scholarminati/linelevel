@@ -88,6 +88,15 @@ button:enabled:hover{
   padding: 10px;
   flex-basis: auto;
   margin: 25px;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+@media (max-width: 700px){
+  .genreList{
+    padding-right: 0;
+    margin-right: 0;
+  }
 }
 
 .selected {
@@ -196,28 +205,65 @@ nav{
   cursor: pointer;
 }
 
+
+/******************************
+  Hamburger menu styling 
+******************************/
+
+.hamburgerMenu, .hamburgerLink, .hamburgerLink a{
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
 .hamburgerMenu{
+  position: fixed;
   z-index: 10;
-  position: absolute;
-  top: 40px;
+  top: 30px;
   right: 0px;
-  background-color: rgba(0,0,0,0.8);
-  padding: 20px;
+  padding: 5%;
   text-align: right;
   font-weight: 900;
   width: 100%;
   height: 100%;
 }
 
+.menuDown{
+  background-color: rgba(0,0,0,0.8);
+  max-height: 1000px;
+  overflow-y: hidden;
+  color: rgba(255, 0, 255, 1);
+}
+
+.menuUp{
+  max-height: 0px;
+  overflow-y: hidden;
+}
+
+.menuUp .hamburgerLink, .menuUp .hamburgerLink a{
+  color: rgba(255, 0, 255, 0);
+}
+
+.menuDown .hamburgerLink, .menuDown .hamburgerLink a{
+  color: rgba(255, 0, 255, 1);
+}
+
+.hamburgerLink{
+  text-decoration: none;
+  font-size: 45px;
+  line-height: 2em;
+  cursor: pointer;
+}
+
 .hamburgerLink a{
   color: fuchsia;
   text-decoration: none;
-  font-size: 50px;
-  line-height: 2em;
 }
 
 @media (min-width: 700px){
-  .hamburgerIcon, .hamburgerMenu{
+  .hamburgerIcon, .hamburgerMenu, .hamburgerLink{
     display: none;
   }
 }
@@ -301,8 +347,13 @@ input:focus{
 }
 
 form{
-  width: 400px;
   margin: auto;
+}
+
+@media (min-width: 700px){
+  form{
+    width: 400px;
+  }
 }
 
 .formItem{
@@ -419,8 +470,6 @@ textarea{
   border: 1px solid #c1c1c1;
   position: relative;
 }
-
-
 
 #videostream{
   top: 0;
@@ -602,9 +651,9 @@ textarea{
   padding: 10px;
 }
 
-@media (min-width: 700px){
+@media (max-width: 700px){
   .eventTab{
-    padding: 10px;
+    font-size: 11px;
   }
 }
 
@@ -639,11 +688,18 @@ textarea{
 
 .filterOptions{
   display: flex;
+  margin-left: 18px;
 }
 
 .dateFilter{
   display: flex;
-  margin: 17px 0 0 17px;
+  margin: 17px 0 0 2px;
+}
+
+@media (min-width: 700px){
+  .onlyOnMobile{
+    display: none;
+  }
 }
 
 .dateSelection{
@@ -697,6 +753,11 @@ textarea{
 .eventInfo p{
   opacity: 1;
   filter: alpha(opacity=100);
+}
+
+.hostAndRSVP{
+  display: flex;
+  justify-content: space-between;
 }
 
 .eventThumb{
