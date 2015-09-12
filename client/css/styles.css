@@ -234,7 +234,6 @@ nav{
   background-color: rgba(0,0,0,0.8);
   max-height: 1000px;
   overflow-y: hidden;
-  color: rgba(255, 0, 255, 1);
 }
 
 .menuUp{
@@ -243,11 +242,11 @@ nav{
 }
 
 .menuUp .hamburgerLink, .menuUp .hamburgerLink a{
-  color: rgba(255, 0, 255, 0);
+  color: rgba(124, 223, 206, 0);
 }
 
 .menuDown .hamburgerLink, .menuDown .hamburgerLink a{
-  color: rgba(255, 0, 255, 1);
+  color: rgba(124, 223, 206, 1);
 }
 
 .hamburgerLink{
@@ -636,9 +635,19 @@ textarea{
   padding-top: 10px;
 }
 
+#topHomeSection{
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@media(max-width: 700px){
+  #topHomeSection{
+    max-width: 300px;
+  }  
+}
+
 .eventTabs{
   padding-bottom: 10px;
-  margin: 0 auto;
 }
 
 @media (min-width: 700px){
