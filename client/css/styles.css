@@ -440,7 +440,7 @@ textarea{
   font-family: Helvetica-bold;
 }
 
-#videoSettings{
+.videoSettings{
   border: 1px solid black;
   width: 25px;
   height: 390px;
@@ -453,6 +453,7 @@ textarea{
 
 .video-setting{
   border-bottom: 1px solid white;
+  background-color: white;
   height: 25px;
 }
 

@@ -34,15 +34,41 @@
     </div>
     
     <div id="eventcontent">
+    <!-- For admin video settings -->
       <div id="video-content">
-        <div id="videoSettings">
+        <div class="videoSettings" ng-show="isSameUser">
           <div class="video-setting">
+            <img src="../assets/controls/stream.png" width="25px" height="25px"/>
           </div>
           <div class="video-setting">
+            <img src="../assets/controls/stop.png" width="25px" height="25px"/>
           </div>
           <div class="video-setting">
+            <img src="../assets/controls/edit.png" width="25px" height="25px"/>
           </div>
           <div class="video-setting">
+            <img src="../assets/controls/people.png" width="25px" height="25px"/>
+          </div>
+        </div>
+        <!-- For regular user -->
+        <div class="videoSettings" ng-show="!isSameUser">
+          <div class="video-setting">
+            <img src="../assets/controls/play.png" width="25px" height="25px"/>
+          </div>
+          <div class="video-setting">
+            <img src="../assets/controls/stop.png" width="25px" height="25px"/>
+          </div>
+          <div class="video-setting">
+            <img src="../assets/controls/volume_up.png" width="25px" height="25px"/>
+          </div>
+          <div class="video-setting">
+            <img src="../assets/controls/volume_down.png" width="25px" height="25px"/>
+          </div>
+          <div class="video-setting">
+            <img src="../assets/controls/mute.png" width="25px" height="25px"/>
+          </div>
+          <div class="video-setting">
+            <img src="../assets/controls/people.png" width="25px" height="25px"/>
           </div>
         </div>
 
@@ -53,6 +79,7 @@
           <!-- <div id="ytplayer"></div>
           <span class="video"></span> -->
         </div>
+
       </div>
       <div id="chat-content" ng-show="chatVisible">
         <div class="chat-section">
