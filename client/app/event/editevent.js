@@ -1,6 +1,6 @@
 angular.module('main').controller('editEventController',['$scope','appFactory', '$firebase',
   function($scope,appFactory,$firebase){
-  appFactory.init();
+  appFactory.init($scope);
 
   var ref = appFactory.firebase;
   var user = ref.getAuth();

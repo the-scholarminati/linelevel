@@ -2,8 +2,8 @@
 
 angular.module('main')
 
-.controller('aboutController', ['$scope', 
-  function($scope){
-
+.controller('aboutController', ['$scope', 'appFactory',
+  function($scope,appFactory){
+    appFactory.init($scope);
   }
 ]);

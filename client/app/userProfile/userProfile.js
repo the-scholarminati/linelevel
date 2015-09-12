@@ -5,7 +5,7 @@ angular.module('main')
 .controller('userProfileController',['$scope', 'appFactory',
   function($scope, appFactory){
     $scope.myProfile = true;
-    appFactory.init();
+    appFactory.init($scope);
     
     if($scope.userName !== appFactory.user){
       $scope.myProfile = false;
@@ -55,7 +55,7 @@ angular.module('main')
       $scope.uData.eventIds = [];
       $scope.uData.myEvents = [];
       $scope.uData.myWall = [];
-      $scope.uData.uid;
+      $scope.uData.uid = '';
 
       appFactory.accessUserByUsername($scope.userName, function(snap){
         var userProfile = ref.child('users').child(snap.val().uid);

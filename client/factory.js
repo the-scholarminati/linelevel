@@ -131,12 +131,12 @@ angular.module('main')
   };
 
   // update firebase to show if user is still in an event
-  obj.updateEventParticipation = function(scope){
+  obj.updateEventParticipation = function(scope, reset){
     this.auth(function(user){
       obj.accessUserByUid(user.uid,function(userData){
         userData = userData.val();
         var userEvent = obj.firebase.child("events").child(userData.lastSessionId).child("participants").child(userData.username);
-        if(scope.eventId === undefined){
+        if(scope.eventId === undefined && reset){
           userEvent.remove();
         } else {
           userEvent.set({
@@ -151,7 +151,7 @@ angular.module('main')
   obj.init = function(scope){
     this.auth(function(userData){
       obj.resetTimers();
-      obj.updateEventParticipation(userData.uid, scope);
+      obj.updateEventParticipation(scope,true);
     });
   };
 
