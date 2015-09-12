@@ -91,9 +91,18 @@ angular.module('main')
                     chosenGenres: chosenGenres,
                     uid: userData.uid
                   });
+
+                  // store username in usernames table
                   usernames.child(username).update({
                     uid: userData.uid
                   });
+
+                  // store email in emails table
+                  emails.child(emailFirebase).update({
+                    uid: userdata.uid
+                  });
+
+                  // clear error and signin user
                   $scope.error = "";
                   $scope.signIn(email,password);
 
