@@ -44,7 +44,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     var chatRef = '';
 
     $scope.showParticipant = function(input){
-      return input > (new Date()).getTime() - 30000;
+      return input > (new Date()).getTime() - 40000;
     };
     
     $scope.$watch('$scope.event.videoId', function loadVideo(a,b){
