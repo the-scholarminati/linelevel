@@ -205,17 +205,44 @@ nav{
   cursor: pointer;
 }
 
+
+/******************************
+  Hamburger menu styling 
+******************************/
+
 .hamburgerMenu{
-  z-index: 10;
   position: fixed;
-  top: 40px;
+  z-index: 10;
+  top: 30px;
   right: 0px;
-  background-color: rgba(0,0,0,0.8);
-  padding: 20px;
+  padding: 5%;
   text-align: right;
   font-weight: 900;
   width: 100%;
   height: 100%;
+}
+
+.menuDown{
+  background-color: rgba(0,0,0,0.8);
+  max-height: 1000px;
+  overflow-y: hidden;
+
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.menuUp{
+  max-height: 0px;
+  overflow-y: hidden;
+
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
+  -webkit-transition: 1s;
+  transition: 1s;
 }
 
 .hamburgerLink{
@@ -722,6 +749,11 @@ textarea{
 .eventInfo p{
   opacity: 1;
   filter: alpha(opacity=100);
+}
+
+.hostAndRSVP{
+  display: flex;
+  justify-content: space-between;
 }
 
 .eventThumb{
