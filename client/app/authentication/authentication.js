@@ -59,6 +59,7 @@ angular.module('main')
       var username = $scope.credentials.username;
       var password = $scope.credentials.password;
       var email = $scope.credentials.email;
+      var image = $scope.credentials.image;
       var chosenGenres = appFactory.chosenGenres;
       var uid = "";
 
@@ -85,6 +86,7 @@ angular.module('main')
                     lastname: lastname,
                     username: username,
                     email: email,
+                    image: image,
                     chosenGenres: chosenGenres,
                     uid: userData.uid
                   });
@@ -93,6 +95,10 @@ angular.module('main')
                   });
                   $scope.error = "";
                   $scope.signIn(email,password);
+
+                  // clears form
+                  $scope.credentials = {};
+                  appFactory.resetGenres();
                 }
               });
             } else {
@@ -109,10 +115,6 @@ angular.module('main')
           });
         }
       });
-
-      // clears form
-      $scope.credentials = {};
-      appFactory.resetGenres();
     };
 
   }
