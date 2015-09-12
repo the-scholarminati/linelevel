@@ -210,6 +210,14 @@ nav{
   Hamburger menu styling 
 ******************************/
 
+.hamburgerMenu, .hamburgerLink, .hamburgerLink a{
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
 .hamburgerMenu{
   position: fixed;
   z-index: 10;
@@ -226,27 +234,23 @@ nav{
   background-color: rgba(0,0,0,0.8);
   max-height: 1000px;
   overflow-y: hidden;
-
-  -moz-transition: 1s;
-  -ms-transition: 1s;
-  -o-transition: 1s;
-  -webkit-transition: 1s;
-  transition: 1s;
+  color: rgba(255, 0, 255, 1);
 }
 
 .menuUp{
   max-height: 0px;
   overflow-y: hidden;
+}
 
-  -moz-transition: 1s;
-  -ms-transition: 1s;
-  -o-transition: 1s;
-  -webkit-transition: 1s;
-  transition: 1s;
+.menuUp .hamburgerLink, .menuUp .hamburgerLink a{
+  color: rgba(255, 0, 255, 0);
+}
+
+.menuDown .hamburgerLink, .menuDown .hamburgerLink a{
+  color: rgba(255, 0, 255, 1);
 }
 
 .hamburgerLink{
-  color: fuchsia;
   text-decoration: none;
   font-size: 45px;
   line-height: 2em;
@@ -259,7 +263,7 @@ nav{
 }
 
 @media (min-width: 700px){
-  .hamburgerIcon, .hamburgerMenu{
+  .hamburgerIcon, .hamburgerMenu, .hamburgerLink{
     display: none;
   }
 }
