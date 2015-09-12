@@ -1,30 +1,27 @@
-google doc: https://docs.google.com/document/d/15GRGsJ9_VsUKPIzcfdf-skhttTQm-rXJ9ItUB6OVqio/edit#
-
-# LineLevel
+# Lineevel
 An app where musicians can host online album release parties to share new music with their fans
 
 
-![Line Level front page mockup](https://github.com/the-scholarminati/linelevel/blob/master/designs:mockups/linelevel_frontpage_demo.png?raw=true)
+![Linelevel about page screenshot](http://i132.photobucket.com/albums/q17/dierat/linelevel/Screen%20Shot%202015-09-11%20at%205.41.22%20PM.png)
+![Linelevel front page screenshot](http://i132.photobucket.com/albums/q17/dierat/linelevel/Screen%20Shot%202015-09-11%20at%205.41.28%20PM.png)
 
 
 # The Team
 
-- Alex - product owner and backend engineer
-- Logan - scrum master and frontend engineer
-- Charles - backend engineer
-- Diedra - frontend engineer
+- [Logan - scrum master and frontend engineer](https://github.com/xlogz)
+- [Alex - product owner and backend engineer](https://github.com/al3xR)
+- [Charles - backend engineer](https://github.com/ccrame)
+- [Diedra - frontend engineer](https://github.com/dierat)
 
 
 # Tech Stack
 
 - Mobile-first design, browser based app.
-- Angular + React
-- Youtube API ---> Webcam/audio interaction
+- Angular
+- WebRTC + Peer.js
 - Node.js + Express
 - Firebase for database and hosting
-- Look into Redis
-- Auth0 for Authentication
-- Tape for testing
+- Karma and Jasmine for testing
 
 
 # MVP feature list
@@ -48,6 +45,7 @@ An app where musicians can host online album release parties to share new music 
 - event rsvp, book dates in advance for promotion
 - display list of upcoming promotions for different genres
 
+
 # Git Flow
 
 - create fork via github
@@ -63,8 +61,17 @@ An app where musicians can host online album release parties to share new music 
 - create pull request: base team-repo:dev compare your-forked-repo:branch-name
 - repeat until feature is complete
 
-# Getting Started
+
+# Contributing
 (please add any instructions other team members need to know to run your code here)
+
+To get started, fork and clone the repo, then run
+```
+npm install
+```
+to install the dependencies.
+
+
 
 To run the test suite, you may need to globally install a few dependencies:
 
@@ -81,11 +88,20 @@ karma start
 ```
 A new browser window should open stating that Karma connected successfully.
 
+
+Please use lint by running
+```
+gulp lint
+```
+to find syntax errors before submitting a pull request.
+
+
 # Deploying on firebase
 
-Install Firebase Tools
+Install Firebase Tools and deploy!
 
 ```
 npm install -g firebase-tools
 
 firebase deploy
+```
