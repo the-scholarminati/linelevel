@@ -454,12 +454,39 @@ textarea{
   Chat styling 
 ******************************/
 
-#chatcontent{
+.chat-section, .chat-participants{
+  display: inline-block;
+  height: 456px;
+}
+
+.chat-section{
+  width: 70%;
+  max-width: 330px;
+}
+
+.chat-participants{
+  width: 30%;
+  max-width: 100px;
+  float: right;
+  border: 1px solid #c1c1c1;
+  height: 420px;
+  background:white;
+}
+
+.participant-entry{
+  padding-left: 5px;
+}
+
+.chat-submit{
+  max-width: 330px;
+}
+
+
+#chat-content{
   min-width: 300px;
   max-width: 450px;
   height: 30vw;
-  min-height: 456px;
-  max-height: 456px;
+  height: 456px;
   flex-grow: 1;
   margin: 20px;
 }
@@ -481,7 +508,7 @@ textarea{
   color: white;
 }
 
-.chat-tabs{
+.chat-tabs, .participants-title{
   display: inline-block;
   width: 100px;
   text-align: center;
@@ -493,12 +520,19 @@ textarea{
   cursor: pointer;
 }
 
+.participants-title{
+  border: none;
+  border-bottom: 1px solid #c1c1c1;
+  background: none;
+}
+
+
 #chatMessages, #hostMessages, #adminControls{
   background: #f9f9f9;
   border: 1px solid #c1c1c1;
   width: 100%;
   margin: auto;
-  height: 85%;
+  height: 400px;
   font-size: 12px;
   padding-left: 5px;
   overflow-y: auto;

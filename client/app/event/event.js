@@ -117,7 +117,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
 
         // load chat data and set chat listener
         chatRef = ref.child("chats").child($scope.eventId);
-        chatRef.on('child_added', function(message){
+        chatRef.limitToLast(50).on('child_added', function(message){
           message = message.val();
           appFactory.update($scope,function(scope){
             scope.event.messages.push(message);

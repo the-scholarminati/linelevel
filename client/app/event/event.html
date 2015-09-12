@@ -54,37 +54,40 @@
           <span class="video"></span> -->
         </div>
       </div>
-      <div id="chatcontent" ng-show="chatVisible">
-        <div id="chat-tabs">
-          <div class="chat-tabs" ng-class="{'chat-tabs-selected':selectedChat[0]}" ng-click="selectTab(0)">All</div><!--
-       --><div class="chat-tabs" ng-class="{'chat-tabs-selected':selectedChat[1]}" ng-click="selectTab(1)">Host</div><!--
-       --><div ng-show="isSameUser" class="chat-tabs" ng-class="{'chat-tabs-selected':selectedChat[2]}" ng-click="selectTab(2)">Admin</div>
-        </div>
+      <div id="chat-content" ng-show="chatVisible">
+        <div class="chat-section">
+          <div id="chat-tabs">
+            <div class="chat-tabs" ng-class="{'chat-tabs-selected':selectedChat[0]}" ng-click="selectTab(0)">All</div><!--
+         --><div class="chat-tabs" ng-class="{'chat-tabs-selected':selectedChat[1]}" ng-click="selectTab(1)">Host</div><!--
+         --><div ng-show="isSameUser" class="chat-tabs" ng-class="{'chat-tabs-selected':selectedChat[2]}" ng-click="selectTab(2)">Admin</div>
+          </div>
 
-        <div ng-hide="!selectedChat[0]" id="chatMessages">
-          <div ng-repeat="message in event.messages" class="message" ng-class="{'message-host': isHost(message), 'message-user': isUser(message)}">
-            <div class="timestamp" ng-bind="chatTime(message.timestamp)"></div><a class="chat-username" href="#/userProfile/{{message.username}}"><b>{{message.username}}: </b></a> {{message.message}}
+          <div ng-hide="!selectedChat[0]" id="chatMessages">
+            <div ng-repeat="message in event.messages" class="message" ng-class="{'message-host': isHost(message), 'message-user': isUser(message)}">
+              <div class="timestamp" ng-bind="chatTime(message.timestamp)"></div><a class="chat-username" href="#/userProfile/{{message.username}}"><b>{{message.username}}: </b></a> {{message.message}}
+            </div>
+          </div>
+
+          <div ng-hide="!selectedChat[1]" id="hostMessages">
+            <div ng-repeat="message in event.hostMessages" class="message"><div ng-bind="chatTime(message.timestamp)"></div><b>{{message.username}}: </b> {{message.message}}</div>
+          </div>
+
+          <div ng-hide="!selectedChat[2]" id="adminControls">
+          </div>
+
+          <div> 
+            <form class="chat-submit" name="submitMessage" ng-submit="sendMessage()" ng-hide="selectedChat[2]">
+              <input type="text" placeholder="Enter your message..." ng-model="userText" id="chatTextBox">
+            </form>
           </div>
         </div>
 
-        <div ng-hide="!selectedChat[1]" id="hostMessages">
-          <div ng-repeat="message in event.hostMessages" class="message"><div ng-bind="chatTime(message.timestamp)"></div><b>{{message.username}}: </b> {{message.message}}</div>
+        <div class="chat-participants">
+          <div class="participants-title">Participants</div>
+          <div class="participant-entry" ng-repeat="(key,user) in participants" ng-bind="key" ng-if="showParticipant(user)"></div>
         </div>
-
-        <div ng-hide="!selectedChat[2]" id="adminControls">
-        </div>
-
-        <div> 
-          <form name="submitMessage" ng-submit="sendMessage()" ng-hide="selectedChat[2]">
-            <input type="text" placeholder="Enter your message..." ng-model="userText" id="chatTextBox">
-          </form>
-        </div>
-
       </div>
 
-      <div id="presentUsers">
-        <div ng-repeat="(key,user) in participants" ng-bind="key" ng-if="showParticipant(user)"></div>
-      </div>
         
 
     </div>

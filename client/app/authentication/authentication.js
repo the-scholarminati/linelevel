@@ -90,7 +90,9 @@ angular.module('main')
                     chosenGenres: chosenGenres,
                     uid: userData.uid
                   });
-                  usernames.child(username).update({a:true});
+                  usernames.child(username).update({
+                    uid: userData.uid
+                  });
                   $scope.error = "";
                   $scope.signIn(email,password);
 
