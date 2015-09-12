@@ -288,13 +288,20 @@ nav{
   font-weight: 900;
 }
 
+@media (max-width: 700px){
+  .about{
+    padding-top: 100px;
+    font-size: 30px;
+  }
+}
+
 #homeSection1{
   background-image: url("../assets/djshow.jpeg");
   background-size: auto 100%;
 }
 
 #homeSection1 .aboutText{
-  padding: 0 10px;
+  padding: 0.125% 2%;
   background-color: rgba(0,0,0,0.75);
 }
 
