@@ -34,7 +34,8 @@
       <header>
         <div id="logo-and-title">
           <a ui-sref="home">
-          <img src="./assets/logo_1.png"/ width="50px" height="50px"></a>
+            <img src="./assets/logo_1.png"/ width="50px" height="50px">
+          </a>
           <h1 id="header-title"><a ui-sref="home">Linelevel</a></h1>
         </div>
 
@@ -43,16 +44,24 @@
             <img class="hamburgerIcon" src="./assets/hamburgericon.png" ng-click="showHamburgerMenuNow()">
           </nav>
           <nav>
-            <div ng-if="!auth()" class="navLink" ng-click="signIn()">SIGN IN</div>
+            <div ng-if="!auth()" class="navLink" ng-click="signIn()">
+              SIGN IN
+            </div>
           </nav>
           <nav>
-            <div ng-if="auth()" class="navLink" ng-click="signOut()"><a href="#">SIGN OUT</a></div>
+            <div ng-if="auth()" class="navLink" ng-click="signOut()">
+              SIGN OUT
+            </div>
           </nav>
           <nav>
-            <div ng-if="auth()" class="navLink"><a ui-sref="userProfile({userName: userName})">PROFILE</a></div>
+            <div ng-if="auth()" class="navLink">
+              <a ui-sref="userProfile({userName: userName})">PROFILE</a>
+            </div>
           </nav>
           <nav>
-            <div ng-if="auth()" class="navLink"><a ui-sref="createEvent">CREATE EVENT</a></div>
+            <div ng-if="auth()" class="navLink">
+              <a ui-sref="createEvent">CREATE EVENT</a>
+            </div>
           </nav>
           <nav>
             <div class="navLink"><a ui-sref="about">ABOUT</a></div>
@@ -64,19 +73,19 @@
 
 <!-- Hamburger Menu Start -->
     <div ng-if="showHamburgerMenu" class="hamburgerMenu">
-      <div ng-if="!auth()" class="hamburgerLink">
-        <a ui-sref="signin">SIGN IN</a>
+      <div ng-if="!auth()" class="hamburgerLink" ng-click="signIn()">
+        SIGN IN
       </div>
       <div ng-if="auth()" class="hamburgerLink" ng-click="signOut()">
-        <a href="#">SIGN OUT</a>
+        SIGN OUT
       </div>
-      <div ng-if="auth()" class="hamburgerLink">
+      <div ng-if="auth()" class="hamburgerLink" ng-click="hideHamburgerMenu()">
         <a ui-sref="userProfile({userName: userName})">PROFILE</a>
       </div>
-      <div ng-if="auth()" class="hamburgerLink">
-        <a ui-sref="createEvent">CREATE EVENT</a>
+      <div ng-if="auth()" class="hamburgerLink" ng-click="hideHamburgerMenu()">
+        <a ui-sref="createEvent">ADD EVENT</a>
       </div>
-      <div class="hamburgerLink">
+      <div class="hamburgerLink" ng-click="hideHamburgerMenu()">
         <a ui-sref="about">ABOUT</a>
       </div>
     </div>

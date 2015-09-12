@@ -218,11 +218,17 @@ nav{
   height: 100%;
 }
 
+.hamburgerLink{
+  color: fuchsia;
+  text-decoration: none;
+  font-size: 45px;
+  line-height: 2em;
+  cursor: pointer;
+}
+
 .hamburgerLink a{
   color: fuchsia;
   text-decoration: none;
-  font-size: 50px;
-  line-height: 2em;
 }
 
 @media (min-width: 700px){
@@ -310,8 +316,13 @@ input:focus{
 }
 
 form{
-  width: 400px;
   margin: auto;
+}
+
+@media (min-width: 700px){
+  form{
+    width: 400px;
+  }
 }
 
 .formItem{
