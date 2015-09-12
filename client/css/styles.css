@@ -363,7 +363,7 @@ form{
 
 .formInputs{
   flex-basis: auto;
-  margin: 25px;
+  margin-left: 25px;
 }
 
 .submitbutton{
