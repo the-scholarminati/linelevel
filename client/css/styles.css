@@ -88,6 +88,15 @@ button:enabled:hover{
   padding: 10px;
   flex-basis: auto;
   margin: 25px;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+@media (max-width: 700px){
+  .genreList{
+    padding-right: 0;
+    margin-right: 0;
+  }
 }
 
 .selected {
@@ -198,7 +207,7 @@ nav{
 
 .hamburgerMenu{
   z-index: 10;
-  position: absolute;
+  position: fixed;
   top: 40px;
   right: 0px;
   background-color: rgba(0,0,0,0.8);
@@ -420,8 +429,6 @@ textarea{
   position: relative;
 }
 
-
-
 #videostream{
   top: 0;
   bottom: 0;
@@ -602,9 +609,9 @@ textarea{
   padding: 10px;
 }
 
-@media (min-width: 700px){
+@media (max-width: 700px){
   .eventTab{
-    padding: 10px;
+    font-size: 11px;
   }
 }
 
@@ -639,11 +646,18 @@ textarea{
 
 .filterOptions{
   display: flex;
+  margin-left: 18px;
 }
 
 .dateFilter{
   display: flex;
-  margin: 17px 0 0 17px;
+  margin: 17px 0 0 2px;
+}
+
+@media (min-width: 700px){
+  .onlyOnMobile{
+    display: none;
+  }
 }
 
 .dateSelection{
