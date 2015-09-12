@@ -4,6 +4,7 @@ angular.module('main')
 
 .controller('authController', ['$scope', '$http', 'appFactory', '$state', '$location',
   function($scope, $http, appFactory, $state, $location){
+    appFactory.init();
     // this scope variable will create an error message for you at the top of the form
     // example use: $scope.error = "That username does not exist"
     $scope.error = '';

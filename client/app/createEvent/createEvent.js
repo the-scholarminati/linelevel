@@ -4,6 +4,7 @@ angular.module('main')
 
 .controller('createEventController', ['$scope', 'appFactory', '$firebase',
   function($scope, appFactory, $firebase){
+    appFactory.init();
     // gets the current date so we can stop users from choosing dates in the past
     $scope.today = new Date();
     // gets the date from the factory and makes it accessible to the DOM

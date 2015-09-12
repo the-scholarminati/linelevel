@@ -5,6 +5,7 @@ angular.module('main')
 .controller('userProfileController',['$scope', 'appFactory',
   function($scope, appFactory){
     $scope.myProfile = true;
+    appFactory.init();
     
     if($scope.userName !== appFactory.user){
       $scope.myProfile = false;
