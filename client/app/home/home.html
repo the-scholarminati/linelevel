@@ -8,46 +8,51 @@
     </div>
     <div class="line"></div>
 
-    <div class="eventTabs">
-      <span ng-click="viewFutureEvents()" ng-class="{selectedView: dateView.futureView, notSelectedView: !dateView.futureView}" class="eventTab">
-        Upcoming events
-      </span>
-      <span ng-click="viewPastEvents()" ng-class="{selectedView: dateView.pastView, notSelectedView: !dateView.pastView}" class="viewPastEvents eventTab">
-        Past events
-      </span>
-      <span ng-click="viewDateFilter()" ng-class="{selectedView: dateView.customDateView, notSelectedView: !dateView.customDateView}" class="viewPastEvents eventTab">
-        Custom range
-      </span>
-      <span class="borderExtension">
-      </span>
-    </div>
+
+    <div id="topHomeSection">
+
+      <div class="eventTabs">
+        <span ng-click="viewFutureEvents()" ng-class="{selectedView: dateView.futureView, notSelectedView: !dateView.futureView}" class="eventTab">
+          Upcoming events
+        </span>
+        <span ng-click="viewPastEvents()" ng-class="{selectedView: dateView.pastView, notSelectedView: !dateView.pastView}" class="viewPastEvents eventTab">
+          Past events
+        </span>
+        <span ng-click="viewDateFilter()" ng-class="{selectedView: dateView.customDateView, notSelectedView: !dateView.customDateView}" class="viewPastEvents eventTab">
+          Custom range
+        </span>
+        <span class="borderExtension">
+        </span>
+      </div>
 
 
-    <div class="filterOptions filterLabel">Filter by:</div>
-    <div class="filterOptions">
-      <div ng-if="dateView.customDateView" class="dateFilter">
-        <div class="dateFilter">DATE:</div>
-        <div class="dateSelection">
-          <input type="date" ng-model="dateView.start">
-          <br class="onlyOnMobile">to
-          <input type="date" ng-model="dateView.end">
+      <div class="filterOptions filterLabel">Filter by:</div>
+      <div class="filterOptions">
+        <div ng-if="dateView.customDateView" class="dateFilter">
+          <div class="dateFilter">DATE:</div>
+          <div class="dateSelection">
+            <input type="date" ng-model="dateView.start">
+            <br class="onlyOnMobile">to
+            <input type="date" ng-model="dateView.end">
+          </div>
         </div>
       </div>
-    </div>
-    <div class="filterOptions">
-      <div class="genreList">
-        <div class="dropDownLink" ng-click="showGenresNow()">
-          GENRE<img src="./assets/dropdownarrow.png">
+      <div class="filterOptions">
+        <div class="genreList">
+          <div class="dropDownLink" ng-click="showGenresNow()">
+            GENRE<img src="./assets/dropdownarrow.png">
+          </div>
+          <ul class="dropDownMenu" ng-if="showGenres">
+            <li ng-repeat="genre in genres" ng-click="chooseGenre(genre)" ng-class="{'selected': genre.selected, 'notSelected': !genre.selected}">{{genre.name}}</li>
+          </ul>
         </div>
-        <ul class="dropDownMenu" ng-if="showGenres">
-          <li ng-repeat="genre in genres" ng-click="chooseGenre(genre)" ng-class="{'selected': genre.selected, 'notSelected': !genre.selected}">{{genre.name}}</li>
-        </ul>
+        <div class="filterTextBoxes">
+          <input type="text" class="filterInput" placeholder="TITLE" ng-model="filterByTitle" ng-model-options="{debounce: {'default': debounce}}">
+          
+          <input type="text" placeholder="USER" ng-model="filterByUser" ng-model-options="{debounce: {'default': debounce}}">
+        </div>
       </div>
-      <div class="filterTextBoxes">
-        <input type="text" class="filterInput" placeholder="TITLE" ng-model="filterByTitle" ng-model-options="{debounce: {'default': debounce}}">
-        
-        <input type="text" placeholder="USER" ng-model="filterByUser" ng-model-options="{debounce: {'default': debounce}}">
-      </div>
+
     </div>
 
 
