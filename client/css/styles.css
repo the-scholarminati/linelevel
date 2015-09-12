@@ -363,7 +363,7 @@ form{
 
 .formInputs{
   flex-basis: auto;
-  margin: 25px;
+  margin-left: 25px;
 }
 
 .submitbutton{
@@ -393,7 +393,7 @@ form{
 }
 
 textarea{
-  width: 175px;
+  width: 200px;
   height: 175px;
   border-radius: 3px;
   border: 1px solid #C1C1C1;

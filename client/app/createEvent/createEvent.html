@@ -5,7 +5,7 @@
     
     <form ng-hide="!isAuth()" name="createEventForm" ng-submit="submitCreateEventForm()" novalidate>
       <div id="createEventForm">
-        <div class='formInputs'>
+        <div class="formInputs">
           <div class="formItem">
             Event:<br> 
             <input type="text" placeholder="Name of your Event" data-ng-model="eventTitle" required>
@@ -33,7 +33,9 @@
         </div>
 
         <div class="genreList">
-          <div>Which genres describe your event?</div>
+          <div class="formInputs">
+            <div class="formItem">Which genres describe your event?</div>
+          </div>
           <ul>
             <li ng-repeat="genre in genres" ng-click="chooseGenre(genre)" ng-class="{'selected': genre.selected, 'notSelected': !genre.selected}">{{genre.name}}</li>
           </ul>
