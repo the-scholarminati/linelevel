@@ -447,7 +447,7 @@ textarea{
   font-family: Helvetica-bold;
 }
 
-#videoSettings{
+.videoSettings{
   border: 1px solid black;
   width: 25px;
   height: 390px;
@@ -460,7 +460,14 @@ textarea{
 
 .video-setting{
   border-bottom: 1px solid white;
+  background-color: white;
   height: 25px;
+}
+.video-setting:hover{
+  background-color: #80EBD8;
+}
+.video-setting:active{
+  background-color: #6BC4B4;
 }
 
 #eventcontent{
@@ -515,7 +522,7 @@ textarea{
 }
 
 .chat-section{
-  width: 70%;
+  width: 100%;
   max-width: 330px;
 }
 
@@ -716,6 +723,16 @@ textarea{
   .onlyOnMobile{
     display: none;
   }
+}
+
+@media(max-width: 700px){
+  .hideOnMobile{
+    display: none;
+  }
+}
+
+.mobile-admin{
+  margin: 10px;
 }
 
 .dateSelection{

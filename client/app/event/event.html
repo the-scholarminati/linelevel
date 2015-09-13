@@ -9,10 +9,6 @@
           hosted by <span id="eventHostName">{{event.host}}</span>
         </div>
       </div>
-      <div id="chatToggle">
-        <div id="showChat"><a href="javascript:void(0)" onclick="document.getElementById('hideChat').style.display='block';document.getElementById('showChat').style.display='none'" ng-click="toggleChat()">Show Chat</a></div>
-        <div id="hideChat"><a href="javascript:void(0)" onclick="document.getElementById('showChat').style.display='block';document.getElementById('hideChat').style.display='none'" ng-click="toggleChat()">Hide Chat</a></div>
-      </div>
     </div>
 
     <div class="line"></div>
@@ -24,25 +20,59 @@
     <!-- can we call the method on the factory? might need to set that method in the scope to call it here -->
 
 
-    <div ng-show="!isSameUser">
+    <div ng-show="!isSameUser" class="mobile-admin onlyOnMobile">
       <button class="stream-button" ng-click="loadStream();">Load Stream</button>
+      <button class="stream-button" ng-click="toggleChat();">Hide Chat</button>
+      <button class="stream-button" ng-click="people();">Hide Participants</button>
     </div>
-    <div ng-show="isSameUser">
-      <button class="stream-button" ng-click="startStream();">Start Stream</button>
+    <div ng-show="isSameUser" class="mobile-admin onlyOnMobile">
       <button class="stream-button" ng-click="editEvent();">Edit Event</button>
-      <button class="stream-button" ng-click="stopStream();" id="stop-stream-button">Stop Stream</button>
+      <button class="stream-button" ng-click="toggleChat();">Hide Chat</button>
+      <button class="stream-button" ng-click="people();">Hide Participants</button>
     </div>
     
     <div id="eventcontent">
+    <!-- For admin video settings -->
       <div id="video-content">
-        <div id="videoSettings">
-          <div class="video-setting">
+        <div class="videoSettings hideOnMobile" ng-show="isSameUser">
+          <div class="video-setting" ng-click="startStream()">
+            <img src="../assets/controls/stream.png" width="25px" height="25px"/>
           </div>
-          <div class="video-setting">
+          <div class="video-setting" ng-click="stop(1)">
+            <img src="../assets/controls/stop.png" width="25px" height="25px"/>
           </div>
-          <div class="video-setting">
+          <div class="video-setting" ng-click="editEvent()">
+            <img src="../assets/controls/edit.png" width="25px" height="25px"/>
           </div>
-          <div class="video-setting">
+          <div class="video-setting" ng-click="people()">
+            <img src="../assets/controls/people.png" width="25px" height="25px"/>
+          </div>
+          <div class="video-setting" ng-click="toggleChat()">
+            <img src="../assets/controls/chat.png" width="25px" height="25px"/>
+          </div>
+        </div>
+        <!-- For regular user -->
+        <div class="videoSettings hideOnMobile" ng-show="!isSameUser">
+          <div class="video-setting" ng-click="play()">
+            <img src="../assets/controls/play.png" width="25px" height="25px"/>
+          </div>
+          <div class="video-setting" ng-click="stop(0)">
+            <img src="../assets/controls/stop.png" width="25px" height="25px"/>
+          </div>
+          <div class="video-setting" ng-click="volumeUp()">
+            <img src="../assets/controls/volume_up.png" width="25px" height="25px"/>
+          </div>
+          <div class="video-setting" ng-click="volumeDown()">
+            <img src="../assets/controls/volume_down.png" width="25px" height="25px"/>
+          </div>
+          <div class="video-setting" ng-click="mute()">
+            <img src="../assets/controls/mute.png" width="25px" height="25px"/>
+          </div>
+          <div class="video-setting" ng-click="people()">
+            <img src="../assets/controls/people.png" width="25px" height="25px"/>
+          </div>
+          <div class="video-setting" ng-click="toggleChat()">
+            <img src="../assets/controls/chat.png" width="25px" height="25px"/>
           </div>
         </div>
 
@@ -53,6 +83,7 @@
           <!-- <div id="ytplayer"></div>
           <span class="video"></span> -->
         </div>
+
       </div>
       <div id="chat-content" ng-show="chatVisible">
         <div class="chat-section">
