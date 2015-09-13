@@ -144,6 +144,10 @@ header{
   padding-left: 10px;
   color:white;
   position: fixed;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   flex-flow: row nowrap;
   top: 0px;
@@ -162,7 +166,11 @@ header a:hover{
 }
 
 #logo-and-title{
-  display:flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
   flex-flow: row;
 }
 
@@ -416,6 +424,10 @@ textarea{
 ******************************/
 
 .pageTitle{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   justify-content: space-between;
 }
@@ -427,6 +439,10 @@ textarea{
 
 #genreNames{
   font-style: italic;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   flex-flow: row nowrap;
   top: -25px;
@@ -453,6 +469,10 @@ textarea{
   height: 390px;
   border-radius: 5px;
   margin: 10px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   flex-flow: column;
   background-color: black;
@@ -710,11 +730,19 @@ textarea{
 }
 
 .filterOptions{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   margin-left: 18px;
 }
 
 .dateFilter{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   margin: 17px 0 0 2px;
 }
@@ -789,6 +817,10 @@ textarea{
 }
 
 .hostAndRSVP{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   justify-content: space-between;
 }
@@ -806,6 +838,10 @@ textarea{
 }
 
 .eventList{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
@@ -867,6 +903,10 @@ textarea{
 
 #following{
   border: 1px solid black;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   flex-flow: column nowrap;
   width: 10%;
@@ -879,6 +919,10 @@ textarea{
 }
 
 #userContent{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   flex-flow: row wrap;
 }
@@ -888,6 +932,10 @@ textarea{
   width: 300px;
   margin-left: 50px;
   margin-right: 50px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   flex-flow: column nowrap;
 }
@@ -905,6 +953,10 @@ textarea{
 
 #userFeed{
   border: 1px solid black;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   flex-flow: column nowrap;
   width: 25%;
@@ -913,6 +965,10 @@ textarea{
 
 #userWall{
   border: 1px solid black;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   flex-flow: column nowrap;
   width: 30%;
