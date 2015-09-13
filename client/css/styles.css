@@ -154,6 +154,7 @@ header{
   left: 0px;
   z-index: 9999;
   justify-content: space-between;
+  -webkit-justify-content: space-between;
 }
 
 header a:visited, header a:link, header a:active{
@@ -171,7 +172,7 @@ header a:hover{
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  flex-flow: row;
+  flex-flow: row nowrap;
 }
 
 #header-title{
@@ -186,6 +187,9 @@ nav{
   margin: 0px;
   float: right;
   display:inline-block;
+}
+.navigation-links{
+  float:right;
 }
 
 .navLink{
