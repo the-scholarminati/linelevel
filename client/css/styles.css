@@ -456,6 +456,12 @@ textarea{
   background-color: white;
   height: 25px;
 }
+.video-setting:hover{
+  background-color: #80EBD8;
+}
+.video-setting:active{
+  background-color: #6BC4B4;
+}
 
 #eventcontent{
   width: 100%;
@@ -509,7 +515,7 @@ textarea{
 }
 
 .chat-section{
-  width: 70%;
+  width: 100%;
   max-width: 330px;
 }
 
@@ -710,6 +716,16 @@ textarea{
   .onlyOnMobile{
     display: none;
   }
+}
+
+@media(max-width: 700px){
+  .hideOnMobile{
+    display: none;
+  }
+}
+
+.mobile-admin{
+  margin: 10px;
 }
 
 .dateSelection{

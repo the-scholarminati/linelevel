@@ -330,12 +330,69 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
 
 
 
+
+
+//app.module('main').requires.push('event');
+
+    /*/////////////////////////////////////////////////////////////////////////////////////////////////////////
+    CODE FOR VIDEO SETTINGS
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+    $scope.play = function(){
+      var peer = new Peer({key: '66p1hdx8j2lnmi'});
+      console.log('video id ' + $scope.event.videoId);
+
+      var conn = peer.connect($scope.event.videoId);
+
+      peer.on('call', function (incomingCall) {
+        hideCountDown();
+        incomingCall.answer(null);
+        incomingCall.on('stream', function(stream){
+          var video = document.getElementById("theirVideo");
+          console.log('create object url' + URL.createObjectURL(stream));
+          video.src = URL.createObjectURL(stream);
+          video.muted = false;
+          console.log(stream.getAudioTracks());
+        });
+      });
+    };
+
+    $scope.stop = function(isAdmin){
+      if(isAdmin){
+        window.localStream.stop();
+      }else{
+        document.getElementById('theirVideo').pause();
+      }
+    };
+
+    $scope.volumeUp = function(){
+      if(document.getElementById('theirVideo').volume <1){
+        document.getElementById('theirVideo').volume+=0.1;
+      }
+    };
+
+    $scope.volumeDown = function(){
+      if(document.getElementById('theirVideo').volume > 0){
+        document.getElementById('theirVideo').volume-=0.1;
+      }
+    };
+
+    $scope.mute = function(){
+      document.getElementById('theirVideo').muted = !document.getElementById('theirVideo').muted;
+    };
+
     $scope.toggleChat = function(){
       // console.log($scope.chatVisible);
       $scope.chatVisible = !$scope.chatVisible;
     };
 
-  }
-  ]);
+    $scope.people = function(){
+      if(document.getElementsByClassName('chat-participants')[0].style.visibility==="hidden"){
+        document.getElementsByClassName('chat-participants')[0].style.visibility="visible";
+      }else{
+        document.getElementsByClassName('chat-participants')[0].style.visibility='hidden';
+      }
+    };
 
-//app.module('main').requires.push('event');
+ }
+]);
