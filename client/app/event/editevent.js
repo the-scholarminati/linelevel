@@ -26,11 +26,15 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
         .on("value",function(info){
 
           var eventData = info.val();
-          $scope.eventTitle = eventData.title;
-          $scope.eventDescription = eventData.description;
-          $scope.eventImage = eventData.image;
-          $scope.eventLabel = eventData.label;
-          $scope.genre = eventData.genre;
+          appFactory.update($scope,function(scope){
+            $scope.eventTitle = eventData.title;
+            $scope.eventDescription = eventData.description;
+            $scope.eventImage = eventData.image;
+            $scope.eventLabel = eventData.label;
+            $scope.genre = eventData.genre;
+            $scope.private = eventData.private;
+            $scope.followersOnly = eventData.followersOnly;
+          });
 
           if($scope.genre){
             $scope.genre.forEach(function(genre){
@@ -65,8 +69,8 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
       console.log(eventTitle);
       console.log(eventDescription);
       var chosenGenres = this.chosenGenres;
-      var privateEvent = $scope.private;
-      var followersOnly = $scope.followersOnly;
+      var privateEvent = this.private;
+      var followersOnly = this.followersOnly;
 
       console.log('chosen genres' + chosenGenres);
 
@@ -83,7 +87,7 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
           });
 
 
-     window.location.href="/";
+     window.location.href="#/event/" + $scope.eventId;
 
     };
 
