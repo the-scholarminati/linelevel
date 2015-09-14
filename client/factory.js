@@ -14,6 +14,17 @@ angular.module('main')
 
 
   ///////////////
+  ///// Misc
+  ///////////////
+
+  // checks to see if there are new notifications for the user
+  obj.newNotifications = function(){
+    // return false for now; remove this when implementing actual method
+    return false;
+  };
+
+
+  ///////////////
   ///// Timers
   ///////////////
 

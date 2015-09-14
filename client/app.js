@@ -70,6 +70,10 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   };
 
 
+  // import method to check if there are new notifications for the user
+  $scope.newNotifications = appFactory.newNotifications;
+
+
   // gets the user's username and sets it to the scope
   // so we can route them to their profile from any page
   $scope.userName = '';
