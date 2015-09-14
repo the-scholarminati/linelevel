@@ -42,7 +42,7 @@
 
         <div ng-repeat="message in uData.myWall" class="message">
           <div class="wall-author">
-            <img src="{{message.image}}">
+            <a ui-sref="userProfile({userName: message.username})"><img src="{{message.image}}"></a>
           </div><!--
        --><div class="wall-message">
             <div class="wall-message-header">
@@ -59,7 +59,7 @@
       <div id="following">
         <h2>Following</h2>
         <div ng-repeat="(name,value) in following" class="profile-following">
-          <a href="#/userProfile/{{name}}" ng-bind="name"></a>
+          <a ui-sref="userProfile({userName: name})" ng-bind="name"></a>
         </div>
       </div>
 
