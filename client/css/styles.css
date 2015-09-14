@@ -967,7 +967,6 @@ textarea{
 ******************************/
 
 #following{
-  border: 1px solid black;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -976,6 +975,7 @@ textarea{
   flex-flow: column nowrap;
   width: 10%;
   text-align: center;
+  margin-left: 50px;
 }
 
 .rsvp{
@@ -1099,6 +1099,14 @@ textarea{
   padding-left: 15px;
   font-size: .8em;
   color: #333;
+}
+
+.profile-following, .profile-following a{
+  background: black;
+  padding: 5px;
+  text-decoration: none;
+  margin: 1px;
+  color: white;
 }
 
 

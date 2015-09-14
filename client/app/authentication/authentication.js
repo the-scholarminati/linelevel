@@ -99,7 +99,7 @@ angular.module('main')
 
                   // store email in emails table
                   emails.child(emailFirebase).update({
-                    uid: userdata.uid
+                    uid: userData.uid
                   });
 
                   // clear error and signin user

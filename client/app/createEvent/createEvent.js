@@ -43,9 +43,11 @@ angular.module('main')
       
       // save eventId to variable
       if(user){
-        ref.child("users").child(user.uid).on("value",function(userData){
-          var username = userData.val().username;
-
+        var userRef = ref.child("users").child(user.uid);
+        userRef.on("value",function(userData){
+          userData = userData.val();
+          userRef.off();
+          var username = userData.username;
           var eventId = ref.child('events').push();
           eventId.set({
             title: eventTitle,
