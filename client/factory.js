@@ -14,7 +14,7 @@ angular.module('main')
 
 
   ///////////////
-  ///// Misc
+  ///// Notifications
   ///////////////
 
   // checks to see if there are new notifications for the user
