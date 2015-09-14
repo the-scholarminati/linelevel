@@ -20,16 +20,11 @@ angular.module('main')
     eventsRef.orderByChild('date').limitToLast(200).on('child_added', function(snapshot){
       var data = snapshot.val();
       data.key = snapshot.key();
-      appFactory.update($scope,function(){
-        $scope.events.push(data);
-
+      appFactory.update($scope,function(scope){
         // if an event lacks a background image,
         // set it to the default album image
-        $scope.events.forEach(function(event){
-          if (!event.image){
-            event.image = './assets/albumcover.png';
-          }
-        });
+        data.image = data.image || './assets/albumcover.png';
+        scope.events.push(data);
       });
     });
 
