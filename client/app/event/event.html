@@ -101,7 +101,7 @@
           </div>
 
           <div ng-hide="!selectedChat[1]" id="hostMessages">
-            <div ng-repeat="message in event.hostMessages" class="message"><div ng-bind="chatTime(message.timestamp)"></div><b>{{message.username}}: </b> {{message.message}}</div>
+            <div ng-repeat="message in event.hostMessages" class="message"><div ng-bind="chatTime(message.timestamp)"></div><a class="chat-username" ui-sref="userProfile({userName: message.username})"><b>{{message.username}}: </b></a> {{message.message}}</div>
           </div>
 
           <div ng-hide="!selectedChat[2]" id="adminControls">
@@ -116,7 +116,7 @@
 
               <div class="invited-users">
                 <div class="invited-users-title">Invited Users</div>
-                <div ng-repeat="(name,allowed) in event.allowedUsers"><div class="whitelist-remove-user" ng-click="removeUserFromWhiteList(name)">x</div>&nbsp;&nbsp;{{name}}</div>
+                <div ng-repeat="(name,allowed) in event.allowedUsers"><div class="whitelist-remove-user" ng-click="removeUserFromWhiteList(name)">x</div>&nbsp;&nbsp;<a ui-sref="userProfile({userName: name})">{{name}}</a></div>
               </div>
             </div>
 
