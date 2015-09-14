@@ -80,6 +80,10 @@ button:enabled:hover{
   background-color: #80EBD8;
 }
 
+button:active, button:hover:active{
+  background: #4BBF9E;
+}
+
 /******************************
   Genres list styling 
 ******************************/
@@ -419,10 +423,15 @@ form{
   margin: 0;
 }
 
-.private-event-message{
+.private-event-message, .event-status{
   padding-top: 150px;
   text-align: center;
   font-size: 2em;
+}
+
+.event-status{
+  padding-top: 15px;
+  font-size: 1.5em;
 }
 
 textarea{
@@ -639,6 +648,7 @@ textarea{
 }
 
 #adminControls{
+  overflow-x: hidden; 
   height: 90%;
 }
 
