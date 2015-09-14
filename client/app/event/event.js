@@ -169,6 +169,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
         $scope.event.host = eventData.host;
         $scope.event.name = eventData.title;
         $scope.event.videoId = eventData.videoId;
+        $scope.event.genres = eventData.genre;
         $scope.event.date = eventData.date;
         $scope.event.private = eventData.private;
         $scope.event.followersOnly = eventData.followersOnly;
