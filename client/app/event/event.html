@@ -116,7 +116,7 @@
 
               <div class="invited-users">
                 <div class="invited-users-title">Invited Users</div>
-                <div ng-repeat="(name,allowed) in event.allowedUsers" ng-bind="name"></div>
+                <div ng-repeat="(name,allowed) in event.allowedUsers"><div class="whitelist-remove-user" ng-click="removeUserFromWhiteList(name)">x</div>&nbsp;&nbsp;{{name}}</div>
               </div>
             </div>
 

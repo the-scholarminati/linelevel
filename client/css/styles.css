@@ -703,6 +703,19 @@ textarea{
   font-size: 1.4em;
 }
 
+.whitelist-remove-user{
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  background: red;
+  color: white;
+  border-radius: 100%;
+  text-align: center;
+  font-size: 15px;
+  line-height: 15px;
+  cursor: pointer;
+}
+
 /******************************
   Home page styling 
 ******************************/

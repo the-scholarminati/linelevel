@@ -108,19 +108,29 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
             users.child(data.uid).child("notifications").push().set({
               message: "You have been added to event '" + $scope.event.name + "' by " + $scope.event.host, 
               status: 'unread',
-              time: $scope.event.date
+              eventStart: $scope.event.date,
+              received: (new Date()).getTime()
             });
             appFactory.update($scope,function(scope){
               scope.adminTabMessage = 'Invitation sent to ' + user;
             });
           }
+          usernamesRef.off();
         });
       }
       this.invitedUser = '';
     };
 
-    $scope.notifyUser = function(){
-
+    $scope.removeUserFromWhiteList = function(username){
+      appFactory.accessUidByUsername(username,function(uid){
+        users.child(uid).child("notifications").push().set({
+          message: "You have been removed from event '" + $scope.event.name + "'",
+          status: 'unread',
+          received : (new Date()).getTime() 
+        });
+      });
+      eventRef.child("allowedUsers").child(username).remove();
+      delete $scope.event.allowedUsers[username];
     };
 
 
