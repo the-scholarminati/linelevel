@@ -423,15 +423,19 @@ form{
   margin: 0;
 }
 
-.private-event-message, .event-status{
+.private-event-message, .event-status, .admin-tab-message{
   padding-top: 150px;
   text-align: center;
   font-size: 2em;
 }
 
-.event-status{
+.event-status, .admin-tab-message{
   padding-top: 15px;
   font-size: 1.5em;
+}
+
+.admin-tab-message{
+  padding-top: 5px;
 }
 
 textarea{
