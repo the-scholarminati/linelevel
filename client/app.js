@@ -6,7 +6,10 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   $stateProvider
     .state('home', {
       url: '/',
-      templateUrl: './app/home/home.html'
+      templateUrl: './app/home/home.html',
+      controller: function(appFactory){
+        appFactory.resetGenres();
+      }
     })
     .state('about', {
       url: '/about',
