@@ -47,7 +47,9 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
         appFactory.update($scope,function(scope){
           $scope.genres.forEach(function(genre){
             appFactory.chosenGenres.forEach(function(item){
-              genre.name === item ? genre.selected = true : 0;
+              if(genre.name === item){
+                genre.selected = true;
+              }
             });
           });
         });
