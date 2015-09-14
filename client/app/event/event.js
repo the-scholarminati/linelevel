@@ -8,16 +8,21 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     $scope.event.messages = [];
     $scope.event.hostMessages = [];
     $scope.event.private = true;
+    $scope.event.allowedUsers = {};
     $scope.event.showEvent = false;
     $scope.participants = {};
+    $scope.adminTabMessage = '';
+    $scope.invitedUser = '';
 
     // variables affecting app UI
+    $scope.userText = '';
     $scope.chatVisible = true;
     $scope.isSameUser = false;
     $scope.showCountDown = true;
     $scope.initialized = false;
     $scope.selectedChat = [1,0,0];
     $scope.countDown = 'loading...';
+    var elementsLoaded = false;
 
     // these variables will get updated if user is allowed to view the event
     var chatEl     = '';
@@ -106,17 +111,29 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
         $scope.isSameUser = appFactory.user === $scope.event.host ? true : false;
       });
       eventRef.off();
-      console.log(appFactory.user +  $scope.event.host + $scope.isSameUser);
     });
+
+    eventRef.child("allowedUsers").on("child_added",function(a){
+      appFactory.update($scope,function(scope){
+        scope.event.allowedUsers[a.key()] = a.val();
+      });
+    });
+
+    var loadElements = function(){
+      chatEl     = document.getElementById('chatMessages');
+      hostChatEl = document.getElementById('hostMessages');
+      chatAlert  = document.createElement('audio');
+      chatAlert.setAttribute('src','../../assets/alert.wav');
+      if(chatEl === null || hostChatEl === null){
+        setTimeout(loadElements,30);
+      } else {
+        elementsLoaded = true;
+      }
+    };
     
     // initialize controller
     var init = function(){
       if(!$scope.initialized){
-        chatEl     = document.getElementById('chatMessages');
-        hostChatEl = document.getElementById('hostMessages');
-        chatAlert  = document.createElement('audio');
-        chatAlert.setAttribute('src','../../assets/alert.wav');
-
         //reset any previous firebase listeners
         ref.off();
 
@@ -165,6 +182,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     $scope.$watch(function(scope){return $scope.event.showEvent;},function(nv,ov){
       if(nv){
         init();
+        loadElements();
       }
     });
 
@@ -176,16 +194,16 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       function(nv,ov){
       // auto scroll down in chat
         if(nv){
-          $scope.$watch(function(scope){
-            return scope.event.messages.length;
-          },function(a,b){
-            $scope.scrollToBottom();
-          });
-          //testing
           //clearTimeout(appFactory.timers.eventCounter);
           appFactory.resetTimers();
           updateCountDown();
           updateParticipant();
+
+          $scope.$watch(function(scope){return scope.event.messages.length;},function(a,b){
+            if(elementsLoaded){
+              $scope.scrollToBottom();
+            }
+          });
         }// end of if
       }// end of second watch function
     );
@@ -288,13 +306,13 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     };
 
     $scope.sendMessage = function(){
-      var text = $scope.userText;
-      if(userData && initialized && text.length > 0){
+      var text = this.userText;
+      if(userData && $scope.initialized && text.length > 0){
         chatRef.push({username: userData.username, message: text, timestamp: (new Date()).getTime()});
       } else {
         $scope.event.messages.push({username:"Linelevel Bot", message: "Please log in to participate in chat!"});
       }
-      $scope.userText = '';
+      this.userText = '';
     };
 
     /*/////////////////////////////////////////////////////////////////////////////////////////////////////////
