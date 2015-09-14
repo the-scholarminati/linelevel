@@ -104,13 +104,13 @@
           </div>
 
           <div ng-hide="!selectedChat[2]" id="adminControls">
-            <form class="admin-submit">
-              <input type="checkbox"> Private Event
-              
-            </form>
-            <form class="admin-invite">
-             <input type="text" placeholder="Invite user"> 
-            </form>
+            <div class="event-status" ng-bind="eventStatus()"></div>
+            <div ng-if="event.private" class="allowed-users">
+              <form class="admin-invite">
+               <input type="text" placeholder="Invite user"> 
+               <button ng-click="sendInvite()">Send Invite</button>
+              </form>
+            </div>
           </div>
 
           <div> 

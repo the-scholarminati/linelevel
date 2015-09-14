@@ -52,15 +52,20 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       }
     };
 
-    var hideCountDown = function(){
-      if(!streamActivated){
-        streamActivated = true;
-        appFactory.update($scope,function(scope){
-          scope.showCountDown = false;
-        });
+    $scope.eventStatus = function(){
+      if($scope.event.private){
+        return "This event is private";
+      } else {
+        return "This event is public";
       }
     };
 
+    $scope.sendInvite = function(){
+
+    };
+
+
+    // helper functions for participant list
     var updateParticipant = function(){
       appFactory.updateEventParticipation($scope);
       appFactory.timers.participantCounter = setTimeout(updateParticipant, 20000);
@@ -185,7 +190,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       }// end of second watch function
     );
 
-    // countdown to the start of the event
+    // helper function for event countdown
     var updateCountDown = function(){
       var current = (new Date()).getTime();
       var message = "Updating...";
@@ -216,6 +221,16 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
 
       appFactory.timers.eventCounter = setTimeout(updateCountDown, 1000);
     };
+
+    var hideCountDown = function(){
+      if(!streamActivated){
+        streamActivated = true;
+        appFactory.update($scope,function(scope){
+          scope.showCountDown = false;
+        });
+      }
+    };
+
 
     // ensures chat is scrolled to the bottom when new message is added
     $scope.scrollToBottom = function(){
