@@ -423,20 +423,6 @@ form{
   margin: 0;
 }
 
-.private-event-message, .event-status, .admin-tab-message{
-  padding-top: 150px;
-  text-align: center;
-  font-size: 2em;
-}
-
-.event-status, .admin-tab-message{
-  padding-top: 15px;
-  font-size: 1.5em;
-}
-
-.admin-tab-message{
-  padding-top: 5px;
-}
 
 textarea{
   width: 200px;
@@ -689,6 +675,33 @@ textarea{
   transition: .5s;
 }
 
+.private-event-message, .event-status, .admin-tab-message{
+  padding-top: 150px;
+  text-align: center;
+  font-size: 2em;
+}
+
+.event-status, .admin-tab-message{
+  padding-top: 15px;
+  font-size: 1.5em;
+}
+
+.admin-tab-message{
+  padding-top: 5px;
+}
+
+.invited-users{
+  border: 1px solid gray;
+  margin-left: 10px;
+  padding-left: 20px;
+  width: 50%;
+  font-size: 1.2em;
+}
+
+.invited-users-title{
+  text-align: center;
+  font-size: 1.4em;
+}
 
 /******************************
   Home page styling 

@@ -1,6 +1,7 @@
 <section ng-controller="eventController">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <div class="container" ng-if="showEvent()">
+  <div ng-if="showEvent()">Secret Div!</div>
+  <div class="container" ng-if="event.showEvent">
 
     <div class="pageTitle">
       <div style="display:flex; flex-flow: row nowrap">
@@ -105,12 +106,20 @@
 
           <div ng-hide="!selectedChat[2]" id="adminControls">
             <div class="event-status" ng-bind="eventStatus()"></div>
-            <div ng-if="event.private" class="allowed-users">
+            <div class="admin-tab-message" ng-bind="adminTabMessage"></div>
+            <div ng-show="event.private" class="allowed-users">
+
               <form class="admin-invite">
-               <input type="text" placeholder="Invite user"> 
-               <button ng-click="sendInvite()">Send Invite</button>
+                <input type="text" placeholder="Invite user" ng-model="invitedUser"> 
+                <button ng-click="addToWhiteList()">Send Invite</button>
               </form>
+
+              <div class="invited-users">
+                <div class="invited-users-title">Invited Users</div>
+                <div ng-repeat="(name,allowed) in event.allowedUsers" ng-bind="name"></div>
+              </div>
             </div>
+
           </div>
 
           <div> 
@@ -130,7 +139,7 @@
 
     </div>
   </div>
-  <div ng-if="!showEvent()" class="container private-event-message">This event is private!
+  <div ng-if="!event.showEvent" class="container private-event-message">This event is private!
     <div ng-if="event.followersOnly">Follow <a href="#/userProfile/{{event.host}}">{{event.host}}</a> to join this event!</div>
     <div ng-if="!event.followersOnly">Only those invited by <a href="#/userProfile/{{event.host}}">{{event.host}}</a> may participate in this event.</div>
   </div>
