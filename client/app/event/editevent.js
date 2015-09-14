@@ -12,6 +12,8 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
 
   $scope.today = new Date();
   $scope.date = appFactory.date;
+  $scope.private = false;
+  $scope.followersOnly = true;
 
     // sets the date to today and time to 7pm with no seconds
   appFactory.resetDate();
@@ -63,6 +65,8 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
       console.log(eventTitle);
       console.log(eventDescription);
       var chosenGenres = this.chosenGenres;
+      var privateEvent = $scope.private;
+      var followersOnly = $scope.followersOnly;
 
       console.log('chosen genres' + chosenGenres);
 
@@ -73,7 +77,10 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
             'image': eventImage,
             'label': eventLabel,
             'date': eventDate,
-            'genre': chosenGenres});
+            'genre': chosenGenres,
+            'private': privateEvent,
+            'followersOnly': followersOnly
+          });
 
 
      window.location.href="/";

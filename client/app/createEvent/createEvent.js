@@ -19,9 +19,6 @@ angular.module('main')
     $scope.chooseGenre = appFactory.chooseGenre;
     $scope.private = false;
     $scope.followersOnly = true;
-    window.check = function(){
-      console.log($scope.private);
-    };
 
     var ref = appFactory.firebase;
     var user = ref.getAuth();
