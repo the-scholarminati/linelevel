@@ -647,7 +647,7 @@ textarea{
 }
 
 .message{
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .message-host{
@@ -707,7 +707,7 @@ textarea{
   display: inline-block;
   height: 15px;
   width: 15px;
-  background: red;
+  background: rgba(124, 223, 206,.8);
   color: white;
   border-radius: 100%;
   text-align: center;
@@ -715,6 +715,17 @@ textarea{
   line-height: 15px;
   cursor: pointer;
 }
+
+.whitelist-remove-user:hover{
+  background: rgba(124, 223, 206,.5);
+  color: black;
+}
+
+.whitelist-remove-user:hover:active{
+  background: rgba(104, 203, 186,.8);
+  color: black;
+}
+
 
 /******************************
   Home page styling 
@@ -982,7 +993,6 @@ textarea{
 }
 
 #userInfo{
-  border: 1px solid black;
   width: 300px;
   margin-left: 50px;
   margin-right: 50px;
@@ -992,13 +1002,15 @@ textarea{
   display: -webkit-flex;
   display: flex;
   flex-flow: column nowrap;
+  text-align: center;
 }
 
 #userInfo img{
-  height: 230px;
-  max-width: 230px;
+  height: 180px;
+  max-width: 180px;
   margin: 10px auto;
   border-radius: 50%;
+  overflow-y: scroll;
 }
 
 .profileInfo{
@@ -1006,25 +1018,91 @@ textarea{
 }
 
 #userFeed{
-  border: 1px solid black;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
   flex-flow: column nowrap;
-  width: 25%;
+  width: 100%;
   text-align: center;
 }
 
+#userFeed a{
+  text-decoration: none;
+  color: white;
+}
+
 #userWall{
-  border: 1px solid black;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
   flex-flow: column nowrap;
-  width: 30%;
+  min-width: 350px;
+  max-width: 500px;
+}
+
+.user-wall-input{
+  max-width: 300px;
+}
+
+.reserved-events{
+  padding: 10px;
+  padding-left: 20px;
+  background: linear-gradient(to left, #485563, #29323c);
+  border-radius: 7px;
+  margin: 2px;
+}
+
+.wall-author, .wall-message{
+  display: inline-block;
+  vertical-align: top;
+  min-height: 90px;
+  background: black;
   text-align: center;
 }
+
+.wall-message{
+  width: 70%;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background: #c0c0c0;
+}
+
+.wall-author, .wall-author a{
+  text-decoration: none;
+  width: 20%;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.wall-author img{
+  padding: 15px;
+  padding-bottom: 5px;
+  margin: 0;
+  width: 50px;
+  height: 50px;
+}
+
+.wall-message-header, .wall-message-header a{
+  text-align: left;
+  margin-top: 10px;
+  padding-left: 15px;
+  text-decoration: none;
+}
+
+.wall-message-text{
+  text-align: left;
+  padding: 5px;
+  padding-left: 15px;
+  font-size: .8em;
+  color: #333;
+}
+
+
+
+
+
+
