@@ -39,15 +39,16 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     window.data = function(){
       console.log('private:', $scope.event.private);
       console.log('showEvent:', $scope.event.showEvent);
+      console.log('appFactory.user', appFactory.user);
     };
 
     // private events - show page if host else check if user is allowed in event
     $scope.showEvent = function(){
-      if($scope.isSameUser){
+      if($scope.isSameUser || !$scope.event.private){
         $scope.event.showEvent = true;
         return true;
       } else {
-        return false; // need to expand this area
+        return false;
       }
     };
 
