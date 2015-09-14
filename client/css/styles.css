@@ -419,6 +419,12 @@ form{
   margin: 0;
 }
 
+.private-event-message{
+  padding-top: 150px;
+  text-align: center;
+  font-size: 2em;
+}
+
 textarea{
   width: 200px;
   height: 175px;

@@ -130,5 +130,8 @@
 
     </div>
   </div>
-  <div ng-if="!showEvent()" class="container">This event is private!</div>
+  <div ng-if="!showEvent()" class="container private-event-message">This event is private!
+    <div ng-if="event.followersOnly">Follow <a href="#/userProfile/{{event.host}}">{{event.host}}</a> to join this event!</div>
+    <div ng-if="!event.followersOnly">Only those invited by <a href="#/userProfile/{{event.host}}">{{event.host}}</a> may participate in this event.</div>
+  </div>
 </section>

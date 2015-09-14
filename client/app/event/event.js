@@ -90,12 +90,13 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     eventRef.on("value",function(info){ 
       var eventData = info.val();
       console.log(eventData);
-      $scope.event.host = eventData.host;
-      $scope.event.name = eventData.title;
-      $scope.event.videoId = eventData.videoId;
-      $scope.event.date = eventData.date;
       appFactory.update($scope,function(scope){
+        $scope.event.host = eventData.host;
+        $scope.event.name = eventData.title;
+        $scope.event.videoId = eventData.videoId;
+        $scope.event.date = eventData.date;
         $scope.event.private = eventData.private;
+        $scope.event.followersOnly = eventData.followersOnly;
         $scope.isSameUser = appFactory.user === $scope.event.host ? true : false;
       });
       eventRef.off();
@@ -288,7 +289,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
         $scope.loadStream();
       }
     });
-    
+
     $scope.startStream = function(){
       hideCountDown();
       var peer = new Peer({key: '66p1hdx8j2lnmi',
