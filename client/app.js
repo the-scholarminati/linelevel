@@ -63,7 +63,7 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
 
 .controller('mainCtrl', ['$scope', '$firebaseObject', '$state', '$location', 'appFactory', function($scope, $firebaseObject, $state, $location, appFactory) {
   // define a reference to the firebase database
-  var ref = new Firebase('https://linelevel.firebaseio.com/data');
+  var ref = new Firebase('https://linelevel.firebaseio.com');
   
   $scope.auth = function(){
     return ref.getAuth() !== null;
@@ -77,9 +77,8 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   if ($scope.userAuth){
     appFactory.accessUserByUid($scope.userAuth.uid, function(userData){
       appFactory.update($scope,function(scope){
-        $scope.userName = userData.val().username;
+        scope.userName = userData.val().username;
         appFactory.user = userData.val().username;
-        console.log("app user assignment" + appFactory.user);
       });
     });
   }
