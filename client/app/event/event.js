@@ -39,22 +39,44 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     var userData = '';
     var chatRef = '';
     var eventRef = ref.child("events").child($scope.eventId);
+    var usernamesRef = ref.child("usernames");
+    var users = ref.child("users");
 
     // testing
     window.data = function(){
       console.log('private:', $scope.event.private);
       console.log('showEvent:', $scope.event.showEvent);
       console.log('appFactory.user', appFactory.user);
+      console.log('allowedUsers', $scope.event.allowedUsers);
+      console.log('scope.initialized', $scope.initialized);
+      console.log('chatEl', chatEl);
+      console.log('hostChatEl', hostChatEl);
+      console.log('userData is ', userData);
     };
 
     // private events - show page if host else check if user is allowed in event
     $scope.showEvent = function(){
       if($scope.isSameUser || !$scope.event.private){
         $scope.event.showEvent = true;
-        return true;
       } else {
-        return false;
+        if($scope.event.followersOnly){
+          appFactory.accessUserByUsername($scope.event.host,function(user){
+            user = user.val();
+            if(user.followers[userAuth.uid] !== undefined){
+              appFactory.update($scope,function(scope){
+                scope.event.showEvent = true;
+              });
+            }
+          });
+        } else {
+          if($scope.event.allowedUsers[userData.username]){
+            appFactory.update($scope,function(scope){
+              scope.event.showEvent = true;
+            });
+          }
+        }
       }
+      return false;
     };
 
     $scope.eventStatus = function(){
