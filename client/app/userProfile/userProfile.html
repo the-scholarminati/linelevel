@@ -46,7 +46,7 @@
           </div><!--
        --><div class="wall-message">
             <div class="wall-message-header">
-              <b>{{message.fullname}}</b>&nbsp;&nbsp;<a ui-sref="userProfile({userName: message.username})">@{{message.username}}</a>&nbsp;&nbsp;
+              <a ui-sref="userProfile({userName: message.username})"><b>{{message.fullname}}</b>&nbsp;&nbsp;@{{message.username}}</a>&nbsp;&nbsp;
               <span ng-bind="getTimeStamp(message.timestamp)"></span>
             </div>
             <div class="wall-message-text" ng-bind="message.message"></div>
