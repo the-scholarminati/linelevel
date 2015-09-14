@@ -7,7 +7,7 @@
       <div style="display:flex; flex-flow: row nowrap">
         <h1>{{event.name}}</h1>
         <div id="eventHost">
-          hosted by <span id="eventHostName">{{event.host}}</span>
+          hosted by <a id="eventHostName" ui-sref="userProfile({userName: event.host})">{{event.host}}</a>
         </div>
       </div>
     </div>
@@ -96,7 +96,7 @@
 
           <div ng-hide="!selectedChat[0]" id="chatMessages">
             <div ng-repeat="message in event.messages" class="message" ng-class="{'message-host': isHost(message), 'message-user': isUser(message)}">
-              <div class="timestamp" ng-bind="chatTime(message.timestamp)"></div><a class="chat-username" href="#/userProfile/{{message.username}}"><b>{{message.username}}: </b></a> {{message.message}}
+              <div class="timestamp" ng-bind="chatTime(message.timestamp)"></div><a class="chat-username" ui-sref="userProfile({userName: message.username})"><b>{{message.username}}: </b></a> {{message.message}}
             </div>
           </div>
 
