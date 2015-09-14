@@ -87,7 +87,39 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       }
     };
 
-    $scope.sendInvite = function(){
+    $scope.addToWhiteList = function(){
+      var user = this.invitedUser.replace(/[\#\$\[\]\.]/g,'');
+      if(user.length === 0){
+        return;
+      }
+      if ($scope.event.allowedUsers[user]){
+        appFactory.update($scope,function(scope){
+          scope.adminTabMessage = 'Username "' + user + '" is already invited';
+        });
+      } else {
+        usernamesRef.child(user).on("value",function(info){
+          var data = info.val();
+          if(data === null){
+            appFactory.update($scope,function(scope){
+              scope.adminTabMessage = 'Username "' + user + '" does not exist';
+            });
+          } else {
+            eventRef.child("allowedUsers").child(info.key()).set(true);
+            users.child(data.uid).child("notifications").push().set({
+              message: "You have been added to event '" + $scope.event.name + "' by " + $scope.event.host, 
+              status: 'unread',
+              time: $scope.event.date
+            });
+            appFactory.update($scope,function(scope){
+              scope.adminTabMessage = 'Invitation sent to ' + user;
+            });
+          }
+        });
+      }
+      this.invitedUser = '';
+    };
+
+    $scope.notifyUser = function(){
 
     };
 
