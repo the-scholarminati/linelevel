@@ -1,6 +1,6 @@
 <section ng-controller="eventController">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <div class="container">
+  <div class="container" ng-if="showEvent()">
 
     <div class="pageTitle">
       <div style="display:flex; flex-flow: row nowrap">
@@ -104,6 +104,13 @@
           </div>
 
           <div ng-hide="!selectedChat[2]" id="adminControls">
+            <form class="admin-submit">
+              <input type="checkbox"> Private Event
+              
+            </form>
+            <form class="admin-invite">
+             <input type="text" placeholder="Invite user"> 
+            </form>
           </div>
 
           <div> 
@@ -123,4 +130,5 @@
 
     </div>
   </div>
+  <div ng-if="!showEvent()" class="container">This event is private!</div>
 </section>

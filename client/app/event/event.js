@@ -4,22 +4,52 @@
 angular.module('main').controller('eventController',['$scope','$http', 'appFactory', '$state',
   function($scope, $http, appFactory, $state){
 
-    // console.log("Loading event page...");
-    $scope.chatVisible = true;
     $scope.event = {};
     $scope.event.messages = [];
     $scope.event.hostMessages = [];
+    $scope.event.private = true;
+    $scope.event.showEvent = false;
     $scope.participants = {};
+
+    // variables affecting app UI
+    $scope.chatVisible = true;
     $scope.isSameUser = false;
+    $scope.showCountDown = true;
+    $scope.initialized = false;
     $scope.selectedChat = [1,0,0];
     $scope.countDown = 'loading...';
-    $scope.showCountDown = true;
-    var chatEl     = document.getElementById('chatMessages');
-    var hostChatEl = document.getElementById('hostMessages');
-    var chatAlert = document.createElement('audio');
-    chatAlert.setAttribute('src','../../assets/alert.wav');
+
+    // these variables will get updated if user is allowed to view the event
+    var chatEl     = '';
+    var hostChatEl = '';
+    var chatAlert = '';
+
+    // variables for live streaming
     var alertActivated = false;
     var streamActivated = false;
+
+    //instantiate firbase ref with url
+    var ref = appFactory.firebase;
+    var userAuth = ref.getAuth();
+    var userData = '';
+    var chatRef = '';
+    var eventRef = ref.child("events").child($scope.eventId);
+
+    // testing
+    window.data = function(){
+      console.log('private:', $scope.event.private);
+      console.log('showEvent:', $scope.event.showEvent);
+    };
+
+    // private events - show page if host else check if user is allowed in event
+    $scope.showEvent = function(){
+      if($scope.isSameUser){
+        $scope.event.showEvent = true;
+        return true;
+      } else {
+        return false; // need to expand this area
+      }
+    };
 
     var hideCountDown = function(){
       if(!streamActivated){
@@ -35,68 +65,58 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       appFactory.timers.participantCounter = setTimeout(updateParticipant, 20000);
     };
 
-    // window.console.log('eventId', $scope.eventId);
-
-    //instantiate firbase ref with url
-    var initialized = false;
-    var ref = appFactory.firebase;
-    var userData = '';
-    var chatRef = '';
 
     $scope.showParticipant = function(input){
       return input > (new Date()).getTime() - 40000;
     };
     
-    $scope.$watch('$scope.event.videoId', function loadVideo(a,b){
-      if($scope.isSameUser !== true){
-        $scope.loadStream();
-      }
-    });
 
+    // load user data
+    if(userAuth){
+      var userRef = ref.child("users").child(userAuth.uid);
+
+      // save user data to local variable
+      userRef.on("value",function(user){
+        userData = user.val();
+      });
+
+      // store last entered session
+      userRef.update({
+        lastSessionId: $scope.eventId
+      });
+    }
+
+    // load event data
+    eventRef.on("value",function(info){ 
+      var eventData = info.val();
+      console.log(eventData);
+      $scope.event.host = eventData.host;
+      $scope.event.name = eventData.title;
+      $scope.event.videoId = eventData.videoId;
+      $scope.event.date = eventData.date;
+      appFactory.update($scope,function(scope){
+        $scope.event.private = eventData.private;
+        $scope.isSameUser = appFactory.user === $scope.event.host ? true : false;
+      });
+      eventRef.off();
+      console.log(appFactory.user +  $scope.event.host + $scope.isSameUser);
+    });
+    
     // initialize controller
     var init = function(){
-      if(!initialized){
-        initialized = !initialized;
+      if(!$scope.initialized){
+        chatEl     = document.getElementById('chatMessages');
+        hostChatEl = document.getElementById('hostMessages');
+        chatAlert  = document.createElement('audio');
+        chatAlert.setAttribute('src','../../assets/alert.wav');
 
         //reset any previous firebase listeners
         ref.off();
 
-        var eventRef = ref.child("events").child($scope.eventId);
-
         // delay the activation of chat alerts
         setTimeout(function(){alertActivated = true;},1500);
 
-        // load user data
-        var userAuth = ref.getAuth();
-        if(userAuth){
-          var userRef = ref.child("users").child(userAuth.uid);
-
-          // save user data to local variable
-          userRef.on("value",function(user){
-            userData = user.val();
-          });
-
-          // store last entered session
-          userRef.update({
-            lastSessionId: $scope.eventId
-          });
-        }
-
-        // load event data
-        eventRef.on("value",function(info){ 
-          var eventData = info.val();
-          console.log(eventData);
-          $scope.event.host = eventData.host;
-          $scope.event.name = eventData.title;
-          $scope.event.videoId = eventData.videoId;
-          $scope.event.date = eventData.date;
-          appFactory.update($scope,function(scope){
-            $scope.isSameUser = appFactory.user === $scope.event.host ? true : false;
-          });
-          eventRef.off();
-          console.log(appFactory.user +  $scope.event.host + $scope.isSameUser);
-        });
-
+        // set up listeners for participants list
         eventRef.child("participants").on("child_added",function(user){
           appFactory.update($scope,function(scope){
             scope.participants[user.key()] = user.val().lastKnownTime;
@@ -130,12 +150,40 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
           });
         });
 
+        $scope.initialized = true;
       }// end of if
     };
-    init();
 
+    // run init only if event is to be show to user - private event implementation
+    $scope.$watch(function(scope){return $scope.event.showEvent;},function(nv,ov){
+      if(nv){
+        init();
+      }
+    });
 
+    // only run timers once the initialized function is run
+    $scope.$watch(
+      function(scope){
+        return scope.initialized;
+      },
+      function(nv,ov){
+      // auto scroll down in chat
+        if(nv){
+          $scope.$watch(function(scope){
+            return scope.event.messages.length;
+          },function(a,b){
+            $scope.scrollToBottom();
+          });
+          //testing
+          //clearTimeout(appFactory.timers.eventCounter);
+          appFactory.resetTimers();
+          updateCountDown();
+          updateParticipant();
+        }// end of if
+      }// end of second watch function
+    );
 
+    // countdown to the start of the event
     var updateCountDown = function(){
       var current = (new Date()).getTime();
       var message = "Updating...";
@@ -167,20 +215,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       appFactory.timers.eventCounter = setTimeout(updateCountDown, 1000);
     };
 
-    if(initialized){
-      // auto scroll down in chat
-      $scope.$watch(function(scope){
-        return scope.event.messages.length;
-      },function(a,b){
-        $scope.scrollToBottom();
-      });
-      //testing
-      //clearTimeout(appFactory.timers.eventCounter);
-      appFactory.resetTimers();
-      updateCountDown();
-      updateParticipant();
-    }
-
+    // ensures chat is scrolled to the bottom when new message is added
     $scope.scrollToBottom = function(){
       setTimeout(function(){
         chatEl.scrollTop = chatEl.scrollHeight;
@@ -248,6 +283,12 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     /*/////////////////////////////////////////////////////////////////////////////////////////////////////////
     CODE FOR LIVE STREAMING
     /////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+    $scope.$watch('$scope.event.videoId', function loadVideo(a,b){
+      if($scope.isSameUser !== true){
+        $scope.loadStream();
+      }
+    });
+    
     $scope.startStream = function(){
       hideCountDown();
       var peer = new Peer({key: '66p1hdx8j2lnmi',
