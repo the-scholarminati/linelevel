@@ -1,12 +1,15 @@
 <section ng-controller="userProfileController">
-   <div class="container">
+   <div class="container" ng-hide="!appFactory.auth()">
+
     <div class="pageTitle">
       <div style="display:flex; flex-flow: row nowrap">
-      <h1>{{userName}}</h1>
-      <button ng-click="followUser()" style="position:relative;left: 20px; top: -10px">Follow</button>
+        <h1>{{userName}}</h1>
+        <button ng-click="followUser()" style="position:relative;left: 20px; top: -10px">Follow</button>
       </div>
-      </div>
-      <div class="line"></div>
+    </div>
+
+    <div class="line"></div>
+
     <div id="genreNames">
       <div ng-repeat="genre in uData.genres"> {{genre}}<span ng-if="$index !== uData.genres.length-1">, &nbsp;</span> </div>
     </div>
@@ -63,5 +66,7 @@
         </div>
       </div>
 
+    </div>
   </div>
+  <div ng-hide="appFactory.auth()" class="private-event-message container">Please <a href="#/signin">sign in</a> to view member profiles</div>
 </section>
