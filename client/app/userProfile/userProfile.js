@@ -25,23 +25,21 @@ angular.module('main')
 
     $scope.submitWallMsg = function(){
       var text = $scope.wallText;
-      if(text.length < 1){ return;}
+      if(!text.length){ return;}
 
       appFactory.accessUserByUid(ref.getAuth().uid, function(snap){
-        if($scope.userName === snap.val().username){
-          console.log("Make something happen");
-          $scope.wallText = '';
-        }
-        else {
-          ref.child('users').child($scope.uData.uid).child('wall').push({username: snap.val().username, message: $scope.wallText,
-          timestamp: (new Date()).getTime()});
-          $scope.wallText = '';
-        }
+        ref.child("usernames").child($scope.userName).on("value",function(userData){
+          ref.child('users').child(userData.val().uid).child('wall').push({
+            username: snap.val().username, 
+            message: text,
+            timestamp: (new Date()).getTime()
+          });
+        });
+        $scope.wallText = '';
       });
     };
 
     $scope.getTimeStamp = function(timestamp){
-      console.log(timestamp);
       timestamp = (new Date()).getTime() - timestamp;
       var days = Math.floor(timestamp/86400000);
       timestamp%=86400000;
@@ -64,10 +62,6 @@ angular.module('main')
       $scope.uData.myWall = [];
       $scope.uData.uid = '';
 
-      window.data = function(){
-        console.log($scope.uData.myWall);
-      };
-
       appFactory.accessUserByUsername($scope.userName, function(user){
         var userProfile = ref.child('users').child(user.val().uid);
 
@@ -82,7 +76,8 @@ angular.module('main')
             scope.uData.genres = snap.chosenGenres;
             scope.uData.myEvents.push(snap.currentEvents);
             scope.uData.uid = snap.uid;
-            scope.following = snap.following;
+            scope.following = snap.following || {};
+            scope.following.Tom = {uid:"59070437-1e92-4817-b3d2-ff9d9753379d"};
           });
         });
         userProfile.off();
