@@ -24,7 +24,7 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
       templateUrl: './app/authentication/signin.html'
     })
     .state('userProfile', {
-      url: '/userProfile/:userName',
+      url: '/userProfile?userName',
       templateUrl: './app/userProfile/userProfile.html',
       controller: function($scope, $stateParams){
         $scope.userName = $stateParams.userName;
@@ -73,18 +73,27 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   };
 
 
-  // gets the user's username and sets it to the scope
-  // so we can route them to their profile from any page
-  $scope.userName = '';
-  $scope.userAuth = ref.getAuth();
-  if ($scope.userAuth){
-    appFactory.accessUserByUid($scope.userAuth.uid, function(userData){
-      appFactory.update($scope,function(scope){
-        scope.userName = userData.val().username;
-        appFactory.user = userData.val().username;
+  // import method to check if there are new notifications for the user
+  $scope.newNotifications = appFactory.newNotifications;
+
+
+  $scope.goProfile = function(){
+    // gets the user's username and sets it to the scope
+    // so we can route them to their profile from any page
+    $scope.userName = '';
+    $scope.userAuth = ref.getAuth();
+    if ($scope.userAuth){
+      appFactory.accessUserByUid($scope.userAuth.uid, function(userData){
+        appFactory.update($scope,function(scope){
+          $scope.userName = userData.val().username;
+          appFactory.user = userData.val().username;
+          console.log("app user assignment" + appFactory.user);
+
+          $state.go('userProfile', {userName: $scope.userName});
+        });
       });
-    });
-  }
+    }
+  };
 
 
   $scope.showHamburgerMenu = false;

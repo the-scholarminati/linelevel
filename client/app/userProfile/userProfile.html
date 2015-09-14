@@ -29,7 +29,7 @@
           <div ng-repeat="(key, event) in uData.myEvents[0] track by $index">
             <div class="reserved-events">
               <a href="#/event/{{key}}">{{event.title}}</a><br>
-              <a href="#/userProfile/{{event.host}}">{{event.host}}</a>
+              <a ui-sref="userProfile({userName: event.host})">{{event.host}}</a>
             </div>
           </div>
         </div>
@@ -46,11 +46,11 @@
 
         <div ng-repeat="message in uData.myWall" class="message">
           <div class="wall-author">
-            <img src="{{message.image}}">
+            <a ui-sref="userProfile({userName: message.username})"><img src="{{message.image}}"></a>
           </div><!--
        --><div class="wall-message">
             <div class="wall-message-header">
-              <b>{{message.fullname}}</b>&nbsp;&nbsp;<a href="#/userProfile/{{message.username}}">@{{message.username}}</a>&nbsp;&nbsp;
+              <a ui-sref="userProfile({userName: message.username})"><b>{{message.fullname}}</b>&nbsp;&nbsp;@{{message.username}}</a>&nbsp;&nbsp;
               <span ng-bind="getTimeStamp(message.timestamp)"></span>
             </div>
             <div class="wall-message-text" ng-bind="message.message"></div>
@@ -63,7 +63,7 @@
       <div id="following">
         <h2>Following</h2>
         <div ng-repeat="(name,value) in following" class="profile-following">
-          <a href="#/userProfile/{{name}}" ng-bind="name"></a>
+          <a ui-sref="userProfile({userName: name})" ng-bind="name"></a>
         </div>
       </div>
 

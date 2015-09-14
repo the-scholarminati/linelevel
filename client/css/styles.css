@@ -214,6 +214,13 @@ nav{
   background-color: #5A585B;
 }
 
+.bellIcon{
+  width: 20px;
+  margin-right: 18px;
+  margin-top: 9px;
+  cursor: pointer;
+}
+
 .hamburgerIcon{
   width: 30px;
   margin-right: 18px;

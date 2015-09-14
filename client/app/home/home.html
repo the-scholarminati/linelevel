@@ -63,8 +63,9 @@
           <div id="event-title">
             <a href="#/event/{{event.key}}">{{event.title}}</a>
           </div>
-          <p class="hostAndRSVP"><a href="#/userProfile/{{event.host}}">{{event.host}}</a>
-          <button class="rsvp" ng-click="saveDate(event.title, event.host, event.key)">RSVP</button>
+          <p class="hostAndRSVP">
+            <a class="link" ui-sref="userProfile({userName: event.host})">{{event.host}}</a>
+            <button class="rsvp" ng-click="saveDate(event.title, event.host, event.key)">RSVP</button>
           </p>
           <p><span ng-repeat="genre in event.genre">
             {{genre}}

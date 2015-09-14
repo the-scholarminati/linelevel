@@ -7,7 +7,7 @@
       <div style="display:flex; flex-flow: row nowrap">
         <h1>{{event.name}}</h1>
         <div id="eventHost">
-          hosted by <span id="eventHostName">{{event.host}}</span>
+          hosted by <a id="eventHostName" ui-sref="userProfile({userName: event.host})">{{event.host}}</a>
         </div>
       </div>
     </div>
@@ -96,12 +96,12 @@
 
           <div ng-hide="!selectedChat[0]" id="chatMessages">
             <div ng-repeat="message in event.messages" class="message" ng-class="{'message-host': isHost(message), 'message-user': isUser(message)}">
-              <div class="timestamp" ng-bind="chatTime(message.timestamp)"></div><a class="chat-username" href="#/userProfile/{{message.username}}"><b>{{message.username}}: </b></a> {{message.message}}
+              <div class="timestamp" ng-bind="chatTime(message.timestamp)"></div><a class="chat-username" ui-sref="userProfile({userName: message.username})"><b>{{message.username}}: </b></a> {{message.message}}
             </div>
           </div>
 
           <div ng-hide="!selectedChat[1]" id="hostMessages">
-            <div ng-repeat="message in event.hostMessages" class="message"><div ng-bind="chatTime(message.timestamp)"></div><b>{{message.username}}: </b> {{message.message}}</div>
+            <div ng-repeat="message in event.hostMessages" class="message"><div ng-bind="chatTime(message.timestamp)"></div><a class="chat-username" ui-sref="userProfile({userName: message.username})"><b>{{message.username}}: </b></a> {{message.message}}</div>
           </div>
 
           <div ng-hide="!selectedChat[2]" id="adminControls">
@@ -116,7 +116,7 @@
 
               <div class="invited-users">
                 <div class="invited-users-title">Invited Users</div>
-                <div ng-repeat="(name,allowed) in event.allowedUsers"><div class="whitelist-remove-user" ng-click="removeUserFromWhiteList(name)">x</div>&nbsp;&nbsp;{{name}}</div>
+                <div ng-repeat="(name,allowed) in event.allowedUsers"><div class="whitelist-remove-user" ng-click="removeUserFromWhiteList(name)">x</div>&nbsp;&nbsp;<a ui-sref="userProfile({userName: name})">{{name}}</a></div>
               </div>
             </div>
 
@@ -140,7 +140,7 @@
     </div>
   </div>
   <div ng-if="!event.showEvent" class="container private-event-message">This event is private!
-    <div ng-if="event.followersOnly">Follow <a href="#/userProfile/{{event.host}}">{{event.host}}</a> to join this event!</div>
-    <div ng-if="!event.followersOnly">Only those invited by <a href="#/userProfile/{{event.host}}">{{event.host}}</a> may participate in this event.</div>
+    <div ng-if="event.followersOnly">Follow <a ui-sref="userProfile({userName: event.host})">{{event.host}}</a> to join this event!</div>
+    <div ng-if="!event.followersOnly">Only those invited by <a ui-sref="userProfile({userName: event.host})">{{event.host}}</a> may participate in this event.</div>
   </div>
 </section>
