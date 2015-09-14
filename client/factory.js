@@ -60,6 +60,16 @@ angular.module('main')
     });
   };
 
+  obj.accessUidByUsername = function(username,cb){
+    return this.auth(function(){
+      var ref = obj.firebase.child("usernames").child(username);
+      ref.on("value", function(userData){
+        cb.call(this,userData.val().uid);
+        ref.off();
+      });
+    });
+  }
+
   // add user to "following" properties (users table)
   obj.followUser = function(username,receiveNotification){
     receiveNotification = receiveNotification === undefined ? true : receiveNotification;
