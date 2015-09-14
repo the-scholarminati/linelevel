@@ -6,7 +6,10 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   $stateProvider
     .state('home', {
       url: '/',
-      templateUrl: './app/home/home.html'
+      templateUrl: './app/home/home.html',
+      controller: function(appFactory){
+        appFactory.resetGenres();
+      }
     })
     .state('about', {
       url: '/about',
@@ -63,7 +66,7 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
 
 .controller('mainCtrl', ['$scope', '$firebaseObject', '$state', '$location', 'appFactory', function($scope, $firebaseObject, $state, $location, appFactory) {
   // define a reference to the firebase database
-  var ref = new Firebase('https://linelevel.firebaseio.com/data');
+  var ref = new Firebase('https://linelevel.firebaseio.com');
   
   $scope.auth = function(){
     return ref.getAuth() !== null;

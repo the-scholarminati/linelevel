@@ -179,7 +179,7 @@ angular.module('main')
   ///// Authentication - checks if user is authenticated - *cb is optional*
   obj.auth = function(cb){
     if(cb === undefined){
-      return this.firebase.getAuth() !== null;
+      return obj.firebase.getAuth() !== null;
     } else {
       var user = this.firebase.getAuth();
       if(user === null){
