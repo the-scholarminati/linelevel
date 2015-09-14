@@ -80,6 +80,10 @@ button:enabled:hover{
   background-color: #80EBD8;
 }
 
+button:active, button:hover:active{
+  background: #4BBF9E;
+}
+
 /******************************
   Genres list styling 
 ******************************/
@@ -411,6 +415,15 @@ form{
   clear:both;
 }
 
+.create-event-checkbox{
+  height: 20px;
+  width: 20px;
+  padding: 0; 
+  border: 0;
+  margin: 0;
+}
+
+
 textarea{
   width: 200px;
   height: 175px;
@@ -625,6 +638,7 @@ textarea{
 }
 
 #adminControls{
+  overflow-x: hidden; 
   height: 90%;
 }
 
@@ -633,7 +647,7 @@ textarea{
 }
 
 .message{
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .message-host{
@@ -659,6 +673,57 @@ textarea{
   margin: 3% 0 10px 0;
   outline: none;
   transition: .5s;
+}
+
+.private-event-message, .event-status, .admin-tab-message{
+  padding-top: 150px;
+  text-align: center;
+  font-size: 2em;
+}
+
+.event-status, .admin-tab-message{
+  padding-top: 15px;
+  font-size: 1.5em;
+}
+
+.admin-tab-message{
+  padding-top: 5px;
+}
+
+.invited-users{
+  border: 1px solid gray;
+  margin-left: 10px;
+  padding-left: 20px;
+  width: 50%;
+  font-size: 1.2em;
+}
+
+.invited-users-title{
+  text-align: center;
+  font-size: 1.4em;
+}
+
+.whitelist-remove-user{
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  background: rgba(124, 223, 206,.8);
+  color: white;
+  border-radius: 100%;
+  text-align: center;
+  font-size: 15px;
+  line-height: 15px;
+  cursor: pointer;
+}
+
+.whitelist-remove-user:hover{
+  background: rgba(124, 223, 206,.5);
+  color: black;
+}
+
+.whitelist-remove-user:hover:active{
+  background: rgba(104, 203, 186,.8);
+  color: black;
 }
 
 
@@ -902,7 +967,6 @@ textarea{
 ******************************/
 
 #following{
-  border: 1px solid black;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -911,6 +975,7 @@ textarea{
   flex-flow: column nowrap;
   width: 10%;
   text-align: center;
+  margin-left: 50px;
 }
 
 .rsvp{
@@ -928,7 +993,6 @@ textarea{
 }
 
 #userInfo{
-  border: 1px solid black;
   width: 300px;
   margin-left: 50px;
   margin-right: 50px;
@@ -938,13 +1002,15 @@ textarea{
   display: -webkit-flex;
   display: flex;
   flex-flow: column nowrap;
+  text-align: center;
 }
 
 #userInfo img{
-  height: 230px;
-  max-width: 230px;
+  height: 180px;
+  max-width: 180px;
   margin: 10px auto;
   border-radius: 50%;
+  overflow-y: scroll;
 }
 
 .profileInfo{
@@ -952,25 +1018,99 @@ textarea{
 }
 
 #userFeed{
-  border: 1px solid black;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
   flex-flow: column nowrap;
-  width: 25%;
+  width: 100%;
   text-align: center;
 }
 
+#userFeed a{
+  text-decoration: none;
+  color: white;
+}
+
 #userWall{
-  border: 1px solid black;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
   flex-flow: column nowrap;
-  width: 30%;
+  min-width: 350px;
+  max-width: 500px;
+}
+
+.user-wall-input{
+  max-width: 300px;
+}
+
+.reserved-events{
+  padding: 10px;
+  padding-left: 20px;
+  background: linear-gradient(to left, #485563, #29323c);
+  border-radius: 7px;
+  margin: 2px;
+}
+
+.wall-author, .wall-message{
+  display: inline-block;
+  vertical-align: top;
+  min-height: 90px;
+  background: black;
   text-align: center;
 }
+
+.wall-message{
+  width: 70%;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background: #c0c0c0;
+}
+
+.wall-author, .wall-author a{
+  text-decoration: none;
+  width: 20%;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.wall-author img{
+  padding: 15px;
+  padding-bottom: 5px;
+  margin: 0;
+  width: 50px;
+  height: 50px;
+}
+
+.wall-message-header, .wall-message-header a{
+  text-align: left;
+  margin-top: 10px;
+  padding-left: 15px;
+  text-decoration: none;
+}
+
+.wall-message-text{
+  text-align: left;
+  padding: 5px;
+  padding-left: 15px;
+  font-size: .8em;
+  color: #333;
+}
+
+.profile-following, .profile-following a{
+  background: black;
+  padding: 5px;
+  text-decoration: none;
+  margin: 1px;
+  color: white;
+}
+
+
+
+
+
+

@@ -4,6 +4,7 @@ angular.module('main')
 
 .controller('authController', ['$scope', '$http', 'appFactory', '$state', '$location',
   function($scope, $http, appFactory, $state, $location){
+    appFactory.init($scope);
     // this scope variable will create an error message for you at the top of the form
     // example use: $scope.error = "That username does not exist"
     $scope.error = '';
@@ -90,9 +91,18 @@ angular.module('main')
                     chosenGenres: chosenGenres,
                     uid: userData.uid
                   });
+
+                  // store username in usernames table
                   usernames.child(username).update({
                     uid: userData.uid
                   });
+
+                  // store email in emails table
+                  emails.child(emailFirebase).update({
+                    uid: userData.uid
+                  });
+
+                  // clear error and signin user
                   $scope.error = "";
                   $scope.signIn(email,password);
 

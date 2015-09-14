@@ -60,6 +60,16 @@ angular.module('main')
     });
   };
 
+  obj.accessUidByUsername = function(username,cb){
+    return this.auth(function(){
+      var ref = obj.firebase.child("usernames").child(username);
+      ref.on("value", function(userData){
+        cb.call(this,userData.val().uid);
+        ref.off();
+      });
+    });
+  }
+
   // add user to "following" properties (users table)
   obj.followUser = function(username,receiveNotification){
     receiveNotification = receiveNotification === undefined ? true : receiveNotification;
@@ -131,12 +141,12 @@ angular.module('main')
   };
 
   // update firebase to show if user is still in an event
-  obj.updateEventParticipation = function(scope){
+  obj.updateEventParticipation = function(scope, reset){
     this.auth(function(user){
       obj.accessUserByUid(user.uid,function(userData){
         userData = userData.val();
         var userEvent = obj.firebase.child("events").child(userData.lastSessionId).child("participants").child(userData.username);
-        if(scope.eventId === undefined){
+        if(scope.eventId === undefined && reset){
           userEvent.remove();
         } else {
           userEvent.set({
@@ -151,7 +161,7 @@ angular.module('main')
   obj.init = function(scope){
     this.auth(function(userData){
       obj.resetTimers();
-      obj.updateEventParticipation(userData.uid, scope);
+      obj.updateEventParticipation(scope,true);
     });
   };
 
@@ -170,6 +180,7 @@ angular.module('main')
   };
 
   obj.unauth = function(){
+    this.init({},true);
     this.firebase.unauth();
   };
 

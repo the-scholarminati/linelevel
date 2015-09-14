@@ -4,6 +4,7 @@ angular.module('main')
 
 .controller('createEventController', ['$scope', 'appFactory', '$firebase',
   function($scope, appFactory, $firebase){
+    appFactory.init($scope);
     // gets the current date so we can stop users from choosing dates in the past
     $scope.today = new Date();
     // gets the date from the factory and makes it accessible to the DOM
@@ -16,6 +17,8 @@ angular.module('main')
     // this is the list of the user's chosen genres
     $scope.chosenGenres = appFactory.chosenGenres;
     $scope.chooseGenre = appFactory.chooseGenre;
+    $scope.private = false;
+    $scope.followersOnly = true;
 
     var ref = appFactory.firebase;
     var user = ref.getAuth();
@@ -35,12 +38,16 @@ angular.module('main')
       var eventDate = $scope.date.eventDate.getTime();
       console.log("eventDate = ", eventDate);
       var chosenGenres = $scope.chosenGenres;
+      var privateEvent = $scope.private;
+      var followersOnly = $scope.followersOnly;
       
       // save eventId to variable
       if(user){
-        ref.child("users").child(user.uid).on("value",function(userData){
-          var username = userData.val().username;
-
+        var userRef = ref.child("users").child(user.uid);
+        userRef.on("value",function(userData){
+          userData = userData.val();
+          userRef.off();
+          var username = userData.username;
           var eventId = ref.child('events').push();
           eventId.set({
             title: eventTitle,
@@ -49,7 +56,9 @@ angular.module('main')
             label: eventLabel,
             date: eventDate,
             genre: chosenGenres,
-            host: username
+            host: username,
+            private: privateEvent,
+            followersOnly: followersOnly
           });
 
           ref.child("chats").child(eventId.key()).push().set({

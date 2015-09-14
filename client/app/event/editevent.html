@@ -32,6 +32,16 @@
             Record Label: <br> 
             <input type="text" placeholder="Name of Label" ng-model="eventLabel">
           </div>
+          <div class="formItem">
+            <input class="create-event-checkbox" type="checkbox" data-ng-model="private"> &nbsp;&nbsp;Make Event Private
+          </div>
+          <div class="formItem" ng-hide="!private">
+            <form>
+              <input class="create-event-checkbox" type="radio" data-ng-model="followersOnly" ng-value="true"> &nbsp; Followers Only <br><br>
+              <input class="create-event-checkbox" type="radio" data-ng-model="followersOnly" ng-value="false"> &nbsp; Invitation Only
+            </form>
+          </div>
+          <div class="formItem"></div>
         </div>
 
         <div class="genreList">

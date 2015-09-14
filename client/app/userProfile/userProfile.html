@@ -12,56 +12,54 @@
     </div>
 
     <div id="userContent">
+
       <div id="userInfo" >
-
         <img src="{{uData.image}}">
-        <div class="profileInfo">
-        Username: {{uData.username}}
-        </div>
-        <div class="profileInfo">
-        Firstname: {{uData.firstname}}
-        </div>
-        <div class="profileInfo">
-        Lastname: {{uData.lastname}}
-        </div>
-        <div class="profileInfo">
-        Email: {{uData.email}}
+        <div class="profileInfo"><b>{{uData.username}}</b></div>
+        <div class="profileInfo"> {{uData.firstname}}&nbsp;{{uData.lastname}} </div>
+        <div class="profileInfo"> {{uData.email}} </div>
+
+        <!-- User feed -->
+        <div id="userFeed">
+          <h2>Events</h2>
+          <div ng-repeat="(key, event) in uData.myEvents[0] track by $index">
+            <div class="reserved-events">
+              <a href="#/event/{{key}}">{{event.title}}</a><br>
+              <a href="#/userProfile/{{event.host}}">{{event.host}}</a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- User feed -->
-      <div id="userFeed">
-      <h2>
-        Events
-      </h2>
-        <div ng-repeat="(key, event) in uData.myEvents[0] track by $index">
-          <button class="rsvp eventsBtn" >
-          <a href="#/event/{{key}}">{{event.title}}</a> by 
-          <a href="#/userProfile/{{event.host}}">{{event.host}}</a>
-          </button>
-        </div>
-      </div>
 
       <!-- Wall Section -->
       <div id="userWall">
-        <h2>Wall</h2>
+        <div >
+          <form name="submitMessage" ng-submit="submitWallMsg()">
+            <input class="user-wall-input" type="text" placeholder="Enter your message..." ng-model="wallText" id="chatTextBox">
+          </form>
+        </div>
 
         <div ng-repeat="message in uData.myWall" class="message">
-          <b><a href="#/userProfile/{{message.username}}">{{message.username}}</a></b> 
-          {{message.message}}
+          <div class="wall-author">
+            <img src="{{message.image}}">
+          </div><!--
+       --><div class="wall-message">
+            <div class="wall-message-header">
+              <b>{{message.fullname}}</b>&nbsp;&nbsp;<a href="#/userProfile/{{message.username}}">@{{message.username}}</a>&nbsp;&nbsp;
+              <span ng-bind="getTimeStamp(message.timestamp)"></span>
+            </div>
+            <div class="wall-message-text" ng-bind="message.message"></div>
+          </div>
         </div>
 
-        <div>
-        <form name="submitMessage" ng-submit="submitWallMsg()">
-        <input type="text" placeholder="Enter your message..." ng-model="wallText" id="chatTextBox">
-        </div>
       </div>
 
        <!-- followers section -->
       <div id="following">
-      <h2>Following</h2>
-        <div ng-repeat="user in followers track by $index">
-        <a href="#/userProfile/{{user.username}}">{{user.username}}</a>
+        <h2>Following</h2>
+        <div ng-repeat="(name,value) in following" class="profile-following">
+          <a href="#/userProfile/{{name}}" ng-bind="name"></a>
         </div>
       </div>
 

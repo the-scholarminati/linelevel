@@ -5,12 +5,13 @@ angular.module('main')
 .controller('userProfileController',['$scope', 'appFactory',
   function($scope, appFactory){
     $scope.myProfile = true;
+    appFactory.init($scope);
     
     if($scope.userName !== appFactory.user){
       $scope.myProfile = false;
     }
 
-    $scope.followers = [];
+    $scope.following = [];
 
     $scope.followUser = function(){
       appFactory.followUser($scope.userName, true);
@@ -24,60 +25,75 @@ angular.module('main')
 
     $scope.submitWallMsg = function(){
       var text = $scope.wallText;
+      if(!text.length){ return;}
+
       appFactory.accessUserByUid(ref.getAuth().uid, function(snap){
-        if($scope.userName === snap.val().username){
-          console.log("Make something happen");
-          $scope.wallText = '';
-        }
-        else {
-          ref.child('users').child($scope.uData.uid).child('wall').push({username: snap.val().username, message: $scope.wallText,
-          timestamp: (new Date()).getTime()});
-          $scope.wallText = '';
-        }
+        ref.child("usernames").child($scope.userName).on("value",function(userData){
+          ref.child('users').child(userData.val().uid).child('wall').push({
+            username: snap.val().username, 
+            message: text,
+            timestamp: (new Date()).getTime()
+          });
+        });
+        $scope.wallText = '';
       });
+    };
+
+    $scope.getTimeStamp = function(timestamp){
+      timestamp = (new Date()).getTime() - timestamp;
+      var days = Math.floor(timestamp/86400000);
+      timestamp%=86400000;
+      var hours = Math.floor(timestamp/3600000);
+      timestamp%=3600000;
+      var minutes = Math.floor(timestamp/60000);
+      if(days){ return '' + days + 'd';}
+      if(hours){ return '' + hours+ 'h';}
+      if(minutes){ return '' + minutes + 'm';}
+      return '1m';
     };
 
     if(appFactory.auth() === true){
       var ref = appFactory.firebase;
 
-      //who you follow list
-      appFactory.getUserFollowList(function(list){
-        //retrieve follower info
-        angular.forEach(list, function(item){
-          appFactory.firebase.child('users').child(item.uid).on('value', function(snap){
-            $scope.followers.push(snap.val());
-          });
-        });
-      });
 
       $scope.uData = {};
       $scope.uData.eventIds = [];
       $scope.uData.myEvents = [];
       $scope.uData.myWall = [];
-      $scope.uData.uid;
+      $scope.uData.uid = '';
 
-      appFactory.accessUserByUsername($scope.userName, function(snap){
-        var userProfile = ref.child('users').child(snap.val().uid);
-
-        userProfile.child('wall').on('child_added', function(snap){
-          $scope.uData.myWall.push(snap.val());
-          console.log(snap.val().username);
-        });
+      appFactory.accessUserByUsername($scope.userName, function(user){
+        var userProfile = ref.child('users').child(user.val().uid);
 
         userProfile.on('value', function(snap){
+          snap = snap.val();
           appFactory.update($scope, function(scope){
-            scope.uData.image = snap.val().image;
-            scope.uData.username = snap.val().username;
-            scope.uData.firstname = snap.val().firstname;
-            scope.uData.lastname = snap.val().lastname;
-            scope.uData.email = snap.val().email;
-            scope.uData.genres = snap.val().chosenGenres;
-            scope.uData.myEvents.push(snap.val().currentEvents);
-            scope.uData.myWall.push(snap.val().wall);
-            scope.uData.uid = snap.val().uid;
-            console.log(snap.val().uid);
+            scope.uData.image = snap.image || '../assets/profile.jpg';
+            scope.uData.username = snap.username;
+            scope.uData.firstname = snap.firstname;
+            scope.uData.lastname = snap.lastname;
+            scope.uData.email = snap.email;
+            scope.uData.genres = snap.chosenGenres;
+            scope.uData.myEvents.push(snap.currentEvents);
+            scope.uData.uid = snap.uid;
+            scope.following = snap.following || {};
+            scope.following.Tom = {uid:"59070437-1e92-4817-b3d2-ff9d9753379d"};
           });
         });
+        userProfile.off();
+
+        userProfile.child('wall').on('child_added', function(snap){
+          var data = snap.val();
+          appFactory.accessUserByUsername(data.username,function(info){
+            info = info.val();
+            data.image = info.image || '../assets/profile.jpg';
+            data.fullname = info.firstname + ' ' + info.lastname;
+            appFactory.update($scope,function(scope){
+              scope.uData.myWall.unshift(data);
+            });
+          });
+        });
+
       });
     }
 
