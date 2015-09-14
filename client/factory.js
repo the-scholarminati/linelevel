@@ -170,6 +170,7 @@ angular.module('main')
   };
 
   obj.unauth = function(){
+    this.init({},true);
     this.firebase.unauth();
   };
 
