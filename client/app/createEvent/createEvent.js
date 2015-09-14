@@ -17,6 +17,11 @@ angular.module('main')
     // this is the list of the user's chosen genres
     $scope.chosenGenres = appFactory.chosenGenres;
     $scope.chooseGenre = appFactory.chooseGenre;
+    $scope.private = false;
+    $scope.followersOnly = true;
+    window.check = function(){
+      console.log($scope.private);
+    };
 
     var ref = appFactory.firebase;
     var user = ref.getAuth();
@@ -36,6 +41,8 @@ angular.module('main')
       var eventDate = $scope.date.eventDate.getTime();
       console.log("eventDate = ", eventDate);
       var chosenGenres = $scope.chosenGenres;
+      var privateEvent = $scope.private;
+      var followersOnly = $scope.followersOnly;
       
       // save eventId to variable
       if(user){
@@ -50,7 +57,9 @@ angular.module('main')
             label: eventLabel,
             date: eventDate,
             genre: chosenGenres,
-            host: username
+            host: username,
+            private: privateEvent,
+            followersOnly: followersOnly
           });
 
           ref.child("chats").child(eventId.key()).push().set({
