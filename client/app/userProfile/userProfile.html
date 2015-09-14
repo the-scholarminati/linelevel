@@ -1,5 +1,6 @@
 <section ng-controller="userProfileController">
-   <div class="container" ng-hide="!appFactory.auth()">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <div class="container" ng-if="loadPage">
 
     <div class="pageTitle">
       <div style="display:flex; flex-flow: row nowrap">
@@ -68,5 +69,5 @@
 
     </div>
   </div>
-  <div ng-hide="appFactory.auth()" class="private-event-message container">Please <a href="#/signin">sign in</a> to view member profiles</div>
+  <div ng-if="!loadPage" class="private-event-message container">Please <a href="#/signin">sign in</a> to view member profiles</div>
 </section>

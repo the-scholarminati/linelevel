@@ -4,8 +4,12 @@ angular.module('main')
 
 .controller('userProfileController',['$scope', 'appFactory',
   function($scope, appFactory){
-    $scope.myProfile = true;
     appFactory.init($scope);
+
+    $scope.myProfile = true;
+    $scope.loadPage = false;
+
+    var ref = appFactory.firebase;
     
     if($scope.userName !== appFactory.user){
       $scope.myProfile = false;
@@ -22,6 +26,18 @@ angular.module('main')
         cb(user.uid);
       });
     };
+
+    $scope.$watch(function(){return appFactory.auth();},function(nv,ov){
+      if(nv){
+        $scope.loadPage = true;
+      }
+    });
+
+    $scope.$watch(function(){return $scope.loadPage;}, function(nv,ov){
+      if(nv){
+        init();
+      }
+    });
 
     $scope.submitWallMsg = function(){
       var text = $scope.wallText;
@@ -52,21 +68,22 @@ angular.module('main')
       return '1m';
     };
 
-    if(appFactory.auth() === true){
-      var ref = appFactory.firebase;
 
 
+    var init = function(){
       $scope.uData = {};
       $scope.uData.eventIds = [];
       $scope.uData.myEvents = [];
       $scope.uData.myWall = [];
       $scope.uData.uid = '';
+      window.console.log('userName is ', $scope.userName);
 
       appFactory.accessUserByUsername($scope.userName, function(user){
         var userProfile = ref.child('users').child(user.val().uid);
 
         userProfile.on('value', function(snap){
           snap = snap.val();
+          userProfile.off();
           appFactory.update($scope, function(scope){
             scope.uData.image = snap.image || '../assets/profile.jpg';
             scope.uData.username = snap.username;
@@ -80,7 +97,6 @@ angular.module('main')
             scope.following.Tom = {uid:"59070437-1e92-4817-b3d2-ff9d9753379d"};
           });
         });
-        userProfile.off();
 
         userProfile.child('wall').on('child_added', function(snap){
           var data = snap.val();
@@ -95,7 +111,8 @@ angular.module('main')
         });
 
       });
-    }
+
+    };
 
 
 
