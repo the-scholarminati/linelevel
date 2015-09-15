@@ -40,10 +40,10 @@
 
         <div id="navigation-links">
           <nav>
-            <img class="hamburgerIcon" src="./assets/hamburgericon.png" ng-click="showHamburgerMenuNow()">
+            <img ng-if="auth() && notifications.length" class="bellIcon" src="./assets/bell_green.png" ng-click="showNotificationsListNow()">
           </nav>
           <nav>
-            <img ng-if="auth() && !!notifications" class="bellIcon" src="./assets/bell_green.png" ng-click="showNotificationsListNow()">
+            <img class="hamburgerIcon" src="./assets/hamburgericon.png" ng-click="showHamburgerMenuNow()">
           </nav>
           <nav>
             <div ng-if="!auth()" class="navLink" ng-click="signIn()">
@@ -81,6 +81,9 @@
           <span class="deleteNotification" ng-click="deleteNotification($index)">x</span>
         <p>
       </div>
+      <p class="deleteAllNotifications">
+        <span ng-click="deleteAllNotifications()">Remove all notifications</span>
+      </p>
     </div>
 <!-- Notifications List End -->
 

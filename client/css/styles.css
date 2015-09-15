@@ -245,7 +245,7 @@ nav{
   z-index: 10;
   top: 5px;
   right: 0px;
-  padding: 5% 5% 3% 5%;
+  padding: 40px 5% 25px 5%;
   margin: 0;
   text-align: right;
   font-size: 16px;
@@ -260,16 +260,19 @@ nav{
 .deleteNotification{
   font-weight: 900;
   color: red;
-  padding: 5px;
+  margin-left: 20px;
   cursor: pointer;
 }
 
-.menuUp .notificationsMessage, .menuUp .notificationsMessage a, .menuUp .deleteNotification{
-  display: none;
+.deleteAllNotifications{
+  color: red;
+  margin: 30px 34px 0 0;
+  cursor: pointer;
 }
 
-.menuDown .notificationsMessage, .menuDown .notificationsMessage a, .menuUp .deleteNotification{
-  display: visible;
+.menuUp .notificationsMessage, .menuUp .notificationsMessage a, .menuUp .deleteNotification, .menuUp .deleteAllNotifications{
+  opacity: 0;
+  pointer-events: none;
 }
 
 

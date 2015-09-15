@@ -54,6 +54,11 @@ angular.module('main')
   };
 
 
+  obj.deleteAllNotifications = function(username){
+    console.log("deleteAllNotifications called on ", username);
+  };
+
+
   ///////////////
   ///// Timers
   ///////////////

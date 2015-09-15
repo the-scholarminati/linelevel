@@ -64,7 +64,7 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   $state.transitionTo('home');
 }])
 
-.controller('mainCtrl', ['$scope', '$firebaseObject', '$state', '$location', 'appFactory', function($scope, $firebaseObject, $state, $location, appFactory) {
+.controller('mainCtrl', ['$scope', '$firebaseObject', '$state', '$location', '$timeout', 'appFactory', function($scope, $firebaseObject, $state, $location, $timeout, appFactory) {
 
   /******************************
     Firebase
@@ -124,28 +124,21 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
     Notifications
   ******************************/
 
-  // import method to check if there are new notifications for the user
-  $scope.newNotifications = appFactory.newNotifications;
   // import notifications from appFactory
   $scope.notifications = appFactory.notifications;
 
 
   $scope.showNotificationsList = false;
 
-  
+
   $scope.showNotificationsListNow = function(){
     $scope.showNotificationsList = !$scope.showNotificationsList;
   };
 
 
-  $scope.hideNotificationsList = function(){
-    // hide notification list if it's open
-    $scope.showNotificationsList = false;
-  };
-
-
   $scope.goNotificationLink = function(index){
-    $scope.hideNotificationsList();
+    $scope.showNotificationsList = false;
+
     var notification = $scope.notifications[index];
     if (notification.url[0] === 'userProfile'){
       $state.go(notification.url[0], {userName: notification.url[1]});
@@ -158,19 +151,24 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
 
 
   $scope.deleteNotification = function(index){
-    // get username
-    $scope.userName = '';
-    $scope.userAuth = ref.getAuth();
-    appFactory.accessUserByUid($scope.userAuth.uid, function(userData){
-      appFactory.update($scope,function(scope){
-        $scope.userName = userData.val().username;
-        appFactory.user = userData.val().username;
+    appFactory.accessUserByUid(ref.getAuth().uid, function(userData){
+      var userName = userData.val().username;
+      var notificationId = $scope.notifications[index].id;
+      appFactory.deleteNotification(userName, notificationId);
+    });
+  };
 
-        // get id of the notification
-        var notificationId = $scope.notifications[index].id;
-        // delete the notification
-        appFactory.deleteNotification($scope.userName, notificationId);
-      });
+
+  $scope.deleteAllNotifications = function(){
+    appFactory.accessUserByUid(ref.getAuth().uid, function(userData){
+      var userName = userData.val().username;
+      appFactory.deleteAllNotifications(userName);
+      
+      // hide notification list after a pause
+      // so the user can see the notifications removed before it closes
+      $timeout(function(){
+        $scope.showNotificationsList = false;
+      }, 1000);
     });
   };
 
