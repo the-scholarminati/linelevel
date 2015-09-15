@@ -1,11 +1,11 @@
 <section ng-controller="userProfileController">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <div class="container" ng-if="loadPage">
+  <div class="container" ng-show="loadPage">
 
     <div class="pageTitle">
       <div style="display:flex; flex-flow: row nowrap">
         <h1>{{userName}}</h1>
-        <button ng-click="followUser()" style="position:relative;left: 20px; top: -10px">Follow</button>
+        <button ng-click="followUser()" style="position:relative;left: 20px; top: -10px" ng-bind="followMessage"></button>
       </div>
     </div>
 
@@ -46,7 +46,7 @@
 
         <div ng-repeat="message in uData.myWall" class="message">
           <div class="wall-author">
-            <a ui-sref="userProfile({userName: message.username})"><img src="{{message.image}}"></a>
+            <a ui-sref="userProfile({userName: message.username})"><img ng-src="{{message.image}}"></a>
           </div><!--
        --><div class="wall-message">
             <div class="wall-message-header">
@@ -69,5 +69,5 @@
 
     </div>
   </div>
-  <div ng-if="!loadPage" class="private-event-message container">Please <a href="#/signin">sign in</a> to view member profiles</div>
+  <div ng-show="!loadPage" class="private-event-message container">Please <a href="#/signin">sign in</a> to view member profiles</div>
 </section>
