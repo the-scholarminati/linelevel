@@ -119,6 +119,18 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   $scope.notifications = appFactory.notifications;
 
 
+  $scope.showNotificationsList = false;
+  $scope.showNotificationsListNow = function(){
+    $scope.showNotificationsList = !$scope.showNotificationsList;
+  };
+
+
+  $scope.hideNotificationsList = function(){
+    // hide hamburger menu if it's open
+    $scope.showNotificationsList = false;
+  };
+
+
   $scope.showHamburgerMenu = false;
   $scope.showHamburgerMenuNow = function(){
     $scope.showHamburgerMenu = !$scope.showHamburgerMenu;
