@@ -64,7 +64,7 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   $state.transitionTo('home');
 }])
 
-.controller('mainCtrl', ['$scope', '$firebaseObject', '$state', '$location', 'appFactory', function($scope, $firebaseObject, $state, $location, appFactory) {
+.controller('mainCtrl', ['$scope', '$firebaseObject', '$state', '$location', '$timeout', 'appFactory', function($scope, $firebaseObject, $state, $location, $timeout, appFactory) {
 
   /******************************
     Firebase
@@ -174,20 +174,15 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
 
 
   $scope.deleteAllNotifications = function(){
-    // hide notification list, maybe after a pause?
-    $scope.hideNotificationsList();
-
-    // get username
-    $scope.userName = '';
-    $scope.userAuth = ref.getAuth();
-    appFactory.accessUserByUid($scope.userAuth.uid, function(userData){
-      appFactory.update($scope,function(scope){
-        $scope.userName = userData.val().username;
-        appFactory.user = userData.val().username;
-
-        // delete the notifications
-        appFactory.deleteAllNotifications($scope.userName);
-      });
+    appFactory.accessUserByUid(ref.getAuth().uid, function(userData){
+      var userName = userData.val().username;
+      appFactory.deleteAllNotifications(userName);
+      
+      // hide notification list after a pause
+      // so the user can see the notifications removed before it closes
+      $timeout(function(){
+        $scope.hideNotificationsList()
+      }, 1000);
     });
   };
 
