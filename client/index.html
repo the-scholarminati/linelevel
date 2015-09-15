@@ -76,7 +76,10 @@
 <!-- Notifications List Start -->
     <div class="notificationsList" ng-class="{menuDown: showNotificationsList, menuUp: !showNotificationsList}">
       <div ng-repeat="notification in notifications">
-        <div class="notificationsMessage" ng-click="goNotificationLink($index)">{{notification.message}}</div>
+        <p>
+          <span class="notificationsMessage" ng-click="goNotificationLink($index)">{{notification.message}}</span>
+          <span class="deleteNotification" ng-click="deleteNotification($index)">x</span>
+        <p>
       </div>
     </div>
 <!-- Notifications List End -->

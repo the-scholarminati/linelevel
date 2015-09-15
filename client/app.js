@@ -65,6 +65,11 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
 }])
 
 .controller('mainCtrl', ['$scope', '$firebaseObject', '$state', '$location', 'appFactory', function($scope, $firebaseObject, $state, $location, appFactory) {
+
+  /******************************
+    Firebase
+  ******************************/
+
   // define a reference to the firebase database
   var ref = new Firebase('https://linelevel.firebaseio.com');
   
@@ -73,9 +78,9 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   };
 
 
-  // import method to check if there are new notifications for the user
-  $scope.newNotifications = appFactory.newNotifications;
-
+  /******************************
+    Header links
+  ******************************/
 
   $scope.goProfile = function(){
     // gets the user's username and sets it to the scope
@@ -115,11 +120,19 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   };
 
 
+  /******************************
+    Notifications
+  ******************************/
+
+  // import method to check if there are new notifications for the user
+  $scope.newNotifications = appFactory.newNotifications;
   // import notifications from appFactory
   $scope.notifications = appFactory.notifications;
 
 
   $scope.showNotificationsList = false;
+
+  
   $scope.showNotificationsListNow = function(){
     $scope.showNotificationsList = !$scope.showNotificationsList;
   };
@@ -144,6 +157,28 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   };
 
 
+  $scope.deleteNotification = function(index){
+    // get username
+    $scope.userName = '';
+    $scope.userAuth = ref.getAuth();
+    appFactory.accessUserByUid($scope.userAuth.uid, function(userData){
+      appFactory.update($scope,function(scope){
+        $scope.userName = userData.val().username;
+        appFactory.user = userData.val().username;
+
+        // get id of the notification
+        var notificationId = $scope.notifications[index].id;
+        // delete the notification
+        appFactory.deleteNotification($scope.userName, notificationId);
+      });
+    });
+  };
+
+
+  /******************************
+    Hamburger menu
+  ******************************/
+
   $scope.showHamburgerMenu = false;
   $scope.showHamburgerMenuNow = function(){
     $scope.showHamburgerMenu = !$scope.showHamburgerMenu;
@@ -155,6 +190,10 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
     $scope.showHamburgerMenu = false;
   };
 
+
+  /******************************
+    Misc
+  ******************************/
 
   // download the data into a local object
   var syncObject = $firebaseObject(ref);
