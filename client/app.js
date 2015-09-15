@@ -96,12 +96,6 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   };
 
 
-  $scope.showHamburgerMenu = false;
-  $scope.showHamburgerMenuNow = function(){
-    $scope.showHamburgerMenu = !$scope.showHamburgerMenu;
-  };
-
-
   $scope.signIn = function(){
     // hide hamburger menu if it's open
     $scope.showHamburgerMenu = false;
@@ -118,6 +112,12 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
     ref.unauth();
     $scope.userAuth = null;
     appFactory.user = null;
+  };
+
+
+  $scope.showHamburgerMenu = false;
+  $scope.showHamburgerMenuNow = function(){
+    $scope.showHamburgerMenu = !$scope.showHamburgerMenu;
   };
 
 
