@@ -124,15 +124,13 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
     Notifications
   ******************************/
 
-  // import method to check if there are new notifications for the user
-  $scope.newNotifications = appFactory.newNotifications;
   // import notifications from appFactory
   $scope.notifications = appFactory.notifications;
 
 
   $scope.showNotificationsList = false;
 
-  
+
   $scope.showNotificationsListNow = function(){
     $scope.showNotificationsList = !$scope.showNotificationsList;
   };
