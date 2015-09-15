@@ -254,6 +254,7 @@ nav{
 
 .notificationsMessage{
   margin: 15px 0;
+  cursor: pointer;
 }
 
 .notificationsMessage:hover{
