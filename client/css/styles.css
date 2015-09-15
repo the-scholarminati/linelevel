@@ -265,11 +265,8 @@ nav{
 }
 
 .menuUp .notificationsMessage, .menuUp .notificationsMessage a, .menuUp .deleteNotification{
-  display: none;
-}
-
-.menuDown .notificationsMessage, .menuDown .notificationsMessage a, .menuUp .deleteNotification{
-  display: visible;
+  opacity: 0;
+  pointer-events: none;
 }
 
 
