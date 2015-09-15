@@ -136,14 +136,9 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   };
 
 
-  $scope.hideNotificationsList = function(){
-    // hide notification list if it's open
-    $scope.showNotificationsList = false;
-  };
-
-
   $scope.goNotificationLink = function(index){
-    $scope.hideNotificationsList();
+    $scope.showNotificationsList = false;
+
     var notification = $scope.notifications[index];
     if (notification.url[0] === 'userProfile'){
       $state.go(notification.url[0], {userName: notification.url[1]});
@@ -172,7 +167,7 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
       // hide notification list after a pause
       // so the user can see the notifications removed before it closes
       $timeout(function(){
-        $scope.hideNotificationsList()
+        $scope.showNotificationsList = false;
       }, 1000);
     });
   };
