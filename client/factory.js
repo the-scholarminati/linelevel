@@ -21,28 +21,28 @@ angular.module('main')
   // we will probably need objects instead of strings for the messages in order to link to the users and events mentioned therein
   obj.notifications = [
     {
-      message: 'You have a new follower!',
-      url: ['userProfile', 'follower'],
+      message: 'test is now following you!',
+      url: ['userProfile', 'test'],
       id: 0
     },
     {
-      message: 'Someone invited you to an event!',
-      url: ['userProfile', 'follower'],
+      message: 'Tom invited you to an event!',
+      url: ['event', '-JzBVNHUBItH6z_Iy3g8'],
       id: 1
     },
     {
-      message: 'You have a new follower!',
-      url: ['userProfile', 'follower'],
+      message: 'Tom is now following you!',
+      url: ['userProfile', 'Tom'],
       id: 2
     },
     {
-      message: 'Someone posted on your wall!',
-      url: ['userProfile', 'follower'],
+      message: 'Tom posted on your wall!',
+      url: ['userProfile', 'dierat'],
       id: 3
     },
     {
-      message: 'Someone posted on your wall!',
-      url: ['userProfile', 'follower'],
+      message: 'test posted on your wall!',
+      url: ['userProfile', 'dierat'],
       id: 4
     }
   ];
