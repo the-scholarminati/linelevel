@@ -17,10 +17,42 @@ angular.module('main')
   ///// Notifications
   ///////////////
 
+  // dummy notification data for setting up front-end
+  obj.notifications = [
+    {
+      message: 'You have a new follower!',
+      seen: false
+    },
+    {
+      message: 'Someone invited you to an event!',
+      seen: false
+    },
+    {
+      message: 'You have a new follower!',
+      seen: false
+    },
+    {
+      message: 'Someone posted on your wall!',
+      seen: false
+    },
+    {
+      message: 'Someone posted on your wall!',
+      seen: false
+    }
+  ];
+
   // checks to see if there are new notifications for the user
   obj.newNotifications = function(){
-    // return false for now; remove this when implementing actual method
-    return true;
+    // alert tracks if there are new messages to alert the user to
+    var alert = false;
+    for (var i=0; i<obj.notifications.length; i++){
+      if (obj.notifications[i].seen === false){
+        alert = true;
+        // no need to loop any further if one message has not been seen
+        break;
+      }
+    }
+    return alert;
   };
 
 
