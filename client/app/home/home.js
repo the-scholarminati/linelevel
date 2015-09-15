@@ -177,6 +177,7 @@ angular.module('main')
         element[0].children[2].style.top = '150px';
         element[0].children[2].style.opacity= 0.50;
         element[0].children[2].style.filter= 'alpha(opacity=50)';
+        $('.eventInfo').animate({scrollTop: 0}, 300);
       });
     }
   };
