@@ -43,7 +43,7 @@
             <img class="hamburgerIcon" src="./assets/hamburgericon.png" ng-click="showHamburgerMenuNow()">
           </nav>
           <nav>
-            <img ng-if="auth() && !!notifications" class="bellIcon" src="./assets/bell_green.png" ng-click="showNotificationsListNow()">
+            <img ng-if="auth() && notifications.length" class="bellIcon" src="./assets/bell_green.png" ng-click="showNotificationsListNow()">
           </nav>
           <nav>
             <div ng-if="!auth()" class="navLink" ng-click="signIn()">
