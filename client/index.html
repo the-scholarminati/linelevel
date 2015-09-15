@@ -77,6 +77,14 @@
     </div>
 <!-- Header Bar End -->
 
+<!-- Notifications List Start -->
+    <div class="notificationsList">
+      <ul ng-repeat="notification in notifications">
+        <li class="notificationsMessage">{{notification.message}}</li>
+      </ul>
+    </div>
+<!-- Notifications List End -->
+
 <!-- Hamburger Menu Start -->
     <div class="hamburgerMenu" ng-class="{menuDown: showHamburgerMenu, menuUp: !showHamburgerMenu}">
       <div ng-if="!auth()" class="hamburgerLink" ng-click="signIn()">

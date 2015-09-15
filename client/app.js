@@ -115,6 +115,10 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   };
 
 
+  // import notifications from appFactory
+  $scope.notifications = appFactory.notifications;
+
+
   $scope.showHamburgerMenu = false;
   $scope.showHamburgerMenuNow = function(){
     $scope.showHamburgerMenu = !$scope.showHamburgerMenu;
