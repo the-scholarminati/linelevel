@@ -59,18 +59,30 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
   $scope.saveChanges = function(){
     var eventTitle, eventDescription, eventImage, eventLabel, eventDate, privateEvent, followersOnly;
     
-    appFactory.update($scope, function(scope){
-      eventTitle = $scope.eventTitle;
-      eventDescription = $scope.eventDescription;
+    // appFactory.update($scope, function(scope){
+    //   eventTitle = $scope.eventTitle;
+    //   eventDescription = $scope.eventDescription;
+    //   // the image url is not required on the form
+    //   // maybe have a default image that is used when image is not provided
+    //   eventImage = $scope.eventImage || './assets/albumcover.png';
+    //   eventLabel = $scope.eventLabel || '';
+    //   eventDate = $scope.date.eventDate.getTime();
+    //   privateEvent = $scope.private;
+    //   followersOnly = $scope.followersOnly;
+    // });
 
-      // the image url is not required on the form
-      // maybe have a default image that is used when image is not provided
-      eventImage = $scope.eventImage || './assets/albumcover.png';
-      eventLabel = $scope.eventLabel || '';
-      eventDate = $scope.date.eventDate.getTime();
-      privateEvent = $scope.private;
-      followersOnly = $scope.followersOnly;
-    });
+    $scope.eventTitle =this.eventTitle;
+    var eventTitle = this.eventTitle;
+    var eventDescription = this.eventDescription;
+
+    
+    var eventImage = this.eventImage || './assets/albumcover.png';
+    var eventLabel = this.eventLabel || '';
+    var eventDate = $scope.date.eventDate.getTime();
+    console.log(eventTitle);
+    console.log(eventDescription);
+    var privateEvent = this.private;
+    var followersOnly = this.followersOnly; 
 
     var eventRef = ref.child("events").child($scope.eventId);
     eventRef.update({
