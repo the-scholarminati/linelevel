@@ -74,7 +74,7 @@
         </div>
         <div id="event-details">
             <div id="event-title">
-              <a href="#/event/{{event.key}}">{{event.title}}</a>
+              <a ui-sref="event({eventId: event.key})">{{event.title}}</a>
             </div>
             <div id="event-host">
           <a class="link" ui-sref="userProfile({userName: event.host})">{{event.host}}</a>

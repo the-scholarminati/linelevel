@@ -17,10 +17,39 @@ angular.module('main')
   ///// Notifications
   ///////////////
 
-  // checks to see if there are new notifications for the user
-  obj.newNotifications = function(){
-    // return false for now; remove this when implementing actual method
-    return true;
+  // dummy notification data for setting up front-end
+  // we will probably need objects instead of strings for the messages in order to link to the users and events mentioned therein
+  obj.notifications = [
+    {
+      message: 'test is now following you!',
+      url: ['userProfile', 'test'],
+      id: 0
+    },
+    {
+      message: 'Tom invited you to an event!',
+      url: ['event', '-JzBVNHUBItH6z_Iy3g8'],
+      id: 1
+    },
+    {
+      message: 'Tom is now following you!',
+      url: ['userProfile', 'Tom'],
+      id: 2
+    },
+    {
+      message: 'Tom posted on your wall!',
+      url: ['wall'],
+      id: 3
+    },
+    {
+      message: 'test posted on your wall!',
+      url: ['wall'],
+      id: 4
+    }
+  ];
+
+
+  obj.deleteNotification = function(username, id){
+    // removes notification from database
   };
 
 

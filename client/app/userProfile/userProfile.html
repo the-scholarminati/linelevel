@@ -28,7 +28,7 @@
           <h2>Events</h2>
           <div ng-repeat="(key, event) in uData.myEvents[0] track by $index">
             <div class="reserved-events">
-              <a href="#/event/{{key}}">{{event.title}}</a><br>
+              <a ui-sref="event({eventId: key})">{{event.title}}</a><br>
               <a ui-sref="userProfile({userName: event.host})">{{event.host}}</a>
             </div>
           </div>

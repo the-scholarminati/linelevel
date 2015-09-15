@@ -45,7 +45,7 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
       templateUrl: './app/createEvent/createEvent.html'
     })
     .state('event', {
-      url: '/event/:eventId',
+      url: '/event?eventId',
       templateUrl: './app/event/event.html',
       controller: function($scope, $stateParams){
         $scope.eventId = $stateParams.eventId;
@@ -96,12 +96,6 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   };
 
 
-  $scope.showHamburgerMenu = false;
-  $scope.showHamburgerMenuNow = function(){
-    $scope.showHamburgerMenu = !$scope.showHamburgerMenu;
-  };
-
-
   $scope.signIn = function(){
     // hide hamburger menu if it's open
     $scope.showHamburgerMenu = false;
@@ -118,6 +112,41 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
     ref.unauth();
     $scope.userAuth = null;
     appFactory.user = null;
+  };
+
+
+  // import notifications from appFactory
+  $scope.notifications = appFactory.notifications;
+
+
+  $scope.showNotificationsList = false;
+  $scope.showNotificationsListNow = function(){
+    $scope.showNotificationsList = !$scope.showNotificationsList;
+  };
+
+
+  $scope.hideNotificationsList = function(){
+    // hide notification list if it's open
+    $scope.showNotificationsList = false;
+  };
+
+
+  $scope.goNotificationLink = function(index){
+    $scope.hideNotificationsList();
+    var notification = $scope.notifications[index];
+    if (notification.url[0] === 'userProfile'){
+      $state.go(notification.url[0], {userName: notification.url[1]});
+    } else if (notification.url[0] === 'event'){
+      $state.go(notification.url[0], {eventId: notification.url[1]});
+    } else {
+      $scope.goProfile();
+    }
+  };
+
+
+  $scope.showHamburgerMenu = false;
+  $scope.showHamburgerMenuNow = function(){
+    $scope.showHamburgerMenu = !$scope.showHamburgerMenu;
   };
 
 

@@ -228,17 +228,46 @@ nav{
   cursor: pointer;
 }
 
+/******************************
+  Notifications list styling 
+******************************/
+
+.notificationsList, .notificationsMessage, .notificationsMessage a{
+  -moz-transition: 0.25s;
+  -ms-transition: 0.25s;
+  -o-transition: 0.25s;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+
+.notificationsList{
+  position: fixed;
+  z-index: 10;
+  top: 5px;
+  right: 0px;
+  padding: 5% 5% 3% 5%;
+  margin: 0;
+  text-align: right;
+  font-size: 16px;
+  color: white;
+}
+
+.notificationsMessage{
+  margin: 15px 0;
+  cursor: pointer;
+}
+
 
 /******************************
   Hamburger menu styling 
 ******************************/
 
 .hamburgerMenu, .hamburgerLink, .hamburgerLink a{
-  -moz-transition: 1s;
-  -ms-transition: 1s;
-  -o-transition: 1s;
-  -webkit-transition: 1s;
-  transition: 1s;
+  -moz-transition: 0.25s;
+  -ms-transition: 0.25s;
+  -o-transition: 0.25s;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
 }
 
 .hamburgerMenu{
