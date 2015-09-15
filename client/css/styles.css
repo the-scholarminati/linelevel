@@ -232,7 +232,7 @@ nav{
   Notifications list styling 
 ******************************/
 
-.notificationsList, .notificationsMessage, .notificationsMessage a{
+.notificationsList{
   -moz-transition: 0.25s;
   -ms-transition: 0.25s;
   -o-transition: 0.25s;
@@ -255,6 +255,21 @@ nav{
 .notificationsMessage{
   margin: 15px 0;
   cursor: pointer;
+}
+
+.deleteNotification{
+  font-weight: 900;
+  color: red;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.menuUp .notificationsMessage, .menuUp .notificationsMessage a, .menuUp .deleteNotification{
+  display: none;
+}
+
+.menuDown .notificationsMessage, .menuDown .notificationsMessage a, .menuUp .deleteNotification{
+  display: visible;
 }
 
 
@@ -295,10 +310,12 @@ nav{
 
 .menuUp .hamburgerLink, .menuUp .hamburgerLink a{
   color: rgba(124, 223, 206, 0);
+  display: none;
 }
 
 .menuDown .hamburgerLink, .menuDown .hamburgerLink a{
   color: rgba(124, 223, 206, 1);
+  display: visible;
 }
 
 .hamburgerLink{

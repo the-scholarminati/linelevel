@@ -50,6 +50,7 @@ angular.module('main')
 
   obj.deleteNotification = function(username, id){
     // removes notification from database
+    console.log("deleteNotification called on ", username, " and ", id);
   };
 
 
