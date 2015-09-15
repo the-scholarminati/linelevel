@@ -1062,6 +1062,9 @@ textarea{
   border-radius: 7px;
   margin: 2px;
 }
+.reserved-events:hover {
+  background: orange;
+}
 
 .wall-author, .wall-message{
   display: inline-block;
@@ -1114,6 +1117,13 @@ textarea{
   text-decoration: none;
   margin: 1px;
   color: white;
+}
+
+.profile-following a:hover {
+  background: orange;
+}
+.profile-following:hover {
+  background: orange;
 }
 
 
