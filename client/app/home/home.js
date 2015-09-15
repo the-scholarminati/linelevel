@@ -167,16 +167,16 @@ angular.module('main')
   return {
     link: function(scope, element, attr){
       element.on('mouseover', function(event){
-        element[0].children[0].style.top = '0px';
         element[0].children[1].style.top = '0px';
-        element[0].children[1].style.opacity= 0.80;
-        element[0].children[1].style.filter= 'alpha(opacity=80)';
+        element[0].children[2].style.top = '0px';
+        element[0].children[2].style.opacity= 0.80;
+        element[0].children[2].style.filter= 'alpha(opacity=80)';
       });
       element.on('mouseleave', function(event){
-        element[0].children[0].style.top = '125px';
-        element[0].children[1].style.top = '125px';
-        element[0].children[1].style.opacity= 0.50;
-        element[0].children[1].style.filter= 'alpha(opacity=50)';
+        element[0].children[1].style.top = '150px';
+        element[0].children[2].style.top = '150px';
+        element[0].children[2].style.opacity= 0.50;
+        element[0].children[2].style.filter= 'alpha(opacity=50)';
       });
     }
   };

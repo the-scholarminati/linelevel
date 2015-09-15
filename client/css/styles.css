@@ -773,9 +773,17 @@ textarea{
 
 #event-title{
   text-align: center;
+  font-size: 14px;
+  font-weight: 200;
   width: 100%;
-  height: 50px;
-  padding-top: 10px;
+}
+
+#event-title a{
+  text-decoration: none
+}
+
+#event-title a:hover{
+  text-decoration: underline;
 }
 
 #topHomeSection{
@@ -885,12 +893,46 @@ textarea{
 }
 
 .event{
-  margin: 20px 0px 20px 0px;
+  margin: 20px 0px 0px 0px;
   width: 175px;
   height: 175px;
   background-size: 100%;
   overflow: hidden;
   position:relative;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.event button{
+  width: 23px;
+  height: 23px;
+  padding: 0px;
+  line-height: 0px;
+  font-weight: 800;
+  color: white;
+  border-color: white;
+
+}
+
+.event button:hover{
+  color: black;
+  text-shadow:     
+  -1px -1px 0 #FFFFFF,
+  1px -1px 0 #FFFFFF,
+  -1px 1px 0 #FFFFFF,
+  1px 1px 0 #FFFFFF;
+}
+
+#event-details{
+  border: 1px solid #CDCDCD;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  width: 165px;
+  padding: 5px;
+}
+
+.event-info-category{
+  font-weight: bold;
 }
 
 .eventBackdrop{
@@ -898,22 +940,47 @@ textarea{
   height: 175px;
   width: 175px;
   position: absolute;
-  top: 125px;
+  top: 150px;
   opacity: .50;
   filter: alpha(opacity=50);
   transition: 1s;
   z-index: 1;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+#event-host{
+  text-align: center;
+  margin-top: 3px;
+
+}
+#event-host a{
+  font-weight: 800;
+  font-size: 12px;
+  color: #505050;
+}
+
+#event-host a:hover{
+  color: black;
+}
+
+#event-arrow{
+  position: relative;
+  left: -5px;
+  
 }
 
 .eventInfo{
   height: 175px;
   width: 175px;
-  overflow: hidden;
+  overflow: auto;
   color: white;
   position: absolute;
-  top: 125px;
+  top: 150px;
   transition: 1s;
   z-index: 2;
+  font-size: 14px;
+  padding: 10px;
 }
 
 .eventInfo a{
@@ -923,6 +990,13 @@ textarea{
 .eventInfo p{
   opacity: 1;
   filter: alpha(opacity=100);
+}
+
+#event-rsvp{
+  z-index: 3;
+  width: 100%;
+  height: 25px;
+  position: relative;
 }
 
 .hostAndRSVP{
