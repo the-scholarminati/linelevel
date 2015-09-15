@@ -47,18 +47,9 @@ angular.module('main')
     }
   ];
 
-  // checks to see if there are new notifications for the user
-  obj.newNotifications = function(){
-    // alert tracks if there are new messages to alert the user to
-    var alert = false;
-    for (var i=0; i<obj.notifications.length; i++){
-      if (obj.notifications[i].seen === false){
-        alert = true;
-        // no need to loop any further if one message has not been seen
-        break;
-      }
-    }
-    return alert;
+
+  obj.deleteNotification = function(username, id){
+    // removes notification from database
   };
 
 
