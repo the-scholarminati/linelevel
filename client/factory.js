@@ -37,12 +37,12 @@ angular.module('main')
     },
     {
       message: 'Tom posted on your wall!',
-      url: ['userProfile', 'dierat'],
+      url: ['wall'],
       id: 3
     },
     {
       message: 'test posted on your wall!',
-      url: ['userProfile', 'dierat'],
+      url: ['wall'],
       id: 4
     }
   ];
