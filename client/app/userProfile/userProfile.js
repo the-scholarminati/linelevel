@@ -13,6 +13,7 @@ angular.module('main')
     $scope.myFollowing = [];
     $scope.uData = {};
     $scope.followMessage = '';
+    $scope.myUserName = '';
     var ref = appFactory.firebase;
 
     $scope.followUser = function(){
@@ -45,10 +46,26 @@ angular.module('main')
       });
     };
 
+    var getMyUsername = function(cb){
+      var called = false;
+      return function(){
+        if(!called){
+          called = true;
+          var userRef = ref.child("users").child(ref.getAuth().uid);
+          userRef.on("value",function(a){
+            a=a.val();
+            userRef.off();
+            cb.apply(this,[a.username]);
+          });
+        }
+      }
+    };
+
     var initFollowMessage = function(){
       var message = '';
       // if myFollowing is not an array, then it was instantiated because it is not my profile
-      if(!Array.isArray($scope.myFollowing)){
+      if(!$scope.myProfile){
+        console.log('myProfile', $scope.myProfile);
         if($scope.myFollowing[$scope.userName]){
           message = 'Unfollow';
         } else {
@@ -61,21 +78,32 @@ angular.module('main')
     };
 
     // change load page to true if authenticated
-    $scope.$watch(function(scope){return scope.isAuth();},function(nv,ov){
+    $scope.$watch(function(scope){
+      getMyUsername(function(username){
+        appFactory.update(scope,function(x){
+          x.myUsername = username;
+        });
+      })();
+      return scope.isAuth();},function(nv,ov){
       if(nv){
         $scope.loadPage = true;
       }
     });
 
     // ensures that myProfile variable is always updated
-    $scope.$watch(function(scope){return scope.userName !== appFactory.user;},function(nv,ov){
+    $scope.$watch(function(scope){
+      var x = scope.userName;
+      var y = scope.myUsername;
+      return x === y;
+    },function(nv,ov){
       var outcome;
       if(nv){
-        outcome = false;
-      } else {
         outcome = true;
+      } else {
+        outcome = false;
       }
       appFactory.update($scope,function(scope){
+        console.log("outcome is ",outcome);
         scope.myProfile = outcome;
       });
     });
