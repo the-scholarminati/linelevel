@@ -40,6 +40,9 @@
 
         <div id="navigation-links">
           <nav>
+            <img ng-if="auth() && notifications.length" class="bellIcon" src="./assets/bell_green.png" ng-click="showNotificationsListNow()">
+          </nav>
+          <nav>
             <img class="hamburgerIcon" src="./assets/hamburgericon.png" ng-click="showHamburgerMenuNow()">
           </nav>
           <nav>
@@ -64,9 +67,6 @@
           </nav>
           <nav>
             <div class="navLink"><a ui-sref="about">ABOUT</a></div>
-          </nav>
-          <nav>
-            <img ng-if="auth() && notifications.length" class="bellIcon" src="./assets/bell_green.png" ng-click="showNotificationsListNow()">
           </nav>
         </div>
       </header>
