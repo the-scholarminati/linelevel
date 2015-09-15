@@ -256,11 +256,7 @@ nav{
   margin: 15px 0;
 }
 
-.notificationsPageLink{
-  margin: 30px 0 15px;
-}
-
-.notificationsMessage:hover, .notificationsPageLink:hover{
+.notificationsMessage:hover{
   color: #7CDFCE;;
 }
 
