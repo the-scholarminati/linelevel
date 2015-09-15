@@ -22,23 +22,28 @@ angular.module('main')
   obj.notifications = [
     {
       message: 'You have a new follower!',
-      seen: false
+      url: ['userProfile', 'follower'],
+      id: 0
     },
     {
       message: 'Someone invited you to an event!',
-      seen: false
+      url: ['userProfile', 'follower'],
+      id: 1
     },
     {
       message: 'You have a new follower!',
-      seen: false
+      url: ['userProfile', 'follower'],
+      id: 2
     },
     {
       message: 'Someone posted on your wall!',
-      seen: false
+      url: ['userProfile', 'follower'],
+      id: 3
     },
     {
       message: 'Someone posted on your wall!',
-      seen: false
+      url: ['userProfile', 'follower'],
+      id: 4
     }
   ];
 
