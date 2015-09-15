@@ -260,11 +260,17 @@ nav{
 .deleteNotification{
   font-weight: 900;
   color: red;
-  padding: 5px;
+  margin-left: 20px;
   cursor: pointer;
 }
 
-.menuUp .notificationsMessage, .menuUp .notificationsMessage a, .menuUp .deleteNotification{
+.deleteAllNotifications{
+  color: red;
+  margin-top: 250px;
+  cursor: pointer;
+}
+
+.menuUp .notificationsMessage, .menuUp .notificationsMessage a, .menuUp .deleteNotification, .menuUp .deleteAllNotifications{
   opacity: 0;
   pointer-events: none;
 }

@@ -173,6 +173,25 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   };
 
 
+  $scope.deleteAllNotifications = function(){
+    // hide notification list, maybe after a pause?
+    $scope.hideNotificationsList();
+
+    // get username
+    $scope.userName = '';
+    $scope.userAuth = ref.getAuth();
+    appFactory.accessUserByUid($scope.userAuth.uid, function(userData){
+      appFactory.update($scope,function(scope){
+        $scope.userName = userData.val().username;
+        appFactory.user = userData.val().username;
+
+        // delete the notifications
+        appFactory.deleteAllNotifications($scope.userName);
+      });
+    });
+  };
+
+
   /******************************
     Hamburger menu
   ******************************/
