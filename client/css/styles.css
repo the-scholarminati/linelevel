@@ -85,59 +85,6 @@ button:active, button:hover:active{
 }
 
 /******************************
-  Genres list styling 
-******************************/
-
-.genreList{
-  padding: 10px;
-  flex-basis: auto;
-  margin: 25px;
-  padding-left: 0;
-  margin-left: 0;
-}
-
-@media (max-width: 700px){
-  .genreList{
-    padding-right: 0;
-    margin-right: 0;
-  }
-}
-
-.selected {
-  color: #000000;
-}
-
-.notSelected {
-  color: #B5B5B5;
-}
-
-
-/******************************
-  Dropdown styling 
-******************************/
-
-.dropDownLink{
-  cursor: pointer;
-}
-
-.dropDownLink img{
-  width: 20px;
-  margin: 0 0 2px 5px;
-}
-
-.dropDownMenu{
-  position: absolute;
-  background-color: #D6D6D6;
-  padding: 10px;
-  z-index: 3;
-}
-
-.dropDownMenu li{
-  cursor: pointer;
-}
-
-
-/******************************
   Header styling 
 ******************************/
 
@@ -229,16 +176,43 @@ nav{
 }
 
 /******************************
-  Notifications list styling 
+  Dropdown styling 
 ******************************/
 
-.notificationsList{
+.menuDown{
+  background-color: rgba(0,0,0,0.8);
+  max-height: 1000px;
+  overflow-y: hidden;
+}
+
+.menuUp{
+  max-height: 0px;
+  overflow-y: hidden;
+}
+
+.notificationsList,
+.hamburgerMenu,
+.dropDownMenu{
   -moz-transition: 0.25s;
   -ms-transition: 0.25s;
   -o-transition: 0.25s;
   -webkit-transition: 0.25s;
   transition: 0.25s;
 }
+
+.menuUp .notificationsMessage,
+.menuUp .notificationsMessage a,
+.menuUp .deleteNotification,
+.menuUp .deleteAllNotifications,
+.menuUp .genreListItem{
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/******************************
+  Notifications list styling 
+******************************/
 
 .notificationsList{
   position: fixed;
@@ -257,6 +231,10 @@ nav{
   cursor: pointer;
 }
 
+.notificationsMessage:hover{
+  color: #7CDFCE;;
+}
+
 .deleteNotification{
   font-weight: 900;
   color: red;
@@ -270,23 +248,10 @@ nav{
   cursor: pointer;
 }
 
-.menuUp .notificationsMessage, .menuUp .notificationsMessage a, .menuUp .deleteNotification, .menuUp .deleteAllNotifications{
-  opacity: 0;
-  pointer-events: none;
-}
-
 
 /******************************
   Hamburger menu styling 
 ******************************/
-
-.hamburgerMenu, .hamburgerLink, .hamburgerLink a{
-  -moz-transition: 0.25s;
-  -ms-transition: 0.25s;
-  -o-transition: 0.25s;
-  -webkit-transition: 0.25s;
-  transition: 0.25s;
-}
 
 .hamburgerMenu{
   position: fixed;
@@ -298,17 +263,6 @@ nav{
   font-weight: 900;
   width: 100%;
   height: 100%;
-}
-
-.menuDown{
-  background-color: rgba(0,0,0,0.8);
-  max-height: 1000px;
-  overflow-y: hidden;
-}
-
-.menuUp{
-  max-height: 0px;
-  overflow-y: hidden;
 }
 
 .menuUp .hamburgerLink, .menuUp .hamburgerLink a{
@@ -343,6 +297,58 @@ nav{
   .navLink{
     display: none;
   }
+}
+
+
+/******************************
+  Genres list styling 
+******************************/
+
+.genreList{
+  padding: 10px;
+  flex-basis: auto;
+  margin: 25px;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+@media (max-width: 700px){
+  .genreList{
+    padding-right: 0;
+    margin-right: 0;
+  }
+}
+
+.dropDownLink{
+  cursor: pointer;
+}
+
+.dropDownLink img{
+  width: 20px;
+  margin: 0 0 2px 5px;
+}
+
+.dropDownMenu{
+  position: absolute;
+  padding: 10px;
+  z-index: 10;
+}
+
+.genreListItem{
+  cursor: pointer;
+  padding: 5px;
+}
+
+.genreListItem:hover{
+  color: #7CDFCE;
+}
+
+.selected {
+  color: #7CDFCE;
+}
+
+.notSelected {
+  color: white;
 }
 
 

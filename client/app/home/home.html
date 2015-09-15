@@ -40,10 +40,10 @@
       <div class="filterOptions">
         <div class="genreList">
           <div class="dropDownLink" ng-click="showGenresNow()">
-            GENRE<img src="./assets/dropdownarrow.png">
+            GENRES<img src="./assets/dropdownarrow.png">
           </div>
-          <ul class="dropDownMenu" ng-if="showGenres">
-            <li ng-repeat="genre in genres" ng-click="chooseGenre(genre)" ng-class="{'selected': genre.selected, 'notSelected': !genre.selected}">{{genre.name}}</li>
+          <ul class="dropDownMenu" ng-class="{menuDown: showGenres, menuUp: !showGenres}">
+            <li ng-repeat="genre in genres" class="genreListItem" ng-click="chooseGenre(genre)" ng-class="{'selected': genre.selected, 'notSelected': !genre.selected}">{{genre.name}}</li>
           </ul>
         </div>
         <div class="filterTextBoxes">
