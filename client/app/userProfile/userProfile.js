@@ -24,7 +24,6 @@ angular.module('main')
         followRef = $scope.myFollowing;
       }
       if(followRef[$scope.userName] === undefined){
-        console.log("testing?!", $scope.userName);
         appFactory.followUser($scope.userName);
         followRef[$scope.userName] = {
           uid: $scope.uData.uid
@@ -83,7 +82,6 @@ angular.module('main')
     
     // initialize if load page is true and profile is not empty
     $scope.$watch(function(){return $scope.loadPage;}, function(nv,ov){
-      console.log('profile is ',$scope.myProfile);
       if(nv && $scope.myProfile !== null){
         init();
       }
@@ -125,11 +123,8 @@ angular.module('main')
       $scope.uData.myEvents = [];
       $scope.uData.myWall = [];
       $scope.uData.uid = '';
-      window.console.log('userName is ', $scope.userName);
 
       appFactory.accessUserByUsername($scope.userName, function(user){
-        console.log('user.val.uid', user.val().uid);
-        console.log('ref.getAuth.uid', ref.getAuth().uid);
         var userData = ref.child('users').child(user.val().uid);
         var myData = ref.child('users').child(ref.getAuth().uid);
 
@@ -158,7 +153,6 @@ angular.module('main')
             myData.off();
             appFactory.update($scope,function(scope){
               scope.myFollowing = a.following;
-              console.log('init myFollowing', scope.myFollowing);
             });
           });
         }
