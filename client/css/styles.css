@@ -233,11 +233,11 @@ nav{
 ******************************/
 
 .notificationsList, .notificationsMessage, .notificationsMessage a{
-  -moz-transition: 0.5s;
-  -ms-transition: 0.5s;
-  -o-transition: 0.5s;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+  -moz-transition: 0.25s;
+  -ms-transition: 0.25s;
+  -o-transition: 0.25s;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
 }
 
 .notificationsList{
@@ -257,21 +257,17 @@ nav{
   cursor: pointer;
 }
 
-.notificationsMessage:hover{
-  color: #7CDFCE;;
-}
-
 
 /******************************
   Hamburger menu styling 
 ******************************/
 
 .hamburgerMenu, .hamburgerLink, .hamburgerLink a{
-  -moz-transition: 0.5s;
-  -ms-transition: 0.5s;
-  -o-transition: 0.5s;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+  -moz-transition: 0.25s;
+  -ms-transition: 0.25s;
+  -o-transition: 0.25s;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
 }
 
 .hamburgerMenu{
