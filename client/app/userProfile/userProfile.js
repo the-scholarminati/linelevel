@@ -14,13 +14,14 @@ angular.module('main')
     $scope.uData = {};
     $scope.followMessage = '';
     var ref = appFactory.firebase;
-    var selfRef = ref.child("users").child(ref.getAuth().uid);
+    var userAuth = ref.getAuth();
+    var selfRef = null;
     var userRef = ref.child("usernames").child($scope.userName);
     var timerLimit = 10;
 
-    window.data = function(){
-      console.log($scope.myProfile);
-    };
+    if(userAuth !== null){
+      ref.child("users").child(userAuth.uid);
+    }
 
     $scope.followUser = function(){
       var followRef = null;

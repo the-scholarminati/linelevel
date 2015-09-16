@@ -72,6 +72,7 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
 
   // define a reference to the firebase database
   var ref = new Firebase('https://linelevel.firebaseio.com');
+  var userAuth = ref.getAuth();
   
   $scope.auth = function(){
     return ref.getAuth() !== null;
@@ -134,6 +135,23 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
 
   // import notifications from appFactory
   $scope.notifications = appFactory.notifications;
+  $scope.newNotifications = appFactory.newNotifications;
+  console.log('scope new notifs', $scope.newNotifications);
+
+
+  if(userAuth !== null){
+    appFactory.getNotifications(ref.getAuth().uid);
+  }
+
+  window.data = function(){
+    console.log('scope new notifs', $scope.newNotifications);
+  };
+
+  $scope.$watch(function(scope){return appFactory.newNotifications;},function(nv,ov){
+    appFactory.update($scope,function(scope){
+      scope.newNotifications = nv;
+    });
+  });
 
 
   $scope.showNotificationsList = false;
