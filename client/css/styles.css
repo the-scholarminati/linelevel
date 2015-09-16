@@ -698,6 +698,12 @@ textarea{
   margin: 20px;
 }
 
+@media(max-width: 700px){
+  #chat-content{
+    flex-grow: 0;
+  }
+}
+
 #chatToggle{
   padding-top: 25px;
   display: inline-flex;
