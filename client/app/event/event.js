@@ -116,7 +116,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       appFactory.accessUidByUsername(username,function(uid){
         appFactory.sendNotification(uid,{
           message: "You have been removed from event '" + $scope.event.name + "'",
-          url: ['userProfile',$scope]
+          url: ['userProfile',$scope.event.host]
         });
       });
       eventRef.child("allowedUsers").child(username).remove();
@@ -239,7 +239,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       }// end of if
     };
 
-    
+
     var loadElements = function(){
       chatEl     = document.getElementById('chatMessages');
       hostChatEl = document.getElementById('hostMessages');

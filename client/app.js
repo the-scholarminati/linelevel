@@ -134,13 +134,13 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   ******************************/
 
   // import notifications from appFactory
+  $scope.newNotifications = false;
   $scope.notifications = appFactory.notifications;
-  $scope.newNotifications = appFactory.newNotifications;
   console.log('scope new notifs', $scope.newNotifications);
 
 
   if(userAuth !== null){
-    appFactory.getNotifications(ref.getAuth().uid);
+    appFactory.getNotifications(ref.getAuth().uid,$scope);
   }
 
   window.data = function(){
@@ -162,13 +162,11 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   };
 
 
-  $scope.goNotificationLink = function(index){
-
-    var notification = $scope.notifications[index];
-    if (notification.url[0] === 'userProfile'){
-      $state.go(notification.url[0], {userName: notification.url[1]});
-    } else if (notification.url[0] === 'event'){
-      $state.go(notification.url[0], {eventId: notification.url[1]});
+  $scope.goNotificationLink = function(url){
+    if (url[0] === 'userProfile'){
+      $state.go(url[0], {userName: url[1]});
+    } else if (url[0] === 'event'){
+      $state.go(url[0], {eventId: url[1]});
     } else {
       $scope.goProfile();
     }
