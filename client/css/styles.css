@@ -607,6 +607,12 @@ textarea{
   position: relative;
 }
 
+@media(max-width: 700px){
+  #videoWrapper{
+    max-width: 337px;
+  }
+}
+
 #videostream{
   top: 0;
   bottom: 0;
