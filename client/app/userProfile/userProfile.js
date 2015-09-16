@@ -208,12 +208,11 @@ angular.module('main')
     };
 
     $scope.removeEvent = function(key){
+      delete $scope.uData.myEvents[0][key];
       appFactory.accessUserByUid(ref.getAuth().uid, function(snap){
         userRef.on("value",function(userData){
           ref.child('users').child(userData.val().uid).child('currentEvents')
-          .child(key).remove(function(){
-            console.log("deleted");
-          });
+          .child(key).remove();
         });
       });
     };

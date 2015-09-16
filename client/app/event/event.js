@@ -101,7 +101,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
             appFactory.sendNotification(data.uid,{
               message: "You have been added to event '" + $scope.event.name + "' by " + $scope.event.host, 
               url: ['event',$scope.eventId]
-            })
+            });
             appFactory.update($scope,function(scope){
               scope.adminTabMessage = 'Invitation sent to ' + user;
             });
@@ -114,10 +114,9 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
 
     $scope.removeUserFromWhiteList = function(username){
       appFactory.accessUidByUsername(username,function(uid){
-        users.child(uid).child("notifications").push().set({
+        appFactory.sendNotification(uid,{
           message: "You have been removed from event '" + $scope.event.name + "'",
-          status: 'unread',
-          received : (new Date()).getTime() 
+          url: ['userProfile',$scope]
         });
       });
       eventRef.child("allowedUsers").child(username).remove();
