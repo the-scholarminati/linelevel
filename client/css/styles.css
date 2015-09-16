@@ -1114,9 +1114,40 @@ textarea{
   margin-left: 50px;
 }
 
+.text-edit form{
+  width: 70%;
+  margin-left: 5px;
+}
+
+#chatEditBox{
+  max-height: 2em;
+  margin: 3% 0 10px 0;
+  outline: none;
+  transition: .5s;
+}
+
 .rsvp{
   border: 1px solid;
   cursor: pointer;
+}
+
+.message-tools{
+  display: flex;
+  position: relative;
+  float:right;
+  border-radius: 5px;
+  margin: 3px;
+  border: 1px solid black;
+  background-color: white;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.message-tool:hover{
+  background-color: #80EBD8;
+}
+.message-tool:active{
+  background-color: #6BC4B4;
 }
 
 #userContent{
@@ -1153,6 +1184,10 @@ textarea{
   padding: 5px 20px;
 }
 
+.text-edit a{
+  display: relative;
+  font-size: 12px;
+}
 #userFeed{
   display: -webkit-box;
   display: -moz-box;
@@ -1240,7 +1275,7 @@ textarea{
   color: #333;
 }
 
-.profile-following, .profile-following a{
+.profile-following{
   background: black;
   padding: 5px;
   text-decoration: none;
@@ -1248,14 +1283,14 @@ textarea{
   color: white;
 }
 
-.profile-following a:hover {
-  background: orange;
-}
 .profile-following:hover {
   background: orange;
 }
 
-
+.profile-following a{
+  color:white;
+  text-decoration: none;
+}
 
 
 
