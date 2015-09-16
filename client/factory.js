@@ -17,7 +17,6 @@ angular.module('main')
   ///// Notifications
   ///////////////
 
-<<<<<<< HEAD
   // dummy notification data for setting up front-end
   // we will probably need objects instead of strings for the messages in order to link to the users and events mentioned therein
   obj.notifications = [
