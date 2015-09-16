@@ -50,6 +50,7 @@ angular.module('main')
             if (state === 'userProfile' || state === 'event'){
               $state.go(state, params);
             } else {
+              state = state || 'home';
               $state.go(state);
             }
           });
@@ -64,7 +65,7 @@ angular.module('main')
       var username = $scope.credentials.username;
       var password = $scope.credentials.password;
       var email = $scope.credentials.email;
-      var image = $scope.credentials.image;
+      var image = $scope.credentials.image || './assets/profile.jpg';
       var chosenGenres = appFactory.chosenGenres;
       var uid = "";
 
@@ -106,13 +107,13 @@ angular.module('main')
                     uid: userData.uid
                   });
 
-                  // clear error and signin user
-                  $scope.error = "";
-                  $scope.signIn(email,password);
-
                   // clears form
                   $scope.credentials = {};
                   appFactory.resetGenres();
+
+                  // clear error and signin user
+                  $scope.error = "";
+                  $scope.signIn(email,password);
                 }
               });
             } else {
