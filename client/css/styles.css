@@ -605,11 +605,16 @@ textarea{
 #videoWrapper{
   border: 1px solid #c1c1c1;
   position: relative;
+  width: 100%;
+  min-width: 640px;
+  min-height: 390px;
 }
 
-@media(max-width: 700px){
+@media(max-width: 650px){
   #videoWrapper{
-    max-width: 337px;
+    min-width: 337px;
+    min-height: 205.4px;
+    margin-bottom: 15px;
   }
 }
 
