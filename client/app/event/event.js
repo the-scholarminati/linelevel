@@ -42,20 +42,10 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     var usernamesRef = ref.child("usernames");
     var users = ref.child("users");
 
-    // testing
-    window.data = function(){
-      console.log('private:', $scope.event.private);
-      console.log('showEvent:', $scope.event.showEvent);
-      console.log('appFactory.user', appFactory.user);
-      console.log('userData.username ', userData.username);
-      console.log('allowedUsers', $scope.event.allowedUsers);
-      console.log('scope.initialized', $scope.initialized);
-      console.log('chatEl', chatEl);
-      console.log('hostChatEl', hostChatEl);
-      console.log('userData is ', userData);
-    };
-
+    ////////////////////
     // private events - show page if host else check if user is allowed in event
+    ////////////////////
+
     $scope.showEvent = function(){
       if($scope.isSameUser || !$scope.event.private){
         $scope.event.showEvent = true;
@@ -135,7 +125,10 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     };
 
 
+    ////////////////////
     // helper functions for participant list
+    ////////////////////
+
     var updateParticipant = function(){
       appFactory.updateEventParticipation($scope);
       appFactory.timers.participantCounter = setTimeout(updateParticipant, 20000);
@@ -147,7 +140,10 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     };
     
 
-    // load user data
+    ////////////////////
+    // init functions
+    ////////////////////
+
     if(userAuth){
       var userRef = ref.child("users").child(userAuth.uid);
 
@@ -165,7 +161,6 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     // load event data
     eventRef.on("value",function(info){ 
       var eventData = info.val();
-      console.log(eventData);
       appFactory.update($scope,function(scope){
         $scope.event.host = eventData.host;
         $scope.event.name = eventData.title;
@@ -200,7 +195,6 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     var updateSameUserStatus = function(){
       appFactory.update($scope,function(scope){
         scope.isSameUser = userData.username === scope.event.host || scope.event.host === appFactory.user ? true : false;
-        console.log('is same user = ', scope.isSameUser);
       });
       if(userData.username === undefined){
         setTimeout(updateSameUserStatus,300);
@@ -297,7 +291,19 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       }// end of second watch function
     );
 
+    $scope.isHost = function(input){
+      return $scope.event.host === input.username;
+    };
+
+    $scope.isUser = function(input){
+      return userData.username === input.username;
+    };
+
+    
+    ////////////////////
     // helper function for event countdown
+    ////////////////////
+    
     var updateCountDown = function(){
       var current = (new Date()).getTime();
       var message = "Updating...";
@@ -339,6 +345,16 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     };
 
 
+    ////////////////////
+    // Helper functions for Chat
+    ////////////////////
+
+    $scope.selectTab = function(num){
+      $scope.selectedChat = [0,0];
+      $scope.selectedChat[num] = 1;
+      $scope.scrollToBottom();
+    };
+
     // ensures chat is scrolled to the bottom when new message is added
     $scope.scrollToBottom = function(){
       setTimeout(function(){
@@ -347,19 +363,6 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       },30);
     };
 
-    $scope.isHost = function(input){
-      return $scope.event.host === input.username;
-    };
-
-    $scope.isUser = function(input){
-      return userData.username === input.username;
-    };
-
-    $scope.selectTab = function(num){
-      $scope.selectedChat = [0,0];
-      $scope.selectedChat[num] = 1;
-      $scope.scrollToBottom();
-    };
 
     // functions to calculate time
     $scope.chatTime = function(time){
@@ -427,7 +430,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
 
       peer.on('open', function(){
         ref.child("events").child($scope.eventId).update({'videoId' : peer.id});
-        console.log(peer.id);
+        //console.log(peer.id);
 
       });
 
@@ -446,10 +449,10 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       navigator.getUserMedia({audio:true, video: true}, function (stream) {
           //display video
           var video = document.getElementById("myVideo");
-          console.log(URL.createObjectURL(stream));
+          //console.log(URL.createObjectURL(stream));
           video.src = URL.createObjectURL(stream);
           video.muted = false;
-          console.log(stream.getAudioTracks()[0]);
+          //console.log(stream.getAudioTracks()[0]);
           window.localStream = stream;
         },
         function (error) { console.log(error); }
@@ -459,7 +462,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
 
     $scope.loadStream = function(){
       var peer = new Peer({key: '66p1hdx8j2lnmi'});
-      console.log('video id ' + $scope.event.videoId);
+      //console.log('video id ' + $scope.event.videoId);
 
       var conn = peer.connect($scope.event.videoId);
 
@@ -468,10 +471,10 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
         incomingCall.answer(null);
         incomingCall.on('stream', function(stream){
           var video = document.getElementById("theirVideo");
-          console.log('create object url' + URL.createObjectURL(stream));
+          //console.log('create object url' + URL.createObjectURL(stream));
           video.src = URL.createObjectURL(stream);
           video.muted = false;
-          console.log(stream.getAudioTracks());
+          //console.log(stream.getAudioTracks());
         });
       });
     };
@@ -480,7 +483,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       if(window.localStream){
         window.localStream.stop();
       }else{
-        console.log("You must be streaming to stop a stream!");
+        //console.log("You must be streaming to stop a stream!");
       }
       
     };
@@ -507,7 +510,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
 
     $scope.play = function(){
       var peer = new Peer({key: '66p1hdx8j2lnmi'});
-      console.log('video id ' + $scope.event.videoId);
+      //console.log('video id ' + $scope.event.videoId);
 
       var conn = peer.connect($scope.event.videoId);
 
@@ -516,10 +519,10 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
         incomingCall.answer(null);
         incomingCall.on('stream', function(stream){
           var video = document.getElementById("theirVideo");
-          console.log('create object url' + URL.createObjectURL(stream));
+          //console.log('create object url' + URL.createObjectURL(stream));
           video.src = URL.createObjectURL(stream);
           video.muted = false;
-          console.log(stream.getAudioTracks());
+          //console.log(stream.getAudioTracks());
         });
       });
     };
@@ -549,7 +552,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     };
 
     $scope.toggleChat = function(){
-      // console.log($scope.chatVisible);
+      // //console.log($scope.chatVisible);
       $scope.chatVisible = !$scope.chatVisible;
     };
 

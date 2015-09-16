@@ -44,16 +44,16 @@
           </form>
         </div>
 
-        <div ng-repeat="message in uData.myWall | orderBy: 'timestamp'" class="message">
+        <div ng-repeat="message in uData.myWall | orderBy: 'timestamp':true" class="message">
           <div class="wall-author">
             <a ui-sref="userProfile({userName: message.username})"><img ng-src="{{message.image}}"></a>
           </div><!--
        --><div class="wall-message" edit-bar>
 
             <!-- Message Edit Tools START -->
-            <div class="message-tools" ng-show="canEdit(message.username)">
-              <div ng-show="checkSameUserMsg(message.username)"><img src="./assets/controls/edit.png" width="20px" height="20px" class="message-tool" ng-click="editingMessage = !editingMessage"></div>
-              <div ng-show="checkSameUserPage() || checkSameUserMsg(message.username)"><img src="./assets/controls/delete.png" width="20px" height="20px" class="message-tool" ng-click="deleteWallMsg(message.key,message)"></div>
+            <div class="message-tools" ng-show="message.canEdit">
+              <div ng-show="message.canEdit"><img src="./assets/controls/edit.png" width="20px" height="20px" class="message-tool" ng-click="editingMessage = !editingMessage"></div>
+              <div ng-show="message.canEdit"><img src="./assets/controls/delete.png" width="20px" height="20px" class="message-tool" ng-click="deleteWallMsg(message.key,$index)"></div>
             </div>
             <!-- Message Edit Tools END -->
 
