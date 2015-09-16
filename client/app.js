@@ -177,11 +177,7 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
 
 
   $scope.deleteNotification = function(index){
-    appFactory.accessUserByUid(ref.getAuth().uid, function(userData){
-      var userName = userData.val().username;
-      var notificationId = $scope.notifications[index].id;
-      appFactory.deleteNotification(userName, notificationId);
-    });
+      appFactory.deleteNotification(notificationId);
   };
 
 

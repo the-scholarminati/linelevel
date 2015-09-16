@@ -47,24 +47,36 @@ angular.module('main')
 
   obj.newNotifications = false;
 
-
   // will allow access to notifications OBJECT with cb argument
   obj.getNotifications = function(uid){
-    obj.notifications = [];
-    var notificationRef = obj.firebase.child("users").child(uid).child("notifications");
-    notificationRef.on("child_added",function(a){
-      obj.notifications[a.key()] = a.val();
-      obj.newNotifications = true;
+    this.auth(function(userData){
+      var notificationRef = obj.firebase.child("users").child(userData.uid).child("notifications");
+      notificationRef.on("child_added",function(a){
+        obj.notifications[a.key()] = a.val();
+        obj.newNotifications = true;
+      });
     });
   };
 
   obj.deleteNotification = function(id){
-    var notificationRef = obj.firebase.child("users").child(uid).child("notifications");
-    notificationRef.child(id).remove();
+    this.auth(function(userData){
+      var notificationRef = obj.firebase.child("users").child(userData.uid).child("notifications");
+      notificationRef.child(id).remove();
+      delete obj.notifications[id];
+    });
   };
 
-  obj.deleteAllNotifications = function(uid,cb){
-    console.log("delete all notifications");
+  obj.deleteAllNotifications = function(){
+    this.auth(function(userData){
+      var notificationRef = obj.firebase.child("users").child(uid).child("notifications");
+      notificationRef.remove();
+      obj.newNotifications = false;
+    });
+  };
+
+  obj.sendNotification = function(recipientUid,data){
+    var notificationRef = obj.firebase.child("users").child(recipientUid).child("notifications");
+    notificationRef.push().set(data);
   };
 
   ///////////////

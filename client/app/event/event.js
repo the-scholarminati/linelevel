@@ -38,6 +38,8 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     var userAuth = ref.getAuth();
     var userData = '';
     var chatRef = '';
+
+    // live firebase references
     var eventRef = ref.child("events").child($scope.eventId);
     var usernamesRef = ref.child("usernames");
     var users = ref.child("users");
@@ -193,11 +195,14 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     };
 
     var updateSameUserStatus = function(){
-      appFactory.update($scope,function(scope){
-        scope.isSameUser = userData.username === scope.event.host || scope.event.host === appFactory.user ? true : false;
-      });
-      if(userData.username === undefined){
+      if(userData.username === undefined || appFactory.userName === null){
+        console.log("repeat");
         setTimeout(updateSameUserStatus,300);
+      } else {
+        appFactory.update($scope,function(scope){
+          scope.isSameUser = userData.username === scope.event.host || scope.event.host === appFactory.userName ? true : false;
+        });
+        init();
       }
     };
     
