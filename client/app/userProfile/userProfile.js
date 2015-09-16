@@ -165,12 +165,13 @@ angular.module('main')
       });
     };
 
-    $scope.deleteWallMsg = function(messageID,index){
+    $scope.deleteWallMsg = function(messageID,msg){
+      var index = $scope.uData.myWall.indexOf(msg);
+      $scope.uData.myWall.splice(index, 1);
       ref.child("usernames").child($scope.userName).on("value", function(userData){
         ref.child('users').child(userData.val().uid).child('wall').child(messageID).remove(function(error){
         });
       });
-      $scope.uData.myWall.splice(index, 1);
     };
 
     $scope.getTimeStamp = function(timestamp){
