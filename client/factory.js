@@ -23,26 +23,6 @@ angular.module('main')
   // dummy notification data for setting up front-end
   // we will probably need objects instead of strings for the messages in order to link to the users and events mentioned therein
   obj.notifications = {
-    0 : {
-      message: 'test is now following you!',
-      url: ['userProfile', 'test'],
-    },
-    1 : {
-      message: 'Tom invited you to an event!',
-      url: ['event', '-JzBVNHUBItH6z_Iy3g8'],
-    },
-    2 : {
-      message: 'Tom is now following you!',
-      url: ['userProfile', 'Tom'],
-    },
-    3 : {
-      message: 'Tom posted on your wall!',
-      url: ['wall'],
-    },
-    4 : {
-      message: 'test posted on your wall!',
-      url: ['wall'],
-    }
   };
 
   obj.newNotifications = false;
