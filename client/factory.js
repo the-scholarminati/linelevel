@@ -51,29 +51,21 @@ angular.module('main')
   ];
 
 
-  // checks to see if there are new notifications for the user
-  obj.newNotifications = function(uid,cb){
-    var notificationRef = obj.firebase.child("users").child(uid).child("newNotifications");
-    notificationRef.on("value",function(a){
-      a=a.val();
-      notificationRef.off();
-      cb.call(this,a);
-    });
-  };
-
   // will allow access to notifications OBJECT with cb argument
-  obj.getNotifications = function(uid,cb){
+  obj.getNotifications = function(){
     var notificationRef = obj.firebase.child("users").child(uid).child("notifications");
     notificationRef.on("value",function(a){
       a=a.val();
       notificationRef.off();
-      cb.call(this,a);
     });
   };
 
-  obj.deleteNotification = function(username, id){
-    // removes notification from database
-    console.log("deleteNotification called on ", username, " and ", id);
+  obj.deleteNotification = function(id){
+    var uid
+  };
+
+  obj.deleteAllNotifications = function(uid,cb){
+    console.log("delete all notifications");
   };
 
   ///////////////
