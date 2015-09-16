@@ -41,7 +41,7 @@
       <div class="filterOptions">
         <div class="genreList">
           <div class="dropDownLink" ng-click="showGenresNow()">
-            GENRES<img src="./assets/dropdownarrow.png">
+            GENRES<img src="./assets/dropdownarrow.png" ng-class="{pointUp: showGenres}">
           </div>
           <ul class="dropDownMenu" ng-class="{menuDown: showGenres, menuUp: !showGenres}">
             <li ng-repeat="genre in genres" class="genreListItem" ng-click="chooseGenre(genre)" ng-class="{'selected': genre.selected, 'notSelected': !genre.selected}">{{genre.name}}</li>

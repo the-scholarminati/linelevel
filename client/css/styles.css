@@ -334,6 +334,14 @@ nav{
 .dropDownLink img{
   width: 20px;
   margin: 0 0 2px 5px;
+  transition-duration: 0.5s;
+  transition-property: transform;
+}
+
+.pointUp{
+  -ms-transform: rotate(180deg); /* IE 9 */
+  -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+  transform: rotate(180deg);
 }
 
 .dropDownMenu{
