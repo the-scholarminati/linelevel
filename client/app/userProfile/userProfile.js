@@ -60,7 +60,19 @@ angular.module('main')
             cb.apply(this,[a.username]);
           });
         }
-      }
+      };
+    };
+
+    $scope.checkSameUserMsg = function(name){
+        return ($scope.currentUser === name); 
+    };
+
+    $scope.checkSameUserPage = function(){
+        return ($scope.currentUser === $scope.uData.username);
+    };
+
+    $scope.canEdit = function(name){
+      return $scope.checkSameUserMsg(name) || $scope.checkSameUserPage();
     };
 
     var initFollowMessage = function(){
@@ -123,6 +135,8 @@ angular.module('main')
       }
     });
 
+   
+
     $scope.submitWallMsg = function(){
       var text = $scope.wallText;
       if(!text.length){ return;}
@@ -146,16 +160,15 @@ angular.module('main')
         ref.child('users').child(userData.val().uid).child('wall').child(messageID).update({message: message});
         appFactory.update($scope,function(){
         });
-        console.log($scope.editingMessage);
       });
-      $scope.editingMessage = false;
     };
 
-    $scope.deleteWallMsg = function(messageID){
+    $scope.deleteWallMsg = function(messageID,index){
       ref.child("usernames").child($scope.userName).on("value", function(userData){
         ref.child('users').child(userData.val().uid).child('wall').child(messageID).remove(function(error){
         });
       });
+      $scope.uData.myWall.splice(index, 1);
     };
 
     $scope.getTimeStamp = function(timestamp){
@@ -226,6 +239,13 @@ angular.module('main')
             });
           });
         });
+
+        //assign current logged in user to variable for msg toolbar
+        
+        var userRef = ref.child("users").child(ref.getAuth().uid);
+          userRef.on("value",function(a){
+          $scope.currentUser=a.val().username;
+    });
 
       });//user profile
     };// init

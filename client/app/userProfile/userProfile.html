@@ -51,9 +51,9 @@
        --><div class="wall-message" edit-bar>
 
             <!-- Message Edit Tools START -->
-            <div class="message-tools">
-              <div><img src="./assets/controls/edit.png" width="20px" height="20px" class="message-tool" ng-click="editingMessage = !editingMessage"></div>
-              <div><img src="./assets/controls/delete.png" width="20px" height="20px" class="message-tool" ng-click="deleteWallMsg(message.key)"></div>
+            <div class="message-tools" ng-show="canEdit(message.username)">
+              <div ng-show="checkSameUserMsg(message.username)"><img src="./assets/controls/edit.png" width="20px" height="20px" class="message-tool" ng-click="editingMessage = !editingMessage"></div>
+              <div ng-show="checkSameUserPage() || checkSameUserMsg(message.username)"><img src="./assets/controls/delete.png" width="20px" height="20px" class="message-tool" ng-click="deleteWallMsg(message.key,$index)"></div>
             </div>
             <!-- Message Edit Tools END -->
 
@@ -64,8 +64,9 @@
 
             <!-- Message Edit Box START -->
             <div class="text-edit" ng-show="editingMessage">
-              <form name="submitEdit" ng-submit="submitEditWallMsg(message.key, message.message)">
+              <form name="submitEdit" ng-submit="submitEditWallMsg(message.key, message.message);editingMessage = false">
                 <input class="user-wall-input" type="text" placeholder="Enter your message..." ng-model="message.message" id="chatEditBox" ng-show="editingMessage">
+                <a ng-click="editingMessage=false">Cancel</a>
               </form>
             </div>
             <!-- Message Edit Box END -->

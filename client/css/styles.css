@@ -1184,6 +1184,10 @@ textarea{
   padding: 5px 20px;
 }
 
+.text-edit a{
+  display: relative;
+  font-size: 12px;
+}
 #userFeed{
   display: -webkit-box;
   display: -moz-box;
