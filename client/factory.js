@@ -22,50 +22,41 @@ angular.module('main')
 
   // dummy notification data for setting up front-end
   // we will probably need objects instead of strings for the messages in order to link to the users and events mentioned therein
-  obj.notifications = [
-    {
-      message: 'test is now following you!',
-      url: ['userProfile', 'test'],
-      id: 0
-    },
-    {
-      message: 'Tom invited you to an event!',
-      url: ['event', '-JzBVNHUBItH6z_Iy3g8'],
-      id: 1
-    },
-    {
-      message: 'Tom is now following you!',
-      url: ['userProfile', 'Tom'],
-      id: 2
-    },
-    {
-      message: 'Tom posted on your wall!',
-      url: ['wall'],
-      id: 3
-    },
-    {
-      message: 'test posted on your wall!',
-      url: ['wall'],
-      id: 4
-    }
-  ];
+  obj.notifications = {
+  };
 
+  obj.newNotifications = false;
 
   // will allow access to notifications OBJECT with cb argument
-  obj.getNotifications = function(){
-    var notificationRef = obj.firebase.child("users").child(uid).child("notifications");
-    notificationRef.on("value",function(a){
-      a=a.val();
-      notificationRef.off();
+  obj.getNotifications = function(uid){
+    this.auth(function(userData){
+      var notificationRef = obj.firebase.child("users").child(userData.uid).child("notifications");
+      notificationRef.on("child_added",function(a){
+        obj.notifications[a.key()] = a.val();
+        obj.newNotifications = true;
+      });
     });
   };
 
   obj.deleteNotification = function(id){
-    var uid
+    this.auth(function(userData){
+      var notificationRef = obj.firebase.child("users").child(userData.uid).child("notifications");
+      notificationRef.child(id).remove();
+      delete obj.notifications[id];
+    });
   };
 
-  obj.deleteAllNotifications = function(uid,cb){
-    console.log("delete all notifications");
+  obj.deleteAllNotifications = function(){
+    this.auth(function(userData){
+      var notificationRef = obj.firebase.child("users").child(uid).child("notifications");
+      notificationRef.remove();
+      obj.newNotifications = false;
+    });
+  };
+
+  obj.sendNotification = function(recipientUid,data){
+    var notificationRef = obj.firebase.child("users").child(recipientUid).child("notifications");
+    notificationRef.push().set(data);
   };
 
   ///////////////

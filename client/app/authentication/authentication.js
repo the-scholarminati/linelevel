@@ -46,6 +46,7 @@ angular.module('main')
             // redirect user back to previous page
             var state = appFactory.prevRoute.state;
             var params = appFactory.prevRoute.params;
+            appFactory.userInit();
 
             if (state === 'userProfile' || state === 'event'){
               $state.go(state, params);

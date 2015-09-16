@@ -40,7 +40,7 @@
 
         <div id="navigation-links">
           <nav>
-            <img ng-if="auth() && notifications.length" class="bellIcon" src="./assets/bell_green.png" ng-click="showNotificationsListNow()">
+            <img ng-if="auth() && newNotifications" class="bellIcon" src="./assets/bell_green.png" ng-click="showNotificationsListNow()">
           </nav>
           <nav>
             <img class="hamburgerIcon" src="./assets/hamburgericon.png" ng-click="showHamburgerMenuNow()">
@@ -74,11 +74,12 @@
 <!-- Header Bar End -->
 
 <!-- Notifications List Start -->
+    <div class="notificationsList-background" ng-class="{menuDown: showNotificationsList, menuUp: !showNotificationsList}" ng-click="showNotificationsListNow()"></div>
     <div class="notificationsList" ng-class="{menuDown: showNotificationsList, menuUp: !showNotificationsList}">
-      <div ng-repeat="notification in notifications">
+      <div ng-repeat="(key,notification) in notifications">
         <p>
-          <span class="notificationsMessage" ng-click="goNotificationLink($index)">{{notification.message}}</span>
-          <span class="deleteNotification" ng-click="deleteNotification($index)">x</span>
+          <span class="notificationsMessage" ng-click="goNotificationLink(key)">{{notification.message}}</span>
+          <span class="deleteNotification" ng-click="deleteNotification(key)">x</span>
         <p>
       </div>
       <p class="deleteAllNotifications">
