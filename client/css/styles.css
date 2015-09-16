@@ -699,11 +699,6 @@ textarea{
   display:none;
 }
 
-.chat-tabs-selected{
-  background: #c1c1c1;
-  color: white;
-}
-
 .chat-tabs, .participants-title{
   display: inline-block;
   width: 100px;
@@ -716,11 +711,19 @@ textarea{
   cursor: pointer;
 }
 
+.chat-tabs-selected{
+  background: black;
+  color: white;
+  border: 1px solid black;
+  cursor: default;
+}
+
 .participants-title{
   width: 100%;
   border: none;
   color: white;
   background: black;
+  cursor: default;
 }
 
 
