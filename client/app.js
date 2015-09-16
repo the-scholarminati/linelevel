@@ -163,7 +163,6 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
 
 
   $scope.goNotificationLink = function(index){
-    $scope.showNotificationsList = false;
 
     var notification = $scope.notifications[index];
     if (notification.url[0] === 'userProfile'){
@@ -181,6 +180,9 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
     if(appFactory.noNotificationsLeft()){
       $timeout(function(){
         $scope.showNotificationsList = false;
+        appFactory.update($scope,function(scope){
+          scope.newNotifications = false;
+        });
       }, 1000);
     }
   };
@@ -195,6 +197,9 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
       // so the user can see the notifications removed before it closes
       $timeout(function(){
         $scope.showNotificationsList = false;
+        appFactory.update($scope,function(scope){
+          scope.newNotifications = false;
+        });
       }, 1000);
     });
   };
