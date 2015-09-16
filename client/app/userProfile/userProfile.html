@@ -44,7 +44,7 @@
           </form>
         </div>
 
-        <div ng-repeat="message in uData.myWall" class="message">
+        <div ng-repeat="message in uData.myWall | orderBy: 'timestamp'" class="message">
           <div class="wall-author">
             <a ui-sref="userProfile({userName: message.username})"><img ng-src="{{message.image}}"></a>
           </div><!--
