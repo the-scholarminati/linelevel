@@ -176,7 +176,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
         $scope.event.followersOnly = eventData.followersOnly;
         $scope.isSameUser = userData.username === $scope.event.host || $scope.event.host === appFactory.user ? true : false;
       });
-      eventRef.off();
+      //eventRef.off();
     });
 
     eventRef.child("allowedUsers").on("child_added",function(a){
@@ -234,6 +234,15 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
           appFactory.update($scope,function(scope){
             delete scope.participants[user.key()];
           });
+        });
+
+        eventRef.child('videoId').on('value', function(snapshot){
+          console.log('videoId listener', snapshot.val());
+          $scope.event.videoId = snapshot.val().videoId;
+          setTimeout(function(){
+            console.log('loading stream for videoId', $scope.event.videoId);
+            $scope.loadStream();
+          }, 1000);
         });
 
         // load chat data and set chat listener
@@ -396,11 +405,13 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     /*/////////////////////////////////////////////////////////////////////////////////////////////////////////
     CODE FOR LIVE STREAMING
     /////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-    $scope.$watch('$scope.event.videoId', function loadVideo(a,b){
-      if($scope.isSameUser !== true){
-        $scope.loadStream();
-      }
-    });
+    // $scope.$watch('$scope.event.videoId', function loadVideo(a,b){
+    //   if($scope.isSameUser !== true){
+    //     $scope.loadStream();
+    //   }
+    // });
+
+    
 
     $scope.startStream = function(){
       hideCountDown();
