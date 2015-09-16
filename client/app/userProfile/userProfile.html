@@ -5,7 +5,7 @@
     <div class="pageTitle">
       <div style="display:flex; flex-flow: row nowrap">
         <h1>{{userName}}</h1>
-        <button ng-click="followUser()" style="position:relative;left: 20px; top: -10px" ng-bind="followMessage"></button>
+        <button ng-show="followMessage.length > 0" ng-click="followUser()" style="position:relative;left: 20px; top: -10px" ng-bind="followMessage"></button>
       </div>
     </div>
 

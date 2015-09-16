@@ -47,6 +47,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       console.log('private:', $scope.event.private);
       console.log('showEvent:', $scope.event.showEvent);
       console.log('appFactory.user', appFactory.user);
+      console.log('userData.username ', userData.username);
       console.log('allowedUsers', $scope.event.allowedUsers);
       console.log('scope.initialized', $scope.initialized);
       console.log('chatEl', chatEl);
@@ -173,7 +174,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
         $scope.event.date = eventData.date;
         $scope.event.private = eventData.private;
         $scope.event.followersOnly = eventData.followersOnly;
-        $scope.isSameUser = appFactory.user === $scope.event.host ? true : false;
+        $scope.isSameUser = userData.username === $scope.event.host || $scope.event.host === appFactory.user ? true : false;
       });
       eventRef.off();
     });
@@ -195,10 +196,21 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
         elementsLoaded = true;
       }
     };
+
+    var updateSameUserStatus = function(){
+      appFactory.update($scope,function(scope){
+        scope.isSameUser = userData.username === scope.event.host || scope.event.host === appFactory.user ? true : false;
+        console.log('is same user = ', scope.isSameUser);
+      });
+      if(userData.username === undefined){
+        setTimeout(updateSameUserStatus,300);
+      }
+    };
     
     // initialize controller
     var init = function(){
       if(!$scope.initialized){
+        updateSameUserStatus();
         //reset any previous firebase listeners
         ref.off();
 
@@ -238,6 +250,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
             }
           });
         });
+
 
         $scope.initialized = true;
       }// end of if
