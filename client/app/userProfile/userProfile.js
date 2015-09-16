@@ -18,25 +18,6 @@ angular.module('main')
     var userRef = ref.child("usernames").child($scope.userName);
     var timerLimit = 10;
 
-    //test stuff
-    window.data = function(){
-      console.log('----------------');
-      console.log('scope:',$scope.userName);
-      console.log('appfactory:', appFactory.userName);
-      console.log('loadPage',$scope.loadPage);
-      console.log('myProfile',$scope.myProfile);
-      console.log('----------------');
-      // console.log('username',$scope.userName);
-    };
-
-    window.init = function(){
-      init();
-    };
-
-    console.log('appfactory username:', appFactory.userName);
-    console.log('scope username ', $scope.userName);
-    data();
-
     $scope.followUser = function(){
       var followRef = null;
       var message = '';
@@ -167,7 +148,6 @@ angular.module('main')
     };
 
     if(appFactory.auth()){
-      console.log("watch1 inner");
       ref.off();
       $scope.loadPage = true;
       watch();
@@ -227,7 +207,6 @@ angular.module('main')
     //assign current logged in user to variable for msg toolbar
     userRef.on("value",function(a){
       $scope.currentUser=a.val().username;
-      console.log('the current user', $scope.currentUser);
       userRef.off();
     });
   }
