@@ -176,8 +176,13 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   };
 
 
-  $scope.deleteNotification = function(index){
-      appFactory.deleteNotification(notificationId);
+  $scope.deleteNotification = function(notificationId){
+    appFactory.deleteNotification(notificationId);
+    if(appFactory.noNotificationsLeft()){
+      $timeout(function(){
+        $scope.showNotificationsList = false;
+      }, 1000);
+    }
   };
 
 
