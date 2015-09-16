@@ -105,7 +105,13 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
     // hide hamburger menu if it's open
     $scope.showHamburgerMenu = false;
 
-    appFactory.prevRoute = $location.path();
+    // save the current route for redirect
+    appFactory.prevRoute = {
+      state: $location.path().slice(1) || 'home',
+      params: $location.search()
+    };
+
+    // go to the signin page
     $state.go('signin');
   };
 

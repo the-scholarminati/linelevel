@@ -42,12 +42,16 @@ angular.module('main')
             appFactory.user = user.val().username;
             console.log('success! Logged in', appFactory.user);
 
-            // if prevRoute has somehow gone missing, set it back to home page
-            appFactory.prevRoute = appFactory.prevRoute || '/';
 
             // redirect user back to previous page
-            $location.path(appFactory.prevRoute);
-            $scope.$apply();
+            var state = appFactory.prevRoute.state;
+            var params = appFactory.prevRoute.params;
+
+            if (state === 'userProfile' || state === 'event'){
+              $state.go(state, params);
+            } else {
+              $state.go(state);
+            }
           });
         }
       });
