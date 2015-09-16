@@ -32,13 +32,13 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
 
         var eventData = info.val();
         appFactory.update($scope,function(scope){
-          $scope.eventTitle = eventData.title;
-          $scope.eventDescription = eventData.description;
-          $scope.eventImage = eventData.image === './assets/albumcover.png' ? '' : eventData.image;
-          $scope.eventLabel = eventData.label;
+          scope.eventTitle = eventData.title;
+          scope.eventDescription = eventData.description;
+          scope.eventImage = eventData.image === './assets/albumcover.png' ? '' : eventData.image;
+          scope.eventLabel = eventData.label;
           appFactory.chosenGenres = eventData.genre || [];
-          $scope.private = eventData.private;
-          $scope.followersOnly = eventData.followersOnly;
+          scope.private = eventData.private;
+          scope.followersOnly = eventData.followersOnly;
         });
 
         $scope.date.eventDate = new Date(eventData.date);

@@ -51,11 +51,6 @@ angular.module('main')
   ];
 
 
-  obj.deleteNotification = function(username, id){
-    // removes notification from database
-    console.log("deleteNotification called on ", username, " and ", id);
-  };
-
   // checks to see if there are new notifications for the user
   obj.newNotifications = function(uid,cb){
     var notificationRef = obj.firebase.child("users").child(uid).child("newNotifications");
@@ -76,6 +71,10 @@ angular.module('main')
     });
   };
 
+  obj.deleteNotification = function(username, id){
+    // removes notification from database
+    console.log("deleteNotification called on ", username, " and ", id);
+  };
 
   ///////////////
   ///// Timers
@@ -132,7 +131,7 @@ angular.module('main')
         ref.off();
       });
     });
-  }
+  };
 
   // add user to "following" properties (users table)
   obj.followUser = function(username,receiveNotification){
