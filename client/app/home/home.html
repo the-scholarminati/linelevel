@@ -60,11 +60,11 @@
     <div class="eventList">
       <div ng-repeat="event in filteredEvents(events) | orderBy: 'date': isReverse | limitTo: numLimit">
         <div class="event fade-list" style="background-image: url({{event.image}})" mouse-over>
-        <div id="event-rsvp">
+        <div class="event-rsvp">
           <button class="rsvp" ng-click="saveDate(event.title, event.host, event.key)">+</button>
         </div>
           <div class="eventInfo">
-            <img id="event-arrow" src="./assets/arrow.png" width="12px" height="12px">
+            <img class="event-arrow" src="./assets/arrow.png" width="12px" height="12px">
             <p><span class="event-info-category">Genre:</span><span ng-repeat="genre in event.genre">
                {{genre}}
             </p>
@@ -73,11 +73,11 @@
           </div>
           <div class="eventBackdrop"></div>
         </div>
-        <div id="event-details">
-            <div id="event-title">
+        <div class="event-details">
+            <div class="event-title">
               <a ui-sref="event({eventId: event.key})">{{event.title}}</a>
             </div>
-            <div id="event-host">
+            <div class="event-host">
           <a class="link" ui-sref="userProfile({userName: event.host})">{{event.host}}</a>
           </div>
         </div>

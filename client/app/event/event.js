@@ -98,11 +98,9 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
             });
           } else {
             eventRef.child("allowedUsers").child(info.key()).set(true);
-            users.child(data.uid).child("notifications").push().set({
+            appFactory.sendNotification(data.uid,{
               message: "You have been added to event '" + $scope.event.name + "' by " + $scope.event.host, 
-              status: 'unread',
-              eventStart: $scope.event.date,
-              received: (new Date()).getTime()
+              url: ['event',$scope.eventId]
             });
             appFactory.update($scope,function(scope){
               scope.adminTabMessage = 'Invitation sent to ' + user;
@@ -116,10 +114,9 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
 
     $scope.removeUserFromWhiteList = function(username){
       appFactory.accessUidByUsername(username,function(uid){
-        users.child(uid).child("notifications").push().set({
+        appFactory.sendNotification(uid,{
           message: "You have been removed from event '" + $scope.event.name + "'",
-          status: 'unread',
-          received : (new Date()).getTime() 
+          url: ['userProfile',$scope]
         });
       });
       eventRef.child("allowedUsers").child(username).remove();
@@ -182,30 +179,6 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       });
     });
 
-    var loadElements = function(){
-      chatEl     = document.getElementById('chatMessages');
-      hostChatEl = document.getElementById('hostMessages');
-      chatAlert  = document.createElement('audio');
-      chatAlert.setAttribute('src','../../assets/alert.wav');
-      if(chatEl === null || hostChatEl === null){
-        setTimeout(loadElements,30);
-      } else {
-        elementsLoaded = true;
-      }
-    };
-
-    var updateSameUserStatus = function(){
-      if(userData.username === undefined || appFactory.userName === null){
-        console.log("repeat");
-        setTimeout(updateSameUserStatus,300);
-      } else {
-        appFactory.update($scope,function(scope){
-          scope.isSameUser = userData.username === scope.event.host || scope.event.host === appFactory.userName;
-        });
-        init();
-      }
-    };
-    updateSameUserStatus();
     
     // initialize controller
     var init = function(){
@@ -265,6 +238,32 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
         $scope.initialized = true;
       }// end of if
     };
+
+    
+    var loadElements = function(){
+      chatEl     = document.getElementById('chatMessages');
+      hostChatEl = document.getElementById('hostMessages');
+      chatAlert  = document.createElement('audio');
+      chatAlert.setAttribute('src','../../assets/alert.wav');
+      if(chatEl === null || hostChatEl === null){
+        setTimeout(loadElements,30);
+      } else {
+        elementsLoaded = true;
+      }
+    };
+
+    var updateSameUserStatus = function(){
+      if(userData.username === undefined || appFactory.userName === null){
+        console.log("repeat");
+        setTimeout(updateSameUserStatus,300);
+      } else {
+        appFactory.update($scope,function(scope){
+          scope.isSameUser = userData.username === scope.event.host || scope.event.host === appFactory.userName;
+        });
+        init();
+      }
+    };
+    updateSameUserStatus();
 
     // run init only if event is to be show to user - private event implementation
     $scope.$watch(function(scope){return $scope.event.showEvent;},function(nv,ov){
