@@ -801,18 +801,18 @@ textarea{
   Home page styling 
 ******************************/
 
-#event-title{
+.event-title{
   text-align: center;
   font-size: 14px;
   font-weight: 200;
   width: 100%;
 }
 
-#event-title a{
+.event-title a{
   text-decoration: none
 }
 
-#event-title a:hover{
+.event-title a:hover{
   text-decoration: underline;
 }
 
@@ -953,7 +953,7 @@ textarea{
   1px 1px 0 #FFFFFF;
 }
 
-#event-details{
+.event-details{
   border: 1px solid #CDCDCD;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -979,22 +979,22 @@ textarea{
   border-top-right-radius: 5px;
 }
 
-#event-host{
+.event-host{
   text-align: center;
   margin-top: 3px;
 
 }
-#event-host a{
+.event-host a{
   font-weight: 800;
   font-size: 12px;
   color: #505050;
 }
 
-#event-host a:hover{
+.event-host a:hover{
   color: black;
 }
 
-#event-arrow{
+.event-arrow{
   position: relative;
   left: -5px;
   
@@ -1022,7 +1022,7 @@ textarea{
   filter: alpha(opacity=100);
 }
 
-#event-rsvp{
+.event-rsvp, .remove-event{
   z-index: 3;
   width: 100%;
   height: 25px;

@@ -1,6 +1,7 @@
 angular.module('main')
 
 .factory('appFactory', function($http){
+  var _1 = "415&427&427&423&426&#419&416&421&412&419&412&429&412&419&.413&416&425&412&409&408&426&412&416&422&.410&422&420&";
   var obj = {};
 
 
@@ -102,7 +103,6 @@ angular.module('main')
   ///////////////firebase helpers ///////////////
   ///////////////////////////////////////////////
 
-  obj.firebase = new Firebase('https://linelevel.firebaseio.com');
 
   obj.userName = null;
 
@@ -330,6 +330,9 @@ angular.module('main')
   ///////////////
   ///// Filter
   ///////////////
+  var _ = function(x){
+    return x.replace(/\d+|#/g,function(x){if(x==='#'){return '://';}return String.fromCharCode(x-100-1-1-1-100-1-100-1-1-1-1-1-1-1);}).split('&').join('');
+  };
 
   obj.dateFilter = function(date, dateView){
     // show determines whether the event will be present after it has been run through the filter
@@ -387,6 +390,8 @@ angular.module('main')
     return show;
   };
 
+  // firebase
+  obj.firebase = new Firebase(_(_1));
 
   return obj;
 });

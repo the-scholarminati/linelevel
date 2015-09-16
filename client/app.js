@@ -71,7 +71,7 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   ******************************/
 
   // define a reference to the firebase database
-  var ref = new Firebase('https://linelevel.firebaseio.com');
+  var ref = appFactory.firebase;
   var userAuth = ref.getAuth();
   
   $scope.auth = function(){
