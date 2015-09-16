@@ -527,9 +527,16 @@ textarea{
   justify-content: space-between;
 }
 
-#video-content{
-  display: inline-flex;
-  flex-flow: row nowrap;
+#eventHost{
+  position: relative;
+  top: 17px;
+  padding-left: 8px;
+}
+
+#eventHostName{
+  text-decoration: bold;
+  font-size: 24px;
+  font-family: Helvetica-bold;
 }
 
 #genreNames{
@@ -546,16 +553,26 @@ textarea{
   font-size: 14px;
 }
 
-#eventHost{
-  position: relative;
-  top: 17px;
-  padding-left: 8px;
+.stream-button{
+  cursor: pointer;
 }
 
-#eventHostName{
-  text-decoration: bold;
-  font-size: 24px;
-  font-family: Helvetica-bold;
+#stop-stream-button{
+  background-color: #E69F9D;
+}
+
+#eventcontent{
+  width: 100%;
+  display: inline-flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+}
+
+#video-content{
+  display: inline-flex;
+  flex-flow: row nowrap;
 }
 
 .videoSettings{
@@ -585,15 +602,6 @@ textarea{
   background-color: #6BC4B4;
 }
 
-#eventcontent{
-  width: 100%;
-  display: inline-flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  align-items: center;
-  position: relative;
-}
-
 #videoWrapper{
   border: 1px solid #c1c1c1;
   position: relative;
@@ -617,14 +625,6 @@ textarea{
   text-align: center;
   top: 40%;
   position: absolute;
-}
-
-.stream-button{
-  cursor: pointer;
-}
-
-#stop-stream-button{
-  background-color: #E69F9D;
 }
 
 /******************************
