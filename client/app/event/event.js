@@ -98,12 +98,10 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
             });
           } else {
             eventRef.child("allowedUsers").child(info.key()).set(true);
-            users.child(data.uid).child("notifications").push().set({
+            appFactory.sendNotification(data.uid,{
               message: "You have been added to event '" + $scope.event.name + "' by " + $scope.event.host, 
-              status: 'unread',
-              eventStart: $scope.event.date,
-              received: (new Date()).getTime()
-            });
+              url: ['event',$scope.eventId]
+            })
             appFactory.update($scope,function(scope){
               scope.adminTabMessage = 'Invitation sent to ' + user;
             });
