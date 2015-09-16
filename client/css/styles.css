@@ -339,7 +339,7 @@ nav{
   padding: 5px;
 }
 
-.genreListItem:hover{
+.genreList li:hover{
   color: #7CDFCE;
 }
 
@@ -347,7 +347,7 @@ nav{
   color: #7CDFCE;
 }
 
-.notSelected {
+.dropDownMenu .notSelected {
   color: white;
 }
 
