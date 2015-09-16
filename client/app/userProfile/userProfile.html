@@ -53,7 +53,7 @@
 
             <!-- Message Edit Tools START -->
             <div class="message-tools" ng-show="message.canEdit || myProfile">
-              <div ng-show="message.canEdit || myProfile"><img src="./assets/controls/edit.png" width="20px" height="20px" class="message-tool" ng-click="editingMessage = !editingMessage"></div>
+              <div ng-show="message.canEdit"><img src="./assets/controls/edit.png" width="20px" height="20px" class="message-tool" ng-click="editingMessage = !editingMessage"></div>
               <div ng-show="message.canEdit || myProfile"><img src="./assets/controls/delete.png" width="20px" height="20px" class="message-tool" ng-click="deleteWallMsg(message.key, message)"></div>
             </div>
             <!-- Message Edit Tools END -->

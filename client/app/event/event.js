@@ -200,16 +200,16 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
         setTimeout(updateSameUserStatus,300);
       } else {
         appFactory.update($scope,function(scope){
-          scope.isSameUser = userData.username === scope.event.host || scope.event.host === appFactory.userName ? true : false;
+          scope.isSameUser = userData.username === scope.event.host || scope.event.host === appFactory.userName;
         });
         init();
       }
     };
+    updateSameUserStatus();
     
     // initialize controller
     var init = function(){
       if(!$scope.initialized){
-        updateSameUserStatus();
         //reset any previous firebase listeners
         ref.off();
 

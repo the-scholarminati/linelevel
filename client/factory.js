@@ -25,6 +25,15 @@ angular.module('main')
   obj.notifications = {
   };
 
+  /*
+  obj.notifications = {
+    notificationId : {
+      url : ['state','id'],
+      message: ""
+    }
+  };
+  */
+
   obj.newNotifications = false;
 
   // will allow access to notifications OBJECT with cb argument
@@ -32,7 +41,10 @@ angular.module('main')
     this.auth(function(userData){
       var notificationRef = obj.firebase.child("users").child(userData.uid).child("notifications");
       notificationRef.on("child_added",function(a){
-        obj.notifications[a.key()] = a.val();
+        var key = a.key();
+        a=a.val();
+        a.id = key;
+        obj.notifications[key] = a;
         obj.newNotifications = true;
       });
     });
@@ -51,12 +63,20 @@ angular.module('main')
       var notificationRef = obj.firebase.child("users").child(uid).child("notifications");
       notificationRef.remove();
       obj.newNotifications = false;
+      for(var key in obj.notifications){
+        delete obj.notifications[key];
+      }
     });
   };
 
   obj.sendNotification = function(recipientUid,data){
     var notificationRef = obj.firebase.child("users").child(recipientUid).child("notifications");
     notificationRef.push().set(data);
+  };
+
+  obj.noNotificationsLeft = function(){
+    var keys = Object.keys(obj.notifications);
+    return keys.length === 0;
   };
 
   ///////////////
