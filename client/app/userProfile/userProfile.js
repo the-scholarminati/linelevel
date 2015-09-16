@@ -6,7 +6,6 @@ angular.module('main')
   function($scope, appFactory){
 
     appFactory.init($scope);
-    $scope.isAuth = appFactory.auth;
     $scope.myProfile = null;
     $scope.loadPage = false;
     $scope.editingMessage = false;
@@ -14,9 +13,29 @@ angular.module('main')
     $scope.myFollowing = [];
     $scope.uData = {};
     $scope.followMessage = '';
-    $scope.myUserName = '';
     var ref = appFactory.firebase;
+    var selfRef = ref.child("users").child(ref.getAuth().uid);
+    var userRef = ref.child("usernames").child($scope.userName);
     var timerLimit = 10;
+
+    //test stuff
+    window.data = function(){
+      console.log('----------------');
+      console.log('scope:',$scope.userName);
+      console.log('appfactory:', appFactory.userName);
+      console.log('loadPage',$scope.loadPage);
+      console.log('myProfile',$scope.myProfile);
+      console.log('----------------');
+      // console.log('username',$scope.userName);
+    };
+
+    window.init = function(){
+      init();
+    };
+
+    console.log('appfactory username:', appFactory.userName);
+    console.log('scope username ', $scope.userName);
+    data();
 
     $scope.followUser = function(){
       var followRef = null;
@@ -48,31 +67,11 @@ angular.module('main')
       });
     };
 
-    var getMyUsername = function(cb){
-      var called = false;
-      return function(){
-        if(!called){
-          called = true;
-          var userRef = ref.child("users").child(ref.getAuth().uid);
-          userRef.on("value",function(a){
-            a=a.val();
-            userRef.off();
-            cb.apply(this,[a.username]);
-          });
-        }
-      };
-    };
 
-    $scope.checkSameUserMsg = function(name){
-        return (appFactory.user === name || $scope.currentUser === name); 
-    };
-
-    $scope.checkSameUserPage = function(){
-        return (appFactory.user === $scope.uData.username || $scope.currentUser === $scope.uData.username);
-    };
 
     $scope.canEdit = function(name){
-      return $scope.checkSameUserMsg(name) || $scope.checkSameUserPage();
+      //console.log($scope.checkSameUserMsg(name) || $scope.myProfile);
+      return $scope.checkSameUserMsg(name) || $scope.myProfile;
     };
 
     var initFollowMessage = function(){
@@ -94,100 +93,9 @@ angular.module('main')
       }
     };
 
-    // change load page to true if authenticated
-    var watch1 = $scope.$watch(function(scope){
-      getMyUsername(function(username){
-        appFactory.update(scope,function(x){
-          x.myUsername = username;
-        });
-      })();
-      return scope.isAuth();},function(nv,ov){
-      if(nv){
-        $scope.loadPage = true;
-        ref.off();
-      }
-    });
-
-    // ensures that myProfile variable is always updated
-    var watch2 = $scope.$watch(function(scope){
-      var x = scope.userName;
-      var y = scope.myUsername;
-      return x === y;
-    },function(nv,ov){
-      var outcome;
-      if(nv){
-        outcome = true;
-        // watch2();
-      } else {
-        outcome = false;
-      }
-      appFactory.update($scope,function(scope){
-        scope.myProfile = outcome;
-      });
-    });
-    
-    // initialize if load page is true and profile is not empty
-    var watch3 = $scope.$watch(function(){return $scope.loadPage;}, function(nv,ov){
-      if(nv && $scope.myProfile !== null){
-        init();
-        // watch3();
-        watch1();
-      }
-    });
-
-   
-
-    $scope.submitWallMsg = function(){
-      var text = $scope.wallText;
-      if(!text.length){ return;}
-
-      appFactory.accessUserByUid(ref.getAuth().uid, function(snap){
-        var userRef = ref.child("usernames").child($scope.userName);
-        userRef.on("value",function(userData){
-          userRef.off();
-          ref.child('users').child(userData.val().uid).child('wall').push({
-            username: snap.val().username, 
-            message: text,
-            timestamp: (new Date()).getTime()
-          });
-        });
-        $scope.wallText = '';
-      });
-    };
-
-    $scope.submitEditWallMsg = function(messageID, message){
-      ref.child("usernames").child($scope.userName).on("value", function(userData){
-        ref.child('users').child(userData.val().uid).child('wall').child(messageID).update({message: message});
-        appFactory.update($scope,function(){
-        });
-      });
-    };
-
-    $scope.deleteWallMsg = function(messageID,msg){
-      var index = $scope.uData.myWall.indexOf(msg);
-      $scope.uData.myWall.splice(index, 1);
-      ref.child("usernames").child($scope.userName).on("value", function(userData){
-        ref.child('users').child(userData.val().uid).child('wall').child(messageID).remove(function(error){
-        });
-      });
-    };
-
-    $scope.getTimeStamp = function(timestamp){
-      timestamp = (new Date()).getTime() - timestamp;
-      var days = Math.floor(timestamp/86400000);
-      timestamp%=86400000;
-      var hours = Math.floor(timestamp/3600000);
-      timestamp%=3600000;
-      var minutes = Math.floor(timestamp/60000);
-      if(days){ return '' + days + 'd';}
-      if(hours){ return '' + hours+ 'h';}
-      if(minutes){ return '' + minutes + 'm';}
-      return '1m';
-    };
-
-
 
     var init = function(){
+      console.log("running init");
       $scope.uData.eventIds = [];
       $scope.uData.myEvents = [];
       $scope.uData.myWall = [];
@@ -235,6 +143,7 @@ angular.module('main')
             data.key = snap.key();
             data.image = info.image || '../assets/profile.jpg';
             data.fullname = info.firstname + ' ' + info.lastname;
+            data.canEdit = info.username === appFactory.userName;
             appFactory.update($scope,function(scope){
               scope.uData.myWall.push(data);
             });
@@ -245,15 +154,83 @@ angular.module('main')
       });//user profile
     };// init
 
-    //assign current logged in user to variable for msg toolbar
-    var userRef = ref.child("users").child(ref.getAuth().uid);
-      userRef.on("value",function(a){
-      $scope.currentUser=a.val().username;
-      appFactory.user = a.val().username;
-      console.log('the current user', $scope.currentUser);
-    });
+   
+    // change load page to true if authenticated
+    // initialize if load page is true and profile is not empty
+    var watch = function(){
+      if(appFactory.userName === null){
+        setTimeout(watch,30);
+      } else {
+        $scope.myProfile = appFactory.userName === $scope.userName;
+        init();
+      }
+    };
 
-  }// controller function
+    if(appFactory.auth()){
+      console.log("watch1 inner");
+      ref.off();
+      $scope.loadPage = true;
+      watch();
+    }
+
+    // ensures that myProfile variable is always updated
+
+    $scope.submitWallMsg = function(){
+      var text = $scope.wallText;
+      if(!text.length){ return;}
+
+      appFactory.accessUserByUid(ref.getAuth().uid, function(snap){
+        userRef.on("value",function(userData){
+          userRef.off();
+          ref.child('users').child(userData.val().uid).child('wall').push({
+            username: snap.val().username, 
+            message: text,
+            timestamp: (new Date()).getTime()
+          });
+        });
+        $scope.wallText = '';
+      });
+    };
+
+    $scope.submitEditWallMsg = function(messageID, message){
+      ref.child("usernames").child($scope.userName).on("value", function(userData){
+        ref.child('users').child(userData.val().uid).child('wall').child(messageID).update({message: message});
+        appFactory.update($scope,function(){
+        });
+      });
+    };
+
+    $scope.deleteWallMsg = function(messageID,index){
+      ref.child("usernames").child($scope.userName).on("value", function(userData){
+        ref.child('users').child(userData.val().uid).child('wall').child(messageID).remove(function(error){
+        });
+      });
+      $scope.uData.myWall.splice(index, 1);
+    };
+
+    $scope.getTimeStamp = function(timestamp){
+      timestamp = (new Date()).getTime() - timestamp;
+      var days = Math.floor(timestamp/86400000);
+      timestamp%=86400000;
+      var hours = Math.floor(timestamp/3600000);
+      timestamp%=3600000;
+      var minutes = Math.floor(timestamp/60000);
+      if(days){ return '' + days + 'd';}
+      if(hours){ return '' + hours+ 'h';}
+      if(minutes){ return '' + minutes + 'm';}
+      return '1m';
+    };
+
+
+
+
+    //assign current logged in user to variable for msg toolbar
+    userRef.on("value",function(a){
+      $scope.currentUser=a.val().username;
+      console.log('the current user', $scope.currentUser);
+      userRef.off();
+    });
+  }
 
 
 ]).directive('editBar',function(){

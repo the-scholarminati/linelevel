@@ -93,6 +93,18 @@ angular.module('main')
 
   obj.firebase = new Firebase('https://linelevel.firebaseio.com');
 
+  obj.userName = null;
+
+  obj.userInit = function(){
+    var auth = obj.firebase.getAuth();
+    if(auth !== null){
+      var temp = obj.firebase.child("users").child(obj.firebase.getAuth().uid);
+      temp.on("value",function(a){
+        obj.userName = a.val().username;
+      });
+    }
+  };
+
   // important: must use "val" function on data return from these methods in order to access userData properties
   obj.accessUserByUid = function(uid,cb){
     return this.auth(function(user){

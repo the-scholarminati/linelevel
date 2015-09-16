@@ -77,6 +77,8 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
     return ref.getAuth() !== null;
   };
 
+  appFactory.userInit();
+
 
   /******************************
     Header links
