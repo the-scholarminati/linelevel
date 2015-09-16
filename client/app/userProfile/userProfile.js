@@ -18,6 +18,10 @@ angular.module('main')
     var userRef = ref.child("usernames").child($scope.userName);
     var timerLimit = 10;
 
+    window.data = function(){
+      console.log($scope.myProfile);
+    };
+
     $scope.followUser = function(){
       var followRef = null;
       var message = '';
