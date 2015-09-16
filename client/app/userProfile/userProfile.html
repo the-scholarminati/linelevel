@@ -30,6 +30,7 @@
             <div class="reserved-events">
               <a ui-sref="event({eventId: key})">{{event.title}}</a><br>
               <a ui-sref="userProfile({userName: event.host})">{{event.host}}</a>
+              <button ng-click="removeEvent(key)">X</button>
             </div>
           </div>
         </div>
