@@ -10,7 +10,10 @@ angular.module('main')
 
   // this tracks the last location the user was at
   // used for signin redirect
-  obj.prevRoute = '/';
+  obj.prevRoute = {
+    state: 'home',
+    params: null
+  };
 
 
   ///////////////
