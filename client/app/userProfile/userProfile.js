@@ -64,16 +64,14 @@ angular.module('main')
     };
 
     $scope.checkSameUserMsg = function(name){
-        return ($scope.currentUser === name); 
+        return (appFactory.user === name || $scope.currentUser === name); 
     };
 
     $scope.checkSameUserPage = function(){
-        console.log($scope.currentUser + $scope.uData.username);
-        return ($scope.currentUser === $scope.uData.username);
+        return (appFactory.user === $scope.uData.username || $scope.currentUser === $scope.uData.username);
     };
 
     $scope.canEdit = function(name){
-      console.log($scope.checkSameUserMsg(name) || $scope.checkSameUserPage());
       return $scope.checkSameUserMsg(name) || $scope.checkSameUserPage();
     };
 
@@ -165,12 +163,13 @@ angular.module('main')
       });
     };
 
-    $scope.deleteWallMsg = function(messageID,index){
+    $scope.deleteWallMsg = function(messageID,msg){
+      var index = $scope.uData.myWall.indexOf(msg);
+      $scope.uData.myWall.splice(index, 1);
       ref.child("usernames").child($scope.userName).on("value", function(userData){
         ref.child('users').child(userData.val().uid).child('wall').child(messageID).remove(function(error){
         });
       });
-      $scope.uData.myWall.splice(index, 1);
     };
 
     $scope.getTimeStamp = function(timestamp){
@@ -250,6 +249,7 @@ angular.module('main')
     var userRef = ref.child("users").child(ref.getAuth().uid);
       userRef.on("value",function(a){
       $scope.currentUser=a.val().username;
+      appFactory.user = a.val().username;
       console.log('the current user', $scope.currentUser);
     });
 
