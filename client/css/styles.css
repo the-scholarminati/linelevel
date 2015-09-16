@@ -248,6 +248,14 @@ nav{
   cursor: pointer;
 }
 
+.notificationsList-background{
+  width:100%;
+  height:100%;
+  background: transparent;
+  z-index:9;
+  position: fixed;
+}
+
 
 /******************************
   Hamburger menu styling 
