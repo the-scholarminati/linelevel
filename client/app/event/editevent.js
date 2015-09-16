@@ -57,7 +57,7 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
   };
 
   $scope.saveChanges = function(){
-    var eventTitle, eventDescription, eventImage, eventLabel, eventDate, privateEvent, followersOnly;
+    // var eventTitle, eventDescription, eventImage, eventLabel, eventDate, privateEvent, followersOnly;
     
     // appFactory.update($scope, function(scope){
     //   eventTitle = $scope.eventTitle;

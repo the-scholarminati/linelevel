@@ -9,6 +9,7 @@ angular.module('main')
     $scope.isAuth = appFactory.auth;
     $scope.myProfile = null;
     $scope.loadPage = false;
+    $scope.editingMessage = false;
     $scope.following = [];
     $scope.myFollowing = [];
     $scope.uData = {};
@@ -140,6 +141,23 @@ angular.module('main')
       });
     };
 
+    $scope.submitEditWallMsg = function(messageID, message){
+      ref.child("usernames").child($scope.userName).on("value", function(userData){
+        ref.child('users').child(userData.val().uid).child('wall').child(messageID).update({message: message});
+        appFactory.update($scope,function(){
+        });
+        console.log($scope.editingMessage);
+      });
+      $scope.editingMessage = false;
+    };
+
+    $scope.deleteWallMsg = function(messageID){
+      ref.child("usernames").child($scope.userName).on("value", function(userData){
+        ref.child('users').child(userData.val().uid).child('wall').child(messageID).remove(function(error){
+        });
+      });
+    };
+
     $scope.getTimeStamp = function(timestamp){
       timestamp = (new Date()).getTime() - timestamp;
       var days = Math.floor(timestamp/86400000);
@@ -200,6 +218,7 @@ angular.module('main')
           var data = snap.val();
           appFactory.accessUserByUsername(data.username,function(info){
             info = info.val();
+            data.key = snap.key();
             data.image = info.image || '../assets/profile.jpg';
             data.fullname = info.firstname + ' ' + info.lastname;
             appFactory.update($scope,function(scope){
@@ -213,6 +232,26 @@ angular.module('main')
   }// controller function
 
 
-]);
+]).directive('editBar',function(){
+  return {
+    link: function(scope, element, attribute){
+      element.on("mouseover", function(event){
+        element[0].children[0].style.opacity=1;
+      });
+      element.on("mouseleave", function(event){
+        element[0].children[0].style.opacity=0;
+      });   
+    }
+  };
+}).directive('editMsg', function(){
+  return{
+    link: function(scope, element, attribute){
+      element.on('click', function(event){
+        element[0].parentNode.parentNode.parentNode.children[2].style.display = 'initial';
+        element[0].parentNode.parentNode.parentNode.children[3].style.display = 'none';
+      });
+    }
+  };
+});
 
 //app.module('main').requires.push('userProfile');
