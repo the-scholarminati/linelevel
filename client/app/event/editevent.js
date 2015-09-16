@@ -1,5 +1,5 @@
-angular.module('main').controller('editEventController',['$scope','appFactory', '$firebase',
-  function($scope,appFactory,$firebase){
+angular.module('main').controller('editEventController',['$scope','appFactory', '$firebase', '$state',
+  function($scope,appFactory,$firebase, $state){
   appFactory.init($scope);
 
   var ref = appFactory.firebase;
@@ -97,7 +97,7 @@ angular.module('main').controller('editEventController',['$scope','appFactory', 
     eventRef.child("genre").set(appFactory.chosenGenres);
 
     appFactory.resetGenres();
-    window.location.href="#/event/" + $scope.eventId;
+    $state.go('event', {eventId: $scope.eventId});
   };
 
 
