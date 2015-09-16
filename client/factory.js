@@ -17,6 +17,7 @@ angular.module('main')
   ///// Notifications
   ///////////////
 
+<<<<<<< HEAD
   // dummy notification data for setting up front-end
   // we will probably need objects instead of strings for the messages in order to link to the users and events mentioned therein
   obj.notifications = [
@@ -53,9 +54,24 @@ angular.module('main')
     console.log("deleteNotification called on ", username, " and ", id);
   };
 
+  // checks to see if there are new notifications for the user
+  obj.newNotifications = function(uid,cb){
+    var notificationRef = obj.firebase.child("users").child(uid).child("newNotifications");
+    notificationRef.on("value",function(a){
+      a=a.val();
+      notificationRef.off();
+      cb.call(this,a);
+    });
+  };
 
-  obj.deleteAllNotifications = function(username){
-    console.log("deleteAllNotifications called on ", username);
+  // will allow access to notifications OBJECT with cb argument
+  obj.getNotifications = function(uid,cb){
+    var notificationRef = obj.firebase.child("users").child(uid).child("notifications");
+    notificationRef.on("value",function(a){
+      a=a.val();
+      notificationRef.off();
+      cb.call(this,a);
+    });
   };
 
 
