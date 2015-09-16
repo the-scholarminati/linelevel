@@ -647,7 +647,17 @@ textarea{
   float: right;
   border: 1px solid #c1c1c1;
   height: 420px;
-  background:white;
+  background: white;
+}
+
+@media(max-width: 700px){
+  .chat-participants{
+    width: 100%;
+    max-width: 330px;
+    float: none;
+    margin: 30px 0;
+    height: 100%;
+  }
 }
 
 .participant-entry{
