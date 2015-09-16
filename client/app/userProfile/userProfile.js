@@ -180,11 +180,12 @@ angular.module('main')
       });
     };
 
-    $scope.deleteWallMsg = function(messageID,index){
+    $scope.deleteWallMsg = function(messageID,msg){
       ref.child("usernames").child($scope.userName).on("value", function(userData){
         ref.child('users').child(userData.val().uid).child('wall').child(messageID).remove(function(error){
         });
       });
+      var index = $scope.uData.myWall.indexOf(msg);
       $scope.uData.myWall.splice(index, 1);
     };
 
