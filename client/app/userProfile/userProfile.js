@@ -13,7 +13,9 @@ angular.module('main')
     $scope.myFollowing = [];
     $scope.uData = {};
     $scope.followMessage = '';
+    $scope.myUserName = '';
     var ref = appFactory.firebase;
+    var timerLimit = 10;
 
     $scope.followUser = function(){
       var followRef = null;
@@ -45,10 +47,25 @@ angular.module('main')
       });
     };
 
+    var getMyUsername = function(cb){
+      var called = false;
+      return function(){
+        if(!called){
+          called = true;
+          var userRef = ref.child("users").child(ref.getAuth().uid);
+          userRef.on("value",function(a){
+            a=a.val();
+            userRef.off();
+            cb.apply(this,[a.username]);
+          });
+        }
+      }
+    };
+
     var initFollowMessage = function(){
       var message = '';
       // if myFollowing is not an array, then it was instantiated because it is not my profile
-      if(!Array.isArray($scope.myFollowing)){
+      if(!$scope.myProfile){
         if($scope.myFollowing[$scope.userName]){
           message = 'Unfollow';
         } else {
@@ -58,22 +75,38 @@ angular.module('main')
       appFactory.update($scope,function(scope){
         scope.followMessage = message;
       });
+      if(timerLimit >= 0){
+        timerLimit--;
+        appFactory.timers.followButton = setTimeout(initFollowMessage,30);
+      }
     };
 
     // change load page to true if authenticated
-    $scope.$watch(function(scope){return scope.isAuth();},function(nv,ov){
+    var watch1 = $scope.$watch(function(scope){
+      getMyUsername(function(username){
+        appFactory.update(scope,function(x){
+          x.myUsername = username;
+        });
+      })();
+      return scope.isAuth();},function(nv,ov){
       if(nv){
         $scope.loadPage = true;
+        ref.off();
       }
     });
 
     // ensures that myProfile variable is always updated
-    $scope.$watch(function(scope){return scope.userName !== appFactory.user;},function(nv,ov){
+    var watch2 = $scope.$watch(function(scope){
+      var x = scope.userName;
+      var y = scope.myUsername;
+      return x === y;
+    },function(nv,ov){
       var outcome;
       if(nv){
-        outcome = false;
-      } else {
         outcome = true;
+        // watch2();
+      } else {
+        outcome = false;
       }
       appFactory.update($scope,function(scope){
         scope.myProfile = outcome;
@@ -81,9 +114,11 @@ angular.module('main')
     });
     
     // initialize if load page is true and profile is not empty
-    $scope.$watch(function(){return $scope.loadPage;}, function(nv,ov){
+    var watch3 = $scope.$watch(function(){return $scope.loadPage;}, function(nv,ov){
       if(nv && $scope.myProfile !== null){
         init();
+        // watch3();
+        watch1();
       }
     });
 
@@ -92,7 +127,9 @@ angular.module('main')
       if(!text.length){ return;}
 
       appFactory.accessUserByUid(ref.getAuth().uid, function(snap){
-        ref.child("usernames").child($scope.userName).on("value",function(userData){
+        var userRef = ref.child("usernames").child($scope.userName);
+        userRef.on("value",function(userData){
+          userRef.off();
           ref.child('users').child(userData.val().uid).child('wall').push({
             username: snap.val().username, 
             message: text,
@@ -166,7 +203,7 @@ angular.module('main')
             data.image = info.image || '../assets/profile.jpg';
             data.fullname = info.firstname + ' ' + info.lastname;
             appFactory.update($scope,function(scope){
-              scope.uData.myWall.unshift(data);
+              scope.uData.myWall.push(data);
             });
           });
         });
