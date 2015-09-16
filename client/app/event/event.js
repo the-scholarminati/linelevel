@@ -240,9 +240,11 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
           console.log('videoId listener', snapshot.val());
           $scope.event.videoId = snapshot.val().videoId;
           setTimeout(function(){
-            console.log('loading stream for videoId', $scope.event.videoId);
-            $scope.loadStream();
-          }, 1000);
+            if($scope.isSameUser !== true){
+              $scope.loadStream();
+              console.log('loading stream for videoId', $scope.event.videoId);
+            }
+          }, 2000);
         });
 
         // load chat data and set chat listener
