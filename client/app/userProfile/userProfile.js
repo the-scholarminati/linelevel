@@ -122,7 +122,7 @@ angular.module('main')
             a = a.val();
             myData.off();
             appFactory.update($scope,function(scope){
-              scope.myFollowing = a.following;
+              scope.myFollowing = a.following || {};
             });
           });
         }

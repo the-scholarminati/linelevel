@@ -225,7 +225,7 @@ nav{
   text-align: right;
   font-size: 16px;
   color: white;
-  overflow-y: scroll;
+  overflow-y: hidden;
   min-width: 425px;
 }
 
