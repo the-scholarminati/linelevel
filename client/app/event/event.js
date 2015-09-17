@@ -22,6 +22,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     $scope.initialized = false;
     $scope.selectedChat = [1,0,0];
     $scope.countDown = 'loading...';
+    $scope.deleteEvent = false;
     var elementsLoaded = false;
 
     // these variables will get updated if user is allowed to view the event
@@ -43,6 +44,24 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     var eventRef = ref.child("events").child($scope.eventId);
     var usernamesRef = ref.child("usernames");
     var users = ref.child("users");
+
+    ////////////////////
+    // Other admin Tab features
+    ////////////////////
+    $scope.deleteEvent = function(){
+      ref.off();
+      eventRef.off();
+      chatRef.off();
+      chatRef.remove();
+      eventRef.remove();
+      $state.go('home');
+    };
+
+    $scope.toggleDelete = function(){
+      $scope.deleteEvent = !$scope.deleteEvent;
+    };
+
+
 
     ////////////////////
     // private events - show page if host else check if user is allowed in event
