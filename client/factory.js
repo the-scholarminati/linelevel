@@ -73,6 +73,7 @@ angular.module('main')
 
   obj.sendNotification = function(recipientUid,data){
     var notificationRef = obj.firebase.child("users").child(recipientUid).child("notifications");
+    data.timestamp = (new Date()).getTime();
     notificationRef.push().set(data);
   };
 
