@@ -103,7 +103,7 @@ angular.module('main')
           snap = snap.val();
           userData.off();
           appFactory.update($scope, function(scope){
-            scope.uData.image = snap.image || '../assets/profile.jpg';
+            scope.uData.image = snap.image || './assets/profile.jpg';
             scope.uData.username = snap.username;
             scope.uData.firstname = snap.firstname;
             scope.uData.lastname = snap.lastname;
@@ -134,7 +134,7 @@ angular.module('main')
           appFactory.accessUserByUsername(data.username,function(info){
             info = info.val();
             data.key = snap.key();
-            data.image = info.image || '../assets/profile.jpg';
+            data.image = info.image || './assets/profile.jpg';
             data.fullname = info.firstname + ' ' + info.lastname;
             data.canEdit = info.username === appFactory.userName;
             appFactory.update($scope,function(scope){
