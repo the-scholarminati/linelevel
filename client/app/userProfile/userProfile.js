@@ -36,6 +36,13 @@ angular.module('main')
         followRef[$scope.userName] = {
           uid: $scope.uData.uid
         };
+        appFactory.sendNotification($scope.uData.uid,{
+          messageType: 'Follower',
+          sender: 'Linelevel Bot',
+          subject: 'You have a new follower!',
+          message: appFactory.userName + ' started following you!',
+          url: ['userProfile',appFactory.userName]
+        });
         message = 'Unfollow';
       } else {
         appFactory.unfollowUser($scope.userName);
@@ -165,15 +172,24 @@ angular.module('main')
       if(!text.length){ return;}
 
       appFactory.accessUserByUid(ref.getAuth().uid, function(snap){
+        var username = snap.val().username;
         userRef.on("value",function(userData){
           userRef.off();
           ref.child('users').child(userData.val().uid).child('wall').push({
-            username: snap.val().username, 
+            username: username,
             message: text,
             timestamp: (new Date()).getTime()
           });
+          if(!$scope.myProfile){
+            appFactory.sendNotification(userData.val().uid,{
+              messageType: 'Wall',
+              sender: username,
+              subject: username + ' left a message on your wall!',
+              message: text, 
+              url: ['userProfile',username]
+            });
+          }
         });
-        $scope.wallText = '';
       });
     };
 
