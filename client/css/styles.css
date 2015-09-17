@@ -400,7 +400,7 @@ nav{
 }
 
 #homeSection2{
-  background-color: #BEE8E6;
+  background: linear-gradient(to bottom,#bee8e6,#229AB5);
   background-size: 100%;
   display: flex;
   flex-flow: row wrap;
@@ -422,7 +422,7 @@ nav{
   text-align: center;
   font-size: 14px;
   font-weight: 200;
-  background-color: white;
+  background-color: transparent;
   padding: 10px;
   margin-top: 20px;
   border-radius: 5px;
@@ -435,7 +435,7 @@ nav{
 }
 
 #homeSection4{
-  background-color: #E8D9C2;
+  background: linear-gradient(to bottom, #81DCCB, #4C021A);
   background-size: 100%;
 }
 
