@@ -720,7 +720,7 @@ textarea{
 
 .chat-tabs, .participants-title{
   display: inline-block;
-  width: 100px;
+  width: 90px;
   text-align: center;
   border: 1px solid #c1c1c1;
   border-bottom: none;
