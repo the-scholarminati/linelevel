@@ -1160,6 +1160,19 @@ textarea{
   User profile styling 
 ******************************/
 
+.cancelRSVP{
+  width: 20px;
+  height: 20px;
+  line-height: 0;
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: lowercase;
+  position: relative;
+  float:right;
+  opacity: 0;
+  transition: .5s;
+}
+
 #following{
   display: -webkit-box;
   display: -moz-box;
