@@ -394,7 +394,7 @@ nav{
   background-size: auto 100%;
 }
 
-#homeSection1 .aboutText{
+.aboutText{
   padding: 0.125% 2%;
   background-color: rgba(0,0,0,0.75);
 }
@@ -402,6 +402,31 @@ nav{
 #homeSection2{
   background-color: #BEE8E6;
   background-size: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.about-icon-segment{
+  margin: 0 5% 0 5%;
+  z-index: 2;
+}
+.about-icon-segment h1{
+  color: black;
+  font-size: 28px;
+}
+
+.about-information{
+  width: 200px;
+  color: black;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 200;
+  background-color: white;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+  height: 200px;
 }
 
 #homeSection3{
@@ -414,6 +439,52 @@ nav{
   background-size: 100%;
 }
 
+#about-home-section4{
+  background-color: black;
+  width: 100%;
+  margin-top: 50px;
+  height: 100px;
+}
+#about-home-section4 h1{
+  font-size: 50px;
+  font-weight: 1000;
+  padding: 0;
+  margin-top: 15px;
+  display: relative;
+  left: -10px;
+}
+
+@media (max-width: 700px){
+  #homeSection2 img{
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 700px){
+  #homeSection2 {
+    padding-top: 35px;
+  }
+} 
+
+@media (max-width: 700px){
+  #homeSection2 h1{
+    font-size: 16px;
+  }
+}
+@media (max-width: 700px){
+  .about-information{
+    font-size: 14px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 700px){
+  #homeSection4 img{
+    width: 300px;
+    height: 300px;
+  }
+}
 
 /******************************
   Form styling 
