@@ -118,6 +118,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     $scope.removeUserFromWhiteList = function(username){
       appFactory.accessUidByUsername(username,function(uid){
         appFactory.sendNotification(uid,{
+          messageType: 'Event',
           message: "You have been removed from event '" + $scope.event.name + "'",
           url: ['userProfile',$scope.event.host],
           sender: 'Linelevel Bot',
