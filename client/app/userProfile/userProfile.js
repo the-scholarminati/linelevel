@@ -237,13 +237,15 @@ angular.module('main')
       });   
     }
   };
-}).directive('editMsg', function(){
-  return{
-    link: function(scope, element, attribute){
-      element.on('click', function(event){
-        element[0].parentNode.parentNode.parentNode.children[2].style.display = 'initial';
-        element[0].parentNode.parentNode.parentNode.children[3].style.display = 'none';
+}).directive('cancelEvent', function(){
+  return {
+    link: function(scope,element,attribute){
+      element.on("mouseover", function(event){
+        element[0].children[0].style.opacity=1;
       });
+      element.on("mouseleave", function(event){
+        element[0].children[0].style.opacity=0;
+      }); 
     }
   };
 });

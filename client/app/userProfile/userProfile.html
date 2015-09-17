@@ -27,10 +27,10 @@
         <div id="userFeed">
           <h2>Events</h2>
           <div ng-repeat="(key, event) in uData.myEvents[0] track by $index">
-            <div class="reserved-events">
+            <div class="reserved-events" cancel-event>
+              <button ng-click="removeEvent(key)" ng-show="myProfile" class="cancelRSVP">X</button>
               <a ui-sref="event({eventId: key})">{{event.title}}</a><br>
               <a ui-sref="userProfile({userName: event.host})">{{event.host}}</a>
-              <button ng-click="removeEvent(key)">X</button>
             </div>
           </div>
         </div>
