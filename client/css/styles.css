@@ -686,6 +686,7 @@ textarea{
   width: 100%;
   min-width: 640px;
   min-height: 390px;
+  background-color: black;
 }
 
 @media(max-width: 650px){
@@ -694,6 +695,18 @@ textarea{
     min-height: 182.8px;
     margin-bottom: 15px;
   }
+
+  video{
+    max-width: 300px;
+    max-height: 182.8px;
+    margin-bottom: 10px;
+  }
+}
+
+video{
+  margin-top: 10px;
+  width: 640px;
+  height: 390px;
 }
 
 #videostream{
@@ -714,6 +727,7 @@ textarea{
   text-align: center;
   top: 40%;
   position: absolute;
+  color: white;
 }
 
 /******************************
