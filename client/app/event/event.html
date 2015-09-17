@@ -119,6 +119,12 @@
                 <div ng-repeat="(name,allowed) in event.allowedUsers"><div class="whitelist-remove-user" ng-click="removeUserFromWhiteList(name)">x</div>&nbsp;&nbsp;<a ui-sref="userProfile({userName: name})">{{name}}</a></div>
               </div>
             </div>
+            <div class="delete-event">
+              <button ng-click="toggleDelete()">Delete Event</button>
+              <div ng-hide="!deleteEvent" class="delete-event-confirm">Are you sure?
+                  <button ng-click="deleteThisEvent()">Yes</button>&nbsp;<button ng-click="toggleDelete()">No</button>
+              </div>
+            </div>
 
           </div>
 
