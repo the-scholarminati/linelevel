@@ -2,8 +2,8 @@
 
 angular.module('main')
 
-.controller('createEventController', ['$scope', 'appFactory', '$firebase',
-  function($scope, appFactory, $firebase){
+.controller('createEventController', ['$scope', 'appFactory', '$firebase','$state',
+  function($scope, appFactory, $firebase, $state){
     appFactory.init($scope);
     // gets the current date so we can stop users from choosing dates in the past
     $scope.today = new Date();
@@ -29,11 +29,12 @@ angular.module('main')
 
     $scope.submitCreateEventForm = function(){
       // saves the data from the form
+      var id = '';
       var eventTitle = $scope.eventTitle;
       var eventDescription = $scope.eventDescription;
       // the image url is not required on the form
       // maybe have a default image that is used when image is not provided
-      var eventImage = $scope.eventImage || '';
+      var eventImage = $scope.eventImage || './assets/albumcover.png';
       var eventLabel = $scope.eventLabel || '';
       var eventDate = $scope.date.eventDate.getTime();
       console.log("eventDate = ", eventDate);
@@ -49,6 +50,7 @@ angular.module('main')
           userRef.off();
           var username = userData.username;
           var eventId = ref.child('events').push();
+          id = eventId.key();
           eventId.set({
             title: eventTitle,
             description: eventDescription,
@@ -87,6 +89,8 @@ angular.module('main')
         appFactory.resetDate();
         appFactory.resetGenres();
         console.log("event creation form submitted!");
+        console.log("id is ", id);
+        $state.go('event',{eventId:id});
       } else {
         console.log("please log in to create an event");
       }
