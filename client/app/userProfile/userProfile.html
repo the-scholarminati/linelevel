@@ -28,7 +28,11 @@
           <h2>Events</h2>
           <div ng-repeat="(key, event) in uData.myEvents[0] track by $index">
             <div class="reserved-events" cancel-event>
-              <button ng-click="removeEvent(key)" ng-show="myProfile" class="cancelRSVP">X</button>
+              <div ng-show="myProfile" class="message-tools">
+                <div>
+                <img src="./assets/controls/delete.png" style="width: 20px; height: 20px; margin: 0; padding: 0; border-radius: 0px" class="message-tool" ng-click="removeEvent(key)">
+                </div>
+              </div>
               <a ui-sref="event({eventId: key})">{{event.title}}</a><br>
               <a ui-sref="userProfile({userName: event.host})">{{event.host}}</a>
             </div>
@@ -53,8 +57,12 @@
 
             <!-- Message Edit Tools START -->
             <div class="message-tools" ng-show="message.canEdit || myProfile">
-              <div ng-show="message.canEdit"><img src="./assets/controls/edit.png" width="20px" height="20px" class="message-tool" ng-click="editingMessage = !editingMessage"></div>
-              <div ng-show="message.canEdit || myProfile"><img src="./assets/controls/delete.png" width="20px" height="20px" class="message-tool" ng-click="deleteWallMsg(message.key, message)"></div>
+              <div ng-show="message.canEdit">
+                <img src="./assets/controls/edit.png" width="20px" height="20px" class="message-tool" ng-click="editingMessage = !editingMessage">
+                </div>
+              <div ng-show="message.canEdit || myProfile">
+                <img src="./assets/controls/delete.png" width="20px" height="20px" class="message-tool" ng-click="deleteWallMsg(message.key, message)">
+                </div>
             </div>
             <!-- Message Edit Tools END -->
 
