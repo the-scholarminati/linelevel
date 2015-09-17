@@ -137,6 +137,7 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   $scope.newNotifications = false;
   $scope.notifications = appFactory.notifications;
   $scope.getTimeStamp = appFactory.getTimeStamp;
+  $scope.noNotificationsLeft = appFactory.noNotificationsLeft;
   console.log('scope new notifs', $scope.newNotifications);
 
 
@@ -173,16 +174,6 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
     }
   };
 
-/*
-  subject: 'Removed from Event'
-  sender: 'Linelevel Bot',
-
-  properties in a notification
-  timestamp: 
-  messageType: 'Event','Wall','Invitation'
-  message: "You have been removed from event '" + $scope.event.name + "'",
-  url: ['userProfile',$scope.event.host],
-*/
 
   $scope.deleteNotification = function(notificationId){
     appFactory.deleteNotification(notificationId);

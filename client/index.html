@@ -72,18 +72,30 @@
       </header>
     </div>
 <!-- Header Bar End -->
+<!--/*
+  subject: 'Removed from Event'
+  sender: 'Linelevel Bot',
+
+  properties in a notification
+  timestamp: 
+  messageType: 'Event','Wall','Invitation'
+  message: "You have been removed from event '" + $scope.event.name + "'",
+  url: ['userProfile',$scope.event.host],
+*/-->
 
 <!-- Notifications List Start -->
     <div class="invisible-div" ng-class="{menuDown: showNotificationsList, menuUp: !showNotificationsList}" ng-click="showNotificationsListNow()"></div>
     <div class="notificationsList" ng-class="{menuDown: showNotificationsList, menuUp: !showNotificationsList}">
-      <div ng-repeat="(key,notification) in notifications">
-        <p>
-          <span class="notificationsMessage" ng-click="goNotificationLink(notification.url)">{{notification.message}}</span>
-          <span class="deleteNotification" ng-click="deleteNotification(notification.id)">x</span>
+      <div class="notification-entry" ng-repeat="(key,notification) in notifications">
+        <p class="notificationsMessage" ng-click="goNotificationLink(notification.url)">
+          <span>{{notification.sender}}:&nbsp;&nbsp;{{notification.subject}}&nbsp;&nbsp;&nbsp;</span><span ng-bind="getTimeStamp(notification.timestamp)"></span><br>
+          <span>{{notification.message}}</span>
+          <span class="deleteNotification" ng-click="deleteNotification(notification.id)">done</span>
         <p>
       </div>
       <p class="deleteAllNotifications">
-        <span ng-click="deleteAllNotifications()">Remove all notifications</span>
+        <span ng-if="!noNotificationsLeft()" ng-click="deleteAllNotifications()">Remove all notifications</span>
+        <span ng-if="noNotificationsLeft()">You have no more notifications</span>
       </p>
     </div>
 <!-- Notifications List End -->

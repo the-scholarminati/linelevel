@@ -216,19 +216,23 @@ nav{
 
 .notificationsList{
   position: fixed;
+  height: 100%;
   z-index: 10;
   top: 5px;
   right: 0px;
-  padding: 40px 5% 25px 5%;
+  padding: 40px 1% 25px 3%;
   margin: 0;
   text-align: right;
   font-size: 16px;
   color: white;
+  overflow-y: scroll;
+  min-width: 425px;
 }
 
 .notificationsMessage{
   margin: 15px 0;
   cursor: pointer;
+  text-align: left;
 }
 
 .notificationsMessage:hover{
@@ -256,6 +260,9 @@ nav{
   position: fixed;
 }
 
+.notification-entry{
+  border-bottom: 1px solid red;
+}
 
 /******************************
   Hamburger menu styling 
@@ -1423,6 +1430,7 @@ textarea{
   text-decoration: none;
   margin: 1px;
   color: white;
+  min-width: 100px;
 }
 
 .profile-following:hover {

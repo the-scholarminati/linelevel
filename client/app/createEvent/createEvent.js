@@ -68,8 +68,9 @@ angular.module('main')
             appFactory.sendNotification(key,{
               messageType:"Event",
               sender:"Linelevel Bot",
+              subject: username + " has a new event!",
               startDate: eventDate,
-              message: username + " has a new event!",
+              message: "Check out " + username + "'s event, '" + eventTitle + "'!",
               url: ['event', eventId.key()]
             });
           }
