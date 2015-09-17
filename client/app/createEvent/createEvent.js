@@ -61,6 +61,17 @@ angular.module('main')
             followersOnly: followersOnly
           });
 
+          // send notification about new event to all followers
+          for(var key in userData.followers){
+            appFactory.sendNotification(key,{
+              messageType:"Event",
+              sender:"Linelevel Bot",
+              startDate: eventDate,
+              message: username + " has a new event!",
+              url: ['event', eventId.key()]
+            });
+          }
+
           ref.child("chats").child(eventId.key()).push().set({
             username:"Linelevel Bot", 
             message:"chat created for event " + eventTitle,
