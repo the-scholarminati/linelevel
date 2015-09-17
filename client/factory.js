@@ -62,7 +62,7 @@ angular.module('main')
 
   obj.deleteAllNotifications = function(){
     this.auth(function(userData){
-      var notificationRef = obj.firebase.child("users").child(uid).child("notifications");
+      var notificationRef = obj.firebase.child("users").child(userData.uid).child("notifications");
       notificationRef.remove();
       obj.newNotifications = false;
       for(var key in obj.notifications){
