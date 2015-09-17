@@ -210,18 +210,7 @@ angular.module('main')
       $scope.uData.myWall.splice(index, 1);
     };
 
-    $scope.getTimeStamp = function(timestamp){
-      timestamp = (new Date()).getTime() - timestamp;
-      var days = Math.floor(timestamp/86400000);
-      timestamp%=86400000;
-      var hours = Math.floor(timestamp/3600000);
-      timestamp%=3600000;
-      var minutes = Math.floor(timestamp/60000);
-      if(days){ return '' + days + 'd';}
-      if(hours){ return '' + hours+ 'h';}
-      if(minutes){ return '' + minutes + 'm';}
-      return '1m';
-    };
+    $scope.getTimeStamp = appFactory.getTimeStamp;
 
     $scope.removeEvent = function(key){
       delete $scope.uData.myEvents[0][key];

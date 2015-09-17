@@ -62,13 +62,26 @@ angular.module('main')
 
   obj.deleteAllNotifications = function(){
     this.auth(function(userData){
-      var notificationRef = obj.firebase.child("users").child(uid).child("notifications");
+      var notificationRef = obj.firebase.child("users").child(userData.uid).child("notifications");
       notificationRef.remove();
       obj.newNotifications = false;
       for(var key in obj.notifications){
         delete obj.notifications[key];
       }
     });
+  };
+
+  obj.getTimeStamp = function(timestamp){
+    timestamp = (new Date()).getTime() - timestamp;
+    var days = Math.floor(timestamp/86400000);
+    timestamp%=86400000;
+    var hours = Math.floor(timestamp/3600000);
+    timestamp%=3600000;
+    var minutes = Math.floor(timestamp/60000);
+    if(days){ return '' + days + 'd';}
+    if(hours){ return '' + hours+ 'h';}
+    if(minutes){ return '' + minutes + 'm';}
+    return '1m';
   };
 
   obj.sendNotification = function(recipientUid,data){

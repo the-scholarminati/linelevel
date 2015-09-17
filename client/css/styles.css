@@ -216,19 +216,23 @@ nav{
 
 .notificationsList{
   position: fixed;
+  height: 100%;
   z-index: 10;
   top: 5px;
   right: 0px;
-  padding: 40px 5% 25px 5%;
+  padding: 40px 1% 25px 3%;
   margin: 0;
   text-align: right;
   font-size: 16px;
   color: white;
+  overflow-y: scroll;
+  min-width: 425px;
 }
 
 .notificationsMessage{
   margin: 15px 0;
   cursor: pointer;
+  text-align: left;
 }
 
 .notificationsMessage:hover{
@@ -256,6 +260,9 @@ nav{
   position: fixed;
 }
 
+.notification-entry{
+  border-bottom: 1px solid red;
+}
 
 /******************************
   Hamburger menu styling 
@@ -400,7 +407,7 @@ nav{
 }
 
 #homeSection2{
-  background-color: #BEE8E6;
+  background: linear-gradient(to bottom,#bee8e6,#229AB5);
   background-size: 100%;
   display: flex;
   flex-flow: row wrap;
@@ -422,7 +429,7 @@ nav{
   text-align: center;
   font-size: 14px;
   font-weight: 200;
-  background-color: white;
+  background-color: transparent;
   padding: 10px;
   margin-top: 20px;
   border-radius: 5px;
@@ -435,7 +442,7 @@ nav{
 }
 
 #homeSection4{
-  background-color: #E8D9C2;
+  background: linear-gradient(to bottom, #81DCCB, #4C021A);
   background-size: 100%;
 }
 
@@ -1424,6 +1431,7 @@ textarea{
   text-decoration: none;
   margin: 1px;
   color: white;
+  min-width: 100px;
 }
 
 .profile-following:hover {

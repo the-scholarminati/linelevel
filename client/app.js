@@ -136,6 +136,8 @@ var app = angular.module('main', ['firebase', 'ui.router', 'ngAnimate'])
   // import notifications from appFactory
   $scope.newNotifications = false;
   $scope.notifications = appFactory.notifications;
+  $scope.getTimeStamp = appFactory.getTimeStamp;
+  $scope.noNotificationsLeft = appFactory.noNotificationsLeft;
   console.log('scope new notifs', $scope.newNotifications);
 
 
