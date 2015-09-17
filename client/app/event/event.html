@@ -37,49 +37,49 @@
       <div id="video-content">
         <div class="videoSettings hideOnMobile" ng-show="isSameUser">
           <div class="video-setting" ng-click="startStream()">
-            <img src="../assets/controls/stream.png" width="25px" height="25px"/>
+            <img src="./assets/controls/stream.png" width="25px" height="25px"/>
           </div>
           <div class="video-setting" ng-click="stop(1)">
-            <img src="../assets/controls/stop.png" width="25px" height="25px"/>
+            <img src="./assets/controls/stop.png" width="25px" height="25px"/>
           </div>
           <div class="video-setting" ng-click="editEvent()">
-            <img src="../assets/controls/edit.png" width="25px" height="25px"/>
+            <img src="./assets/controls/edit.png" width="25px" height="25px"/>
           </div>
           <div class="video-setting" ng-click="people()">
-            <img src="../assets/controls/people.png" width="25px" height="25px"/>
+            <img src="./assets/controls/people.png" width="25px" height="25px"/>
           </div>
           <div class="video-setting" ng-click="toggleChat()">
-            <img src="../assets/controls/chat.png" width="25px" height="25px"/>
+            <img src="./assets/controls/chat.png" width="25px" height="25px"/>
           </div>
         </div>
         <!-- For regular user -->
         <div class="videoSettings hideOnMobile" ng-show="!isSameUser">
           <div class="video-setting" ng-click="play()">
-            <img src="../assets/controls/play.png" width="25px" height="25px"/>
+            <img src="./assets/controls/play.png" width="25px" height="25px"/>
           </div>
           <div class="video-setting" ng-click="stop(0)">
-            <img src="../assets/controls/stop.png" width="25px" height="25px"/>
+            <img src="./assets/controls/stop.png" width="25px" height="25px"/>
           </div>
           <div class="video-setting" ng-click="volumeUp()">
-            <img src="../assets/controls/volume_up.png" width="25px" height="25px"/>
+            <img src="./assets/controls/volume_up.png" width="25px" height="25px"/>
           </div>
           <div class="video-setting" ng-click="volumeDown()">
-            <img src="../assets/controls/volume_down.png" width="25px" height="25px"/>
+            <img src="./assets/controls/volume_down.png" width="25px" height="25px"/>
           </div>
           <div class="video-setting" ng-click="mute()">
-            <img src="../assets/controls/mute.png" width="25px" height="25px"/>
+            <img src="./assets/controls/mute.png" width="25px" height="25px"/>
           </div>
           <div class="video-setting" ng-click="people()">
-            <img src="../assets/controls/people.png" width="25px" height="25px"/>
+            <img src="./assets/controls/people.png" width="25px" height="25px"/>
           </div>
           <div class="video-setting" ng-click="toggleChat()">
-            <img src="../assets/controls/chat.png" width="25px" height="25px"/>
+            <img src="./assets/controls/chat.png" width="25px" height="25px"/>
           </div>
         </div>
 
         <div id="videoWrapper">
           <div ng-if="showCountDown" id="countDown" ng-bind="countDown"></div>
-          <video id="myVideo" muted="false" class="myVideo" autoplay ng-show="isSameUser" width="640" height="390"></video>
+          <video id="myVideo" muted="false" class="myVideo" autoplay ng-show="isSameUser"></video>
           <video id="theirVideo" defaultMuted="false" class="theirVideo" autoplay ng-show="isSameUser == false"></video>
           <!-- <div id="ytplayer"></div>
           <span class="video"></span> -->
