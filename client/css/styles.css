@@ -1131,6 +1131,8 @@ textarea{
   transition: 1s;
   z-index: 2;
   font-size: 14px;
+}
+.eventInfo p{
   padding: 10px;
 }
 
