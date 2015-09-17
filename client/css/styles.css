@@ -1131,6 +1131,8 @@ textarea{
   transition: 1s;
   z-index: 2;
   font-size: 14px;
+}
+.eventInfo p{
   padding: 10px;
 }
 
@@ -1235,14 +1237,12 @@ textarea{
   width: 20px;
   height: 20px;
   line-height: 0;
-  font-size: 15px;
-  font-weight: 800;
-  text-transform: lowercase;
   position: relative;
   float:right;
   opacity: 0;
   transition: .5s;
 }
+
 
 #following{
   display: -webkit-box;
@@ -1277,7 +1277,7 @@ textarea{
   display: flex;
   position: relative;
   float:right;
-  border-radius: 5px;
+  border-radius: 3px;
   margin: 3px;
   border: 1px solid black;
   background-color: white;
@@ -1286,10 +1286,10 @@ textarea{
 }
 
 .message-tool:hover{
-  background-color: #80EBD8;
+  background-color: #FFBC4C;
 }
 .message-tool:active{
-  background-color: #6BC4B4;
+  background-color: orange;
 }
 
 #userContent{
@@ -1330,6 +1330,7 @@ textarea{
   display: relative;
   font-size: 12px;
 }
+
 #userFeed{
   display: -webkit-box;
   display: -moz-box;
@@ -1369,7 +1370,7 @@ textarea{
   margin: 2px;
 }
 .reserved-events:hover {
-  background: orange;
+  background: #5FB0A1;
 }
 
 .wall-author, .wall-message{
@@ -1426,14 +1427,13 @@ textarea{
 }
 
 .profile-following:hover {
-  background: orange;
+  background: #5FB0A1;
 }
 
 .profile-following a{
   color:white;
   text-decoration: none;
 }
-
 
 
 
