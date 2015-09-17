@@ -99,10 +99,11 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
           } else {
             eventRef.child("allowedUsers").child(info.key()).set(true);
             appFactory.sendNotification(data.uid,{
+              messageType: 'Event',
               message: "You have been added to event '" + $scope.event.name + "' by " + $scope.event.host, 
               url: ['event',$scope.eventId],
               sender: 'Linelevel Bot',
-              subject: 'Invitation',
+              subject: 'You have received an event invitation!',
               startDate: $scope.event.date
             });
             appFactory.update($scope,function(scope){
