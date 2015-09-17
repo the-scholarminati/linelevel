@@ -100,7 +100,10 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
             eventRef.child("allowedUsers").child(info.key()).set(true);
             appFactory.sendNotification(data.uid,{
               message: "You have been added to event '" + $scope.event.name + "' by " + $scope.event.host, 
-              url: ['event',$scope.eventId]
+              url: ['event',$scope.eventId],
+              sender: 'Linelevel Bot',
+              subject: 'Invitation',
+              startDate: $scope.event.date
             });
             appFactory.update($scope,function(scope){
               scope.adminTabMessage = 'Invitation sent to ' + user;
@@ -115,8 +118,11 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     $scope.removeUserFromWhiteList = function(username){
       appFactory.accessUidByUsername(username,function(uid){
         appFactory.sendNotification(uid,{
+          messageType: 'Event',
           message: "You have been removed from event '" + $scope.event.name + "'",
-          url: ['userProfile',$scope]
+          url: ['userProfile',$scope.event.host],
+          sender: 'Linelevel Bot',
+          subject: 'Removed from Event'
         });
       });
       eventRef.child("allowedUsers").child(username).remove();
@@ -239,7 +245,7 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
       }// end of if
     };
 
-    
+
     var loadElements = function(){
       chatEl     = document.getElementById('chatMessages');
       hostChatEl = document.getElementById('hostMessages');

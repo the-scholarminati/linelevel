@@ -35,18 +35,19 @@ angular.module('main')
   };
   */
 
-  obj.newNotifications = false;
-
   // will allow access to notifications OBJECT with cb argument
-  obj.getNotifications = function(uid){
+  obj.getNotifications = function(uid,scope){
     this.auth(function(userData){
       var notificationRef = obj.firebase.child("users").child(userData.uid).child("notifications");
       notificationRef.on("child_added",function(a){
         var key = a.key();
         a=a.val();
-        a.id = key;
-        obj.notifications[key] = a;
-        obj.newNotifications = true;
+        if(a !== null){
+          a.id = key;
+          obj.notifications[key] = a;
+          scope.newNotifications = true;
+        }
+        console.log('appFactory notifications ', obj.notifications);
       });
     });
   };
@@ -72,6 +73,7 @@ angular.module('main')
 
   obj.sendNotification = function(recipientUid,data){
     var notificationRef = obj.firebase.child("users").child(recipientUid).child("notifications");
+    data.timestamp = (new Date()).getTime();
     notificationRef.push().set(data);
   };
 

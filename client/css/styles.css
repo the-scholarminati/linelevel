@@ -334,6 +334,14 @@ nav{
 .dropDownLink img{
   width: 20px;
   margin: 0 0 2px 5px;
+  transition-duration: 0.5s;
+  transition-property: transform;
+}
+
+.pointUp{
+  -ms-transform: rotate(180deg); /* IE 9 */
+  -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+  transform: rotate(180deg);
 }
 
 .dropDownMenu{
@@ -519,9 +527,16 @@ textarea{
   justify-content: space-between;
 }
 
-#video-content{
-  display: inline-flex;
-  flex-flow: row nowrap;
+#eventHost{
+  position: relative;
+  top: 17px;
+  padding-left: 8px;
+}
+
+#eventHostName{
+  text-decoration: bold;
+  font-size: 24px;
+  font-family: Helvetica-bold;
 }
 
 #genreNames{
@@ -538,16 +553,26 @@ textarea{
   font-size: 14px;
 }
 
-#eventHost{
-  position: relative;
-  top: 17px;
-  padding-left: 8px;
+.stream-button{
+  cursor: pointer;
 }
 
-#eventHostName{
-  text-decoration: bold;
-  font-size: 24px;
-  font-family: Helvetica-bold;
+#stop-stream-button{
+  background-color: #E69F9D;
+}
+
+#eventcontent{
+  width: 100%;
+  display: inline-flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+}
+
+#video-content{
+  display: inline-flex;
+  flex-flow: row nowrap;
 }
 
 .videoSettings{
@@ -577,18 +602,20 @@ textarea{
   background-color: #6BC4B4;
 }
 
-#eventcontent{
-  width: 100%;
-  display: inline-flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  align-items: center;
-  position: relative;
-}
-
 #videoWrapper{
   border: 1px solid #c1c1c1;
   position: relative;
+  width: 100%;
+  min-width: 640px;
+  min-height: 390px;
+}
+
+@media(max-width: 650px){
+  #videoWrapper{
+    min-width: 337px;
+    min-height: 205.4px;
+    margin-bottom: 15px;
+  }
 }
 
 #videostream{
@@ -611,24 +638,13 @@ textarea{
   position: absolute;
 }
 
-.stream-button{
-  cursor: pointer;
-}
-
-#stop-stream-button{
-  background-color: #E69F9D;
-}
-
 /******************************
   Chat styling 
 ******************************/
 
-.chat-section, .chat-participants{
+.chat-section{
   display: inline-block;
   height: 456px;
-}
-
-.chat-section{
   width: 100%;
   max-width: 330px;
 }
@@ -638,8 +654,30 @@ textarea{
   max-width: 100px;
   float: right;
   border: 1px solid #c1c1c1;
-  height: 420px;
-  background:white;
+  background: white;
+}
+
+@media(min-width: 700px){
+  .chat-participants{
+    height: 456px;
+  }
+}
+
+@media(max-width: 700px){
+  .chat-participants{
+    width: 100%;
+    max-width: 337px;
+    float: none;
+    margin: 30px 0 40px 0;
+    padding-bottom: 10px;
+    max-height: 456px;
+  }
+
+  .chat-submit{
+    width: 100%;
+    max-width: 400px;
+    margin-left: 2.5px;
+  }
 }
 
 .participant-entry{
@@ -647,7 +685,7 @@ textarea{
 }
 
 .chat-submit{
-  max-width: 330px;
+  max-width: 337px;
 }
 
 
@@ -658,6 +696,14 @@ textarea{
   height: 456px;
   flex-grow: 1;
   margin: 20px;
+}
+
+@media(max-width: 700px){
+  #chat-content{
+    flex-grow: 0;
+    min-width: 337px;
+    max-width: 337px;
+  }
 }
 
 #chatToggle{
@@ -672,11 +718,6 @@ textarea{
   display:none;
 }
 
-.chat-tabs-selected{
-  background: #c1c1c1;
-  color: white;
-}
-
 .chat-tabs, .participants-title{
   display: inline-block;
   width: 100px;
@@ -689,10 +730,19 @@ textarea{
   cursor: pointer;
 }
 
+.chat-tabs-selected{
+  background: black;
+  color: white;
+  border: 1px solid black;
+  cursor: default;
+}
+
 .participants-title{
+  width: 100%;
   border: none;
-  border-bottom: 1px solid #c1c1c1;
-  background: none;
+  color: white;
+  background: black;
+  cursor: default;
 }
 
 
