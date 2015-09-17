@@ -612,8 +612,8 @@ textarea{
 
 @media(max-width: 650px){
   #videoWrapper{
-    min-width: 337px;
-    min-height: 205.4px;
+    min-width: 300px;
+    min-height: 182.8px;
     margin-bottom: 15px;
   }
 }
@@ -666,7 +666,7 @@ textarea{
 @media(max-width: 700px){
   .chat-participants{
     width: 100%;
-    max-width: 337px;
+    max-width: 300px;
     float: none;
     margin: 30px 0 40px 0;
     padding-bottom: 10px;
@@ -685,7 +685,7 @@ textarea{
 }
 
 .chat-submit{
-  max-width: 337px;
+  max-width: 300px;
 }
 
 
@@ -701,8 +701,8 @@ textarea{
 @media(max-width: 700px){
   #chat-content{
     flex-grow: 0;
-    min-width: 337px;
-    max-width: 337px;
+    min-width: 300px;
+    max-width: 300px;
   }
 }
 
@@ -720,7 +720,7 @@ textarea{
 
 .chat-tabs, .participants-title{
   display: inline-block;
-  width: 100px;
+  width: 90px;
   text-align: center;
   border: 1px solid #c1c1c1;
   border-bottom: none;
