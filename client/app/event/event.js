@@ -420,11 +420,13 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     /*/////////////////////////////////////////////////////////////////////////////////////////////////////////
     CODE FOR LIVE STREAMING
     /////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-    // $scope.$watch('$scope.event.videoId', function loadVideo(a,b){
-    //   if($scope.isSameUser !== true){
-    //     $scope.loadStream();
-    //   }
-    // });
+    
+    //Autoloads if a stream has already started
+    $scope.$watch('$scope.event.videoId', function loadVideo(a,b){
+      if($scope.isSameUser !== true){
+        $scope.loadStream();
+      }
+    });
 
     
 
