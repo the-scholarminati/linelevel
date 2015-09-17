@@ -701,6 +701,8 @@ textarea{
 @media(max-width: 700px){
   #chat-content{
     flex-grow: 0;
+    min-width: 337px;
+    max-width: 337px;
   }
 }
 
