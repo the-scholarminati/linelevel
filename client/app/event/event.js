@@ -48,12 +48,12 @@ angular.module('main').controller('eventController',['$scope','$http', 'appFacto
     ////////////////////
     // Other admin Tab features
     ////////////////////
-    $scope.deleteEvent = function(){
+    $scope.deleteThisEvent = function(){
       ref.off();
       eventRef.off();
       chatRef.off();
       chatRef.remove();
-      eventRef.remove();
+      ref.child("events").child($scope.eventId).remove();
       $state.go('home');
     };
 
