@@ -1152,6 +1152,7 @@ video{
   transition: 1s;
   z-index: 2;
   font-size: 14px;
+  padding-right: 15px;
 }
 .eventInfo p{
   padding: 10px;
