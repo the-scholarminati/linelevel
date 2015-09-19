@@ -24,28 +24,6 @@ An app where musicians can host online album release parties to share new music 
 - Karma and Jasmine for testing
 
 
-# MVP feature list
-
-- video/music streaming (youtube API)
-- user accounts
-- chat
-- mobile-first design
-- unit tests for client and server
-- integration test for api calls
-
-
-# Stretch goals
-
-- music file upload
-- develop our own streaming feature (from scratch?)
-- rewards/incentives
-- add other genres, film screenings and game demos
-- store/hosting past parties
-- buy album
-- event rsvp, book dates in advance for promotion
-- display list of upcoming promotions for different genres
-
-
 # Git Flow
 
 - create fork via github
