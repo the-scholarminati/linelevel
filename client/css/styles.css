@@ -225,7 +225,7 @@ nav{
   text-align: right;
   font-size: 16px;
   color: white;
-  overflow-y: scroll;
+  overflow-y: hidden;
   min-width: 425px;
 }
 
@@ -1152,6 +1152,7 @@ video{
   transition: 1s;
   z-index: 2;
   font-size: 14px;
+  padding-right: 15px;
 }
 .eventInfo p{
   padding: 10px;
