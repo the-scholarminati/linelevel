@@ -2,8 +2,8 @@
 An app where musicians can host online album release parties to share new music with their fans
 
 
-![Linelevel about page screenshot](http://i132.photobucket.com/albums/q17/dierat/linelevel/Screen%20Shot%202015-09-11%20at%205.41.22%20PM.png)
-![Linelevel front page screenshot](http://i132.photobucket.com/albums/q17/dierat/linelevel/Screen%20Shot%202015-09-11%20at%205.41.28%20PM.png)
+![Linelevel about page screenshot](http://i132.photobucket.com/albums/q17/dierat/software%20dev%20portfolio%20images/Screen%20Shot%202015-09-18%20at%206.02.07%20PM.png)
+![Linelevel home page screenshot](http://i132.photobucket.com/albums/q17/dierat/software%20dev%20portfolio%20images/Screen%20Shot%202015-09-18%20at%206.02.20%20PM.png)
 
 
 # The Team
